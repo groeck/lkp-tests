@@ -1,0 +1,74 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+ 
+nr_threads: 100%
+ 
+testtime:
+  - 60s
+
+stress-ng:
+  test:
+    - schedmix
+    - schedpolicy
+    - sctp
+    - seal
+    - seccomp
+    - secretmem
+    - seek
+    - sem
+    - sem-sysv
+    - sendfile
+    - session
+    - set
+    - shellsort
+    - shm
+    - shm-sysv
+    - sigabrt
+    - sigbus
+    - sigchld
+    - sigfd
+    - sigfpe
+    - sigio
+    - signal
+    - signest
+    - sigpending
+    - sigpipe
+    - sigq
+    - sigrt
+    - sigsegv
+    - sigsuspend
+    - sigtrap
+    - sigxcpu
+    - sigxfsz
+    - skiplist
+    - sleep
+    - smi
+    - sock
+    - sockabuse
+    - sockdiag
+    - sockfd
+    - sockmany
+    - sockpair
+    - softlockup
+    - spawn
+    - sparsematrix
+    - splice
+    - stackmmap
+    - str
+    - stream
+    - switch
+    - syncload
+    - sysbadaddr
+    - syscall
+    - sysinfo
+    - sysinval
+    - sysfs
+
+# ---
+# need_memoey: 238G
+# nr_threads: 5%
+
+# stress-ng:
+#   test:
+#     - stack

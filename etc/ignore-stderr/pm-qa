@@ -1,18 +1,18 @@
-X.Org X Server.*
-X Protocol Version.*
-Build Operating System.*
-Current Operating System.*
-Kernel command line:.*
-Build Date:.*
-xorg-server.*
-Current version of pixman:.*
 .*Before reporting problems, check.*
 .*to make sure that you have the latest version.
-Markers:.*
-.*\(\+\+\) from command line.*
 .*\(WW\) warning, \(EE\) error.*
+.*\(\+\+\) from command line.*
+Build Date:.*
+Build Operating System.*
+Current Operating System.*
+Current version of pixman:.*
+Kernel command line:.*
+Markers:.*
+waiting for X server to shut down.*
+X Protocol Version.*
+X.Org X Server.*
+xinit: connection to X server.*
+xorg-server.*
 \(==\) Log file:.*
 \(==\) Using system config directory.*
 \(II\) modeset.*
-xinit: connection to X server.*
-waiting for X server to shut down.*

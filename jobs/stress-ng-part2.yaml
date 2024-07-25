@@ -1,0 +1,83 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+ 
+nr_threads: 100%
+ 
+testtime:
+  - 60s
+
+stress-ng:
+  test:
+    - get
+    - getrandom
+    - goto
+    # - gpu
+    - hash
+    - heapsort
+    - hrtimers
+    - hsearch
+    - icache
+    - icmp-flood
+    - idle-page
+    - ioport
+    - io-uring
+    - ipsec-mb
+    - itimer
+    - jpeg
+    - judy
+    - kcmp
+    - key
+    - kill
+    - klog
+    - kvm
+    - l1cache
+    # - landlock # require CONFIG_SECURITY_LANDLOCK
+    - led
+    - list
+    - llc-affinity
+    - loadavg
+    - lockbus
+    - longjmp
+    - loop
+    - lsearch
+    - madvise
+    - malloc
+    - matrix
+    - matrix-3d
+    - mcontend
+    - membarrier
+    - memcpy
+    - memfd
+    - memhotplug
+    - memrate
+    - memthrash
+    - mergesort
+    - mincore
+    - misaligned
+    - mlock
+    - mlockmany
+    - mmap
+    - mmapaddr
+    - mmapfiles
+    - mmapfixed
+    - mmapfork
+    - mmapmany
+    # - module # require open RUNTIME_TESTING_MENU and TEST_LKM
+    - monte-carlo
+    - mprotect
+    - mpfr
+    - mq
+    - mremap
+    - msg
+    - msync
+    - msyncmany
+    - munmap
+    - mutex
+
+---
+nr_threads: 50%
+
+stress-ng:
+  test:
+    - mmaphuge

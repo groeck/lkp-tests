@@ -6,6 +6,7 @@
 
 . $LKP_SRC/lib/env.sh
 . $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 mount_dev()
 {
@@ -13,45 +14,43 @@ mount_dev()
 
 	[ $nr_partitions -ge 1 ] || die "nr_partitions is less than 1"
 	partition=${partitions%% *}
-	if [ "$test" = "verity" ]; then
+
+	[ "$test" = "verity" ] && {
 		log_cmd umount $partition
 		log_cmd mkfs.$fs -q -F -O verity $partition || die "fail to mkfs.$fs -q -F -O verity $partition"
-	fi
+	}
 
 	log_cmd mkdir -p $mnt
 	log_cmd mount $partition $mnt 2>/dev/null
+
 	# shellcheck disable=SC2164
-	cd $mnt
+	log_cmd cd $mnt
+
+	stat -f $PWD
 }
 
 ## some options are universal, put them in universal_setting
-set_for_universal()
+set_common_opts()
 {
-
 	[ -n "$testtime" ] || testtime=1
 
-	default_option="
-		--timeout $testtime \
-		--times \
-		--verify \
-		--metrics-brief
-	"
-
-	## stressors spawn exec can't run as root
-	## all classes need to exclud them except class exec_spawn
-	default_exclude="spawn,exec"
-
-	# Fix stress-ng: error: [36360] process [36390] (stress-ng-swap) aborted early, out of system resources
-	[ $(nproc) -gt 16 ] && default_exclude="$default_exclude,swap"
+	common_opts="--timeout $testtime --times --verify --metrics --no-rand-seed"
 }
 
-# some class need special settinf
-set_for_class()
+# some classes need special setup
+setup_class()
 {
+	## stressors spawn exec can't run as root
+	## all classes need to exclud them except class exec_spawn
+	exclude_opt="--exclude spawn,exec"
+
+	# Fix stress-ng: error: [36360] process [36390] (stress-ng-swap) aborted early, out of system resources
+	[ $(nproc) -gt 16 ] && exclude_opt="${exclude_opt},swap"
+
 	case "$class" in
 	"memory")
 		stress_opts="--minimize"
-		exclude_stress=",stack"
+		exclude_opt="${exclude_opt},stack"
 		;;
 	"os")
 		stress_opts="--minimize"
@@ -61,7 +60,36 @@ set_for_class()
 		mount_dev
 		;;
 	"vm")
-		cd ${mount_points%% *} || return
+		# shellcheck disable=SC2164
+		log_cmd cd ${mount_points%% *}
+		;;
+	*)
+		;;
+	esac
+}
+
+setup_test()
+{
+	[ -n "$fs" ] && {
+		mount_dev || return
+	}
+
+	case "$test" in
+	"swap")
+		common_opts="${common_opts} --temp-path /mnt/stress-ng"
+		;;
+	"ping-sock")
+		log_cmd sysctl -w net.ipv4.ping_group_range="0 $nr_threads"
+		;;
+	"bigheap"|"brk"|"sockpair"|"mmaphuge"|"loadavg")
+		common_opts="${common_opts} --oom-avoid"
+		;;
+	"aiol")
+		# 081aa00e16a9 ("tests/stress-ng: sleep 2s before run_test to fix stress-ng-aiol open fail")
+		log_cmd sleep 2
+		;;
+	"bad-ioctl"|"sysinval"|"cpu-online"|"mlockmany"|"oom-pipe"|"bind-mount"|"watchdog"|"smi")
+		common_opts="${common_opts} --pathological"
 		;;
 	*)
 		;;
@@ -70,37 +98,26 @@ set_for_class()
 
 run_test()
 {
-	## most stressors could run as root except exec and spawn,
-	## classify exec and spawn into exec_spawn, run it as lkp.
-	## run other stress-ng as root
-	## use option --exclude to ignore spawn and exec.
-	[ -n "$test" ] && {
-		if [ "$test" = "ping-sock" ]; then
-			log_cmd sysctl -w net.ipv4.ping_group_range="0 $nr_threads"
-		fi
+	set_common_opts
 
-		test="--$test"
-		if [ "$class" = "exec_spawn" ]; then
-			mkdir /home/lkp && chown -R lkp:lkp /home/lkp
-			log_cmd su - lkp -s /bin/bash -c "stress-ng --timeout $testtime --times --verify --metrics-brief $test $nr_threads 2>&1"
+	if [ -n "$test" ]; then
+		setup_test || die "setup test failed"
+
+		if [ "$test" = "exec" ] || [ "$test" = "spawn" ] || [ "$test" = "bad-ioctl" ]; then
+			# these stressors need to be running without root privilege
+			log_cmd mkdir /home/lkp
+			log_cmd chown -R lkp:lkp /home/lkp
+			log_cmd su - lkp -s /bin/bash -c "stress-ng $common_opts --$test $nr_threads 2>&1"
 		else
-			log_cmd stress-ng $default_option $test $nr_threads 2>&1
+			log_cmd stress-ng $common_opts --$test $nr_threads 2>&1
 		fi
-		return
-	}
+	else
+		setup_class || die "setup class failed"
 
-	log_cmd stress-ng \
-		$default_option \
-		--sequential $nr_threads \
-		--class $class $stress_opts \
-		--exclude $default_exclude$exclude_stress 2>&1
+		log_cmd stress-ng $common_opts --sequential $nr_threads --class $class $stress_opts $exclude_opt 2>&1
+	fi
 }
 
-set_for_universal
-set_for_class
-sleep 2
 has_cmd stress-ng || die "stress-ng is not installed"
-run_test
-exit_value=$?
 
-exit $exit_value
+run_test

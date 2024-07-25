@@ -10,26 +10,6 @@
 # 	SIGTRAP at 0xf7f3e541
 # 	  0xf7f3e541
 # 	  0xf7dfd0c7
-# [OK]	  NR = 20, args = 1, 2, 3, 4, 5, 6
-# 	SIGTRAP at 0xf7f3e542
-# 	  0xf7f3e542
-# 	  0xf7dfd0c7
-# [OK]	  NR = 20, args = 1, 2, 3, 4, 5, 6
-# 	SIGTRAP at 0xf7f3e543
-# 	  0xf7f3e543
-# 	  0xf7dfd0c7
-# [OK]	  NR = 20, args = 1, 2, 3, 4, 5, 6
-# 	SIGTRAP at 0xf7f3e545
-# 	  0xf7f3e545
-# 	  0xf7dfd0c7
-# [OK]	  NR = 20, args = 1, 2, 3, 4, 5, 6
-# 	SIGTRAP at 0xf7f3e54a
-# 	  0xf7f3e54a
-# 	  0xf7dfd0c7
-# [OK]	  NR = 3428, args = 1, 2, 3, 4, 5, 6
-# 	SIGTRAP at 0xf7f3e54b
-# 	  0xf7f3e54b
-# 	  0xf7dfd0c7
 # [OK]	  NR = 3428, args = 1, 2, 3, 4, 5, 6
 # 	SIGTRAP at 0xf7f3e54c
 # 	  0xf7f3e54c

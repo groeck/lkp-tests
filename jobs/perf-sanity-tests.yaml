@@ -8,3 +8,5 @@ perf-sanity-tests:
   perf_compiler:
     - gcc
     - clang
+
+timeout: 30m

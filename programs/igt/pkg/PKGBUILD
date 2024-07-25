@@ -9,22 +9,30 @@ sha256sums=('SKIP')
 
 build()
 {
+
+	python3 -m venv $srcdir
+	. $srcdir/bin/activate
+
 	python3 -m pip install meson
 	python3 -m pip install ninja
+
 	cd $srcdir/igt-gpu-tools
+
 	meson build && ninja -C build
+
+	deactivate
 }
 
 split_tests()
 {
 	cd $srcdir/igt-gpu-tools
 	# standalone test
-	for test in $(cat $LKP_SRC/pkg/${pkgname}/addon/tests/standalone | grep -v '^#')
+	for test in $(cat $LKP_SRC/programs/${pkgname}/pkg/addon/tests/standalone | grep -v '^#')
 	do
 		echo $test > ./$test
 	done
 
-	standalone_tests=`paste -sd '|' <(cat $LKP_SRC/pkg/${pkgname}/addon/tests/standalone | grep -v '^#')`
+	standalone_tests=`paste -sd '|' <(cat $LKP_SRC/programs/${pkgname}/pkg/addon/tests/standalone | grep -v '^#')`
 	sed -n '2p' build/tests/test-list.txt | tr " " "\n" | grep -v amdgpu | grep -vE "$standalone_tests" | sort > all-tests
 
 	$LKP_SRC/tools/split-tests all-tests 25 group-
@@ -38,5 +46,5 @@ package()
 	mkdir -p $benchmark_path
 	cp -af "${srcdir}/igt-gpu-tools/"* $benchmark_path
 
-	cp -af $LKP_SRC/pkg/${pkgname}/exclude $benchmark_path
+	cp -af $LKP_SRC/programs/${pkgname}/pkg/exclude $benchmark_path
 }

@@ -1,0 +1,11 @@
+short_description: >
+ A "device memory" enabling project encompassing tools and libraries for CXL, NVDIMMs, DAX, memory tiering and other platform memory device topics.
+
+description: >
+ Utility library for managing the libnvdimm (non-volatile memory device) sub-system in the Linux kernel
+
+homepage: https://github.com/pmem/ndctl.git
+
+parameters:
+
+results:

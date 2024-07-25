@@ -15,7 +15,7 @@ cd $BENCHMARK_ROOT/$testcase || die "can not enter $BENCHMARK_ROOT/$testcase"
 
 : "${duration:=50}"
 : "${blksize:=100M}"
-: "${blkcount:=1}"
+: "${blkcount:=10}"
 : "${thread_nr:=*}"
 
 loopdev=$(losetup -f)

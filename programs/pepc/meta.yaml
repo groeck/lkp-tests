@@ -1,0 +1,12 @@
+short_description: >
+ Pepc stands for "Power, Energy, and Performance Configurator". This is a command-line tool for configuring CPU power management features.
+ IMPORTANT:this is tool is for debug and research purposes only. It requires root permissions, and must only be used in an isolated lab environment, not in production.
+
+description: >
+
+homepage: https://github.com/intel/pepc.git
+
+parameters:
+
+results:
+

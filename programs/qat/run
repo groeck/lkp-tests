@@ -1,0 +1,54 @@
+#!/bin/bash
+
+. $LKP_SRC/lib/debug.sh
+
+check_firmware()
+{
+	[[ -f /lib/firmware/qat_4xxx.bin && -f /lib/firmware/qat_4xxx_mmp.bin ]]
+}
+
+check_lspci()
+{
+	# 6b:00.0 0b40: 8086:4940 (rev 40)
+	# e8:00.0 0b40: 8086:4940 (rev 40)
+	lspci -nd 8086:4940 | grep -F "8086:4940 (rev 40)"
+}
+
+check_module()
+{
+	# qat_4xxx               24576  0
+	# intel_qat             303104  1 qat_4xxx
+	# dh_generic             12288  1 intel_qat
+	# crc8                   12288  1 intel_qat
+	# authenc                12288  1 intel_qat
+	lsmod | grep "^qat_4xxx" &&
+	lsmod | grep "^intel_qat" &&
+	lsmod | grep "^dh_generic" &&
+	lsmod | grep "^crc8" &&
+	lsmod | grep "^authenc"
+}
+
+check_dmesg()
+{
+	# [   19.807730] 4xxx 0000:6b:00.0: qat_dev0 started 9 acceleration engines
+	# [   19.993731] 4xxx 0000:e8:00.0: qat_dev1 started 9 acceleration engines
+	dmesg | grep "qat_dev.* started .* acceleration engines"
+}
+
+remove_module()
+{
+	rmmod -v qat_4xxx
+	rmmod -v intel_qat
+	rmmod -v dh_generic
+	rmmod -v crc8
+	rmmod -v authenc
+}
+
+check_firmware || die "qat firmware not found"
+check_lspci || die "qat pci device not found"
+check_module || die "qat modules not fully loaded"
+check_dmesg || die "qat device failed to start"
+
+cat /proc/crypto
+
+remove_module

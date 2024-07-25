@@ -10,4 +10,5 @@ subsystems:
 - imx
 - imx7d
 - imx53
+- imx93
 - devices

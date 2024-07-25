@@ -120,7 +120,7 @@ class ResultRootCollection
     files.each do |fn|
       File.open(fn) do |f|
         f.readlines.reverse!.each do |rtp|
-        # f.readlines.each { |rtp|
+          # f.readlines.each { |rtp|
           rtp = rtp.strip
           next unless File.exist? rtp
 

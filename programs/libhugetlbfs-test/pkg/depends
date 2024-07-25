@@ -1,5 +1,7 @@
-make
-git
+autoconf
+automake
 gcc-multilib
+git
+make
+python
 python-pkg-resources
-python3

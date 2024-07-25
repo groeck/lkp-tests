@@ -1,0 +1,71 @@
+short_description: >
+ Simple benchmark for memory throughput and latency.
+
+description: >
+ his is a simple memory benchmark program, which tries to measure the peak andwidth of sequential memory accesses and the latency of random memory ccesses. Bandwidth is measured by running different assembly code for he aligned memory blocks and attempting different prefetch strategies.
+
+homepage: https://github.com/ssvb/tinymembench.git
+
+parameters:
+ inymembench:
+
+results:
+ tinymembench.standard_memcpy_MBpS: 
+ tinymembench.standard_memcpy_MBpS_stddev:
+ tinymembench.standard_memset_MBpS:
+ tinymembench.standard_memset_MBpS_stddev:
+ tinymembench.MOVSB_copy_MBpS: 
+ tinymembench.MOVSB_copy_MBpS_stddev: 
+ tinymembench.MOVSD_copy_MBpS:
+ tinymembench.MOVSD_copy_MBpS_stddev: 
+ tinymembench.SSE2_copy_MBpS: 
+ tinymembench.SSE2_copy_MBpS_stddev: 
+ tinymembench.SSE2_nontemporal_copy_MBpS:
+ tinymembench.SSE2_nontemporal_copy_MBpS_stddev:
+ tinymembench.SSE2_copy_prefetched_32_bytes_step_MBpS: 
+ tinymembench.SSE2_copy_prefetched_32_bytes_step_MBpS_stddev: 
+ tinymembench.SSE2_copy_prefetched_64_bytes_step_MBpS: 
+ tinymembench.SSE2_copy_prefetched_64_bytes_step_MBpS_stddev:
+ tinymembench.SSE2_nontemporal_copy_prefetched_32_bytes_step_MBpS:
+ tinymembench.SSE2_nontemporal_copy_prefetched_32_bytes_step_MBpS_stddev: 
+ tinymembench.SSE2_nontemporal_copy_prefetched_64_bytes_step_MBpS: 
+ tinymembench.SSE2_nontemporal_copy_prefetched_64_bytes_step_MBpS_stddev: 
+ tinymembench.SSE2_2_pass_copy_MBpS: 
+ tinymembench.SSE2_2_pass_copy_MBpS_stddev: 
+ tinymembench.SSE2_2_pass_copy_prefetched_32_bytes_step_MBpS:
+ tinymembench.SSE2_2_pass_copy_prefetched_32_bytes_step_MBpS_stddev:
+ tinymembench.SSE2_2_pass_copy_prefetched_64_bytes_step_MBpS: 
+ tinymembench.SSE2_2_pass_copy_prefetched_64_bytes_step_MBpS_stddev: 
+ tinymembench.SSE2_2_pass_nontemporal_copy_MBpS: 
+ tinymembench.SSE2_2_pass_nontemporal_copy_MBpS_stddev:
+ tinymembench.SSE2_fill_MBpS: 
+ tinymembench.SSE2_fill_MBpS_stddev: 
+ tinymembench.SSE2_nontemporal_fill_MBpS: 
+ tinymembench.SSE2_nontemporal_fill_MBpS_stddev: 
+ tinymembench.MOVSD_copy_from_framebuffer_MBpS: 
+ tinymembench.MOVSD_copy_from_framebuffer_MBpS_stddev: 
+ tinymembench.MOVSD_2_pass_copy_from_framebuffer_MBpS: 
+ tinymembench.MOVSD_2_pass_copy_from_framebuffer_MBpS_stddev: 
+ tinymembench.SSE2_copy_from_framebuffer_MBpS: 
+ tinymembench.SSE2_copy_from_framebuffer_MBpS_stddev:
+ tinymembench.SSE2_2_pass_copy_from_framebuffer_MBpS: 
+ tinymembench.SSE2_2_pass_copy_from_framebuffer_MBpS_stddev:
+ tinymembench.single_random_read_1024_block_nohugepage:
+ tinymembench.dual_random_read_1024_block_nohugepage: 
+ tinymembench.single_random_read_4096_block_nohugepage: 
+ tinymembench.dual_random_read_4096_block_nohugepage: 
+ tinymembench.single_random_read_16384_block_nohugepage: 
+ tinymembench.dual_random_read_16384_block_nohugepage: 
+ tinymembench.single_random_read_65536_block_nohugepage: 
+ tinymembench.dual_random_read_65536_block_nohugepage: 
+ tinymembench.single_random_read_4096_block_hugepage: 
+ tinymembench.dual_random_read_4096_block_hugepage: 
+ tinymembench.single_random_read_16384_block_hugepage: 
+ tinymembench.dual_random_read_16384_block_hugepage: 
+ tinymembench.single_random_read_65536_block_hugepage: 
+ tinymembench.dual_random_read_65536_block_hugepage: 
+ tinymembench.single_random_read_262144_block_hugepage:
+ tinymembench.dual_random_read_262144_block_hugepage: 
+ tinymembench.single_random_read_1048576_block_hugepage: 
+ tinymembench.dual_random_read_1048576_block_hugepage: 
+

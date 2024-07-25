@@ -7,6 +7,17 @@ license=('GPL')
 source=("https://vilimpoc.org/research/ku-latency/send-data.c" "https://vilimpoc.org/research/ku-latency/ku-latency.c")
 md5sums=('SKIP' 'SKIP')
 
+. $LKP_SRC/lib/install.sh
+
+patch_source()
+{
+	# PWD=/tmp/lkp/ku-latency/src, srcdir=/tmp/lkp/ku-latency/src
+	# lrwxrwxrwx 1 root root 48 Feb 26 16:21 send-data.c -> /lkp/lkp/src/programs/ku-latency/pkg/send-data.c
+	# lrwxrwxrwx 1 root root 49 Feb 26 16:21 ku-latency.c -> /lkp/lkp/src/programs/ku-latency/pkg/ku-latency.c
+	cd $(dirname $(realpath ku-latency.c))
+	patch -p1 < "$(get_pkg_dir $pkgname)/0001-ku-latency.c-rename-var-index-to-kuIndex.patch"
+}
+
 package() {
 	cd $srcdir
 	benchmark_path="${pkgdir}/lkp/benchmarks/${pkgname}"

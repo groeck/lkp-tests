@@ -1,0 +1,17 @@
+autoconf
+automake
+autotools-dev
+build-essential
+git
+kmod
+libiniparser-dev
+libjson-c-dev
+libkmod-dev
+libkmod2
+libtool
+libudev-dev
+libudev1
+libuuid1
+pkg-config
+udev
+uuid-dev

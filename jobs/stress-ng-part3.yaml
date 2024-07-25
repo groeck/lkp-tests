@@ -1,0 +1,64 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+ 
+nr_threads: 100%
+ 
+testtime:
+  - 60s
+
+stress-ng:
+  test:
+    - nanosleep
+    - netdev
+    - netlink-proc
+    - netlink-task
+    - nice
+    - nop
+    - "null"
+    - numa
+    - oom-pipe
+    - opcode
+    - pagemove
+    - pageswap
+    - pci
+    - personality
+    - peterson
+    - physpage
+    - pidfd
+    - ping-sock
+    - pipe
+    - pipeherd
+    - pkey
+    # - plugin # run user provided stressor functions loaded from a shared library
+    - poll
+    - prctl
+    - prefetch
+    - prio-inv
+    - priv-instr
+    - pthread
+    - ptrace
+    - pty
+    - qsort
+    - quota
+    - race-sched
+    - radixsort
+    - randlist
+    - ramfs
+    - rawpkt
+    - rawsock
+    - rawudp
+    - rdrand
+    - readahead
+    - reboot
+    - regs
+    - remap
+    - resched
+    - resources
+    - revio
+    - ring-pipe
+    - rlimit
+    - rmap
+    - rotate
+    - rseq
+    - rtc

@@ -1,89 +1,92 @@
-gcc
-g++
-gcc-multilib
-xz-utils
-dwarves
-libbpf-dev
-libc6-dev
-libc-bin
-libc6-dev-i386 (x86_64)
-libc6-dev-x32
-libc6
-lib32gcc-dev (x86_64)
-libx32gcc-dev
-libc6-i386 (x86_64)
-libc6-dev
-libc6-x32
-libx32gcc1
-libx32gomp1
-libx32itm1
-libx32atomic1
-libx32asan5
-libx32ubsan1
-libx32quadmath0
-rsync
-make
-libcap-ng-dev
-libpopt0
-libpopt-dev
-libcap-dev
-sudo
-libnuma-dev
-libmount-dev
-libpci3
-libelf-dev
-libfuse-dev
-gcc-multilib
-pkg-config
-fuse
+arping
+attr
+bc
 binutils-dev
 bison
-flex
-python3
-python3-scapy
-libreadline-dev
-iproute2
-ethtool
-uuid-runtime
-libdrm-dev
-linux-libc-dev
-linux-libc-dev-amd64-cross
-net-tools
-netcat-openbsd
-zlib1g-dev
-libhugetlbfs-dev
-libssl-dev
-libasound2-dev
-libc-dev-bin
-nftables
+build-essential
+clang
+conntrack
 ebtables
-sendip
+ethtool
+file
+flex
+fuse
+gcc-multilib
+iperf3
+iproute2
+iptables
+ipv6toolkit
 ipvsadm
-libmnl-dev
-libkeyutils-dev
+jq
+lib32gcc-dev (x86_64)
+lib64asan3 (i386)
+lib64atomic1 (i386)
+lib64gcc-dev (i386)
 lib64gcc1 (i386)
 lib64gomp1 (i386)
 lib64itm1 (i386)
-lib64atomic1 (i386)
-lib64asan3 (i386)
+libasound2-dev
+libbpf-dev
+libc-bin
+libc6
 libc6-amd64 (i386)
+libc6-dev
 libc6-dev-amd64 (i386)
-lib64gcc-dev (i386)
-python-docutils
-jq
-socat
+libc6-dev-i386 (x86_64)
+libc6-dev-x32
+libc6-i386 (x86_64)
+libc6-x32
+libcap-dev
+libcap-ng-dev
+libclang-dev
+libcpupower-dev
+libdrm-dev
+libdw-dev
+libdwarf-dev
+libelf-dev
+libfuse-dev
+libhugetlbfs-dev
+libkeyutils-dev
+libmnl-dev
+libmount-dev
+libnuma-dev
+libpci3
+libpopt-dev
+libpopt0
+libreadline-dev
+libssl-dev
+liburing-dev
+libx32asan5
+libx32atomic1
+libx32gcc-dev
+libx32gcc1
+libx32gomp1
+libx32itm1
+libx32quadmath0
+libx32ubsan1
+linux-libc-dev-amd64-cross
+linux-perf
+lld
+llvm-dev
+ndisc6
+net-tools
+netcat-openbsd
 netsniff-ng
-traceroute
-conntrack
-iperf3
-tshark
-iptables
+nftables
 openvswitch-common
 openvswitch-switch
-tcpdump
-arping
-linux-perf
-file
-llvm-dev
-attr
 pesign
+pkg-config
+python
+python-docutils
+python-scapy
+rsync
+sendip
+socat
+sudo
+tcpdump
+traceroute
+tshark
+uuid-runtime
+xz-utils
+zlib1g-dev

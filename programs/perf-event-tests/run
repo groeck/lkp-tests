@@ -6,6 +6,7 @@
 
 . $LKP_SRC/lib/reproduce-log.sh
 . $LKP_SRC/lib/tests/perf_event_tests.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/perf_event_tests || die "can not find perf_event_test dir"
 

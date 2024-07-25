@@ -1,0 +1,5 @@
+nvme/005.pass: 1
+nvme/006.device.pass: 1
+nvme/006.file.pass: 1
+nvme/021.device.skip: 1
+nvme/021.file.skip: 1

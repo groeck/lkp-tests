@@ -5,6 +5,8 @@
 # - histogram
 # - loops
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 export PATH=$BENCHMARK_ROOT/cyclictest/bin:$PATH
 
 run_test()

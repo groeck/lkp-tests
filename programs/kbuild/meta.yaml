@@ -1,0 +1,19 @@
+ishort_description: >
+
+description: >
+
+homepage: https://www.kernel.org/pub/linux/kernel
+
+parameters:
+ nr_task:
+ runtime:
+ build_kconfig:
+ target:
+
+results:
+ kbuild.buildtime_per_iteration:
+ kbuild.real_time_per_iteration:
+ kbuild.user_time_per_iteration: 
+ kbuild.sys_time_per_iteration: 
+ kbuild.workload: 
+

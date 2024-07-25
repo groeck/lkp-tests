@@ -41,7 +41,7 @@ class Noise
     printf "%s.min: %d\n", @str, @min
     printf "%s.med: %d\n", @str, @med
     @noise_levels.each do |level, mc|
-      printf "%s.noise.%d%%: %d\n", @str, level, mc * @scale / @samples
+      printf "%s.%d%%.noise: %d\n", @str, level, mc * @scale / @samples
     end
   end
 end

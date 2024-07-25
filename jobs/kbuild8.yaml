@@ -1,0 +1,20 @@
+suite: kbuild
+testcase: kbuild
+category: benchmark
+
+runtime: 300s
+
+nr_task: 100%
+
+nr_instances: 8
+
+cgroup2:
+  cg_count: 8
+
+setup-kbuild:
+
+target: vmlinux
+
+build_kconfig: allyesconfig
+
+kbuild:

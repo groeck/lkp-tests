@@ -36,7 +36,7 @@ check_incomplete_run()
 	local file=$1
 
 	[[ -s $file ]] && return
-	[[ -f $LKP_SRC/tests/$program ]] || [[ -f $LKP_SRC/programs/$program/run ]] || return
+	[[ -f $LKP_SRC/programs/$program/run ]] || return
 
 	echo -e "# missing $program $file\nis_incomplete_run: 1" >> $RESULT_ROOT/last_state
 }
@@ -203,7 +203,7 @@ testcase=$(get_testcase)
 
 category=$(grep "^category" "$RESULT_ROOT"/job.yaml | awk '{print $2}')
 
-if [[ "$program" = "$testcase" ]] && [[ -f "$LKP_SRC/tests/$program" ]] && [[ ! -f $log ]] && [[ "$category" = functional ]]; then
+if [[ "$program" = "$testcase" ]] && [[ -f "$LKP_SRC/programs/$program/run" ]] && [[ ! -f $log ]] && [[ "$category" = functional ]]; then
 	generate_log_from_serial
 fi
 

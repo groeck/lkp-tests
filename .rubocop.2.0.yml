@@ -1,0 +1,139 @@
+Metrics/MethodLength:
+  Max: 50
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 50
+  Exclude:
+    - lib/changed_stat.rb
+    - lib/compare.rb
+    - lib/dmesg.rb
+    - lib/hash.rb
+    - lib/job.rb
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/plot.rb
+    - lib/stats.rb
+    - sbin/compare
+
+Metrics/BlockLength:
+  Max: 50
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 30 # 6 by default
+  Exclude:
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/stats.rb
+    - sbin/compare
+
+Metrics/PerceivedComplexity:
+  Max: 30
+  Exclude:
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/stats.rb
+    - sbin/compare
+
+Metrics/BlockNesting:
+  Exclude:
+    - programs/test-bpf/parse
+    - lib/hash.rb
+    - programs/suspend/parse
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.0
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/NumericPredicate:
+  Exclude:
+    - 'lib/job2sh.rb'
+    - 'lib/matrix.rb'
+    - 'lib/stats.rb'
+
+Style/MethodMissing:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/RedundantFreeze:
+  Enabled: false
+
+Style/YodaCondition:
+  Enabled: false
+
+Security/Eval:
+  Enabled: false
+
+Security/JSONLoad:
+  Enabled: false
+
+Security/YAMLLoad:
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+Lint/UnneededDisable:
+  Enabled: false
+
+Lint/BlockAlignment:
+  Enabled: false
+
+Layout/IndentHeredoc:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'lib/compare.rb'
+    - 'lib/data_store.rb'
+    - 'lib/nresult_root.rb'
+    - 'lib/property.rb'
+    - 'lib/result_root.rb'
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false

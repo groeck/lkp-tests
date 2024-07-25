@@ -4,6 +4,8 @@
 
 ## tcrypt.ko module purpose is to test different crypto algorithm from the kenrel space.
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 for i in $(seq ${modes%-*} ${modes#*-})
 do
 	# tcrypt do testing by modules inserting, then exit from kernel

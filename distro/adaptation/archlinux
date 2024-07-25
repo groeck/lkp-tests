@@ -2,7 +2,6 @@ apache2: apache
 apt-file: pkgfile
 autotools-dev: autoconf
 binutils-dev: binutils
-bsdtar:
 btrfs-tools: btrfs-progs
 build-essential: base-devel
 cgroup-bin: libcgroup cgmanager
@@ -12,13 +11,14 @@ freeglut3: freeglut
 initramfs-tools: mkinitcpio
 iozone3: iozone
 klibc-utils:
-libarchive13: libarchive
 libacl1-dev: acl
-libaio1: libaio
 libaio-dev: libaio
+libaio1: libaio
+libarchive-tools:
+libarchive13: libarchive
 libattr1-dev: attr
-libc6-dev: glibc
 libc-dev:i386:
+libc6-dev: glibc
 libdbus-1-dev: libdubs
 libdrm-dev: libdrm
 libgles2-mesa: mesa
@@ -27,8 +27,8 @@ libhwloc-dev: hwloc
 libiberty-dev:
 libibverbs-dev: libibverbs
 libklibc-dev:
-libkmod2: kmod2
 libkmod-dev: kmod2
+libkmod2: kmod2
 libnl-3-200: libnl
 libnl-3-dev: libnl
 libnl-genl-3-200: libnl
@@ -38,16 +38,18 @@ liboop-dev: liboop
 libpcap0.8-dev: libpcap
 libpcap0.8: libpcap
 libperl5:
-libpopt0: popt
 libpopt-dev: popt
+libpopt0: popt
 librdmacm-dev: librdmacm
 libsctp-dev: lksctp-tools
 libsqlite3-dev: sqlite
 libssl-dev: openssl
-libudev1: libudev0
+libtirpc-dev:
 libudev-dev: libudev0
+libudev1: libudev0
 libuuid1: uuid
 libx11-xcb-dev: libx11
+linux-cpupower: linux-tools
 linux-libc-dev:
 linux-libc-dev:i386:
 mysql-server: mysql
@@ -71,4 +73,3 @@ xinit: xorg-xinit
 xsltproc: libxslt
 xutils-dev: imake
 xz-utils: xz
-libtirpc-dev:

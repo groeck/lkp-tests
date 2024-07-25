@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/statistics"
 require "#{LKP_SRC}/lib/string_ext"
@@ -10,7 +10,7 @@ require "#{LKP_SRC}/lib/tests/stats"
 stats = LKP::Stats.new
 
 while (line = $stdin.gets)
-  case line.uncolorize
+  case line.resolve_invalid_bytes.uncolorize
   when /^(PASS|SKIP|FAIL|ignore_by_lkp:) ([a-zA-Z].*)/
     # ESC[32mPASSESC[0m vmexit_tscdeadline
     # PASS vmexit_tscdeadline

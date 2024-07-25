@@ -6,6 +6,7 @@
 # - intervaltime_s
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/schbench || die "no $BENCHMARK_ROOT/schbench"
 

@@ -8,6 +8,7 @@ cd $BENCHMARK_ROOT/mdadm-selftests || exit 1
 . $LKP_SRC/lib/upload.sh
 . $LKP_SRC/lib/debug.sh
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/install.sh
 
 mount_partition()
 {
@@ -45,16 +46,6 @@ modprobe raid456
 modprobe -r loop
 modprobe loop max_loop=14 || die "failed to modprobe loop"
 
-check_ignored_cases()
-{
-	local casename=$1
-	local ignored_by_lkp=$LKP_SRC/pkg/mdadm-selftests-addon/ignored_by_lkp
-
-	# skip cases that in ignored_by_lkp
-	[ -f "$ignored_by_lkp" ] || return
-	grep -q -w $casename "$ignored_by_lkp"
-}
-
 run_test()
 {
 	# sub-case "01raid","07","11","19" typicall need to cost more time.
@@ -84,8 +75,6 @@ if [ "$test_prefix" != "07" ]; then
 fi
 
 for testcase in $(cd tests && ls ${test_prefix}*); do
-	check_ignored_cases $testcase && echo "${testcase}... ignored_by_lkp" && continue
-
 	# some testcases may need to wait for the environment to get ready.
 	# "make install" will install udev rules, sleep is required.
 	# "run_test" could create/delete loop devices, sleep is required.

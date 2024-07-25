@@ -6,6 +6,7 @@
 # - datasize
 
 . $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 run_uperf()
 {

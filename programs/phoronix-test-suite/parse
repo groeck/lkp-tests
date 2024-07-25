@@ -1,51 +1,85 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/log"
 
+stats = {}
 test_subname = []
+test_name = ''
+subtest_name = ''
 test_id = -1
 is_begin_of_subtest = false
+
 while (line = $stdin.gets)
   line = line.resolve_invalid_bytes
+             .gsub(/.\[1;(\d+)m|.\[0m/, '') # remove color control info
+             .chomp
 
-  if line =~ /The test quit with a non-zero exit status|The test run did not produce a result|Wrong test option|testname is empty|PHP Parse error/
-    log_warn line
-    exit 1
+  case test_name
+  when 'mnn'
+    case line
+    when /Model: (.+):/
+      subtest_name = $1
+    when /Average: ([0-9.]+) (.*)/
+      stats["#{test_name}.#{subtest_name}.#{$2}"] = $1
+    end
+    next
+  when 'compress-lz4'
+    case line
+    when /Compression Level: (.+) - (.+):/
+      subtest_name = "#{$1}.#{$2}".gsub(/\s+/, '')
+    when /Average: ([0-9.]+) (.*)/
+      stats["#{test_name}.#{subtest_name}.#{$2}"] = $1
+    end
+    next
+  when 'intel-mlc'
+    case line
+    when /Test: (.+) - (.+):/
+      subtest_name = "#{$1}.#{$2}".gsub(/\s+/, '')
+    when /Average: ([0-9.]+) (.*)/
+      stats["#{test_name}.#{subtest_name}.#{$2}"] = $1
+    end
+    next
   end
 
-  # remove color control info
-  line.gsub!(/.\[1;(\d+)m|.\[0m/, '')
-  case line.chomp!
+  case line
+  when /The test quit with a non-zero exit status|Wrong test option|testname is empty|PHP Parse error/
+    log_warn line
+    exit 1
   when %r{(pts|system)/(\S+)-[0-9.]+ is not installed}
     item = Regexp.last_match[2]
-    puts "#{item}.not_installed: 1"
+    stats["#{item}.not_installed"] = 1
 
     log_warn "#{item} is not installed"
     exit 1
   when %r{(pts|system)/(\S+)-[0-9.]+}
     test_name = Regexp.last_match[2]
+
     if line =~ /(?:pts|system)\/(?:\S+)-[0-9.]+ \[(?<params>.+)\]/
       params = Regexp.last_match[:params] # "Test: Furmark - Resolution: 800 x 600 - Mode: Windowed"
-      test_subname << params.split(' - ')                                           # ["Test: Furmark", "Resolution: 800 x 600", "Mode: Windowed"]
+      test_subname << params.split(' - ') # ["Test: Furmark", "Resolution: 800 x 600", "Mode: Windowed"]
                             .map { |param| param.split(': ').last.gsub(/\s+/, '') } # ["Furmark", "800x600", "Windowed"]
-                            .join('.')                                              # "Furmark.800x600.Windowed"
+                            .join('.') # "Furmark.800x600.Windowed"
     end
+
     is_begin_of_subtest = true
   when /Average: ([0-9.]+) (.*)/
     value = Regexp.last_match[1]
     unit = Regexp.last_match[2]
+
     if is_begin_of_subtest
       test_id += 1
       is_begin_of_subtest = false
     end
+
     unit = unit.downcase.tr(' ', '_').tr('/', '_')
+
     if !test_subname.empty?
-      puts "#{test_name}.#{test_subname.at(test_id)}.#{unit}: #{value}"
+      stats["#{test_name}.#{test_subname.at(test_id)}.#{unit}"] = value
     else
-      puts "#{test_name}.#{test_id}.#{unit}: #{value}"
+      stats["#{test_name}.#{test_id}.#{unit}"] = value
     end
   when /Final: ([0-9.]+) (.*)/
     value = Regexp.last_match[1]
@@ -53,18 +87,75 @@ while (line = $stdin.gets)
       test_id += 1
       is_begin_of_subtest = false
     end
+
     if !test_subname.empty?
-      puts "#{test_name}.#{test_subname.at(test_id)}.Final: #{value}"
+      stats["#{test_name}.#{test_subname.at(test_id)}.Final"] = value
     else
-      puts "#{test_name}.#{test_id}.Final: #{value}"
+      stats["#{test_name}.#{test_id}.Final"] = value
+    end
+  when /Final: ([A-Z]+)/
+    result = $1.downcase
+
+    if is_begin_of_subtest
+      test_id += 1
+      is_begin_of_subtest = false
+    end
+
+    if !test_subname.empty?
+      stats["#{test_name}.#{test_subname.at(test_id)}.Final.#{result}"] = 1
+    else
+      stats["#{test_name}.#{test_id}.Final.#{result}"] = 1
     end
   when /The following tests failed to properly run:/
-    puts "#{test_name}.fail: 1"
-  when /idle-([0-9.]+)seconds/
+    stats["#{test_name}.fail"] = 1
+  when /(idle-[\d.]+seconds): ([\d.]+)/
     # idle-1.1.0.seconds: 36.055191180
-    puts line
-  when /smart-([0-9.]+)seconds/
+    stats[$1] = $2
+  when /(smart-[\d.]+seconds): ([\d.]+)/
     # smart-1.0.0.seconds: 7.252623981
-    puts line
+    stats[$1] = $2
+  when /The test run did not produce a result/
+    # if there is a failed run, seems extra run will be done so that it still get 3 good runs.
+    #
+    # Unigine Tropics 1.3:
+    #   pts/unigine-tropics-1.6.4 [Resolution: 1024 x 768 - Mode: Fullscreen]
+    #   Test 1 of 1
+    #   Estimated Trial Run Count:    3
+    #   Estimated Time To Completion: 13 Minutes [09:26 UTC]
+    #       Started Run 1 @ 09:14:06
+    #       The test run did not produce a result.
+    #       Started Run 2 @ 09:14:11
+    #       Started Run 3 @ 09:17:42
+    #       Started Run 4 @ 09:21:11 *
+    #
+    #   Resolution: 1024 x 768 - Mode: Fullscreen:
+    #       65.6894
+    #       65.4513
+    #       65.5003
+    #
+    #   Average: 65.5470 Frames Per Second
+    #   Deviation: 0.19%
+    #
+    # another case that all three runs are failed, but there is no extra run.
+    #
+    #   pts/unigine-valley-1.1.7 [Resolution: 1024 x 768 - Mode: Fullscreen - Renderer: OpenGL]
+    #   Test 1 of 1
+    #   Estimated Trial Run Count:    3
+    #   Estimated Time To Completion: 14 Minutes [06:49 UTC]
+    #       Started Run 1 @ 06:35:34
+    #       The test run did not produce a result.
+    #       Started Run 2 @ 06:35:40
+    #       The test run did not produce a result.
+    #       Started Run 3 @ 06:35:44
+    #       The test run did not produce a result.
+    # unigine-valley-1.1.7.seconds: 25.764798820
+    # xinit: connection to X server lost
+    #
+    # this failure is not fatal, just set a flag here and let it fail the parser only when the key stat is not captured.
+    failed_run_flag = true
   end
 end
+
+exit 1 if stats.empty? && failed_run_flag
+
+stats.each { |k, v| puts "#{k}: #{v}" }

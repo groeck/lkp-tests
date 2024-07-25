@@ -1,7 +1,10 @@
-libx11-dev
+libdrm-dev
+libgbm-dev
 libgl1-mesa-dev
 libjpeg-dev
 libpng-dev
-libpng16-16
+libudev-dev
+libwayland-dev
+libx11-dev
 pkg-config
 sudo

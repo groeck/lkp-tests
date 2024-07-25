@@ -1,0 +1,24 @@
+btrfs-tools:
+cgroup-tools: libcgroup-tools
+libbabeltrace-ctf-dev: libbabeltrace-devel
+libbabeltrace-ctf1: libbabeltrace
+libbabeltrace-dev: libbabeltrace-devel
+libclang-dev: clang-devel
+libcunit1-dev: CUnit-devel
+libdw1: libdwarves1
+libfdt-dev: libfdt-devel
+libgles2-mesa:
+libgoogle-perftools-dev: 
+libpng12-dev:
+libtraceevent-dev: libtraceevent-devel 
+libtraceevent1: 
+libunwind-dev:
+libunwind:
+llvm-dev: llvm-devel
+pkg-config:
+python-dev:
+python-pkg-resources: 
+python-setuptools: python2-setuptools
+python: python2
+rstatd: 
+rusersd:

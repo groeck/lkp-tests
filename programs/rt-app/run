@@ -3,6 +3,7 @@
 
 . $LKP_SRC/lib/upload.sh
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/rt-app || die "rt-app benchmark is not installed yet"
 

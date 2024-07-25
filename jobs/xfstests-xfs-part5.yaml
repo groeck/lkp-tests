@@ -1,0 +1,14 @@
+suite: xfstests
+testcase: xfstests
+category: functional
+
+disk: 4HDD
+
+fs:
+  - xfs
+
+xfstests:
+  test:
+    - xfs-stress-online-repair
+    - xfs-stress-scrub
+    - xfs-projid16bit

@@ -3,3 +3,4 @@ owner: Amir Goldstein <amir73il@gmail.com>
 mail_to: Amir Goldstein <amir73il@gmail.com>
 branch_denylist: .*-wip|.*-v[0-9]*|.*-[0-9]*
 private_report_branch: .*
+test_old_branches: .*

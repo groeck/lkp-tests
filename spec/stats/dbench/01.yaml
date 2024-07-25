@@ -1,0 +1,6 @@
+throughput_MB/s: 13563.9
+throughput_MB/s_harmonic_mean: 13563.9
+clients: 128
+procs: 128
+max_latency: 53.13
+max_latency_harmonic_mean: 53.13

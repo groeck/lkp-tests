@@ -1,9 +1,9 @@
 autoconf-archive
 autotools-dev
+build-essential
 debhelper
 dh-autoreconf
 doxygen
-gcc
 git
 graphviz
 libasound2-dev
@@ -12,7 +12,6 @@ libqt5opengl5-dev
 libtool
 libudev-dev
 libx11-dev
-make
 pkg-config
 qt5-default
 qtbase5-dev

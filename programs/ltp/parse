@@ -2,16 +2,12 @@
 
 BEGIN {
 	tc_name = "unknown"
-	rst_tignore = rst_tpass = rst_tfail = rst_tblock = 0
+	rst_tpass = rst_tfail = rst_tblock = 0
 	termid_pass = termid_fail = termid_block = 0
 }
 
 /^tag=/ {
 	tc_name = substr($1,5)
-}
-
-$2 ~ /[0-9]*/ && $3 ~ /ignored_by_lkp/ {
-	rst_tignore++
 }
 
 $2 ~ /[0-9]*/ && $3 ~ /TFAIL/ {
@@ -52,9 +48,7 @@ $2 ~ /[0-9]*/ && $3 ~ /TCONF/ {
 }
 
 /<<<test_end>>>/ {
-	if ( rst_tignore ) {
-		printf("%s.ignored_by_lkp: 1\n", tc_name)
-	} else if ( rst_tfail ) {
+	if ( rst_tfail ) {
 		printf("%s.fail: 1\n", tc_name)
 	} else if ( rst_tblock ) {
 		printf("%s.block: 1\n", tc_name)
@@ -71,6 +65,6 @@ $2 ~ /[0-9]*/ && $3 ~ /TCONF/ {
 	}
 
 	tc_name = "unknown"
-	rst_tignore = rst_tpass = rst_tfail = rst_tblock = 0
+	rst_tpass = rst_tfail = rst_tblock = 0
 	termid_pass = termid_fail = termid_block = 0
 }

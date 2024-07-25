@@ -1,13 +1,13 @@
 url: https://chromium.googlesource.com/chromiumos/third_party/kernel
 belongs_to: chrome-os
-randconfig_allowlist: ^(arm|arm64|i386|x86_64)
-branch_allowlist: chromeos-4.14|chromeos-4.19|chromeos-5.4|chromeos-5.10|chromeos-5.15|chromeos-6.1
+branch_allowlist: chromeos-5.4|chromeos-5.10|chromeos-5.15|chromeos-6.1|chromeos-6.6
 branch_denylist: .*
+arch_denylist: .*
+arch_allowlist: x86_64|i386|arm|arm64
 customconfig: customconfig
 notify_build_success_branch: .*
 mail_to:
 - cros-kernel-buildreports@googlegroups.com
-- Guenter Roeck <groeck@google.com>
 too_old_relative_commit_date: month|year|^[4-9]+ weeks
 test_old_branches: .*
 no_merge_branch: .*

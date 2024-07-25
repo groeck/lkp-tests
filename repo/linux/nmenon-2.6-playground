@@ -10,3 +10,4 @@ subsystems:
 - am57xx-beagle-x15
 - extcon
 - pinctrl
+test_old_branches: .*

@@ -11,7 +11,7 @@ require "#{LKP_SRC}/lib/lkp_pattern"
 
 LKP_SRC_ETC ||= LKP::Path.src('etc')
 
-# => ["tcrypt.", "hackbench.", "dd.", "xfstests.", "aim7.", ..., "oltp.", "fileio.", "dmesg."]
+# => ["tcrypt.", "hackbench.", "dd.", "xfstests.", "aim7.", ..., "oltp.", "sysbench-fileio.", "dmesg."]
 def test_prefixes
   stats = LKP::Programs.all_stats
   tests = LKP::Programs.all_tests_and_daemons

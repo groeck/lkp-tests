@@ -1,0 +1,20 @@
+pkgname=lkvs
+pkgver=git
+pkgrel=1
+url='https://github.com/intel/lkvs.git'
+arch=('i386' 'x86_64')
+license=('GPL')
+source=('https://github.com/intel/lkvs.git' 'http://github.com/intel/libipt.git')
+md5sums=('SKIP' 'SKIP')
+
+build()
+{
+	:
+}
+
+package()
+{
+	benchmark_path="${pkgdir}/lkp/benchmarks/${pkgname}"
+	mkdir -p $benchmark_path
+	cp -af $srcdir/* $benchmark_path
+}

@@ -21,6 +21,7 @@ nvml:
     - set
     - unicode
     - util
+    - valgrind
 
 disk:
   nr_pmem: 1

@@ -3,5 +3,3 @@ need_kconfig:
 - MMU: y
 - FS_DAX: y # Depends on: ZONE_DEVICE
 - ZONE_DEVICE: y
-
-rootfs: debian-10.4-x86_64-20200603.cgz

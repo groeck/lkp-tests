@@ -18,6 +18,8 @@
 # 13 [hyperv_connections]
 # 14 ...
 . $LKP_SRC/lib/env.sh
+. $LKP_SRC/lib/install.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 remove_case()
 {
@@ -34,17 +36,6 @@ remove_case()
 		el=$((el+sl-1))
 		sed -i "$sl,$el d" $casesfile # delete $sl to $el
 	fi
-}
-
-check_ignored_cases()
-{
-	local ignored_by_lkp=$LKP_SRC/pkg/"$testcase"/addon/ignored_by_lkp
-	[ -f "$ignored_by_lkp" ] || return
-
-	for ignore in $(cat $ignored_by_lkp | grep -v '^#')
-	do
-		remove_case "$ignore" && echo "ignored_by_lkp: $ignore"
-	done
 }
 
 # fix issue:
@@ -75,6 +66,19 @@ setup_test_environment()
 	is_virt || load_kvm_param
 
 	return 0
+}
+
+fixup_tests()
+{
+	# errata.txt and run_tests.sh are under same directory, using
+	# absolute path for errata.sh will increase the risk of missing
+	# file, here we directly use relative path.
+	sed -i 's/\(ERRATATXT=\).*/\1errata.txt/' config.mak
+
+	# Fix timeout issue in kvm-unit-tests-qemu
+	# 	'FAIL vmx_pf_exception_test_reduced_maxphyaddr (timeout; duration=90s)'
+	# we should keep same setting for bare metal
+	sed -i '/\[vmx_pf_exception_test_reduced_maxphyaddr\]/a\timeout = 240' x86/unittests.cfg
 }
 
 run_tests()

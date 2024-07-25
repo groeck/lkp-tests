@@ -14,7 +14,7 @@
 # [  320.640206] rcu-scale: start: 30396186972 end: 31136206117 duration: 740019145 gps: 201 batches: 207
 # ...
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/tests/stats"
 

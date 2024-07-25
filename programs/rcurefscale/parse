@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
+
+require "#{LKP_SRC}/lib/array_ext"
+
 # [   53.521455] rcu-ref-scale: END OF TEST. Calculating average duration per loop (nanoseconds)...
 # [   53.531191] rcu-ref-scale:
 #                Runs     Time(ns)

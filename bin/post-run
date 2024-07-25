@@ -35,7 +35,7 @@ wait_for_bg_procs()
 
 	echo wait for background processes: $(cat $pidfile $TMP/.name-wait-bg-procs)
 
-	for i in 1 2 3 4 5
+	for i in $(seq 15)
 	do
 		sleep $i
 		any_pid_alive $pidfile && continue
@@ -105,7 +105,10 @@ grep -q perf-profile $TMP/program_list && {
 }
 
 for post_run in $TMP_RESULT_ROOT/post-run.* $LKP_SRC/post-run/*; do
-	[ -f "$post_run" ] && sh "$post_run"
+	[ -f "$post_run" ] && {
+		echo "$(date +'%F %T') executing post-run script: $post_run"
+		sh "$post_run"
+	}
 done
 
 has_advance_pgrep()
@@ -233,10 +236,17 @@ upload_qemu_results()
 	[ -f "$guest_rt/output" ] || return
 	upload_files -t guest_result $guest_rt
 
-	mkdir -p /tmp/host_rt
 	# backup host log to host_rt
+	# result_service: 9p/virtfs_mount, RESULT_MNT: //result, RESULT_ROOT: //result/kvm:kernel-selftests/x86/lkp-skl-d01/debian-12-x86_64-20240206.cgz/x86_64-rhel-8.3-kselftests/gcc-13/0c3836482481200ead7b416ca80c68a29cfdaabd/1, TMP_RESULT_ROOT: /tmp/lkp/result
+	mkdir -p /tmp/host_rt
 	cp -arf $TMP_RESULT_ROOT/* /tmp/host_rt
 	[ "$RESULT_ROOT" = "$TMP_RESULT_ROOT" ] || cp -arf $RESULT_ROOT/* /tmp/host_rt
+	[ "$TMP" = "$TMP_RESULT_ROOT" ] || {
+		cp -af $TMP/boot-time $TMP/stdout $TMP/stderr $TMP/output $TMP/umesg /tmp/host_rt
+		[ -s $TMP/env.yaml ] && cp -af $TMP/env.yaml /tmp/host_rt
+		[ -s $TMP/program_list ] && cp -af $TMP/program_list /tmp/host_rt
+	}
+
 	upload_files -t host_result /tmp/host_rt/*
 	upload_files $guest_rt/*  # override the origin results
 }

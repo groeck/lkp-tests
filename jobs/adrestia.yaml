@@ -4,5 +4,4 @@ category: benchmark
 
 adrestia:
   nr_threads:
-    - 1
     - 100

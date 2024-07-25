@@ -5,11 +5,13 @@ category: benchmark
 perf-profile:
   delay: 1
 
+setup-kbuild:
+
 runtime: 10s
 
 nr_task:
   - 200%
 
-target: autoksyms_recursive
+target: vmlinux
 
 kbuild:

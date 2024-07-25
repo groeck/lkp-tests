@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/log"
 require "#{LKP_SRC}/lib/string_ext"
@@ -16,7 +16,7 @@ while (line = $stdin.gets)
     puts "#{cpu_dma_latency}: #{val}"
   when /^# (.*):(.+)/
     val = $2
-    type = $1.downcase.gsub(' ', '_')
+    type = $1.downcase.tr(' ', '_')
     puts "#{type}: #{val}"
   end
 end

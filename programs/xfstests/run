@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # - test
 
 ## Regression test suite for xfs and other filesystems.
@@ -20,7 +20,7 @@ export LANG=C
 has_virtual_disk=false
 read_env_vars
 set_env || exit
-run_test
+run_test || die "fail to run test"
 
 # umonut the virtual disk
 [ "$has_virtual_disk" = true ] && losetup -d /dev/loop0

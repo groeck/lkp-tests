@@ -5,7 +5,6 @@ LKP_SRC ||= ENV['LKP_SRC'] || File.dirname(__dir__)
 require 'set'
 require 'timeout'
 require "#{LKP_SRC}/lib/lkp_git"
-require "#{LKP_SRC}/lib/git_update" if File.exist?("#{LKP_SRC}/lib/git_update.rb")
 require "#{LKP_SRC}/lib/yaml"
 require "#{LKP_SRC}/lib/result"
 require "#{LKP_SRC}/lib/bounds"
@@ -34,7 +33,7 @@ $index_latency = load_yaml "#{LKP_SRC_ETC}/index-latency-all.yaml"
 class LinuxTestcasesTableSet
   LINUX_PERF_TESTCASES =
     %w[aim7 aim9 angrybirds blogbench dbench
-       dd-write ebizzy fileio fishtank fsmark glbenchmark
+       dd-write ebizzy sysbench-fileio fishtank fsmark glbenchmark
        hackbench uperf hpcc idle iozone iperf jsbenchmark kbuild
        ku-latency linpack mlc nepim netperf netpipe
        nuttcp octane oltp openarena pbzip2 rcurefscale
@@ -56,7 +55,7 @@ class LinuxTestcasesTableSet
        galileo irda-kernel kernel-builtin kernel-selftests kvm-unit-tests kvm-unit-tests-qemu
        leaking-addresses locktorture ltp mce-test otc_ddt piglit pm-qa nvml
        qemu rcuscale rcutorture suspend suspend-stress trinity ndctl nfs-test hwsim
-       idle-inject mdadm-selftests xsave-test nvml test-bpf mce-log perf-sanity-tests
+       idle-inject mdadm-selftests nvml test-bpf mce-log perf-sanity-tests
        build-perf_test update-ucode reboot cat libhugetlbfs-test ocfs2test
        perf-test fxmark kvm-kernel-boot-test bkc_ddt rdma-pyverbs
        xfstests packetdrill avocado v4l2 vmem perf-stat-tests cgroup2-test].freeze
@@ -232,7 +231,7 @@ def load_base_matrix_for_notag_project(git, rp, axis)
   base_matrix_file = "#{rp._result_root}/matrix.json"
   unless File.exist? base_matrix_file
     log_warn "#{base_matrix_file} doesn't exist."
-    return nil
+    return
   end
   load_release_matrix(base_matrix_file)
 end
@@ -268,13 +267,13 @@ def load_base_matrix(matrix_path, head_matrix, options)
     git = $git[project]
   rescue StandardError => e
     log_error e
-    return nil
+    return
   end
 
   return load_base_matrix_for_notag_project(git, rp, axis) if git.tag_names.empty?
 
   begin
-    return nil unless git.commit_exist? commit
+    return unless git.commit_exist? commit
 
     version = nil
     is_exact_match = false
@@ -282,7 +281,7 @@ def load_base_matrix(matrix_path, head_matrix, options)
     log_debug "project: #{project}, version: #{version}, is_exact_match: #{is_exact_match}"
   rescue StandardError => e
     log_error e
-    return nil
+    return
   end
 
   # FIXME: remove it later; or move it somewhere in future
@@ -298,7 +297,7 @@ def load_base_matrix(matrix_path, head_matrix, options)
     end
     unless version
       log_error "Cannot get base RC commit for #{commit}"
-      return nil
+      return
     end
   end
 
@@ -317,7 +316,7 @@ def load_base_matrix(matrix_path, head_matrix, options)
     # FIXME: rli9 after above change, below situation is not reasonable, keep it for debugging purpose now
     unless order
       log_error "unknown version #{version} matrix: #{matrix_path} options: #{options}"
-      return nil
+      return
     end
   end
 
@@ -455,7 +454,7 @@ def filter_incomplete_run(hash)
   end
   delete_index_list.reverse!
 
-  hash.each do |_k, v|
+  hash.each_value do |v|
     delete_index_list.each do |index|
       v.delete_at(index)
     end
@@ -517,16 +516,14 @@ end
 def __get_changed_stats(a, b, is_incomplete_run, options)
   changed_stats = {}
 
-  has_boot_fix = if options['regression-only'] || options['all-critical']
-                   (b['last_state.booting'] && !a['last_state.booting'])
-                 end
+  has_boot_fix = (b['last_state.booting'] && !a['last_state.booting'] if options['regression-only'] || options['all-critical'])
 
   resize = options['resize']
 
   cols_a = matrix_cols a
   cols_b = matrix_cols b
 
-  return nil if options['variance'] && (cols_a < 10 || cols_b < 10)
+  return if options['variance'] && (cols_a < 10 || cols_b < 10)
 
   # Before: matrix = { "will-it-scale.per_process_ops" => [1183733, 1285303, 721524, 858073, 1207794] }
   # After:  matrix = { "will-it-scale.per_process_ops" => [1183733, 1285303, 721524, 858073, 1207794],
@@ -567,7 +564,7 @@ def __get_changed_stats(a, b, is_incomplete_run, options)
     unless is_function_stat
       # for none-failure stats field, we need asure that
       # at least one matrix has 3 samples.
-      next if cols_a < 3 && cols_b < 3 && !options['whole']
+      next if !is_force_stat && cols_a < 3 && cols_b < 3 && !options['whole']
 
       # virtual hosts are dynamic and noisy
       next if options['tbox_group'] =~ /^vh-/
@@ -612,8 +609,8 @@ def __get_changed_stats(a, b, is_incomplete_run, options)
         next if options['regression-only'] ||
                 (!LKP::DmesgKillPattern.instance.contain?(k) && options['all-critical'])
       end
-        # this relies on the fact dmesg.* comes ahead
-        # of kmsg.* in etc/default_stats.yaml
+      # this relies on the fact dmesg.* comes ahead
+      # of kmsg.* in etc/default_stats.yaml
       next if has_boot_fix && k =~ /^kmsg\./
     end
 
@@ -727,8 +724,8 @@ def _get_changed_stats(a, b, options)
   filter_incomplete_run(a)
   filter_incomplete_run(b)
 
-  is_all_incomplete_run = (a['stats_source'].to_s.empty? ||
-                           b['stats_source'].to_s.empty?)
+  is_all_incomplete_run = a['stats_source'].to_s.empty? ||
+                          b['stats_source'].to_s.empty?
   return changed_stats if is_all_incomplete_run
 
   more_changed_stats = __get_changed_stats(a, b, false, options)
@@ -740,13 +737,14 @@ end
 def get_changed_stats(matrix_path1, matrix_path2 = nil, options = {})
   return find_changed_stats(matrix_path1, options) unless matrix_path2 || options['bisect_axis']
 
-  puts <<~DEBUG if ENV['LKP_VERBOSE']
-    loading matrices to compare:
-    \t#{matrix_path1}
-    \t#{matrix_path2}
+  puts <<-DEBUG if ENV['LKP_VERBOSE']
+loading matrices to compare:
+\t#{matrix_path1}
+\t#{matrix_path2}
   DEBUG
+
   a, b = load_matrices_to_compare matrix_path1, matrix_path2, options
-  return nil if a.nil? || b.nil?
+  return if a.nil? || b.nil?
 
   _get_changed_stats(a, b, options)
 end
@@ -755,7 +753,7 @@ def add_stats_to_matrix(stats, matrix)
   return matrix unless stats
 
   columns = 0
-  matrix.each { |_k, v| columns = v.size if columns < v.size }
+  matrix.each_value { |v| columns = v.size if columns < v.size }
   stats.each do |k, v|
     matrix[k] ||= []
     matrix[k] << 0 while matrix[k].size < columns

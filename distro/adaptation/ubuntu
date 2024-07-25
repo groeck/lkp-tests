@@ -1,31 +1,30 @@
-which: debianutils
-bsdtar: libarchive-tools
+btrfs-tools: btrfs-progs
+gtk3: gir1.2-gtk-3.0
 iblz4-1: liblz4-dev
 libbz2-1.0: libbz2-dev
 libcpupower-dev:
 libevent-2: libevent-dev
+libfuse3: libfuse3-3
 libgcrypt-dev: libgcrypt20-dev
 libgflags2v5: libgflags-dev
-libhugetlbfs-bin: hugepages
+libglut-dev: freeglut3-dev
+libglut3: freeglut3
 libhugetlbfs: libhugetlbfs0
 libicu: libicu-dev
-libipsec-mb:
-libmariadbclient18: libmariadb3
-libmariadbclient-dev: libmariadb-dev-compat
+libiscsi: libiscsi7
+libjpeg62-turbo: libjpeg-turbo8
 libntfs: libntfs-3g88
 libperl5: libperl5.26
 libsnappy1v5: libsnappy-dev
-libssl: libssl1.0.0
+libssl: libssl1.1
 libtirpc: libtirpc1
 libtool-bin:
 libzmq: libzmq5
+linux-cpupower: linux-tools-generic
 linux-perf: linux-tools-common
-linux-perf: linux-tools-generic
 linux-tools: linux-tools-generic
+nasm: nasm
 perl-modules-5: perl-modules-5.26
 pmdk: pmdk-tools
-procps-ng: procps
+which: debianutils
 zlib1g: zlib1g-dev
-nasm: nasm
-btrfs-tools: btrfs-progs
-gtk3: gir1.2-gtk-3.0

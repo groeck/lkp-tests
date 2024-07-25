@@ -1,33 +1,36 @@
-\[ *[0-9.]+\] BUG: .*
-\[ {0,4}[A-Z][0-9]{1,5}\] BUG: .*
+ -- System halted
+ but this task is not holding: .*
+ is exiting with locks still held!
+ is freeing memory .*, with a lock still held there!
+ is leaving the kernel with locks still held!
+ is trying to contend lock \(.*\) at
+ is trying to lock: .*
+ is trying to release lock \(.*\) at
 32-bit relocation outside of kernel!
 64-bit relocation outside of kernel!
-assertion failed
+addition on 0; use-after-free
 Assertion failed
-assertion failure
+assertion failed
 Assertion failure
+assertion failure
 audit: \(.*\) error: .*
-[a-zA-Z0-9_ #]+: [0-9a-f]{4} \[#[0-9]+\]
-[a-zA-Z0-9_ -]+: BUG: .*
-^BUG: .*
 BUG .* \(.*\): .*
-\[ BUG: [^b].*! \]
- but this task is not holding: .*
-[^ ]*\.[ch]:[0-9]+ .*!$
+CFI failure at [a-zA-Z0-9_]+
 CPU[0-9]+: .* cpu clock throttled .*
+decrement hit 0; leaking memory
 Destination address inappropriately aligned
 Destination address too large
-\[drm:.*\[i915\]\] 
-EIP: [a-zA-Z0-9._]+\+0x[a-f0-9]+/0x[a-f0-9]+
 EIP is at [a-zA-Z0-9._]+\+0x.*/0x.*
+EIP: [a-zA-Z0-9._]+\+0x[a-f0-9]+/0x[a-f0-9]+
 Failed to allocate space for phdrs
+failed to enable IOPF feature
 genirq: Flags mismatch irq .*
 getblk\(\): invalid block size [0-9]+ requested
+GUP no longer grows the stack
 inconsistent \{.*\} -> \{.*\} usage\.
-INFO: 0x.*. First byte 0x.*
 INFO: .* cpu=.*
 INFO: .*detected stall.*
-\[ INFO: [^i].* \]
+INFO: 0x.*. First byte 0x.*
 INFO: Object 0x.*
 INFO: Slab 0x.*
 INFO: task .* blocked for more than .* seconds
@@ -35,23 +38,19 @@ INFO: trying to register non-static key.
 initcall .* returned with .*
 Initiating system reboot
 Initramfs unpacking failed: 
-rootfs image is not initramfs \(invalid magic at start of compressed archive\)
 invoked oom-killer: gfp_mask=0x
 IP-Config: Auto-configuration of network failed
- is exiting with locks still held!
- is freeing memory .*, with a lock still held there!
- is leaving the kernel with locks still held!
- is trying to contend lock \(.*\) at
- is trying to lock: .*
- is trying to release lock \(.*\) at
-kernel BUG at .*
+KASAN: .*
 Kernel BUG at
+kernel BUG at .*
 Kernel is not a valid ELF file
 Kernel panic - not syncing: .*
 KGDB: re-enter exception: ALL breakpoints killed
 kobject .*: (tried to .*|invalid kobject pointer!|must have a ktype to be initialized properly!)
 low stack detected by irq handler
 Mem-Info:
+neighbour: Destroying alive neighbour.*
+no CFI hash found at.*
 Oops: .*
 Out of memory and no killable processes
 Out of memory: Kill process 
@@ -60,28 +59,43 @@ pagealloc: memory corruption
 pagealloc: single bit error
 PANIC: double fault, 
 PANIC: early exception 
+refcount_t: underflow; use-after-free
 RIP: [0-9a-f]{4}:[a-zA-Z0-9._]+\+0x.*/0x.*
 RIP: [0-9a-f]{4}:\[.*\] [a-zA-Z0-9._]+\+0x.*/0x.*
+rootfs image is not initramfs \(invalid magic at start of compressed archive\)
+rsyslogd.* bad frame in 32bit sigreturn
 S0Box: more than 5 loops in s0box_interrupt
+saturated; leaking memory
 segfault at .* ip .* sp .* error .* likely on CPU .*
+smp: csd: Re-sending CSD lock
 sysctl could not get directory: 
 sysctl duplicate entry: 
 sysctl link missing during unregister: 
 sysctl table check failed: 
- -- System halted
+sysfs: cannot create duplicate filename
+UBSAN: .*
 Unknown interrupt or fault at:
-warn_alloc_failed\+0x
+unknown saturation event
+WARNING: .* detected$
+WARNING: .* lock.*
 WARNING: .*!$
 WARNING: at .*
+WARNING: bad lookup idx: .*
 WARNING: chain_key collision
 WARNING: CPU: [0-9]+ PID: .+ at .*
-WARNING: .*/0x
 WARNING: dead process
-WARNING: .* detected$
 WARNING: kernel stack
-WARNING: .* lock.*
 WARNING: stack recursion
 WARNING: suspicious RCU usage
 WARNING: workqueue cpumask:
+warn_alloc_failed\+0x
 Wrong destination address
-UBSAN: .*
+[a-zA-Z0-9_ #]+: [0-9a-f]{4} \[#[0-9]+\]
+[a-zA-Z0-9_ -]+: BUG: .*
+[^ ]*\.[ch]:[0-9]+ .*!$
+\[ *[0-9.]+\] BUG: .*
+\[ BUG: [^b].*! \]
+\[ INFO: [^i].* \]
+\[ {0,4}[A-Z][0-9]{1,5}\] BUG: .*
+\[drm:.*\[i915\]\] 
+^BUG: .*

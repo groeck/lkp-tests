@@ -1,5 +1,4 @@
 AllCops:
-  TargetRubyVersion: 2.5
   NewCops: disable
   SuggestExtensions: false
 
@@ -8,8 +7,18 @@ Metrics/MethodLength:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 40
-  Enabled: false
+  Max: 50
+  Exclude:
+    - lib/changed_stat.rb
+    - lib/compare.rb
+    - lib/dmesg.rb
+    - lib/hash.rb
+    - lib/job.rb
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/plot.rb
+    - lib/stats.rb
+    - sbin/compare
 
 Metrics/BlockLength:
   Max: 50
@@ -20,13 +29,25 @@ Metrics/BlockLength:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Enabled: false
+  Max: 30 # 6 by default
+  Exclude:
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/stats.rb
+    - sbin/compare
 
 Metrics/PerceivedComplexity:
-  Enabled: false
+  Max: 30
+  Exclude:
+    - lib/job2sh.rb
+    - lib/matrix.rb
+    - lib/stats.rb
+    - sbin/compare
 
 Metrics/BlockNesting:
-  Enabled: false
+  Exclude:
+    - lib/hash.rb
+    - programs/suspend/parse
 
 Metrics/ClassLength:
   Enabled: false
@@ -49,13 +70,10 @@ Style/FrozenStringLiteralComment:
 Style/SafeNavigation:
   Enabled: false
 
-Layout/FirstArrayElementIndentation:
-  Enabled: false
-
-Layout/CommentIndentation:
-  Enabled: false
-
 Style/PerlBackrefs:
+  Enabled: false
+
+Style/RedundantBegin:
   Enabled: false
 
 Style/RegexpLiteral:
@@ -64,13 +82,7 @@ Style/RegexpLiteral:
 Style/PercentLiteralDelimiters:
   Enabled: false
 
-Layout/LineLength:
-  Enabled: false
-
 Style/GlobalVars:
-  Enabled: false
-
-Lint/UnderscorePrefixedVariableName:
   Enabled: false
 
 Style/NumericPredicate:
@@ -79,26 +91,10 @@ Style/NumericPredicate:
     - 'lib/matrix.rb'
     - 'lib/stats.rb'
 
-Security/Eval:
-  Enabled: false
-
-Security/JSONLoad:
-  Enabled: false
-
-Layout/HeredocIndentation:
-  Enabled: false
-
-# Disable this temporarily to let rubocop 1.12.1 work with ruby3.2
-Layout/BlockAlignment:
-  Enabled: false
-
-Lint/ShadowingOuterLocalVariable:
-  Enabled: false
+# Style/MethodMissing:
+#   Enabled: false
 
 Style/MissingRespondToMissing:
-  Enabled: false
-
-Security/YAMLLoad:
   Enabled: false
 
 Style/FormatStringToken:
@@ -107,6 +103,54 @@ Style/FormatStringToken:
 Style/FloatDivision:
   Exclude:
     - 'programs/pmbench/parse'
+
+# Required Ruby version: 2.6
+Style/SlicingWithRange:
+  Enabled: false
+
+Security/Eval:
+  Enabled: false
+
+Security/JSONLoad:
+  Enabled: false
+
+Security/YAMLLoad:
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+# Required Ruby version: 2.6
+Lint/ErbNewArguments:
+  Enabled: false
+
+Lint/RedundantCopDisableDirective:
+  Enabled: false
+
+Lint/FloatComparison:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+# Layout/IndentFirstArrayElement:
+#   Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  Enabled: false
+
+# Layout/IndentHeredoc:
+#   Enabled: false
+
+Layout/HeredocIndentation:
+  Enabled: false
+
+# Disable this temporarily to let rubocop 1.12.1 work with ruby3.2
+Layout/BlockAlignment:
+  Enabled: false
 
 Naming/AccessorMethodName:
   Exclude:
@@ -122,3 +166,6 @@ Naming/MethodParameterName:
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
+# # Required Ruby version: 2.4
+# Performance/RegexpMatch:
+#   Enabled: false

@@ -1,0 +1,10 @@
+suite: phoronix-test-suite
+testcase: phoronix-test-suite
+category: benchmark
+
+need_memory: 64G
+
+phoronix-test-suite:
+  - test: stress-ng-1.11.0
+    option_a:
+      - Cloning # 57G

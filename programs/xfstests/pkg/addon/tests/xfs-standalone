@@ -1,74 +1,22 @@
-# execution time 677s
-001
 # execution time > 100m
 002
-# execution time > 1000s
-030
-# execution time 628s
-062
 # the filesystem has valuable metadata changes in a log which needs to 11 be replayed
 083
-# reflink not supported by test filesystem type: xfs
-132
 # execution time ~ 80m
 136
 # execution time > 40m
 140
-# execution time > 1000s
-141
-# execution time > 800s
-152
-# execution time 680s
-170
-# execution time > 10m
-182
-# Reflink not supported by scratch filesystem type: xfs
-211
 # execution time > 20m
 227
 # execution time > 30m
 233
-# 16 bit project IDs not supported on /dev/vdd
-244
 # it requires special configurations, which will break some other xfs tests
 275
-# execution time > 20m
-285
-# execution time > 20m
-286
-# execution time > 1000s
-348
-# can't run find-api-violations.sh without WORKAREA set
+# This test is only valid on 32 bit machines
+197
+# SELinux not enabled
+300
+# Require XFS built without CONFIG_XFS_DEBUG
+490
+# [not run] Can't run find-api-violations.sh without WORKAREA set
 437
-# It run cmd ./ltp/fsstress -w -d /fs/scratch -n 100000 -p 4, execution time > 30m
-442
-# execution time 712s
-507
-# execution time > 20m
-517
-# execution time > 2h
-562
-# execution time > 1600s
-563
-# execution time > 20m
-570
-# execution time > 15m
-580
-# execution time > 15m
-581
-# execution time > 2h
-586
-# execution time > 2h
-587
-# execution time > 2h
-590
-# execution time > 1000s
-591
-# execution time > 2h
-711
-# execution time > 800s
-721
-# execution time > 2h
-722
-# execution time > 1000s
-800

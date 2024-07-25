@@ -1,0 +1,30 @@
+PTS_SILENT_MODE=1
+test_opt: 1\nn
+2024-03-17 13:19:05 phoronix-test-suite run idle-1.2.0
+
+    [8192] strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in phodevi_linux_parser:475
+
+Timed Idle:
+    pts/idle-1.2.0
+    System Test Configuration
+    Time To Idle (In Minutes)
+
+    Enter Positive Number: 
+Phoronix Test Suite v10.8.4
+System Information
+
+  OPERATING SYSTEM:       Debian GNU/Linux 12
+    Kernel:               6.8.0 (x86_64)                                                                                               
+    Display Server:       X Server 1.21.1.7                                                                                            
+    Compiler:             GCC 12.2.0 + Clang 14.0.6                                                                                                      
+
+    Would you like to save these test results (Y/n): 
+Timed Idle:
+    pts/idle-1.2.0 [Time To Idle (In Minutes): 1]
+    Test 1 of 1
+    Estimated Trial Run Count:    1                     
+    Estimated Time To Completion: 3 Minutes [13:22 UTC] 
+        Started Run 1 @ 13:19:17
+        Final: PASS
+
+idle-1.2.0.seconds: 79.322178123

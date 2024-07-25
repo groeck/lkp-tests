@@ -1,0 +1,76 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+ 
+nr_threads: 100%
+ 
+testtime:
+  - 60s
+
+stress-ng:
+  test:
+    - af-alg
+    - affinity
+    - aio
+    - alarm
+    - atomic
+    - bad-altstack
+    - bad-ioctl
+    - bigheap
+    - branch
+    - brk
+    - bsearch
+    - cache
+    - cacheline
+    - cap
+    - cgroup
+    - chroot
+    - clock
+    - clone
+    - close
+    - context
+    - cpu
+    - cpu-online
+    - crypt
+    - cyclic
+    - daemon
+    - dccp
+    - dekker
+    - dev
+    - dev-shm
+    - dynlib
+    # - eigen
+    - efivar
+    - enosys
+    - epoll
+    - exec
+    - exit-group
+    - factor
+    - far-branch
+    - fault
+    - fifo
+    - flushcache
+    - fma
+    - fork
+    - forkheavy
+    - fp
+    - fp-error
+    - full
+    - funccall
+    - funcret
+    - futex
+
+# ---
+# stress-ng:
+#   test:
+#     - apparmor
+#
+# kernel_cmdline: "apparmor=1 security=apparmor"
+
+# ---
+# need_memoey: 222G
+# nr_threads: 5%
+#
+# stress-ng:
+#   test:
+#     - env

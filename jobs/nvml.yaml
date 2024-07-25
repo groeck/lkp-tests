@@ -2,9 +2,10 @@ suite: nvml
 testcase: nvml
 category: functional
 
-need_memory: 3G
+need_memory: 4G
 
 nvml:
+  test: non-pmem
   group:
     - compat
     - ctl
@@ -20,7 +21,9 @@ nvml:
     - pmreorder
     - set
     - unicode
-  test: non-pmem
+    - valgrind
+    - pmempool
+    - util
 
 ---
 nvml:
@@ -28,17 +31,9 @@ nvml:
   group:
     - arch
     - checksum
+    - log
     - obj
     - out
     - pmem
     - traces
-    - util
-
----
-need_memory: 4G
-
-nvml:
-  test: non-pmem
-  group:
-    - pmempool
     - util

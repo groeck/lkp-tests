@@ -1,12 +1,11 @@
 build-essential
 cmake
-gcc
-libudev-dev
+cython3
 libnl-3-dev
 libnl-route-3-dev
+libudev-dev
 ninja-build
-pkg-config
-valgrind
-cython3
-python3-docutils
 pandoc
+pkg-config
+python-docutils
+valgrind

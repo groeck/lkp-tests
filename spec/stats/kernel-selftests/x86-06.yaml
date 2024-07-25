@@ -1,7 +1,5 @@
-x86.sigreturn_32.Code_segment_unavailable_for_64-bit_CS_32-bit_SS.skip: 1
 x86.sigreturn_32.Valid_sigreturn_32-bit_CS_73_32-bit_SS_7b_GDT.pass: 1
 x86.sigreturn_32.Valid_sigreturn_16-bit_CS_37_32-bit_SS_7b_GDT.pass: 1
-x86.sigreturn_32.Code_segment_unavailable_for_64-bit_CS_16-bit_SS.skip: 1
 x86.sigreturn_32.Valid_sigreturn_32-bit_CS_73_16-bit_SS_3f.pass: 1
 x86.sigreturn_32.Valid_sigreturn_16-bit_CS_37_16-bit_SS_3f.pass: 1
 x86.sigreturn_32.32-bit_CS_73_bogus_SS_47.pass: 1

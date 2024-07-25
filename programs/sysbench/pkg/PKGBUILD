@@ -13,7 +13,7 @@ build() {
   ./autogen.sh
   # running oltp by sysbench may get "Illegal instruction"
   # error on some arches so avoid it by --without-gcc-arch
-  ./configure --prefix=/usr --without-gcc-arch
+  ./configure --prefix=/usr --without-gcc-arch --without-mysql
   make
 }
 

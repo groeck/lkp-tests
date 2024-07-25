@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+
+require "#{LKP_SRC}/lib/string_ext"
+
+summary_start = false
+while (line = $stdin.gets)
+  line = line.resolve_invalid_bytes
+
+  summary_start = true if !summary_start && line =~ /Test Start Time:/
+  next unless summary_start
+
+  # cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p s2    FAIL      1           1.231s
+  # [RESULT][intel_sst.sh -t isst_pp_config_enable_status]                       [BLOCK]   [2]         [1.174s]
+  next unless line =~ /^(.+)\s+(FAIL|BLOCK|PASS|NA)\s+(\d+)\s+(.+)s/ || line =~ /^\[RESULT\]\[(.+)\]\s+\[(FAIL|BLOCK|PASS|NA)\]\s+\[(\d+)\]\s+\[(.+)s\]/
+
+  testcase = $1
+  result = $2
+  _exit_value = $3
+  _duration = $4
+
+  # cet_tests.sh_-t_cp_test_-n_glibc_shstk_test_-k_control_protection_-p_s2.fail: 1
+  puts "#{testcase.strip.delete('"').tr(' ', '_')}.#{result.downcase}: 1"
+end

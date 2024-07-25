@@ -7,6 +7,7 @@
 : "${mdadm_mode:=create}"
 
 . $LKP_SRC/lib/fs_ext.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 for i in 0 1 2 3 4 5; do
 	if [ -e /proc/mdstat ]; then
@@ -84,9 +85,12 @@ make_md() {
 		raid_device=/dev/md$i
 		[ -b $raid_device ] && continue
 
+		# raid1 does not use chunk sizes
+		[ "$raid_level" = "raid1" ] || chunk_opt="--chunk=$raid_chunk"
+
 		echo y | log_cmd mdadm -q				\
 					--$mdadm_mode $raid_device	\
-					--chunk=$raid_chunk		\
+					$chunk_opt			\
 					--level=$raid_level		\
 					--raid-devices=$nr_partitions	\
 					--force				\

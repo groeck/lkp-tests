@@ -4,6 +4,8 @@
 # - write_ratelimit
 # - writeback_cache
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 if [ -n "$mount_max" ]; then
 	mount_max=${mount_max%%[a-zA-Z_]*}
 else

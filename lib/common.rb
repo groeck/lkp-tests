@@ -37,7 +37,7 @@ end
 def with_set_globals(*var_val_list)
   var_vals = var_val_list.each_slice(2).to_a
   ovals = var_vals.map { |var, val| eval(var.to_s) } # rubocop:disable Lint/UnusedBlockArgument
-  var_vals.each { |var, val| eval "#{var} = val" } # rubocop:disable Lint/UnusedBlockArgument
+  var_vals.each { |var, val| eval "#{var} = val" } # rubocop:disable Lint/UnusedBlockArgument, Style/HashEachMethods
   yield
 ensure
   if ovals
@@ -305,18 +305,12 @@ def mkdir_p(dir, mode = 0o2775)
   FileUtils.mkdir_p dir, mode: mode
 end
 
-def with_flock(lock_file)
-  File.open(lock_file, File::RDWR | File::CREAT, 0o664) do |f|
-    f.flock(File::LOCK_EX)
-    yield
-  end
-end
-
-def with_flock_timeout(lock_file, timeout)
+def with_flock(lock_file, timeout = nil)
   File.open(lock_file, File::RDWR | File::CREAT, 0o664) do |f|
     Timeout.timeout(timeout) do
       f.flock(File::LOCK_EX)
     end
+
     yield
   end
 end

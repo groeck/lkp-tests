@@ -11,6 +11,7 @@
 ## and deallocates memory frequently.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/ebizzy || die "no $BENCHMARK_ROOT/ebizzy"
 

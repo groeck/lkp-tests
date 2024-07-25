@@ -43,7 +43,7 @@ end
 
 def max_cols(matrix)
   cols = 0
-  matrix.each do |_k, v|
+  matrix.each_value do |v|
     cols = v.size if cols < v.size
   end
   cols
@@ -51,7 +51,7 @@ end
 
 def matrix_fill_missing_zeros(matrix)
   cols = (matrix['stats_source'] || []).size
-  matrix.each do |_k, v|
+  matrix.each_value do |v|
     v << 0 while v.size < cols
   end
   matrix
@@ -163,7 +163,7 @@ def create_stats_matrix(result_root)
                  elsif event_counter? k
                    v[-1] - v[0]
                  else
-                   v.sum / stats_part_len
+                   v.sum.to_f / stats_part_len
                  end
       stats["#{k}.max"] = v.max if should_add_max_latency k
     end
@@ -207,7 +207,7 @@ def load_matrix_file(matrix_file)
   begin
     matrix = load_json(matrix_file) if File.exist? matrix_file
   rescue StandardError
-    return nil
+    return
   end
   matrix
 end
@@ -227,7 +227,7 @@ def shrink_matrix(matrix, max_cols)
 end
 
 def matrix_delete_col(matrix, col)
-  matrix.each do |_k, v|
+  matrix.each_value do |v|
     v.delete_at col
   end
 end
@@ -309,11 +309,11 @@ end
 
 def check_warn_test_error(matrix, _result_root)
   ids = %w(
-      last_state.is_incomplete_run
-      last_state.exit_fail
-      stderr.has_stderr
-      phoronix-test-suite.has_failure
-    )
+    last_state.is_incomplete_run
+    last_state.exit_fail
+    stderr.has_stderr
+    phoronix-test-suite.has_failure
+  )
 
   ids.each do |errid|
     samples = matrix[errid]
@@ -361,9 +361,11 @@ def read_matrix_from_csv_file(file_name)
 
   convert = lambda do |input|
     %i[Integer Float].each do |m|
-      return send(m, input)
-    rescue StandardError
-      next
+      begin
+        return send(m, input)
+      rescue StandardError
+        next
+      end
     end
     input
   end

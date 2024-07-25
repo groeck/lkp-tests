@@ -1,0 +1,23 @@
+cgroup-tools: libcgroup-tools
+default-jdk:
+g++: gcc-c++
+ibtraceevent-dev:
+libbabeltrace-ctf-dev:
+libbabeltrace-ctf1:
+libclang-dev:
+libcunit1-dev: 
+libdw1: 
+libgoogle-perftools-dev: gperftools-devel
+libmariadb-dev:
+libmariadb3:
+libpfm4-dev: libpfm-devel
+libpfm4: libpfm
+libpython3: python3-libs
+libtraceevent-dev:
+libtraceevent1:
+libuv1-dev:
+llvm-dev: 
+python-dev: python-devel
+python-minimal: python2
+python: python2
+rng-tools5: rng-tools

@@ -7,15 +7,15 @@ describe 'stats' do
     yaml_files = Dir.glob ["#{LKP_SRC}/spec/stats/*/*.yaml"]
     yaml_files.each do |yaml_file|
       file = yaml_file.chomp '.yaml'
-      # FIXME: disable mpstat temporarily
-      next if file =~ /spec\/stats\/mpstat/
-
       it "invariance: #{file}" do
         script = File.basename(File.dirname(file))
         old_stat = File.read yaml_file
 
         stat_script = LKP::Programs.find_parser(script)
-        new_stat = if script =~ /^(kmsg|dmesg|mpstat|fio|perf-stat-tests)$/
+        new_stat = case script
+                   when /^(kmsg)$/
+                     `RESULT_ROOT=/boot/1/vm- #{stat_script} #{file}`
+                   when /^(dmesg|mpstat|fio)$/
                      `#{stat_script} #{file}`
                    else
                      `#{stat_script} < #{file}`

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+. $LKP_SRC/lib/mount.sh
+. $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/upload.sh
+. $LKP_SRC/lib/tests/kvm-unit-tests.sh
+. $LKP_SRC/lib/git.sh
+. $LKP_SRC/lib/misc-base.sh
+. $LKP_SRC/lib/reproduce-log.sh
+
+## Tests for x86 architecture are run as kernel images for qemu
+## that supports multiboot format. Tests uses an infrastructure
+## called from the bios code. The infrastructure initialize the
+## system/cpu's, switch to long-mode and calls the 'main' function
+## of the individual test. Tests uses a qemu's virtual test device,
+## named testdev, for services like printing, exiting, query memory size etc.
+
+build_qemu()
+{
+	[ -n "$qemu_config" ] || die "can not find qemu_config"
+	[ -n "$qemu_commit" ] || die "can not find qemu_commit"
+	[ -n "$qemu_branch" ] || die "can not find qemu_branch"
+
+	qemu_remote=${qemu_branch%%/*}
+
+	git_clone_update --recursive https://gitlab.com/qemu-project/$qemu_remote.git "$QEMU_REPO_ROOT" 2>&1 || die "failed clone qemu tree $qemu_remote"
+
+	cd "$QEMU_REPO_ROOT" || die "fail to enter $QEMU_REPO_ROOT"
+	log_cmd git checkout -q $qemu_commit || die "failed to checkout qemu commit $qemu_commit"
+
+	log_cmd ./configure --target-list="$qemu_config" --disable-docs || die "failed to run ./configure"
+
+	unset LDFLAGS
+	log_cmd make -j $nr_cpu 2>&1 || die "failed to make"
+
+	$QEMU --help >/dev/null || die "QEMU Emulator can not work normally."
+}
+
+QEMU_REPO_ROOT="$BENCHMARK_ROOT/qemu"
+QEMU="$QEMU_REPO_ROOT/build/qemu-system-x86_64"
+
+build_qemu
+$QEMU --version
+
+cd $BENCHMARK_ROOT/kvm-unit-tests || die "no $BENCHMARK_ROOT/kvm-unit-tests"
+
+export QEMU
+
+fixup_tests
+setup_test_environment || die "failed to setup test environment"
+
+run_tests
+exit_code=$?
+
+upload_test_results
+
+[ $exit_code -ne 0 ] && dump_qemu
+
+exit $exit_code

@@ -11,6 +11,7 @@
 
 . $LKP_SRC/lib/env.sh
 . $LKP_SRC/lib/common.sh
+. $LKP_SRC/lib/debug.sh
 
 set_perf_path "/lkp/benchmarks/perf/perf"
 
@@ -42,6 +43,7 @@ if [ -z "$delay" ]; then
 		delay=100
 	fi
 fi
+[ "$delay" = 0 ] || opt_delay="-D $((delay * 1000))"
 
 [ -n "$freq" ] &&
 opt_freq="--freq=$freq"
@@ -85,7 +87,7 @@ $perf -v || die 'perf command failed'
 # the former will wait for (delay+duration) before exit
 # the latter will wait for (delay) before collecting samples
 $perf record -q -g --realtime=1 -m 256 $opt_cpu $opt_freq $opt_period $opt_events \
-	-o $perf_data -D $((delay * 1000)) -- \
+	-o $perf_data $opt_delay -- \
 	$WAIT_POST_TEST_CMD --timeout $((delay + duration))
 
 cat > "$TMP_RESULT_ROOT/post-run.perf-profile" <<EOF

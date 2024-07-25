@@ -218,6 +218,8 @@ cd $BENCHMARK_ROOT/lmbench3 || {
 
 make 2>&1 || die "failed to build lmbench3"
 
+ln -sf /usr/bin/gnuplot-qt /usr/bin/gnuplot
+
 if [ "${standalone}" != "1" ]; then
 
 	os=$(echo -e $(/lkp/benchmarks/lmbench3/scripts/gnu-os) | sed s/unknown-//)

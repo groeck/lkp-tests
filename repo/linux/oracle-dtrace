@@ -1,1 +1,2 @@
 url: https://github.com/oracle/dtrace-linux-kernel
+test_old_branches: .*

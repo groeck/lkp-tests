@@ -9,6 +9,7 @@ require "#{LKP_SRC}/lib/lkp_path"
 require "#{LKP_SRC}/lib/log"
 require "#{LKP_SRC}/lib/programs"
 require "#{LKP_SRC}/lib/lkp_pattern"
+require "#{LKP_SRC}/lib/tests/stats"
 
 LKP_SRC_ETC ||= LKP::Path.src('etc')
 
@@ -30,7 +31,7 @@ def fixup_dmesg(line)
 
   # break up mixed messages
   case line
-  when /^<[0-9]>|^(kern  |user  |daemon):......: /
+  when /^<[0-9]>|^(kern  |user  |daemon):......: / # rubocop:disable Lint/EmptyWhen
     # line keeps no change
   when /(.+)(\[ *[0-9]{1,6}\.[0-9]{6}\] .*)/
     line = "#{$1}\n#{$2}"
@@ -368,6 +369,10 @@ def analyze_error_id(line)
   error_id.gsub!(/[+\/]0x[0-9a-f]+\b/, '')
   error_id.gsub!(/[+\/][0-9a-f]+\b/, '')
 
+  # [   14.476643][    C0] BUG kmalloc-512 (Tainted: G S      W       T ): Right Redzone overwritten
+  # [  264.548980][    C1] BUG kmalloc-rnd-02-96 (Tainted: G        W       TN): Freechain corrupt
+  error_id.gsub!(/ \(Tainted:.+\)/, '')
+
   error_id = common_error_id(error_id)
 
   error_id.gsub!(/([a-z]:)[0-9]+\b/, '\1') # WARNING: at arch/x86/kernel/cpu/perf_event.c:1077 x86_pmu_start+0xaa/0x110()
@@ -439,7 +444,7 @@ def get_crash_calltraces(dmesg_file)
   in_decode = false
   end_decode = false
   decode_stacktrace = dmesg_content.include?(DECODE_FLAG)
-  dmesg_content.gsub!('kbuild/src/consumer/', '') if dmesg_content.include?('kbuild/src/consumer/')
+  dmesg_content.gsub!(/kbuild\/src\/[^\/]+\//, '')
 
   dmesg_content.each_line do |line|
     if line =~ /---\[ cut here | BUG: | WARNING: | INFO: | UBSAN: | kernel BUG at /
@@ -499,23 +504,41 @@ def ignore_lkdtm_dmesg?(result_root)
   File.foreach(last_state).grep(/^is_incomplete_run: 1/).empty?
 end
 
-def stat_unittest(unittests)
-  found_unitest = false
-  unittests.each do |line|
-    if line =~ /### dt-test ### start of unittest/
-      found_unitest = true
-      next
-    end
+def stat_unittest(lines)
+  stats = LKP::Stats.new
 
-    next unless found_unitest
-    break if line =~ /### dt-test ### end of unittest - (\d+) passed, (\d+) failed/
+  test_along_with_function_tracer = nil
 
-    # ### dt-test ### FAIL of_unittest_overlay_high_level():2475 overlay_base_root not initialized
-    if line =~ /(.*)### dt-test ### FAIL (.*)/
-      e = $2.gsub(/:|\d+/, '').gsub(' ', '_')
-      puts "unittest.#{e}.fail: 1"
+  lines.each do |line|
+    case line
+    when /### dt-test ### (pass|fail) (.+)/i
+      # ### dt-test ### pass of_unittest_match_node():1497
+      stats.add("of-unittest.#{$2}", $1, overwrite: true)
+    when /Running tests again, along with the function tracer/
+      test_along_with_function_tracer = 'function tracer'
+    when /Testing (.+): OK/
+      # Testing event system initcall: OK
+      test_case = $1
+      test_case = "#{test_along_with_function_tracer}.#{test_case}" if test_along_with_function_tracer
+      stats.add(test_case, :pass)
+
+      test_along_with_function_tracer = nil if line =~ /Testing ftrace filter: OK/
+    when /Testing (.+): (PASSED)/
+      # Testing event system initcall: OK
+      stats.add($1, :pass)
+    when /(\w+):\s.+\d+ tests passed/
+      # test_hexdump: all 1184 tests passed
+      # IDA: 147357 of 147357 tests passed
+      stats.add($1.downcase, :pass)
+    when /test_meminit: all \d+ tests in (test_.+) (passed)/
+      # test_meminit: all 11 tests in test_pages passed
+      stats.add("test_meminit.#{$1}", :pass)
+    when /Kernel tests: Boot OK|run-job \/lkp/
+      break
     end
   end
+
+  stats.dump(OK: :pass)
 end
 
 # check possibly misplaced serial log

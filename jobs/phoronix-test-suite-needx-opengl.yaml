@@ -1,0 +1,24 @@
+suite: phoronix-test-suite
+testcase: phoronix-test-suite
+category: benchmark
+
+need_x: true
+times_to_run: 1
+
+phoronix-test-suite:
+  - test: unigine-valley-1.1.9
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - Fullscreen
+      # - Windowed
+  # - test: gravitymark-1.9.0 # soft timeout or segfalut on different platforms
+  #   option_a:
+  #     # - 800 x 600
+  #     - 1024 x 768
+  #   option_b:
+  #     - OpenGL
+  #     - OpenGL ES
+  #     - Vulkan
+  #     - Vulkan Ray-Tracing

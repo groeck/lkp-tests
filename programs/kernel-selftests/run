@@ -1,7 +1,7 @@
 #!/bin/bash
 # - group
 # - test
-# - atomic_test
+# - test_atomic
 # - nr_threads
 # - iterations
 ## The kernel contains a set of "self tests" under the tools/testing/selftests/
@@ -10,7 +10,6 @@
 ## See: https://www.kernel.org/doc/Documentation/kselftest.txt
 
 . $LKP_SRC/lib/tests/kernel-selftests.sh
-. $LKP_SRC/lib/tests/kernel-selftests-make.sh
 
 shopt -s nullglob
 

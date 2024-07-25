@@ -1,0 +1,34 @@
+short_description: >
+
+description: >
+
+homepage:
+
+parameters:
+
+results:
+ turbostat.Avg_MHz: 
+ turbostat.Busy%: 
+ turbostat.Bzy_MHz: 
+ turbostat.TSC_MHz: 
+ turbostat.IRQ: 
+ turbostat.SMI:
+ turbostat.POLL: 
+ turbostat.C1: 
+ turbostat.C1E: 
+ turbostat.C6: 
+ turbostat.POLL%: 
+ turbostat.C1%: 
+ turbostat.C1E%: 
+ turbostat.C6%: 
+ turbostat.CPU%c1: 
+ turbostat.CPU%c6: 
+ turbostat.CoreTmp: 
+ turbostat.PkgTmp: 
+ turbostat.Pkg%pc2: 
+ turbostat.Pkg%pc6: 
+ turbostat.PkgWatt: 
+ turbostat.RAMWatt: 
+ turbostat.PKG_%: 
+ turbostat.RAM_%: 
+

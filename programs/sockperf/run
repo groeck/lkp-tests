@@ -4,6 +4,9 @@
 
 ## sockperf is a tool for network performance measurement
 
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
+
 cd $BENCHMARK_ROOT/sockperf || die "$BENCHMARK_ROOT/sockperf"
 
 [ -n "$runtime" ] || runtime=600

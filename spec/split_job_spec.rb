@@ -26,9 +26,11 @@ describe 'lkp-split-job' do
 
   it 'split with --compatible option' do
     Dir.chdir(@tmp_src_dir) do
+      `bash -c "export LKP_SRC=#{@tmp_src_dir}; . #{@tmp_src_dir}/lib/host.sh; create_host_config"`
       `LKP_SRC=#{@tmp_src_dir} #{@tmp_src_dir}/bin/lkp split-job --compatible -o #{@tmp_dir} spec/split-job/compatible.yaml`
       new_yaml = 'compatible-test_1.yaml'
-      `sed -i '/testbox:\\\|tbox_group:/d' #{File.join(@tmp_dir, new_yaml)}`
+      # delete machine specific settings
+      %w[testbox tbox_group local_run memory nr_cpu ssd_partitions hdd_partitions].each { |s| `sed -i '/#{s}:/d' #{File.join(@tmp_dir, new_yaml)}` }
       actual = YAML.load_file(File.join(@tmp_dir, new_yaml))
       expect = YAML.load_file("#{LKP_SRC}/spec/split-job/#{new_yaml}")
 

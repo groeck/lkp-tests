@@ -1,0 +1,27 @@
+# timeout set to 3600
+# selftests: net: test_vxlan_mdb.sh
+#
+# Control path: Flush
+# -------------------
+# TEST: Flush all                                                     [ OK ]
+# TEST: Flush by port                                                 [ OK ]
+# TEST: Flush by wrong port                                           [ OK ]
+# TEST: Flush by specified source VNI                                 [ OK ]
+# TEST: Flush by unspecified source VNI                               [ OK ]
+# TEST: Flush by "permanent" state                                    [ OK ]
+# TEST: Flush by "nopermanent" state                                  [ OK ]
+# TEST: Flush by specified routing protocol                           [ OK ]
+# TEST: Flush by unspecified routing protocol                         [ OK ]
+# TEST: Flush by specified destination IP - IPv4                      [ OK ]
+# TEST: Flush by unspecified destination IP - IPv4                    [ OK ]
+# TEST: Flush by specified destination IP - IPv6                      [ OK ]
+# TEST: Flush by unspecified destination IP - IPv6                    [ OK ]
+# TEST: Flush by specified UDP destination port                       [ OK ]
+# TEST: Flush by unspecified UDP destination port                     [ OK ]
+# TEST: Flush by device's UDP destination port                        [ OK ]
+# TEST: Flush by unspecified UDP destination port                     [ OK ]
+# TEST: Flush by specified destination VNI                            [ OK ]
+# TEST: Flush by unspecified destination VNI                          [ OK ]
+# TEST: Flush by destination VNI equal to source VNI                  [ OK ]
+# TEST: Flush by unspecified destination VNI                          [ OK ]
+# TEST: Flush by VLAN ID                                              [ OK ]

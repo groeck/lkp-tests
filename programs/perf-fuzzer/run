@@ -9,6 +9,7 @@
 
 . $LKP_SRC/lib/env.sh
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/perf_event_tests/fuzzer || die "can not find fuzzer dir"
 
@@ -35,13 +36,26 @@ echo "glibc version $(ldd --version | head -1)"
 # Run test
 opt="-r $seed"
 [ -n "$number" ] && opt="$opt -s $number"
-log_cmd ./perf_fuzzer $opt &
 
 # Wait test finish or timeout
-pid=$!
 if [ -n "$runtime" ]; then
-	sleep "$runtime"
-	kill -9 "$pid" 2>&1
+	log_cmd timeout $runtime ./perf_fuzzer $opt
+	exit_status=$?
+
+	if [ $exit_status -eq 124 ]; then
+		echo "perf fuzzer test is timeout"
+		exit $exit_status
+	else
+		echo "perf fuzzer test exits with status $exit_status"
+		# It's expected that fuzzer exits with fail status like 134 due to
+		#	buffer overflow detected ***: terminated
+		# The exit_fail in last_state doesn't mean much (like trigger a valuable
+		# bisection), so always exit 0 if fuzzer exits itself.
+		exit 0
+	fi
 else
+	log_cmd ./perf_fuzzer $opt &
+	pid=$!
+
 	wait "$pid" 2>&1
 fi

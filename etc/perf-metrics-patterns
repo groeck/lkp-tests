@@ -1,2 +1,2 @@
-^lock_stat..*..contentions
 ^(.*\.)?time..*
+^lock_stat..*..contentions

@@ -1,7 +1,7 @@
-.*Extracting templates from packages: .*
-Cloning into bare repository.*
+.* blocks
 .*... Skipped
+.*Extracting templates from packages: .*
 Cloning into .*...
+Cloning into bare repository.*
 done.
 \s+struct\s(.*)
-.* blocks

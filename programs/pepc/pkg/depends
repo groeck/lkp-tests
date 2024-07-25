@@ -1,0 +1,8 @@
+libssl-dev
+procps
+python
+python-argcomplete
+python-colorama
+python-paramiko
+rsync
+util-linux

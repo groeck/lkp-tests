@@ -5,6 +5,7 @@
 # - nr_threads
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/adrestia || die "no $BENCHMARK_ROOT/adrestia"
 

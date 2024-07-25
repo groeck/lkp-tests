@@ -24,11 +24,12 @@ class IrqAnalysis
   attr_reader :irq_nr, :irq_time, :softirq_nr, :softirq_time
 
   def produce_result
-    @irq.each do |_, array|
+    @irq.each_value do |array|
       @irq_nr += array.length
       @irq_time += array.sum
     end
-    @softirq.each do |_, array|
+
+    @softirq.each_value do |array|
       @softirq_nr += array.length
       @softirq_time += array.sum
     end
@@ -94,7 +95,7 @@ def extract_ftrace(fn)
 
   samples_array = []
   # then we put these sorted lines into a global array
-  samples.each do |_, array|
+  samples.each_value do |array|
     array.each do |sample|
       samples_array << sample
     end

@@ -12,7 +12,7 @@ configure_namespace()
 	[ "$rsize" -eq 0 ] && return
 	rmode=$(echo -n $rmode)
 	[ "$rmode" = "$mode" ] && return
-	/lkp/benchmarks/bin/ndctl create-namespace --reconfig=$bns \
+	ndctl create-namespace --reconfig=$bns \
 					--force --mode="$mode" || exit 1
 }
 

@@ -5,7 +5,7 @@ category: benchmark
 nr_threads:
   - 1600%
   - 100%
-  - 50%
+  # - 50%
 iterations: 8
 
 hackbench:

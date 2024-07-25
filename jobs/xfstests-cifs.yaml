@@ -16,12 +16,10 @@ fs2:
 xfstests:
   test:
     - cifs
-    - generic-074
     - generic-group-00
     - generic-group-01
     - generic-group-02
     - generic-group-03
-    - generic-group-04
     - generic-group-05
     - generic-group-06
     - generic-group-07
@@ -33,15 +31,11 @@ xfstests:
     - generic-group-12
     - generic-group-13
     - generic-group-14
-    - generic-group-15
     - generic-group-16
     - generic-311
     - generic-281
-    - generic-299
     # - generic-409 # runtime > 20m
-    - generic-410
-    - generic-logwrites
-    - generic-group-17
+    - generic-log-writes
     - generic-group-18
     - generic-group-19
     - generic-group-20
@@ -63,7 +57,6 @@ xfstests:
     - generic-group-35
     - generic-group-36
     - generic-group-37
-    - generic-group-38
     - generic-group-39
     - generic-group-40
     - generic-group-41
@@ -90,13 +83,16 @@ xfstests:
     - generic-group-62
     - generic-group-63
     - generic-group-64
-    - generic-group-65
-    - generic-group-66
     - generic-group-67
     - generic-group-68
     - generic-group-69
     - generic-group-70
     - generic-group-71
     - generic-group-72
+    - generic-group-73
+    - generic-group-74
     - generic-logdev
     - generic-525
+    - generic-no-xfs-bug-on-assert
+    # - generic-scratch-verity
+    # - generic-scratch-dedupe

@@ -1,0 +1,5 @@
+# selftests: net: nl_netdev.py
+# # Failed importing `ynl` library from kernel sources
+# # No module named 'net'
+# ok 1 nl_netdev # SKIP
+ok 62 selftests: net: nl_netdev.py # SKIP

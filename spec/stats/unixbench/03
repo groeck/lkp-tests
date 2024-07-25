@@ -1,0 +1,14 @@
+   CPU 35: Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz (6000.0 bogomips)
+          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET, Intel virtualization
+   03:49:06 up 0 min,  0 users,  load average: 1.03, 0.24, 0.08; runlevel
+
+------------------------------------------------------------------------
+Benchmark Run: Tue Feb 20 2024 03:49:06 - 03:53:47
+36 CPUs in system; running 1 parallel copy of tests
+
+3D graphics: gears                             3207.0 fps   (20.0 s, 7 samples)
+
+3D Graphics Benchmarks Index Values          BASELINE       RESULT    INDEX
+3D graphics: gears                               33.4       3207.0    960.2
+                                                                   ========
+3D Graphics Benchmarks Index Score                                    960.2

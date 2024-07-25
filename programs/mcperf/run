@@ -22,4 +22,7 @@ run_test()
 }
 
 start_memcached
+# sleep extra time to avoid "Connection refused"
+#	mcp_core.c:379 error on c 1 sd 5: Connection refused
+sleep 30
 run_test

@@ -1,12 +1,16 @@
+
+# focal
+lib32gcc-dev: lib32gcc-10-dev
 libgcrypt-dev: libgcrypt20-dev
 libipsec-mb: libipsec-mb0
 libntfs: libntfs-3g883
+libperl5: libperl5.30
+libpython3: libpython3.9
 libssl: libssl1.1
 libtirpc: libtirpc3
-python-minimal: python2-minimal
-perl-modules-5: perl-modules-5.30
-libperl5: libperl5.30
-python3-gobject: python-gobject
-libx32gcc1: libx32gcc-s1
-lib32gcc-dev: lib32gcc-10-dev
+libunwind: libunwind8
 libx32gcc-dev: libx32gcc-10-dev
+libx32gcc1: libx32gcc-s1
+perl-modules-5: perl-modules-5.30
+python-minimal: python2-minimal
+python3-gobject: python-gobject

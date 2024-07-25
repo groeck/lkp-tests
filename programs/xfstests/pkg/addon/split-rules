@@ -1,0 +1,68 @@
+_require_xfs_stress_online_repair$=xfs
+_require_xfs_stress_scrub$=xfs
+
+# [not run] Reflink not supported by test filesystem type: ext2/ext4
+_require_test_reflink$=generic
+
+# [not run] Dedupe not supported by scratch filesystem type: ext4
+_require_scratch_dedupe$=generic
+
+# [not run] Dedupe not supported by test filesystem type: ext2
+_require_test_dedupe$=generic
+
+# run slowly on udf
+holetest=generic
+
+# [not run] cifs does not support NFS export
+_require_exportfs$=generic
+
+# [not run] btrfs/ext2/udf does not support shutdown
+# [not run] ext2/udf does not support metadata journaling
+_require_scratch_shutdown$ _require_metadata_journaling=generic
+_require_scratch_shutdown$=generic
+_require_metadata_journaling=generic
+
+# [not run] vfstest not support by cifs/ext2/udf
+_require_idmapped_mounts$=generic
+
+# [not run] udf does not support freezing
+_require_freeze$=generic
+
+# require CONFIG_FS_VERITY
+_require_scratch_verity$=generic btrfs
+
+# require a valid $LOGWRITES_DEV
+_require_log_writes=generic btrfs
+
+# [not run] duperemove does not support file system type: ext2
+_require_scratch_duperemove$=generic
+
+# require a valid $SCRATCH_LOGDEV
+_require_logdev=generic ext4 xfs
+
+_require_no_xfs_bug_on_assert$=generic xfs
+
+# [not run] Filesystem f2fs not supported in _scratch_mkfs_blocksized
+_scratch_mkfs_blocksized=generic
+
+# [not run] 16 bit project IDs not supported on /dev/sda4
+_require_projid16bit$=xfs
+
+# [not run] ACLs not supported by this filesystem type: cifs/udf
+_require_acls$=generic
+
+_require_realtime$ _require_xfs_scratch_rmapbt$=xfs
+_require_realtime$ _require_scratch_reflink$=xfs
+_require_realtime$=xfs
+
+# below sequence should not be changed because some xfs tests require both _require_scratch_reflink and _require_xfs_scratch_rmapbt
+# [not run] Reflink not supported by scratch filesystem type: ext2/ext4/f2fs/udf
+_require_scratch_reflink$ _require_xfs_scratch_rmapbt$=xfs
+_require_scratch_reflink$=xfs generic
+_require_xfs_scratch_rmapbt$=xfs
+
+# [not run] attr namespace user not supported by this filesystem type: udf
+_require_attrs$=generic
+
+# [not run] disk quotas not supported by this filesystem type: btrfs
+_require_quota$=generic

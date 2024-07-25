@@ -13,4 +13,3 @@ notify_build_success_cc_committer: true
 non_rebaseable_branch: .*
 mail_to: Andrew Morton <akpm@linux-foundation.org>
 mail_cc: linux-mm@kvack.org
-test_old_branches: .*

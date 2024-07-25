@@ -1,10 +1,10 @@
-suite: kernel-selftests
-testcase: kernel-selftests
+suite: kernel-selftests-bpf
+testcase: kernel-selftests-bpf
 category: benchmark
 
-kernel-selftests:
+kernel-selftests-bpf:
   group:
-    - netfilter
+    - net/netfilter
   test:
     - nft_concat_range.sh
 

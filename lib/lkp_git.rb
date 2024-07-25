@@ -17,6 +17,7 @@ require "#{LKP_SRC}/lib/assert"
 require "#{LKP_SRC}/lib/git_ext"
 require "#{LKP_SRC}/lib/constant"
 require "#{LKP_SRC}/lib/lkp_path"
+require "#{LKP_SRC}/lib/ruby_ext"
 
 GIT_WORK_TREE ||= ENV['GIT_WORK_TREE'] || ENV['LKP_GIT_WORK_TREE'] || "#{GIT_ROOT_DIR}/linux"
 GIT_DIR ||= ENV['GIT_DIR'] || "#{GIT_WORK_TREE}/.git"
@@ -84,7 +85,7 @@ def commit_tag(commit)
 end
 
 def linus_release_tag(commit)
-  return nil unless linus_commit?(commit)
+  return unless linus_commit?(commit)
 
   tag = commit_tag(commit)
   case tag
@@ -103,18 +104,18 @@ def __last_linus_release_tag(commit)
 
   `#{GIT} show "#{commit}:Makefile"`.each_line do |line|
     case line
-    when /^#/
-      next
-    when /VERSION *= *(\d+)/
+    when /^VERSION *= *(\d+)/
       version = $1.to_i
-    when /PATCHLEVEL *= *(\d+)/
+    when /^PATCHLEVEL *= *(\d+)/
       patch_level = $1.to_i
-    when /SUBLEVEL *= *(\d+)/
+    when /^SUBLEVEL *= *(\d+)/
       sub_level = $1.to_i
-    when /EXTRAVERSION *= *-rc(\d+)/
+    when /^EXTRAVERSION *= *-rc(\d+)/
       rc = $1.to_i
-    else
+    when /^NAME *= */
       break
+    else
+      next
     end
   end
 
@@ -125,7 +126,7 @@ def __last_linus_release_tag(commit)
   else
     log_warn "Not a kernel tree? check #{GIT_WORK_TREE}"
     log_warn caller.join "\n"
-    return nil
+    return
   end
 
   tag += "-rc#{rc}" if rc && rc.positive?

@@ -7,21 +7,23 @@ require 'English'
 
 desc 'Show help'
 task :help do
-  puts <<~EOF
+  puts <<-EOF
+## SPEC
 
-  == SPEC ==
+usage
+  rake spec [spec=result_path]
 
-  usage: rake spec [spec=result_path]
-  example:
-    rake spec                       # check all unit tests status
-    rake spec spec=job"             # check spec/job_spec.rb status
+example
+  rake spec                       # check all unit tests status
+  rake spec spec=job              # check spec/job_spec.rb status
 
-  == RUBOCOP ==
+## RUBOCOP
 
-  usage: rake rubocop [file=pattern]
-  example:
-    rake rubocop file="lib/**/*.rb" # check all lib files
+usage
+  rake rubocop [file=pattern]
 
+example
+  rake rubocop file="lib/**/*.rb" # check all lib files
   EOF
 end
 
@@ -42,7 +44,12 @@ end
 
 begin
   RuboCop::RakeTask.new(:rubocop) do |t|
-    t.options = ['-D', '-c.rubocop.yml']
+    ruby_version = `ruby --version | grep -oE "[0-9]+\\.[0-9]+"`.chomp
+
+    rubocop_config_file = ".rubocop.#{ruby_version}.yml"
+    rubocop_config_file = '.rubocop.yml' unless File.size?(rubocop_config_file)
+
+    t.options = ['-D', "-c#{rubocop_config_file}"]
     t.patterns = [ENV['file']] if ENV['file']
 
     puts "PWD = #{Dir.pwd}"

@@ -1,7 +1,16 @@
 diff --git a/UnixBench/Makefile b/UnixBench/Makefile
-index 4874d1f..26e4e9f 100644
+index 4874d1f43a11..624000a2d15a 100644
 --- a/UnixBench/Makefile
 +++ b/UnixBench/Makefile
+@@ -46,7 +46,7 @@ SHELL = /bin/sh
+ # X11 libraries on your system. (e.g. libX11-devel mesa-libGL-devel)
+ #
+ # Comment the line out to disable these tests.
+-# GRAPHIC_TESTS = defined
++GRAPHIC_TESTS = defined
+
+ # Set "GL_LIBS" to the libraries needed to link a GL program.
+ GL_LIBS = -lGL -lXext -lX11
 @@ -90,18 +90,18 @@ else
    ## OS detection.  Comment out if gmake syntax not supported by other 'make'. 
    OSNAME:=$(shell uname -s)

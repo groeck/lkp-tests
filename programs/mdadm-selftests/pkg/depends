@@ -1,4 +1,5 @@
-make
-strace
-libc6
 libc-bin
+libc6
+make
+policycoreutils
+strace

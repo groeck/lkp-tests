@@ -1,0 +1,220 @@
+suite: phoronix-test-suite
+testcase: phoronix-test-suite
+category: benchmark
+
+need_x: true
+
+phoronix-test-suite:
+  - test:
+    # - insurgency-1.2.0 # The test run did not produce a result.
+    - quadray-1.0.0
+    # - sam2017-1.0.2 # E: ./sam2017: line 15: steam: command not found
+    # - shadowofthetombraider-1.1.0 # A video game that needs to be downloaded from Steam platform
+    # - ss3bfe-1.0.0 # A video game that needs to be downloaded from Steam platform
+    # - unigine-super-1.0.8 # E: ./unigine-super: 4: ./bin/superposition: not found
+    # - vkresample-1.0.2 # The test quit with a non-zero exit status.
+    # - xplane9-1.3.1 # A flight simulator that needs to be downloaded from Steam platform
+    # - xplane11-1.1.2 # A flight simulator that needs to be downloaded from Steam platform
+    # - xplane12-1.0.1 # A flight simulator that needs to be downloaded from Steam platform
+    # - riseofthetombraider-1.0.2 # A video game that needs to be downloaded from Steam platform
+    # - talos-principle-1.2.1 # E: cat: '/root//.steam/steam/steamapps/common/The Talos Principle/Log/Talos.log': No such file or directory
+    - waifu2x-ncnn-1.0.0
+    # - yquake2-1.3.0 # The test quit with a non-zero exit status.
+    # - bioshock-infinite-1.0.2 # The test run did not produce a result.
+    - vkpeak-1.1.0
+    # - quake2rtx-1.6.1 # The test run did not produce a result.
+    # - madmax-1.2.1 # The test run did not produce a result.
+    # - geexlab-rt-1.0.1 # The test run did not produce a result.
+    # - quake4-1.1.0 # need extra quake4 gamefile and key
+    # - render-bench-1.1.2 # need imlib2-config which is only available in outdated version of libimlib2-dev
+    # - smokin-guns-1.2.2 # need 32bit libs (libjpeg62:i386 etc), runtime > 1h
+    # - specviewperf9-1.1.1 # need csh or tcsh
+    # - vdrift-1.2.0 # build with old g++ (g++-3.4)
+    # - video-cpu-usage-1.2.1 # need soundcard
+    # - warsow-1.5.1 # need to upgrade to newer version
+    # - tf2-1.2.3 # download files from stream
+    # - tremulous-1.1.0 # need 32bit libs (libjpeg62:i386 etc)
+    # - ue4-matinee-1.1.0 # block by known issues
+    # - ue4-mountains-1.1.0 # block by known issue
+    # - unvanquished-1.8.0 # this test profile is currently marked Broken
+    # - xonotic-1.7.0 # runtime is long
+    # - cuda-mini-nbody-1.1.1 # need CUDA compatible hardware
+    # - etxreal-1.0.0 # too old (last update 2012) to work
+    # - etqw-1.1.0 # has been replaced by newer etqw-demo
+    # - etqw-demo-1.1.0 # need 32bit libs
+    # - etqw-demo-iqc-1.0.0 # need 32bit libs
+    # - gfxbench-1.0.0 # need to download files from stream
+
+  - test: apitest-1.1.1
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+      # - 1280 x 1024
+      # - 1600 x 1200
+    option_b:
+      - DynamicStreaming GLBufferSubData
+      - DynamicStreaming GLMapUnsynchronized
+      - DynamicStreaming GLMapPersistent
+      - UntexturedObjects GLUniform
+      - UntexturedObjects GLDrawLoop
+      - UntexturedObjects GLMultiDrawBuffer-SDP
+      - UntexturedObjects GLMultiDrawBuffer-NoSDP
+      - UntexturedObjects GLBufferRange
+      - UntexturedObjects GLBufferSubData
+      - UntexturedObjects GLBufferStorage-SDP
+      - UntexturedObjects GLBufferStorage-NoSDP
+      - UntexturedObjects GLDynamicBuffer
+      - UntexturedObjects GLMapUnsynchronized
+      - UntexturedObjects GLMapPersistent
+      - UntexturedObjects GLTexCoord
+      # - TexturedQuadsProblem GLBindless # The test run did not produce a result.
+      - TexturedQuadsProblem GLNaive
+      - TexturedQuadsProblem GLNaiveUniform
+      - TexturedQuadsProblem GLNoTex
+      - TexturedQuadsProblem GLNoTexUniform
+      # - TexturedQuadsProblem GLSBTA # The test run did not produce a result.
+      - TexturedQuadsProblem GLTextureArray
+
+  - test: cairo-perf-trace-1.0.2
+    option_a:
+      # - Firefox Canvas # out of memory
+      # - GNOME Terminal Vim # out of memory
+      - Poppler
+
+  - test: et-1.1.0
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+
+  # - test: etlegacy-1.3.0 # The test run did not produce a result.
+    # option_a:
+      # - Default
+      # - Renderer2
+    # option_b:
+      # - 1024 x 768
+
+  - test: geexlab-1.1.2
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - GL2 AntTweakBar
+      - GL2 Cell Shading
+      - GL2 Noise Animation Electric
+      - GL2 Tunnel Beauty
+      - GL2 Hot Tunnel DNA
+      - GL3 Mesh Exploder
+      - GL3 Vertex Pool
+  - test: glmark2-1.4.0
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+  - test: gluxmark-1.1.2
+    option_a:
+      - Fullscreen
+      # - Windowed
+    option_b:
+      - 800 x 600
+      # - 1024 x 768
+    option_c:
+      - Fill-Rate
+      - Fragment
+      # - Geometry # The test quit with a non-zero exit status.
+      - Vertex
+      - Complex
+      # - Compute # The test run did not produce a result.
+  - test: gputest-1.3.2
+    option_a:
+      # - Furmark # runtime > 50m on Furmark-1024_x_768-Fullscreen lkp-csl-2sp7
+      - TessMark
+      - GiMark
+      - Pixmark Piano
+      - Pixmark Volplosion
+      - Triangle
+      - Plot3D
+    option_b:
+      - 800 x 600
+      # - 1024 x 768
+    option_c:
+      - Fullscreen
+      # - Windowed
+  - test: gtkperf-1.2.2
+    option_a:
+      - GtkComboBox
+      - GtkComboBoxEntry
+      - GtkToggleButton
+      - GtkCheckButton
+      - GtkRadioButton
+      - GtkTextView - Add Text
+      - GtkTextView - Scroll
+      - GtkDrawingArea - Circles
+      - GtkDrawingArea - Pixbufs
+      - Total Time
+  - test: indigobench-1.1.0
+    option_a:
+      - Supercar
+      - Bedroom
+
+  # - test: j2dbench-1.1.2 # The test run did not produce a result.
+  #   option_a:
+  #     - All Rendering Tests
+  #     - Vector Graphics Rendering
+  #     - Image Rendering
+  #     - Text Rendering
+
+    # - jgfxbat-1.1.0 # 3rd party url is N/A
+    # - octanebench-1.1.2 # need CUDA compatible hardware
+    # - prey-1.1.2 # need to download files from stream
+  - test: openarena-1.5.5
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+      # - 1920 x 1080
+      # - 2560 x 1440
+  - test: qgears2-1.0.1
+    option_a:
+      - CPU-based Raster
+      - XRender Extension
+      - OpenGL
+    option_b:
+      - Gears
+      - Text
+      - Image Scaling
+  - test: qmlbench-1.1.0
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - Moving Images Animations
+      - Canvas Text Simple
+      - Changing Over Isolated
+      - Creation Delegates Flow
+      - Fib10
+      - Delegates Canvas FBO Threaded
+
+  # - test: selenium-top-sites-1.0.3 # not an available test
+    # option_a:
+      # - Firefox
+      # - Google Chrome
+
+  - test: tesseract-1.1.0
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+
+  - test: urbanterror-1.3.0
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+
+  - test: x11perf-1.1.1
+    option_a:
+      - 500px PutImage Square
+      - Scrolling 500 x 500 px
+      - Fill 300 x 300px AA Trapezoid
+      - 500px Copy From Window To Window
+      - 500px Compositing From Pixmap To Window
+      - 500px Compositing From Window To Window
+      - Copy 500x500 From Pixmap To Pixmap
+      - PutImage XY 500x500 Square
+      - Char in 80-char aa line

@@ -1,1 +1,6 @@
 url: https://git.kernel.org/pub/scm/linux/kernel/git/krisman/unicode.git
+owner: Gabriel Krisman Bertazi <krisman@kernel.org>
+notify_build_success_branch: .*
+private_report_branch: .*
+mail_cc: Gabriel Krisman Bertazi <krisman@kernel.org>
+git_am_branch: for-next

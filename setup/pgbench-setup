@@ -53,7 +53,7 @@ init_postgresql
 
 postgres_run dropdb pgbench_test > /dev/null 2>&1
 postgres_run_log createdb pgbench_test
-postgres_run_log pgbench -i $init_opts 2>&1
+postgres_run_log $bin_dir/pgbench -i $init_opts 2>&1
 
 if [ -n "$runtime" ]; then
 	run_opts="-T $runtime"
@@ -68,5 +68,5 @@ fi
 [ -n "$latency_limit" ] && run_opts="$run_opts -L $latency_limit"
 
 cat > "$TMP_RESULT_ROOT"/run.pgbench <<EOF
-log_cmd sudo -u postgres $exec_prefix pgbench -n $run_opts
+log_cmd sudo -u postgres $exec_prefix $bin_dir/pgbench -n $run_opts
 EOF

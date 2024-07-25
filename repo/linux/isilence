@@ -1,1 +1,4 @@
 url: https://github.com/isilence/linux
+owner: Pavel Begunkov <asml.silence@gmail.com>
+private_report_branch: .*
+mail_to: Pavel Begunkov <asml.silence@gmail.com>

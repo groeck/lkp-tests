@@ -1,2 +1,4 @@
 url: https://github.com/tobetter/linux
 owner: tobetter <tobetter@gmail.com>
+test_old_branches: .*
+no_merge_branch: odroid-6.6.y|odroid-6.1.y

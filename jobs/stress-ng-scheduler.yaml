@@ -1,0 +1,66 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+
+nr_threads: 100%
+
+testtime:
+  - 60s
+
+# docker run --rm ghcr.io/colinianking/stress-ng --class scheduler?
+stress-ng:
+  test:
+  - affinity
+  - clone
+  - cyclic
+  - daemon
+  - dnotify
+  - eventfd
+  - exec
+  - exit-group
+  - fault
+  - fifo
+  - fork
+  - forkheavy
+  - futex
+  - hrtimers
+  - inotify
+  - kill
+  - loadavg
+  - mmapfork
+  - mq
+  - msg
+  - mutex
+  - nanosleep
+  - netlink-proc
+  - netlink-task
+  - nice
+  - poll
+  - prio-inv
+  - pthread
+  - race-sched
+  - resched
+  - schedmix
+  - schedpolicy
+  - sem
+  - sem-sysv
+  - session
+  - sleep
+  - softlockup
+  - spawn
+  - switch
+  - tee
+  - vfork
+  - vforkmany
+  - wait
+  - workload
+  - yield
+  - zombie
+
+---
+# Avoid issue "too many open files" when running with 100% threads on tbox with large number of cpu
+nr_threads: 10%
+
+stress-ng:
+  test:
+    - fanotify

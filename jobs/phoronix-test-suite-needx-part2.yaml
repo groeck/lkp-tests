@@ -1,0 +1,101 @@
+suite: phoronix-test-suite
+testcase: phoronix-test-suite
+category: benchmark
+
+need_x: true
+times_to_run: 1
+
+phoronix-test-suite:
+  - test: realsr-ncnn-1.0.0
+    option_a:
+      # - 1 # Yes # TAA (Temporal Anti-Aliasing) costs long time
+      - 2 # No
+
+  - test: vkmark-1.3.2
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - 1 # Mailbox
+      # - 2 # Immediate [Useful for NVIDIA driver compatibility]
+
+  - test: unigine-tropics-1.6.4
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - Fullscreen
+      # - Windowed
+
+  - test: jxrendermark-1.2.4
+    option_a:
+      - Rects Composition
+      - Put Composition
+      - Simple Blit
+      - Transformed Blit Linear
+      - Transformed Blit Bilinear
+      - Transformed Texture Paint
+      - Linear Gradient Blend
+      - Radial Gradient Paint
+      - Gradient+Temp Texture
+      - 12pt Text Grayscale
+      - 12pt Text LCD
+    option_b:
+      - 32x32
+      # - 128x128
+      # - 256x256
+      # - 512x512
+      - 1024x1024
+
+  - test: paraview-1.3.0
+    option_a:
+      - Many Spheres
+      - Wavelet Contour
+      - Wavelet Volume
+    option_b:
+      - 800 x 600
+      # - 1024 x 768
+
+  - test: unigine-sanctuary-1.6.4
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      - Fullscreen
+      # - Windowed
+
+  # - test: supertuxkart-1.6.0
+  #   option_a:
+  #     - 800 x 600
+  #     # - 1024 x 768
+  #   option_b:
+  #     # - Windowed
+  #     - Fullscreen
+  #   option_c: # Graphics Effects
+  #     - Low
+  #     - Medium
+  #     # - High # runtime > 3h on 1024_x_768-Fullscreen-High-1-2 lkp-csl-2sp7
+  #     # - Ultimate
+  #   option_d: # number of karts
+  #     - 1
+  #     # - 2
+  #     # - 3
+  #     # - 4
+  #     # - 5
+  #     # - 6
+  #     # - 7
+  #     # - 8
+  #   option_e:
+  #     - 1 # Candela City          [Approximately 400k triangles; advanced graphics]
+  #     - 2 # Cocoa Temple          [Approximately 300k triangles; advanced graphics]
+  #     - 3 # Gran Paradiso Island  [Approximately 275k triangles; advanced graphics]
+  #     - 4 # Around the Lighthouse [Approximately 65k triangles]
+  #     - 5 # Zen Garden            [Low poly]
+
+  - test: unigine-heaven-1.6.5
+    option_a:
+      - 800 x 600
+      # - 1024 x 768
+    option_b:
+      # - Fullscreen # The test run did not produce a result
+      - Windowed

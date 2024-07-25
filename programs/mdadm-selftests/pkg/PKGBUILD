@@ -1,10 +1,10 @@
 pkgname=mdadm-selftests
 pkgver=git
 pkgrel=1
-url='https://github.com/neilbrown/mdadm'
+url='https://github.com/md-raid-utilities/mdadm'
 arch=('i386' 'x86_64' 'aarch64')
 license=('GPL')
-source=('mdadm-selftests'::'https://github.com/neilbrown/mdadm.git')
+source=('mdadm-selftests'::'https://github.com/md-raid-utilities/mdadm.git')
 md5sums=('SKIP')
 
 build()

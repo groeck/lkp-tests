@@ -1,0 +1,15 @@
+short_description: >
+
+description: >
+
+homepage:
+
+parameters:
+ mode:
+ rtcwake:  
+ iterations:
+ runtime:    
+ pm_test:    
+ idle_time:  
+ debug:      
+

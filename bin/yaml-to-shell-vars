@@ -65,6 +65,11 @@ end
 
 ARGV.each do |file|
   vars = YAML.load_file file
+  unless vars
+    warn "fail to load file #{file} which results in #{vars.inspect}"
+    next
+  end
+
   vars.each do |k, v|
     next unless k.is_a?(String)
 

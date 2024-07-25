@@ -1,0 +1,18 @@
+short_description: >
+ twemperf (pronounced "two-em-perf"), aka mcperf is a tool for measuring memcached server performance.
+
+description: >
+ mcperf is a tool for measuring memcached server performance. mcperf is like httperf, but for memcached protocol. It speaks memcached ASCII protocol and is capable of generating connections and requests at a high rate.
+
+homepage: https://github.com/twitter-archive/twemperf/
+
+parameters:
+ linger:
+ timeout:
+ testsize:
+ conn_rate:
+ call_rate:
+ num_calls:
+ num_conns:
+
+results:

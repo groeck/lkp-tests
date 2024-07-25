@@ -1,0 +1,18 @@
+2024-02-26 06:57:38 cd /lkp/benchmarks/kbuild/kbuild/1
+2024-02-26 06:57:38 make mrproper
+2024-02-26 06:57:41 make allyesconfig
+  HOSTCC  scripts/basic/fixdep
+scripts/kconfig/conf  --allyesconfig Kconfig
+#
+# configuration written to .config
+#
+2024-02-26 06:57:44 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:57:44 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930664.406241182
+
+real: 300.922s
+user: 16611.657s
+sys: 1932.173s
+end time: 1708930965.330050942
+iterations: 1
+runtime: 307

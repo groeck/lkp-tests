@@ -10,3 +10,4 @@ subsystems:
 - ufs
 - orangefs
 mail_cc: linux-fsdevel@vger.kernel.org
+test_old_branches: .*

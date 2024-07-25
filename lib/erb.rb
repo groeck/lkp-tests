@@ -32,7 +32,13 @@ def expand_erb(template, context_hash = {})
   job.merge!(context_hash)
   context = Hashugar.new(job).instance_eval { binding }
 
-  ERB.new(template, nil, '%').result(context)
+  erb = if RUBY_VERSION < '2.6'
+          ERB.new(template, nil, '%')
+        else
+          ERB.new(template, trim_mode: '%')
+        end
+
+  erb.result(context)
 end
 
 # support: {{ expression }}

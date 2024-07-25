@@ -1,0 +1,10 @@
+initrds+:
+- linux_headers
+- linux_selftests
+
+need_kconfig:
+- INTEL_UNCORE_FREQ_CONTROL: y
+- INTEL_UNCORE_FREQ_CONTROL_TPMI: y
+- INTEL_TPMI: y
+- INTEL_VSEC: y
+- X86_USER_SHADOW_STACK: y

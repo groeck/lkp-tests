@@ -1,3 +1,4 @@
 url: https://github.com/intel/amx-linux.git
 owner: Chang S. Bae <chang.seok.bae@intel.com>
 mail_recipient: intel.com
+test_old_branches: .*

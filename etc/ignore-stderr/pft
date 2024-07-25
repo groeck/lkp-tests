@@ -1,6 +1,6 @@
-Using .* thread
-clipping nr_tests to nr_cpus_allowed.*
-\!\!\! test.*
 .*    user time.*
-expected faults differs from actual faults by > 10%
 Calculated faults=.*
+clipping nr_tests to nr_cpus_allowed.*
+expected faults differs from actual faults by > 10%
+Using .* thread
+\!\!\! test.*

@@ -1,0 +1,9 @@
+url: https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git
+integration_testing_branches:
+- linux-next
+- bleeding-edge
+mail_cc:
+- linux-pm@vger.kernel.org
+owner: Mario Limonciello <superm1@kernel.org>
+notify_build_success_branch: bleeding-edge|amd-pstate-fixes
+test_old_branches: .*

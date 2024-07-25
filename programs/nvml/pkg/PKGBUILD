@@ -8,10 +8,9 @@ source=('https://github.com/pmem/valgrind.git'
 	'https://github.com/llvm-mirror/llvm.git'
 	'https://github.com/llvm-mirror/libcxxabi.git'
 	'https://github.com/pmem/libcxx.git'
-	'https://github.com/pmem/ndctl.git'
 	'https://github.com/ofiwg/libfabric.git'
 	'https://github.com/pmem/nvml.git')
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build_install_valgrind_pmem()
 {
@@ -74,22 +73,6 @@ build_install_libcxx()
 	make install
 }
 
-# The dax tests need ndctl tool to create dax device.
-# See more details at https://nvdimm.wiki.kernel.org.
-build_install_ndctl()
-{
-	cd "${srcdir}/ndctl"
-	[[ -e '/usr/include/iniparser.h' ]] || cp /usr/include/iniparser/* /usr/include/
-	local distro=$(basename $rootfs)
-	if [[ "$distro" =~ "debian-10" ]]; then
-		git checkout v72
-	fi
-	./autogen.sh
-	./configure CFLAGS='-g -O0' --disable-docs --enable-debug --prefix=/usr/local
-	make
-	make install
-}
-
 build()
 {
 	[ "$DISTRO" = "centos" ] && {
@@ -100,8 +83,6 @@ build()
 	build_install_valgrind_pmem
 	build_install_libfabric
 	build_install_libcxx
-	build_install_ndctl
-
 }
 
 package()
@@ -116,6 +97,4 @@ package()
 	cd "${srcdir}/libfabric"
 	make DESTDIR="${pkgdir}" install
 	cp -af "/usr/local/libcxx" "${pkgdir}/usr/local"
-	cd "${srcdir}/ndctl"
-	make DESTDIR="${pkgdir}" install
 }

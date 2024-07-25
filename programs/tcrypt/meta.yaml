@@ -1,0 +1,14 @@
+short_description: >
+
+description: >
+
+homepage:
+
+parameters:
+ modes:
+ period:
+
+results:
+ tcrypt.async.essiv(cbc(aes),sha256).(essiv(cbc-aes-aesni,sha256-avx2)).encryption:
+ tcrypt.async.essiv(cbc(aes),sha256).(essiv(cbc-aes-aesni,sha256-avx2)).decryption: 
+

@@ -1,0 +1,202 @@
+diff --git a/api-compat/include/splice.h b/api-compat/include/splice.h
+index 08966c1..278c563 100644
+--- a/api-compat/include/splice.h
++++ b/api-compat/include/splice.h
+@@ -28,10 +28,4 @@
+ #error unsupported arch
+ #endif
+ 
+-int splice(int fdin, loff_t *off_in, int fdout,
+-			 loff_t *off_out, size_t len, unsigned int flags)
+-{
+-	return syscall(__NR_splice, fdin, off_in, fdout, off_out, len, flags);
+-}
+-
+ #endif
+diff --git a/programs/aio-stress/Makefile b/programs/aio-stress/Makefile
+index 9d179e2..33e9a9a 100644
+--- a/programs/aio-stress/Makefile
++++ b/programs/aio-stress/Makefile
+@@ -6,7 +6,6 @@ TESTS = aio-stress
+ BIN_PROGRAMS = aio-stress
+ 
+ CFLAGS = -O2 -Wall -g
+-LDFLAGS += -laio -lpthread
+ 
+ SOURCES = aio-stress.c
+ OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
+@@ -14,6 +13,6 @@ OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
+ DIST_FILES = $(SOURCES)
+   
+ aio-stress: $(OBJECTS)
+-	$(LINK) -laio
++	$(LINK) -laio -lpthread
+ 
+ include $(TOPDIR)/Postamble.make
+diff --git a/programs/directio_test/Makefile b/programs/directio_test/Makefile
+index e7b73f7..4f0afa9 100644
+--- a/programs/directio_test/Makefile
++++ b/programs/directio_test/Makefile
+@@ -4,7 +4,7 @@ include $(TOPDIR)/Preamble.make
+ 
+ TESTS = directio_test
+ 
+-CFLAGS = -O2 -Wall -g $(OCFS2_CFLAGS)
++CFLAGS = -O2 -Wall -D_GNU_SOURCE -g $(OCFS2_CFLAGS)
+ 
+ CFLAGS += $(EXTRA_CFLAGS)
+ 
+diff --git a/programs/directio_test/directio_test.c b/programs/directio_test/directio_test.c
+index 7154812..729d684 100755
+--- a/programs/directio_test/directio_test.c
++++ b/programs/directio_test/directio_test.c
+@@ -214,7 +214,7 @@ static int teardown(void)
+ static void sigchld_handler()
+ {
+ 	pid_t pid;
+-	union wait status;
++	int status;
+ 
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+diff --git a/programs/discontig_bg_test/spawn_inodes.c b/programs/discontig_bg_test/spawn_inodes.c
+index 6bb7a93..633f0a9 100755
+--- a/programs/discontig_bg_test/spawn_inodes.c
++++ b/programs/discontig_bg_test/spawn_inodes.c
+@@ -64,7 +64,7 @@ static int usage(void)
+ static void sigchld_handler()
+ {
+ 	pid_t   pid;
+-	union wait status;
++	int status;
+ 
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+diff --git a/programs/fill_verify_holes/verify_holes.c b/programs/fill_verify_holes/verify_holes.c
+index ff2a4a0..2199876 100644
+--- a/programs/fill_verify_holes/verify_holes.c
++++ b/programs/fill_verify_holes/verify_holes.c
+@@ -1,4 +1,5 @@
+ #define _XOPEN_SOURCE 500
++#define _GNU_SOURCE
+ #include <unistd.h>
+ #include <errno.h>
+ #include <sys/types.h>
+diff --git a/programs/inline-data/Makefile b/programs/inline-data/Makefile
+index 4bfd809..0764d19 100644
+--- a/programs/inline-data/Makefile
++++ b/programs/inline-data/Makefile
+@@ -18,10 +18,10 @@ BIN_PROGRAMS = inline-data inline-dirs multi-inline-data multi-inline-dirs
+ BIN_EXTRA =  single-inline-run.sh multi-inline-run.sh
+ 
+ inline-data: inline-data.o inline-data-utils.o
+-	$(LINK) -locfs2
++	$(LINK) -locfs2 -laio -lcom_err
+ 
+ inline-dirs: inline-dirs.o inline-dirs-utils.o
+-	$(LINK) -locfs2
++	$(LINK) -locfs2 -laio -lcom_err
+ 
+ multi-inline-data.o: multi-inline-data.c
+ 	$(MPICC) -c multi-inline-data.c
+@@ -30,9 +30,9 @@ multi-inline-dirs.o: multi-inline-dirs.c
+ 	$(MPICC) -c multi-inline-dirs.c
+ 
+ multi-inline-data: multi-inline-data.o inline-data-utils.o
+-	$(MPI_LINK) -locfs2
++	$(MPI_LINK) -locfs2 -laio -lcom_err
+ 
+ multi-inline-dirs: multi-inline-dirs.o
+-	$(MPI_LINK) -locfs2
++	$(MPI_LINK) -locfs2 -laio -lcom_err
+ 
+ include $(TOPDIR)/Postamble.make
+diff --git a/programs/inline-data/inline-data.c b/programs/inline-data/inline-data.c
+index d5682e1..febb8dd 100644
+--- a/programs/inline-data/inline-data.c
++++ b/programs/inline-data/inline-data.c
+@@ -253,7 +253,7 @@ static int teardown(void)
+ static void sigchld_handler()
+ {
+ 	pid_t pid;
+-	union wait status;
++	int status;
+ 
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+diff --git a/programs/inline-data/inline-dirs.c b/programs/inline-data/inline-dirs.c
+index d7a4510..b9f78df 100644
+--- a/programs/inline-data/inline-dirs.c
++++ b/programs/inline-data/inline-dirs.c
+@@ -357,7 +357,7 @@ static void run_large_dir_tests(void)
+ static void sigchld_handler()
+ {
+ 	pid_t pid;
+-	union wait status;
++	int status;
+ 
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+diff --git a/programs/reflink_tests/Makefile b/programs/reflink_tests/Makefile
+index db6c378..eccef01 100755
+--- a/programs/reflink_tests/Makefile
++++ b/programs/reflink_tests/Makefile
+@@ -4,7 +4,7 @@ include $(TOPDIR)/Preamble.make
+ 
+ TESTS = reflink_tests
+ 
+-CFLAGS = -O2 -Wall -g $(OCFS2_CFLAGS)
++CFLAGS = -O2 -Wall -D_GNU_SOURCE -g $(OCFS2_CFLAGS)
+ 
+ CFLAGS += $(EXTRA_CFLAGS)
+ 
+diff --git a/programs/reflink_tests/reflink_test.c b/programs/reflink_tests/reflink_test.c
+index 22386db..2801968 100755
+--- a/programs/reflink_tests/reflink_test.c
++++ b/programs/reflink_tests/reflink_test.c
+@@ -965,7 +965,7 @@ bail:
+ static void sigchld_handler()
+ {
+ 	pid_t pid;
+-	union wait status;
++	int status;
+ 
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+diff --git a/programs/truncate/ocfs2-tools/Makefile b/programs/truncate/ocfs2-tools/Makefile
+index 63fa817..902ac16 100644
+--- a/programs/truncate/ocfs2-tools/Makefile
++++ b/programs/truncate/ocfs2-tools/Makefile
+@@ -16,6 +16,6 @@ BIN_PROGRAMS = test_truncate
+ BIN_EXTRA = ocfs2_truncate.sh
+ 
+ test_truncate: $(OBJECTS)
+-	$(LINK)  -locfs2 -lcom_err
++	$(LINK)  -locfs2 -laio -lcom_err
+ 
+ include $(TOPDIR)/Postamble.make
+diff --git a/programs/tunefs-test/remove-slot/Makefile b/programs/tunefs-test/remove-slot/Makefile
+index 97226ea..d47e713 100644
+--- a/programs/tunefs-test/remove-slot/Makefile
++++ b/programs/tunefs-test/remove-slot/Makefile
+@@ -16,6 +16,6 @@ BIN_PROGRAMS = remove_slot
+ BIN_EXTRA = remove_slot.sh corrupt_remove_slot.sh
+ 
+ remove_slot: $(OBJECTS)
+-	$(LINK)  -locfs2 -lcom_err
++	$(LINK)  -locfs2 -laio -lcom_err
+ 
+ include $(TOPDIR)/Postamble.make
+diff --git a/programs/xattr_tests/xattr-test.c b/programs/xattr_tests/xattr-test.c
+index 3b5af28..d12e518 100755
+--- a/programs/xattr_tests/xattr-test.c
++++ b/programs/xattr_tests/xattr-test.c
+@@ -300,7 +300,7 @@ static void judge_sys_return(int ret, const char *sys_func)
+ static void sigchld_handler()
+ {
+ 	pid_t	pid;
+-	union wait status;
++	int status;
+ 	while (1) {
+ 		pid = wait3(&status, WNOHANG, NULL);
+ 		if (pid <= 0)

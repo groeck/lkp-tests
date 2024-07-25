@@ -32,6 +32,7 @@ Knights_Mill=0 # Microarchitecture not support, set 0
 Meteor_Lake=0 # first launched at 2023 +
 Nehalem=30
 Sandy_Bridge=45
+Sapphire_Rapids=143
 Skylake=85
 Whiskey_Lake_U=142
 Core=15

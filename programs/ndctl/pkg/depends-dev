@@ -1,0 +1,15 @@
+asciidoctor
+bash-completion
+cmake
+libiniparser-dev
+libjson-c-dev
+libkeyutils-dev
+libkmod-dev
+libtraceevent-dev
+libtracefs-dev
+libudev-dev
+libudev1
+meson
+pkg-config
+udev
+uuid-dev

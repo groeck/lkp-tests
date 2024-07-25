@@ -1,2 +1,4 @@
 url: git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
 notify_build_success_branch: .*
+test_old_branches: .*
+no_merge_branch: nfsd-5.15.y|nfsd-5.10.y

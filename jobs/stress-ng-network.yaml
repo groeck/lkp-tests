@@ -1,0 +1,30 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+
+nr_threads: 100%
+
+testtime:
+  - 60s
+
+# docker run --rm ghcr.io/colinianking/stress-ng --class network?
+stress-ng:
+  test:
+  - dccp
+  - epoll
+  - icmp-flood
+  - netdev
+  - ping-sock
+  - rawpkt
+  - rawsock
+  - rawudp
+  - sctp
+  - sock
+  - sockabuse
+  - sockdiag
+  - sockfd
+  - sockpair
+  - sockmany
+  - tun
+  - udp
+  - udp-flood

@@ -1,10 +1,9 @@
-xfsprogs
 btrfs-tools
+dbench
 f2fs-tools
 jfsutils
-reiserfsprogs
 nilfs-tools
-python2
-python3
+python
+reiserfsprogs
 sudo
-dbench
+xfsprogs

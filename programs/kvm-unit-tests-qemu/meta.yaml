@@ -1,0 +1,16 @@
+short_description: >
+ The kvm-unit-tests are a set of tests which can be used to verify virtualized CPUs
+ (like KVM and others), emulated CPUs (like TCG from QEMU) or even real CPU behavior.
+
+ This test suite with -qemu suffix won't use the qemu binary provided in
+ distribution, but will clone official qemu git tree and build qemu from
+ source code.
+
+homepage: https://gitlab.com/kvm-unit-tests/kvm-unit-tests
+
+parameters:
+ qemu_branch: qemu/master
+ qemu_commit:
+ qemu_config: x86_64-softmmu
+
+results:

@@ -3,19 +3,18 @@ testcase: phoronix-test-suite
 category: benchmark
 
 need_memory: 8G
+times_to_run: 1 # 12 cpu, 16G memory tbox, run once cost about 43m
 
 phoronix-test-suite:
-  - test: blender-1.9.0
+  - test: blender-4.0.0
     option_a:
       - BMW27
-      - Classroom
-      # - Fishy Cat
-      # - Pabellon Barcelona
-      # - Barbershop # temporarily comment out the failed test
-      # - Test All Options
+      - Classroom # Classroom-Intel_oneAPI. E: Error: Found no Cycles device of the specified type
+      # - Fishy Cat # elapsed_time: 2935s
+      # - Pabellon Barcelona # elapsed_time: 3164s
+      # - Barbershop # The test quit with a non-zero exit status.
     option_b:
       - CPU-Only
-      - OpenCL
-      # - CUDA # need CUDA compatible hardware
-      # - NVIDIA OptiX # need NVIDIA compatible hardware
-      # - Test All Options
+      - Intel oneAPI
+
+timeout: 1h

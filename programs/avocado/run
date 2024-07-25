@@ -61,8 +61,5 @@ set_conf || die "Failed to set config file"
 get_test || die "Failed to get all available tests"
 split_test || die "Failed to split tests into test_group"
 run_test
-exit_value=$?
 
 upload_files -t results $tmp_avocado/*
-
-exit $exit_value

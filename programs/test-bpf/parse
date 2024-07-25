@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/tests/stats"
@@ -13,24 +13,15 @@ while (line = $stdin.gets)
   line = line.resolve_invalid_bytes
 
   case line
-  when /test_bpf: #[0-9]+ (.+) jited:.+ PASS$/
+  when /test_bpf: #[0-9]+ (.+) jited:.+ (PASS|FAIL)$/
     type = $1.tr(' ', '_')
-    stats.add type, 'pass' unless stats.key? type.to_s
-  when /test_bpf: #[0-9]+ (.+) jited:.+ FAIL/
+    stats.add type, $2 unless stats.key? type.to_s
+  when /test_bpf: #[0-9]+ check: (.+) (PASS|FAIL)$/
     type = $1.tr(' ', '_')
-    stats.add type, 'fail' unless stats.key? type.to_s
-  when /test_bpf: #[0-9]+ check: (.+) PASS$/
+    stats.add "check:_#{type}", $2
+  when /test_bpf: #[0-9]+ (.+) (PASS|FAIL)$/
     type = $1.tr(' ', '_')
-    stats.add "check:_#{type}", 'pass'
-  when /test_bpf: #[0-9]+ check: (.+) FAIL/
-    type = $1.tr(' ', '_')
-    stats.add "check:_#{type}", 'fail'
-  when /test_bpf: #[0-9]+ (.+) PASS$/
-    type = $1.tr(' ', '_')
-    stats.add type, 'pass'
-  when /test_bpf: #[0-9]+ (.+) FAIL/
-    type = $1.tr(' ', '_')
-    stats.add type, 'fail'
+    stats.add type, $2
   when /test_bpf: #[0-9]+ check: (.+)/
     type = "check:_#{$1.strip.tr(' ', '_')}"
     is_divided = true
@@ -38,11 +29,11 @@ while (line = $stdin.gets)
     type = $1.strip.tr(' ', '_')
     is_divided = true
   when /(PASS|FAIL)/
-    if is_divided
-      stats.add type, $1.downcase
-      is_divided = false
-    end
+    next unless is_divided
+
+    stats.add type, $1 unless stats.key? type.to_s
+    is_divided = false
   end
 end
 
-stats.dump
+stats.dump('PASS' => 'pass', 'FAIL' => 'fail')

@@ -6,6 +6,8 @@
 ## subsystem in Linux, and has had various enhancements
 ## to add tracing capabilities.
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 loops="${loops%%ops}"
 [ "$mode" = 'threads' ] && opt_threads='-T'
 

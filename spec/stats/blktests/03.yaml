@@ -1,0 +1,17 @@
+meta/001.pass: 1
+meta/003.fail: 1
+meta/005.fail: 1
+meta/006.fail: 1
+meta/007.skip: 1
+meta/009.fail: 1
+meta/010.pass: 1
+meta/011.pass: 1
+meta/012.pass: 1
+meta/014.skip: 1
+meta/016.condition_set_0.pass: 1
+meta/016.condition_set_1.pass: 1
+meta/018.x=0_y=0.pass: 1
+meta/018.x=1_y=0.pass: 1
+meta/018.x=0_y=1.pass: 1
+meta/019.x=0_y=0_z=0.pass: 1
+meta/019.x=1_y=0_z=0.pass: 1

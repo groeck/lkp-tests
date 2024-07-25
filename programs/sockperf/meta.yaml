@@ -1,0 +1,14 @@
+short_description: >
+ Network Benchmarking Utility.
+
+description: >
+ sockperf is a network benchmarking utility over socket API that was designed for testing performance (latency and throughput) of high-performance systems (it is also good for testing performance of regular networking systems). It covers most of the socket API calls and options.
+
+homepage: https://github.com/Mellanox/sockperf.git
+
+parameters:
+ runtime:
+ msg_size:
+
+results:
+

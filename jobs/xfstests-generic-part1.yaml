@@ -21,7 +21,6 @@ xfstests:
     - generic-group-01
     - generic-group-02
     - generic-group-03
-    - generic-group-04
     - generic-group-05
     - generic-group-06
     - generic-group-07
@@ -32,9 +31,7 @@ xfstests:
     - generic-group-12
     - generic-group-13
     - generic-group-14
-    - generic-group-15
     - generic-group-16
-    - generic-group-17
     - generic-group-18
 
 ---
@@ -48,17 +45,16 @@ fs:
 
 xfstests:
   test:
-    - generic-387
+    - generic-470
 
 ---
 fs:
   - ext2
   - ext4
-  - xfs
   - btrfs
   - f2fs
+  - udf
 
 xfstests:
   test:
-    # when fs=udf, generic-074 has used 42min, caused timeout
-    - generic-074
+    - generic-387 # runtime > 2h on 4HDD-xfs/lkp-skl-d01

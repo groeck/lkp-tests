@@ -289,12 +289,12 @@ start_daemon()
 
 run_lkp_on_vmm()
 {
-	[ -x $LKP_SRC/tests/lkp-run-on-qemu ] || {
+	[ -x $LKP_SRC/programs/lkp-run-on-qemu/run ] || {
 		echo "Run on vmm isn't implemented, abort"
 		return 1
 	}
 
-	$LKP_SRC/tests/lkp-run-on-qemu ${job%.yaml}.sh
+	$LKP_SRC/programs/lkp-run-on-qemu/run ${job%.yaml}.sh
 }
 
 run_test()

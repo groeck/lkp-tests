@@ -1,0 +1,15 @@
+short_description: >
+ Parallel LZMA compressor using liblzma.
+
+description: >
+
+homepage: https://github.com/jnovy/pxz.git
+
+parameters:
+ runtime:
+ nr_threads:
+ blocksize:
+ iterations:
+
+results:
+

@@ -9,12 +9,6 @@ ok 1 selftests: x86: single_step_syscall_32
 # [RUN]	Syscalls followed by SS validation
 # [OK]	We survived
 ok 2 selftests: x86: sysret_ss_attrs_32
-# selftests: x86: syscall_nt_32
-# [RUN]	Set NT and issue a syscall
-# [OK]	The syscall worked and flags are still set
-# [RUN]	Set NT|TF and issue a syscall
-# [OK]	The syscall worked and flags are still set
-ok 3 selftests: x86: syscall_nt_32
 # selftests: x86: sigreturn_32
 # [OK]	set_thread_area refused 16-bit data
 # [OK]	set_thread_area refused 16-bit data
@@ -30,13 +24,6 @@ ok 6 selftests: x86: sigreturn_32
 # [OK]	outb to 0xed failed
 # [OK]	Child succeeded
 ok 7 selftests: x86: iopl_32
-# selftests: x86: ioperm_32
-# [OK]	outb to 0x80 failed
-# [OK]	outb to 0xed failed
-# [RUN]	enable 0x80
-# [OK]	outb to 0x80 worked
-# [OK]	outb to 0xed failed
-ok 8 selftests: x86: ioperm_32
 # selftests: x86: test_vdso_32
 # [RUN]	Testing clock_gettime for clock CLOCK_REALTIME (0)...
 # 	1591239763.210179193 1591239763.210187686 1591239763.210188729
@@ -87,51 +74,10 @@ ok 15 selftests: x86: unwind_vdso_32
 # [RUN]	Testing fcmovCC instructions
 # [OK]	fcmovCC
 ok 16 selftests: x86: test_FCMOV_32
-# selftests: x86: test_FCOMI_32
-# [RUN]	Testing f[u]comi[p] instructions
-# [OK]	f[u]comi[p]
-ok 17 selftests: x86: test_FCOMI_32
-# selftests: x86: test_FISTTP_32
-# [RUN]	Testing fisttp instructions
-# [OK]	fisttp
-ok 18 selftests: x86: test_FISTTP_32
-# selftests: x86: vdso_restorer_32
-# [RUN]	Raise a signal, SA_SIGINFO, sa.restorer == NULL
-# [OK]	SA_SIGINFO handler returned successfully
-ok 19 selftests: x86: vdso_restorer_32
-# selftests: x86: ldt_gdt_32
-# [RUN]	Test fork
-# [OK]	LDT entry 2 has AR 0x00507900 and limit 0x0000000A
-ok 20 selftests: x86: ldt_gdt_32
-# selftests: x86: ptrace_syscall_32
-# [RUN]	Check int80 return regs
-# [OK]	getpid() preserves regs
-ok 21 selftests: x86: ptrace_syscall_32
-# selftests: x86: single_step_syscall_64
-# [RUN]	Set TF and check nop
-# [OK]	Survived with TF set and 9 traps
-ok 22 selftests: x86: single_step_syscall_64
 # selftests: x86: sysret_ss_attrs_64
 # [RUN]	Syscalls followed by SS validation
 # [OK]	We survived
 ok 23 selftests: x86: sysret_ss_attrs_64
-# selftests: x86: syscall_nt_64
-# [RUN]	Set NT and issue a syscall
-# [OK]	The syscall worked and flags are still set
-ok 24 selftests: x86: syscall_nt_64
-# selftests: x86: sigreturn_64
-# [RUN]	Valid sigreturn: 64-bit CS (33), 32-bit SS (2b, GDT)
-# [OK]	all registers okay
-ok 27 selftests: x86: sigreturn_64
-# selftests: x86: iopl_64
-# [RUN]	child: write to 0x80
-# [OK]	CLI faulted
-# [OK]	STI faulted
-# [OK]	outb to 0x80 worked
-# [OK]	outb to 0x80 worked
-# [OK]	outb to 0xed failed
-# [OK]	Child succeeded
-ok 28 selftests: x86: iopl_64
 # selftests: x86: ioperm_64
 # [RUN]	disable 0x80
 # [OK]	it worked

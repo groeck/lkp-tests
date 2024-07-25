@@ -1,0 +1,19 @@
+pkgname=qat
+pkgver=git
+pkgrel=1
+arch=('i386' 'x86_64')
+license=('GPL')
+
+build()
+{
+	:
+}
+
+package()
+{
+	firmware_path="${pkgdir}/lib/firmware"
+	mkdir -p $firmware_path
+	cd $firmware_path
+	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/qat_4xxx.bin
+	wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/qat_4xxx_mmp.bin
+}

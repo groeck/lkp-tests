@@ -1,230 +1,43 @@
-apache2: httpd
-apt-file:
-arping: iputils
 autopoint: gettext
-autotools-dev: autoconf
-bind9: bind
-binutils-dev: binutils-devel
 btrfs-tools:
-build-essential: make automake gcc gcc-c++ kernel-devel rpm-build
-cgroup-bin: libcgroup
-cgroup-tools: libcgroup-tools
-cgroupfs-mount:
-cron: cronie
-dbench=4.0-2: dbench
-default-jdk: java-17-amazon-corretto
-dpkg-dev: dpkg-devel
-exfat-fuse: exfat-utils
-f2fs-tools:
-freeglut3: freeglut
-fsmark: fs_mark
-gcc-4.9: gcc
-gcc-5: gcc
-gcc-6: gcc
-gcc-9: gcc
-gcc-multilib: libgcc.i686
-gdbserver: gdb-gdbserver
 gfortran: gcc-gfortran
-hpcc:
-initramfs-tools: dracut
-install-info: info
-iozone3:
-iproute2: iproute
-junit4: junit
-klibc-utils:
-llvm-dev: llvm-devel
-libacl1-dev: libacl-devel
-libaio1: libaio
-libaio-dev: libaio-devel
-libarchive13: libarchive
-libarchive-dev: libarchive-devel
-libattr1: libattr
-libattr1-dev: libattr-devel
-libaudit-dev: audit-libs-devel
+libbabeltrace-ctf-dev: libbabeltrace-devel
 libbabeltrace-ctf1: libbabeltrace
-libbinutils:
-libblas3: blas
-libblkid-dev: libblkid-devel
-libc6: glibc
-libc6-i386: glibc.i686
-libc6-dbg: glibc-debuginfo
-libc6-dev: glibc-devel glibc-static
-libc6-dev:i386: glibc-devel.i686 glibc-static.i686
-libc6-dev-i386: glibc-devel.i686 glibc-static.i686
+libbabeltrace-dev: libbabeltrace-devel
+libbsd-dev: libbsd-devel
+libbsd0: libbsd
 libc6-dev-x32:
 libcairo2-dev: cairo-devel
-libcap2: libcap
 libcap-dev: libcap-devel
-libcap-ng-dev: libcap-ng-devel
-libc-bin: glibc-common
-libc-dev-bin: glibc-common
-libc-dev:i386: glibc-devel.i686
-libcunit1-dev: CUnit-devel
-libconfig-dev: libconfig-devel
-libdbd-mysql-perl: libdbi-dbd-mysql
-libdbi-perl: perl-DBI
-libdbus-1-dev: dbus-devel
-libdrm-dev: libdrm-devel
+libcap2: libcap
 libdw-dev: elfutils-devel
-libdw1: libdwarves1
-libegl1-mesa-dev: mesa-libEGL-devel
-libelf1: elfutils-libelf
 libelf-dev: elfutils-devel
-libedit-dev: libedit-devel
-libexpat1-dev: expat-devel
-libevent-dev: libevent-devel
-libfabric-dev: libfabric-devel
-libffi-dev: libffi-devel
-libfdt-dev: libfdt-devel
-libfuse-dev: fuse-devel
-libgbm-dev: mesa-libgbm-devel
-libgmp-dev: gmp-devel
-libgl1-mesa-dev: mesa-libGL-devel
-libgles2-mesa: mesa-libGLES
-libglib2.0-0: glib
-libglib2.0-dev: glib2-devel
-libglu-dev: mesa-libGLU-devel
-libgomp1: libgomp
-libgoogle-perftools-dev: gperftools-devel
-libhwloc-dev: hwloc-devel
-libiberty-dev: binutils-devel
-libibverbs-dev: libibverbs-devel
-libjson-c-dev: json-c-devel
-libjpeg-dev: libjpeg-turbo-devel
-libklibc-dev:
-libkmod2: kmod-libs
-libkmod-dev: kmod-devel
-liblzma-dev: xz-devel
-libldap2-dev: openldap-devel
-libmariadbclient-dev: mysql-devel
-libmnl-dev: libmnl-devel
-libncurses5-dev: ncurses-devel
-libnl-3-200: libnl3
-libnl-3-dev: libnl3-devel
-libnl-genl-3-200: libnl3
-libnl-genl-3-dev: libnl3-devel
-libnl-route-3-dev: libnl3-devel
-libntfs: ntfs-3g
-libnuma1: numactl
-libnuma-dev: numactl-devel
-liboath-dev: liboath-devel
-liboop-dev:
-libopencryptoki0: opencryptoki-libs
-libpcap0.8-dev: libpcap-devel
-libpcap0.8: libpcap
-libpcap-dev: libpcap-devel
-libpciaccess-dev: libpciaccess-devel
-libperl5: perl-libs
-libpixman-1-dev: pixman-devel
-libpng12-dev: libpng12-devel
-libpopt0: popt
-libpopt-dev: popt-devel
-librdmacm-dev: librdmacm-devel
+libgles2-mesa: 
+libmariadb3: mariadb-connector-c
+libopencryptoki0: 
+libpng12-dev: 
 libreadline5: compat-readline5
-libreadline-dev: compat-readline5-devel
-libsctp1: lksctp-tools
-libsctp-dev: lksctp-tools-devel
-libseccomp2: libseccomp2
-libselinux1:
-libsqlite3-dev: libsqlite3x-devel
 libssl: openssl-devel
-libssl-dev: openssl-devel
-libsnappy-dev: snappy-devel
-libtool-bin: libtool
-libudev1: systemd-libs
-libudev-dev: systemd-devel
-libunwind-dev: libunwind-devel
-libuuid1: libuuid
-libuv1-dev: libuv-devel
-libvirt-dev: libvirt-devel
-libvirt-daemon-system: libvirt-client libvirt-daemon
-libvirt-clients: libvirt-client
-libx11-xcb-dev: libX11-devel
-libxml2-dev: libxml2-devel
-libyaml-dev: libyaml-devel
+libstdc++-7-dev: libstdc++-devel libstdc++-static
+libtsan0: libtsan
+libvirt-clients:
+libvirt-daemon-system:
+libvirt-dev:
 libyaml-cpp-dev: yaml-cpp-devel
-linux-base:
-linux-libc-dev:i386: kernel-headers
-linux-libc-dev: kernel-headers
-linux-perf: perf
-linux-tools: perf
-mysql-server: mariadb
-ncurses-bin: ncurses
-netcat-openbsd: nmap-ncat
-netpipe-lam: NetPIPE
-netpipe-mpich2: NetPIPE
-netpipe-openmpi: NetPIPE
-netpipe-pvm: NetPIPE
-netpipe-tcp: NetPIPE
-network-manager: NetworkManager
-nfs-common: nfs-utils
-nfs-kernel-server: nfs-utils
-openbsd-inetd: xinetd
-perl-base: perl
-perl-modules-5: perl
-pkg-config: pkgconfig
-plzip:
-postmark:
-python-minimal: python3
-python-pkg-resources: python-setuptools
-rstatd: rusers-server
-rusersd: rusers-server
-rt-tests: numactl-devel
-ruby-dev: ruby-devel
-sg3-utils: sg3_utils
-tshark: wireshark
-uuid-dev: libuuid-devel
-update-inetd:
-uuid-runtime: util-linux
-wpasupplicant: wpa_supplicant
-xfslibs-dev: xfsprogs-devel
-xinit: xorg-x11-xinit
-xorg:
-xsltproc: libxslt
-xutils-dev: imake
-xz-utils: xz
-zlib1g: zlib
-zlib1g-dev: zlib-devel
-protobuf-compiler: protobuf
-locales: glibc-common
-libprotobuf-dev: protobuf-devel
-libpmem1: libpmem
-libpmem-dev: libpmem-devel
-openjdk: java-17-amazon-corretto-devel
-libunwind8: libunwind
-libipc-run-perl: perl-IPC-Run
-libapparmor1:
-libapparmor-dev:
-libasound2-dev: alsa-lib-devel
-libbsd0: libbsd
-libbsd-dev: libbsd-devel
-libclang-dev: clang-devel
-libgcrypt20: libgcrypt
-libgcrypt-dev: libgcrypt-devel
-libgdbm-dev: gdbm-devel
-libipsec-mb:
-libipsec-mb-dev:
-libkeyutils1: keyutils-libs
-libkeyutils-dev: keyutils-libs-devel
-libbz2-dev: bzip2-devel
 libzstd-dev: libzstd-devel
-libtirpc-dev: libtirpc-devel
-libbabeltrace-dev: libbabeltrace-devel
-libbabeltrace-ctf-dev: libbabeltrace-devel
-libgtk2.0-dev: gtk3-devel
-libperl-dev: perl-devel
-libpython3.9: python3-libs
-libslang2-dev: slang-devel
-libmariadbclient18: mariadb-connector-c
-libmount-dev: libmount-devel
-libmpfr6: mpfr
-libtraceevent1:
-libtraceevent-dev:
-python-dev: python3-devel
-python3-dev: python3-devel
-python2-libs:
-systemtap-sdt-dev: systemtap-sdt-devel
-libpython2.7:
-python-gi:
-python-gi-cairo:
-rng-tools5: rng-tools
+linux-libc-dev: kernel-headers
+mysql-server: 
+network-manager: 
+openbsd-inetd: 
+perl-modules-5: perl
+pkg-config:
+python-pkg-resources: 
+rstatd: 
+ruby-dev: 
+rusersd:
+sg3-utils:
+stress-ng: stress-ng
+tshark: 
+update-inetd:
+wpasupplicant: 
+xutils-dev: 

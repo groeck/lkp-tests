@@ -1,38 +1,47 @@
+adrestia::
 aim7::
 aim9::
 analyze-suspend::
+autonuma-benchmark::
+avocado::
 blktests::
 blogbench::
 bpfcc-tools::
+bpftrace::
+build-nvml: nvml
 bust-shm-exit::
 cassandra::
 chromeswap::
+coremark::
 cyclictest::
+daxctl::
 dbench: tbench
 device-dax: ndctl
 eatmem: vm-scalability
 ebizzy::
+energy: perf
 filebench::
-fileio::
 fio::
 fsmark::
 ftq::
 fwq::
 fxmark::
 hackbench::
-uperf::
 hwsim::
 igt::
 iozone::
 kbuild::
+kernbench::
+kernel-selftests::
 ku-latency::
+kvm-kernel-boot-test::
 kvm-unit-tests::
 leaking-addresses::
-libfdt-dev::
-libhugetlbfs::
-libhugetlbfs-test::
-liblz-dev: lzlib
 lib-micro::
+libfdt-dev::
+libhugetlbfs-test::
+libhugetlbfs::
+liblz-dev: lzlib
 liboop-dev: liboop
 linkbench::
 linpack::
@@ -46,11 +55,14 @@ mcperf::
 mdadm-selftests::
 memtier::
 mongodb::
+mutilate::
 ndctl::
 nepim::
 netperf::
 netpipe-lam: netpipe
+nuttcp::
 nvdimm: ndctl
+nvml::
 ocfs2test::
 oltp::
 openssl-speed::
@@ -58,7 +70,6 @@ otc_ddt::
 packetdrill::
 pbzip2::
 pepc::
-perf::
 perf-bench-futex: perf
 perf-c2c: perf
 perf-event-tests::
@@ -70,19 +81,24 @@ perf-record-report: perf
 perf-report-srcline: perf
 perf-sanity-tests: perf
 perf-stat: perf
+perf::
 pft::
+phoronix-test-suite::
 phpbench::
 piglit::
+pixz::
 plzip::
+pm-qa::
 pmbench::
 pmdk::
-pm-qa::
-pybench::
+pmu-tools::
 postmark::
+pybench::
 qperf::
 reaim::
 redis-server::
 rocksdb::
+rt-app::
 rt-tests::
 sar::
 schbench::
@@ -93,41 +109,25 @@ stress-ng::
 stutter::
 swapin: vm-scalability
 sysbench-cpu::
+sysbench-fileio::
 sysbench-memory::
 sysbench-mutex::
 sysbench-threads::
 tbench::
 thrulay::
 tinymembench::
+tlbflush::
+toplev: pmu-tools
 trace-cmd::
-trinity::
 trinity-static-i386::
 trinity-static-x86_64::
+trinity::
 turbostat::
 unixbench::
+uperf::
+v4l2::
 vm-scalability::
+vmem::
 will-it-scale::
 xfstests::
 ycsb::
-avocado::
-daxctl::
-pmu-tools::
-autonuma-benchmark::
-pixz::
-mutilate::
-v4l2::
-energy: perf
-tlbflush::
-nvml::
-build-nvml: nvml
-nuttcp::
-adrestia::
-kernel-selftests::
-toplev: pmu-tools
-kvm-kernel-boot-test::
-vmem::
-phoronix-test-suite::
-bpftrace::
-kernbench::
-rt-app::
-coremark::

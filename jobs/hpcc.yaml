@@ -4,3 +4,5 @@ category: benchmark
 
 need_cpu: 4
 hpcc:
+
+nr_processes: 50%

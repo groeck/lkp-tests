@@ -27,21 +27,25 @@
 ```
 	lkp split-job lkp-tests/jobs/hackbench.yaml
 	# output is:
-	# jobs/hackbench.yaml => ./hackbench-1600%-process-pipe.yaml
-	# jobs/hackbench.yaml => ./hackbench-1600%-process-socket.yaml
-	# jobs/hackbench.yaml => ./hackbench-1600%-threads-pipe.yaml
-	# jobs/hackbench.yaml => ./hackbench-1600%-threads-socket.yaml
-	# jobs/hackbench.yaml => ./hackbench-50%-process-pipe.yaml
-	# jobs/hackbench.yaml => ./hackbench-50%-process-socket.yaml
-	# jobs/hackbench.yaml => ./hackbench-50%-threads-pipe.yaml
-	# jobs/hackbench.yaml => ./hackbench-50%-threads-socket.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-process-1600%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-process-1600%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-threads-1600%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-threads-1600%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-process-100%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-process-100%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-threads-100%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-threads-100%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-process-50%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-process-50%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-pipe-8-threads-50%.yaml
+	# lkp-tests/jobs/hackbench.yaml => ./hackbench-socket-8-threads-50%.yaml
 
 	# install the remaining dependencies for the splited job
-	lkp install ./hackbench-50%-threads-socket.yaml
+	lkp install ./hackbench-socket-8-threads-50%.yaml
 	# or add -f option to force to install all dependencies
-	lkp install -f ./hackbench-50%-threads-socket.yaml
+	lkp install -f ./hackbench-socket-8-threads-50%.yaml
 
-	lkp run ./hackbench-50%-threads-socket.yaml
+	lkp run ./hackbench-socket-8-threads-50%.yaml
 ```
 
 ## Run your own disk partitions

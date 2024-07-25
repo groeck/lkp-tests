@@ -6,3 +6,4 @@ mail_cc:
 owner: Len Brown <len.brown@intel.com>
 subsystems:
 - intel_idle
+test_old_branches: .*

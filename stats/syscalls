@@ -96,7 +96,7 @@ def parse_syscalls(time)
     process_lines[process_name] << line
   end
 
-  process_lines.each do |_process_name, line_array|
+  process_lines.each_value do |line_array|
     parse_process_lines line_array, time
   end
 end
@@ -106,7 +106,7 @@ def get_syscall_nr(time, syscall_nr, sys_nr)
     syscall_nr[syscall] = time_array.length
   end
 
-  syscall_nr.each do |_syscall, nr|
+  syscall_nr.each_value do |nr|
     sys_nr['total'] += nr
     sys_nr['max'] = nr if nr > sys_nr['max']
   end
@@ -117,7 +117,7 @@ end
 def show_syscalls_noise(time, syscall_nr, sys_nr)
   a = get_syscall_nr time, syscall_nr, sys_nr
   i = 0
-  a.each do |syscall, _nr|
+  a.each_key do |syscall|
     break if i == 5
 
     n = Noise.new syscall, time[syscall]

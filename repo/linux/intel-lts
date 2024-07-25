@@ -1,3 +1,4 @@
 url: https://github.com/intel/linux-intel-lts.git
 test_old_branches: .*
 mail_recipient: intel.com
+no_merge_branch: .*

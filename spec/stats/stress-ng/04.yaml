@@ -1,1 +1,1 @@
-stress-ng.sigaction.fail: 1
+sigaction.fail: 1

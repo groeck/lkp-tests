@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 export PATH=$BENCHMARK_ROOT/thrulay/sbin:$BENCHMARK_ROOT/thrulay/bin:$PATH
 
 export LD_LIBRARY_PATH=/lkp/benchmarks/thrulay/lib:$LD_LIBRARY_PATH

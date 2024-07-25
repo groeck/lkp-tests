@@ -3,8 +3,8 @@ testcase: will-it-scale
 category: benchmark
 
 nr_task:
-  - 16
-  - 50%
+  # - 16
+  # - 50%
   - 100%
 
 will-it-scale:

@@ -5,3 +5,4 @@ mail_cc:
 - vigneshr@ti.com
 - nm@ti.com
 mail_recipient: ti.com
+no_merge_branch: .*

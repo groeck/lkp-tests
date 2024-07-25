@@ -8,7 +8,7 @@ module Git
   class Base
     include Cacheable
 
-    cache_method :gcommit, cache_key_prefix_generator: ->(obj) { obj.object_id }
+    cache_method :gcommit, cache_key_prefix_generator: lambda(&:object_id)
   end
 end
 
@@ -17,8 +17,8 @@ module Git
     class Commit
       include Cacheable
 
-      cache_method :release_tag, cache_key_prefix_generator: ->(obj) { obj.to_s }
-      cache_method :last_release_tag, cache_key_prefix_generator: ->(obj) { obj.to_s }
+      cache_method :release_tag, cache_key_prefix_generator: lambda(&:to_s)
+      cache_method :last_release_tag, cache_key_prefix_generator: lambda(&:to_s)
     end
   end
 end

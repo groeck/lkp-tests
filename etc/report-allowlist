@@ -9,7 +9,6 @@
 ^numa-meminfo.
 ^numa-numastat.
 ^numa-vmstat.
-^numa-vmstat.
 ^perf-profile.
 ^perf-stat.
 ^proc-vmstat.

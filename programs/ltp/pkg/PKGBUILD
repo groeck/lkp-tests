@@ -242,7 +242,8 @@ split_tests()
 	grep -e oom mm > mm-oom || return
 	grep -e min_free_kbytes mm > mm-min_free_kbytes || return
 	grep -e mtest06_3 mm > mm-mtest06_3 || return
-	grep -v -e oom -e min_free_kbytes -e mtest06_3 mm > mm-00 || return
+	grep -e ksm06 -e ksm04 -e ksm02 -e cpuset01 mm > mm-numa || return
+	grep -v -e oom -e min_free_kbytes -e mtest06_3 -e ksm06 -e ksm04 -e ksm02 -e cpuset01 mm > mm-00 || return
 	hide mm
 
 	# kernel_misc

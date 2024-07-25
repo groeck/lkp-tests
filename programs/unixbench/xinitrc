@@ -1,0 +1,33 @@
+#!/bin/sh
+# - runtime
+# - test
+# - nr_task
+
+## UnixBench is the original BYTE UNIX benchmark suite. The purpose
+## of UnixBench is to provide a basic indicator of the performance
+## of a Unix-like system; hence, multiple tests are used to test
+## various aspects of the system's performance.
+
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/upload.sh
+. $LKP_SRC/lib/debug.sh
+
+cd $BENCHMARK_ROOT/unixbench/UnixBench || die "no $BENCHMARK_ROOT/unixbench/UnixBench dir"
+
+export LANG=C
+
+[ -n "$runtime" ] || runtime=300
+
+# Each iteration in UnixBench is about 10 seconds
+iteration=$(( runtime / 10 ))
+
+[ $test = "shell8" ] && iteration=1
+
+[ -n "$nr_task" ] && other_params="-c $nr_task"
+
+log_cmd ./Run $test $other_params -i $iteration
+exit_status=$?
+
+upload_files -t results $BENCHMARK_ROOT/unixbench/UnixBench/results/*
+
+exit $exit_status

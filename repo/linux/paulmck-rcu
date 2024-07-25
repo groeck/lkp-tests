@@ -6,7 +6,6 @@ owner: Paul E. McKenney <paulmck@linux.vnet.ibm.com>
 subsystems:
 - rcu
 - rcutorture
-no_merge_branch: .*nmi.*
 branch_denylist: dev
 branch_kindred_pattern: .[0-9]{4}\.[01][0-9]\.[0-3][0-9][a-z]
 notify_build_success_branch: .*

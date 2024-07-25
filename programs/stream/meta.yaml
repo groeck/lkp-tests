@@ -1,0 +1,26 @@
+short_description: >
+ STREAM is the de facto industry standard benchmark for measuring sustained memory bandwidth.
+
+description: >
+
+homepage: https://github.com/jeffhammond/STREAM.git
+
+parameters:
+ nr_threads:
+ array_size:
+ omp:
+ loop:
+ iterations:
+
+results:
+ stream.element_size_byte: 
+ stream.array_size:
+ stream.copy_bandwidth_MBps:
+ stream.copy_bandwidth_MBps_harmonicMean: 
+ stream.scale_bandwidth_MBps: 
+ stream.scale_bandwidth_MBps_harmonicMean: 
+ stream.add_bandwidth_MBps: 
+ stream.add_bandwidth_MBps_harmonicMean:
+ stream.triad_bandwidth_MBps: 
+ stream.triad_bandwidth_MBps_harmonicMean: 
+

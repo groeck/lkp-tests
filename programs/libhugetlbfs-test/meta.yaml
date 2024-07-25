@@ -1,0 +1,19 @@
+short_description: >
+
+description: >
+
+homepage: https://github.com/libhugetlbfs/libhugetlbfs.git
+
+parameters:
+ pagesize:
+
+results:
+ libhugetlbfs-test.32bit.shm-fork_10_25.pass: 
+ libhugetlbfs-test.64bit.shm-fork_10_25.pass: 
+ libhugetlbfs-test.32bit.shm-perms.bad_configuration: 
+ libhugetlbfs-test.64bit.shm-perms.bad_configuration:
+ libhugetlbfs-test.32bit.hugetlb_elfmap=rw_linkhuge_rw.killed_by_signal: 
+ libhugetlbfs-test.64bit.hugetlb_elfmap=rw_linkhuge_rw.killed_by_signal: 
+ libhugetlbfs-test.32bit.hugetlb_share=1_hugetlb_elfmap=r_linkhuge_rw.fail: 
+ libhugetlbfs-test.64bit.hugetlb_share=1_hugetlb_elfmap=r_linkhuge_rw.fail: 
+ libhugetlbfs-test.total_test: 

@@ -8,4 +8,4 @@ mail_cc:
 - mptcp@lists.linux.dev
 owner:
 - Mat Martineau <martineau@kernel.org>
-- Matthieu Baerts <matthieu.baerts@tessares.net>
+- Matthieu Baerts <matttbe@kernel.org>

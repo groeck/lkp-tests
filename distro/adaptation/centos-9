@@ -1,0 +1,59 @@
+acct: psacct
+btrfs-progs:
+btrfs-tools:
+cgroup-bin:
+cgroup-tools:
+cryptsetup-bin: cryptsetup
+cython3: python3-cython
+default-jdk:
+exfat-utils: exfatprogs
+freeglut3-dev: freeglut-devel-3.2.1
+libacl1: libacl-2.3.1
+libbabeltrace-ctf-dev: libbabeltrace-devel
+libbabeltrace-ctf1: libbabeltrace
+libbabeltrace-dev: libbabeltrace-devel
+libbpf-dev: libbpf-devel-1.3.0
+libclang-dev: clang-devel
+libcunit1-dev: CUnit-devel
+libdw1: libdwarves1
+libevent-2.1-6: libevent-2.1.12
+libfdt-dev: libfdt-devel
+libgles2-mesa-dev: mesa-libGL-devel
+libgles2-mesa: mesa-libGLES
+libgles2: mesa-libGL
+libgoogle-perftools-dev:  
+libipsec-mb:
+libjudy-dev: Judy-devel
+libjudydebian1: Judy
+libpfm4-dev: libpfm-devel
+libpfm4: libpfm
+libpng12-dev:
+libpython2.7: python3-libs
+libpython3: python3-libs
+libtraceevent-dev: libtraceevent-devel
+libtraceevent1: libtraceevent
+libunwind-dev:
+libunwind:
+llvm-dev: llvm-devel
+openbsd-inetd:
+pkg-config:
+python3-all-dev:
+python3-cherrypy3: python3-cherrypy
+python3-crypto:
+python3-csvkit:
+python3-dev: python3-devel 
+python3-gi-cairo:
+python3-gi:
+python3-minimal: python3
+python3-nose:
+python3-openssl: python3-pyOpenSSL
+python3-pkg-resources:
+python3-pyrad:
+python3-six:
+python3-venv: python3-virtualenv
+python: python3
+rng-tools5: rng-tools
+rstatd:
+rusersd:
+update-inetd: 
+xutils-dev:

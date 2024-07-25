@@ -1,0 +1,7 @@
+flock.pass: 1
+flock.ops: 171659332
+flock.ops_per_sec: 2860967.69
+flock.nanosecs_per_flock_lock_call.pass: 1
+flock.nanosecs_per_flock_lock_call: 5678.91
+flock.nanosecs_per_flock_unlock_call.pass: 1
+flock.nanosecs_per_flock_unlock_call: 1883.42

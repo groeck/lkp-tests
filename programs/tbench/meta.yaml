@@ -1,0 +1,18 @@
+short_description: >
+
+description: >
+
+homepage: https://git.samba.org/sahlberg/dbench.git
+
+parameters:
+ runtime:
+ nr_threads:
+ iterations:
+
+results:
+ tbench.throughput_MB/s:
+ tbench.throughput_MB/s_harmonic_mean: 
+ tbench.clients: 
+ tbench.procs: 
+ tbench.max_latency:
+ tbench.max_latency_harmonic_mean: 

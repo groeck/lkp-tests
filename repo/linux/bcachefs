@@ -1,0 +1,7 @@
+url: https://evilpiepirate.org/git/bcachefs.git
+owner: Kent Overstreet <kent.overstreet@linux.dev>
+mail_cc:
+- Kent Overstreet <kent.overstreet@linux.dev>
+branch_denylist: .*
+branch_allowlist: header_cleanup|master|bcachefs-testing|.*for-bot|fix_missing_include
+notify_build_success_branch: .*

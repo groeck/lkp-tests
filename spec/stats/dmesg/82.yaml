@@ -1,0 +1,21 @@
+boot_failures: 1
+
+# sysctl could not get directory:
+sysctl_could_not_get_directory: 1
+message:sysctl_could_not_get_directory: [    0.861994] sysctl could not get directory: /debug/test_sysctl/mnt/mnt_error -30
+pattern:sysctl_could_not_get_directory: sysctl could not get directory:
+
+# CFI failure at __cgroup_bpf_check_dev_permission
+CFI_failure_at__cgroup_bpf_check_dev_permission: 1
+message:CFI_failure_at__cgroup_bpf_check_dev_permission: [   69.107030][  T104] CFI failure at __cgroup_bpf_check_dev_permission+0x37b/0x6c0 (target: bpf_prog_784f9260aa6851c5+0x0/0x112; expected type: 0xd9421881)
+pattern:CFI_failure_at__cgroup_bpf_check_dev_permission: CFI failure at __cgroup_bpf_check_dev_permission
+
+# CFI failure at __seccomp_filter
+CFI_failure_at__seccomp_filter: 1
+message:CFI_failure_at__seccomp_filter: [  111.045934][  T104] CFI failure at __seccomp_filter+0x3f0/0x1480 (target: 0xffffffffa000269c; expected type: 0xd9421881)
+pattern:CFI_failure_at__seccomp_filter: CFI failure at __seccomp_filter
+
+timestamp:last: 111.045934
+timestamp:sysctl_could_not_get_directory: 0.861994
+timestamp:CFI_failure_at__cgroup_bpf_check_dev_permission: 69.107030
+timestamp:CFI_failure_at__seccomp_filter: 111.045934

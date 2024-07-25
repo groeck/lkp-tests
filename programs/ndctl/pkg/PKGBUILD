@@ -1,0 +1,21 @@
+pkgname=ndctl
+pkgver=git
+pkgrel=1
+arch=('i386' 'x86_64' 'aarch64')
+url="https://github.com/pmem/ndctl"
+license=('GPL')
+source=("https://github.com/pmem/ndctl.git")
+md5sums=('SKIP')
+
+build() {
+	cd "$srcdir/${pkgname}"
+	[[ -e '/usr/include/iniparser.h' ]] || cp /usr/include/iniparser/* /usr/include/
+	meson setup build
+	meson configure -Dtest=enabled -Ddocs=disabled build
+	meson compile -C build
+}
+
+package() {
+	cd "$srcdir/${pkgname}"
+	DESTDIR="${pkgdir}" meson install -C build
+}

@@ -10,6 +10,7 @@
 
 . $LKP_SRC/lib/unit.sh
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 [ -n "$nr_processes" ] || nr_processes=$nr_cpu
 

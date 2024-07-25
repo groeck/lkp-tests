@@ -1,0 +1,24 @@
+short_description: >
+
+description: >
+
+homepage: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+parameters:
+ nr_processes:
+ nr_threads:
+ mem_proc:
+ extra_params:
+
+results:
+ perf-bench-numa-mem.secs_latency: 
+ perf-bench-numa-mem.secs_slowest: 
+ perf-bench-numa-mem.secs_fastest: 
+ perf-bench-numa-mem.secs_avg: 
+ perf-bench-numa-mem.max_avg_diff:
+ perf-bench-numa-mem.GB_per_thread:
+ perf-bench-numa-mem.GB_total: 
+ perf-bench-numa-mem.nsecs_byte_thread: 
+ perf-bench-numa-mem.GB_sec_thread: 
+ perf-bench-numa-mem.GB_sec_total: 
+

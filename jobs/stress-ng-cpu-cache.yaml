@@ -1,0 +1,51 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+
+nr_threads: 100%
+
+testtime:
+  - 60s
+
+# docker run --rm ghcr.io/colinianking/stress-ng --class cpu-cache?
+stress-ng:
+  test:
+  - bsearch
+  - cache
+  - cacheline
+  - dekker
+  - far-branch
+  - flushcache
+  - heapsort
+  - hsearch
+  - icache
+  - judy
+  - l1cache
+  - list
+  - llc-affinity
+  - lockbus
+  - lsearch
+  - malloc
+  - matrix
+  - matrix-3d
+  - membarrier
+  - memcpy
+  - mergesort
+  - misaligned
+  - peterson
+  - prefetch
+  - qsort
+  - radixsort
+  - shellsort
+  - skiplist
+  - sparsematrix
+  - str
+  - stream
+  - tree
+  - tsearch
+  - vecfp
+  - vecmath
+  - vecshuf
+  - vecwide
+  - wcs
+  - zlib

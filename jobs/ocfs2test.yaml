@@ -6,7 +6,7 @@ category: functional
 # Both HDD and SSD are OK.
 # If you want to use HDD, change 1SSD to 1HDD.
 disk:
-  - 1HDD
+  - 1SSD
 
 size: 200G
 
@@ -14,15 +14,12 @@ need_memory: 1G
 
 ocfs2test:
   test:
-    # execution time is longer than 1h in 1/10 runs, disable it
-    # - test-mmaptruncate
-    # can't run on vm, move it to ocfs2test-mkfs.yaml
-    # - test-mkfs
+    # - test-mmaptruncate # runtime > 1h on 1SSD lkp-skl-d08
     # - test-buildkernel # we have kernel build already, ignore
     # - test-tunefs # need a huge memory (up to 130GB at lkp-hsw-ep2)
     - test-sendfile
     - test-reserve_space
     # - test-backup_super # always works on rhel/ol/suse, no need to enable it on debian
-    # - test-inline # runs slow (> 1h)
-    # - test-xattr # runs slow (> 1h)
-    # - test-reflink # runs slow (> 1h)
+    - test-inline
+    - test-xattr
+    - test-reflink

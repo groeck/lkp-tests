@@ -21,12 +21,14 @@ end
 def should_ignore_stderr(line)
   line = line.resolve_invalid_bytes
   @ignore_patterns.any? do |re|
-    # ERR in `match': invalid byte sequence in US-ASCII (ArgumentError)
-    # treat unrecognized line as "can't be ignored"
+    begin
+      # ERR in `match': invalid byte sequence in US-ASCII (ArgumentError)
+      # treat unrecognized line as "can't be ignored"
 
-    re.match line
-  rescue StandardError
-    nil
+      re.match line
+    rescue StandardError
+      nil
+    end
   end
 end
 

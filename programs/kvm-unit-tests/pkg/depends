@@ -1,6 +1,6 @@
+binutils
+linux-libc-dev
+python
 qemu
 qemu-system
 virt-what
-linux-libc-dev
-python3
-binutils

@@ -1,0 +1,11 @@
+short_description: >
+  Avocado is a set of tools and libraries to help with automated testing.
+
+description: >
+ One can call it a test framework with benefits. Native tests are written in Python and they follow the unittest pattern, but any executable can serve as a test.
+
+homepage: https://github.com/avocado-framework
+
+parameters:
+ test_group:
+

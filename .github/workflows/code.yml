@@ -18,11 +18,10 @@ permissions:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.5', '2.7', '3.2']
+        ruby-version: ['2.0', '2.5', '2.7', '3.2']
 
     steps:
     - uses: actions/checkout@v3
@@ -30,6 +29,19 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run tests
-      run: bundle exec rake code
+    - run: bundle install
+    - run: rubocop -v
+    - run: bundle exec rake code
+
+  test-packages:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: ['centos/stream9', 'fedora/39', 'ubuntu/focal', 'ubuntu/jammy', 'ubuntu/noble', 'debian/bookworm']
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build ${{ matrix.image }} image
+        run: docker build . -f docker/${{ matrix.image }}/Dockerfile -t lkp-tests/${{ matrix.image }}
+      - name: Test packages on ${{ matrix.image }}
+        run: docker run -e DEBIAN_FRONTEND=noninteractive --rm --entrypoint '' lkp-tests/${{ matrix.image }} tools/test-packages.sh

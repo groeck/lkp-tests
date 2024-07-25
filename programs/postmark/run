@@ -10,6 +10,7 @@
 ## benchmark", Jeffrey Katcher, Network Appliance Technical Report TR-3022, October 1997
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 [ -z "$mount_points" ] && die "no $mount_points"
 

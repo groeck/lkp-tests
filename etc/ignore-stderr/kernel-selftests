@@ -1,4 +1,5 @@
-info: .*
-test: .*
-make: .*
 build bpf/test_progs or bpf/test_progs-no_alu32 failed
+Created symlink /run/systemd/system/remote-fs.target.wants/rpc-statd.service .*
+info: .*
+make: .*
+test: .*

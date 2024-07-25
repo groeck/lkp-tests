@@ -1,0 +1,8 @@
+mnn.nasnet.ms: 19.676
+mnn.mobilenetV3.ms: 3.374
+mnn.squeezenetv1.1.ms: 9.511
+mnn.resnet-v2-50.ms: 28.932
+mnn.SqueezeNetV1.0.ms: 8.337
+mnn.MobileNetV2_224.ms: 5.203
+mnn.mobilenet-v1-1.0.ms: 3.229
+mnn.inception-v3.ms: 38.951

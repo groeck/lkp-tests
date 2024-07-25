@@ -1,0 +1,22 @@
+#!/bin/bash
+
+## Utility library for managing the Linux Kernel ND (NFIT-defined/NVDIMM) Subsystem
+## detailed info can refer to https://github.com/pmem/ndctl
+
+shopt -s nullglob
+
+. $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/env.sh
+
+has_cmd ndctl || die "Can not find executable ndctl file"
+
+#1) check if nfit_test and its dependencies are available on local host
+#2) avoid the following debug output:
+#   could not open '/sys/module/XXX/initstate': No such file or directory
+#   could not open '/sys/module/XXX': No such file or directory
+modprobe nfit_test || die "Can not load nfit_test module and its dependencies"
+
+ndctl test 2>&1
+
+exit 0

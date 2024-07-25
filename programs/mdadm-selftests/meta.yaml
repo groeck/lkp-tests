@@ -1,0 +1,11 @@
+short_description: >
+ Management tool for Linux md/raid
+
+description: >
+
+homepage: https://github.com/neilbrown/mdadm
+
+parameters:
+ test_prefix:
+
+results:

@@ -1,5 +1,5 @@
 need_kconfig:
-% if job['stress-ng']['class'] == "security"
+% if job['stress-ng']['class'] == "security" || job['stress-ng']['test'] == "apparmor"
 - SECURITY: y
 - NET: y
 - SECURITY_APPARMOR: y
@@ -9,4 +9,8 @@ need_kconfig:
 - TUN: m
 % elsif job['stress-ng']['test'] == "userfaultfd"
 - USERFAULTFD: y
+% elsif job['stress-ng']['test'] == "module"
+- TEST_LKM: m
+% elsif job['stress-ng']['test'] == "sctp"
+- IP_SCTP: m
 % end

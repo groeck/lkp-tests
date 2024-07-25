@@ -2,19 +2,13 @@
 
 LKP_SRC ||= ENV['LKP_SRC'] || File.dirname(__dir__)
 
-require 'set'
-require 'time'
 require 'git'
-require "#{LKP_SRC}/lib/yaml"
-require "#{LKP_SRC}/lib/cache"
-require "#{LKP_SRC}/lib/assert"
 require "#{LKP_SRC}/lib/git_ext/base"
 require "#{LKP_SRC}/lib/git_ext/object"
 require "#{LKP_SRC}/lib/git_ext/lib"
 require "#{LKP_SRC}/lib/git_ext/author"
 require "#{LKP_SRC}/lib/git_ext/cache"
 require "#{LKP_SRC}/lib/constant"
-require "#{LKP_SRC}/lib/run_env"
 
 module Git
   class << self
@@ -48,9 +42,13 @@ module Git
 
       working_dir = options[:working_dir] || "#{GIT_ROOT_DIR}/#{options[:project]}"
 
-      return nil if options[:may_not_exist] && !Dir.exist?(working_dir)
+      return if options[:may_not_exist] && !Dir.exist?(working_dir)
 
       Git.orig_open(working_dir, options)
+    end
+
+    def sha1_40?(commit)
+      commit =~ /^[\da-f]{40}$/
     end
   end
 end

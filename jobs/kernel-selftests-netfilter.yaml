@@ -1,10 +1,10 @@
-suite: kernel-selftests
-testcase: kernel-selftests
+suite: kernel-selftests-bpf
+testcase: kernel-selftests-bpf
 category: functional
 
-kernel-selftests:
+kernel-selftests-bpf:
   group:
-    - netfilter
+    - net/netfilter
   test:
     - nft_trans_stress.sh
     - nft_fib.sh
@@ -21,12 +21,4 @@ kernel-selftests:
     - conntrack_tcp_unreplied.sh
     - conntrack_vrf.sh
     - nft_synproxy.sh
-
----
-kernel-selftests:
-  group:
-    - netfilter
-  test:
     - nft_concat_range.sh
-
-timeout: 30m

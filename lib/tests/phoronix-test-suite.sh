@@ -2,6 +2,7 @@
 
 . $LKP_SRC/lib/env.sh
 . $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 # ffmpeg only support max 64 threads
 fixup_ffmpeg()
@@ -21,18 +22,6 @@ fixup_open_porous_media()
 	local test=$1
 	local target=${environment_directory}/pts/${test}/open-porous-media
 	sed -i 's/nice mpirun -np/nice mpirun --allow-run-as-root -np/' "$target"
-}
-
-# prepare download file beforehand
-# pls download http://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz and put it to
-# phoronix-rootfs/var/lib/phoronix-test-suite/installed-tests/pts/tensorflow-*/cifar10
-fixup_tensorflow()
-{
-	[ -n "$environment_directory" ] || return
-	local test=$1
-	local target=${environment_directory}/pts/${test}/tensorflow
-	sed -i '2amkdir /tmp/cifar10_data' "$target"
-	sed -i '3acp cifar-10-binary.tar.gz /tmp/cifar10_data' "$target"
 }
 
 # produce big file to /opt/rootfs when test on cluster
@@ -133,14 +122,26 @@ fixup_sqlite()
 	sed -i "s,pts_config::read_user_config('PhoronixTestSuite\/Options\/TestResultValidation\/MinimalTestTime'\, 2),0," "$target"
 }
 
-# reduce run times to avoid soft_timeout
-reduce_runtimes()
+# force run times to avoid soft_timeout and auto-increase runs
+force_times_to_run()
 {
-	[ -n "$environment_directory" ] || return
-	local test=$1
-	local target=${environment_directory}/../test-profiles/pts/${test}/test-definition.xml
-	[ -f $target.bak ] || cp $target $target.bak
-	sed -i 's,<TimesToRun>.</TimesToRun>,<TimesToRun>1</TimesToRun>,' "$target"
+	if [[ $times_to_run ]]; then
+		log_cmd export FORCE_TIMES_TO_RUN=$times_to_run
+	else
+		[[ -n "$environment_directory" ]] || return
+
+		local target=${environment_directory}/../test-profiles/pts/${test}/test-definition.xml
+		if [[ -f $target ]]; then
+			local times_to_run=$(grep -oP '(?<=<TimesToRun>).*(?=</TimesToRun>)' $target)
+			if [[ $times_to_run ]]; then
+				log_cmd export FORCE_TIMES_TO_RUN=$times_to_run
+			else
+				log_cmd export FORCE_TIMES_TO_RUN=3
+			fi
+		else
+			log_cmd export FORCE_TIMES_TO_RUN=3
+		fi
+	fi
 }
 
 # fix issue: [NOTICE] Undefined: min_result in pts_test_result_parser:478
@@ -586,21 +587,22 @@ fixup_install()
 	esac
 }
 
-run_test()
+fixup_test()
 {
 	local test=$1
+
 	case $test in
 		systester-[0-9]*)
 			# Choose
 			# 1: Gauss-Legendre algorithm [Recommended.]
 			# 1: 4 Million Digits [This Test could take a while to finish.]
 			# 3: 4 threads [2+ Cores Recommended]
-			# todo: select different test according to testbox's hardware
-			fixup_systester $test || die "failed to fixup test systester"
+			# TODO: select different test according to testbox's hardware
 			test_opt="\n1\n1\n3\nn"
+			fixup_systester $test
 			;;
 		java-jmh-*)
-			fixup_java_jmh $test || die "failed to fixup test java-jmh"
+			fixup_java_jmh $test
 			;;
 		iozone-*)
 			# Choose
@@ -610,13 +612,13 @@ run_test()
 			test_opt="\n3\n2\n3\nn"
 			;;
 		interbench-*)
-			# produce big file to /opt/rootfs when test on cluster
-			[ "$LKP_LOCAL_RUN" = "1" ] || fixup_interbench $test || die "failed to fixup test $test"
-			reduce_runtimes $test || die "failed to reduce run times when run $test"
 			# Choose
 			# 1: Video
 			# 2: Burn
 			test_opt="\n4\n6\nn"
+
+			# produce big file to /opt/rootfs when test on cluster
+			[ "$LKP_LOCAL_RUN" = "1" ] || fixup_interbench $test
 			;;
 		opm-git-*)
 			# Choose
@@ -650,13 +652,6 @@ run_test()
 			# 3: Hotel
 			test_opt="\n2\n3\nn"
 			;;
-		ut2004-demo-*)
-			# Choose
-			# 1: ONS-Torlan Botmatch
-			# 2: 800 x 600
-			test_opt="\n6\n1\nn"
-			export DISPLAY=:0
-			;;
 		x11perf-*)
 			# Choose
 			# 1: 500px PutImage Square
@@ -670,7 +665,7 @@ run_test()
 			# Choose 1st disk to get smart info
 			# 1: /dev/sda
 			test_opt="\n1\nn"
-			fixup_smart || die "failed to fixup test smart"
+			fixup_smart
 			;;
 		urbanterror-*)
 			export DISPLAY=:0
@@ -679,9 +674,6 @@ run_test()
 			# Choose
 			# 1: /dev/sda
 			test_opt="\n1\nn"
-			;;
-		nexuiz-*)
-			export DISPLAY=:0
 			;;
 		plaidml-*)
 			# Choose
@@ -699,99 +691,82 @@ run_test()
 			export DISPLAY=:0
 			;;
 		netperf-*)
-			fixup_netperf $test || die "failed to fixup test netperf"
+			fixup_netperf $test
 			;;
 		startup-time-*)
-			fixup_startup_time $test || die "failed to fixup test $test"
-			reduce_runtimes $test || die "failed to reduce run times when run $test"
+			fixup_startup_time $test
 			;;
 		ior-*)
-			fixup_ior $test || die "failed to fixup test $test"
+			fixup_ior $test
 			;;
 		iperf-*)
-			fixup_iperf $test || die "failed to fixup test $test"
+			fixup_iperf $test
 			;;
 		nuttcp-*)
-			fixup_nuttcp $test || die "failed to fixup test $test"
+			fixup_nuttcp $test
 			;;
 		sqlite-[0-9]*)
-			fixup_sqlite $test || die "failed to fixup test $test"
-			;;
-		cyclictest-*|parboil-*|cp2k-*|llvm-test-suite-*|blender-*|svt-av1-*|helsing-*|build-gcc-*|core-latency-*|jxrendermark-*|renaissance-*)
-			# 96 cpu, 128G memory tbox, run once cost about
-			# cyclictest-1.0.0: 2m
-			# cp2k-1.2.0: 30m
-			# renaissance-1.1.1: 6m
-			# llvm-test-suite-1.0.0: 15m
-			#
-			# 12 cpu, 16G memory tbox, run once cost about
-			# jxrendermark-1.2.4: 3m
-			# blender-1.9.0: 14m
-			reduce_runtimes $test || die "failed to reduce run times when run $test"
+			fixup_sqlite $test
 			;;
 		blogbench-*)
-			fixup_blogbench $test || die "failed to fixup test $test"
-			reduce_runtimes $test || die "failed to reduce run times when run $test"
+			fixup_blogbench $test
 			;;
 		systemd-boot-total-*)
-			fixup_systemd_boot_total $test || die "failed to fixup test $test"
 			# Choose
 			# 1: Total 2: Userspace 3: Kernel
 			test_opt="\n1,2,3\nn"
+			fixup_systemd_boot_total $test
 			;;
 		mcperf-*)
-			fixup_mcperf $test || die "failed to fixup test mcperf"
+			fixup_mcperf $test
 			;;
 		network-loopback-*)
-			fixup_network_loopback $test || die "failed to fixup test network-loopback"
+			fixup_network_loopback $test
 			;;
 		build-mplayer-*)
-			fixup_build_mplayer $test || die "failed to fixup test build-mplayer"
+			fixup_build_mplayer $test
 			;;
 		mysqlslap-*)
-			fixup_mysqlslap $test || die "failed to fixup test mysqlslap"
+			fixup_mysqlslap $test
 			;;
 		ffmpeg-*)
-			fixup_ffmpeg $test || die "failed to fixup test ffmpeg"
+			fixup_ffmpeg $test
 			;;
 		lammps-*)
-			fixup_lammps $test || die "failed to fixup test lammps"
+			fixup_lammps $test
 			;;
 		npb-*)
-			fixup_npb $test || die "failed to fixup test npb"
+			fixup_npb $test
 			;;
 		mrbayes-*)
-			fixup_mrbayes $test || die "failed to fixup test mrbayes"
+			fixup_mrbayes $test
 			;;
 		aom-av1-*)
-			fixup_aom_av1 $test || die "failed to fixup test aom-av1"
+			fixup_aom_av1 $test
 			;;
 		bullet-*)
-			fixup_bullet $test || die "failed to fixup test bullet"
+			fixup_bullet $test
 			;;
 		gpu-residency-*)
-			fixup_gpu_residency $test || die "failed to fixup test $test"
+			fixup_gpu_residency $test
 			;;
 		fio-*)
-			fixup_fio $test || die "failed to fixup test fio"
+			fixup_fio $test
 			;;
 		hpcc-*)
-			fixup_hpcc $test || die "failed to fixup test hpcc"
+			fixup_hpcc $test
 			;;
 		open-porous-media-*)
-			fixup_open_porous_media $test || die "failed to fixup test open-porous-media"
-			;;
-		tensorflow-*)
-			[ "$LKP_LOCAL_RUN" = "1" ] || fixup_tensorflow $test || die "failed to fixup test $test"
+			fixup_open_porous_media $test
 			;;
 		crafty-*)
-			fixup_crafty $test || die "failed to fixup crafty"
+			fixup_crafty $test
 			;;
 		gluxmark-*)
-			fixup_gluxmark $test || die "failed to fixup gluxmark"
+			fixup_gluxmark $test
 			;;
 		java-gradle-perf-*)
-			fixup_java_gradle_perf || die "failed to fixup java-gradle-perf"
+			fixup_java_gradle_perf
 			;;
 		unigine-heaven-*|unigine-valley-*)
 			export DISPLAY=:0
@@ -805,19 +780,25 @@ run_test()
 			test_opt="\n7\nn"
 			;;
 		pgbench-*)
-			fixup_pgbench $test || die "failed to fixup pgbench"
-			reduce_runtimes $test || die "failed to reduce run times when run $test"
+			fixup_pgbench $test
 			;;
 	esac
+}
+
+run_test()
+{
+	local test=$1
+	[ -n "$test" ] || die "testname is empty"
+
+	force_times_to_run $test || die "failed to force times to run of $test"
+	fixup_test $test || die die "failed to fixup $test"
 
 	export PTS_SILENT_MODE=1
 	echo PTS_SILENT_MODE=$PTS_SILENT_MODE
 
-	[ -n "$test" ] || die "testname is empty"
-
 	patch_to_detect_wrong_test_option
 	if [ -n "$option_a" ]; then
-		test_opt='\n'
+		test_opt=''
 		for i in {a..j}
 		do
 			eval option=\$option_${i}
@@ -828,6 +809,8 @@ run_test()
 		# Would you like to save these test results (Y/n):
 		test_opt=${test_opt}n
 	fi
+
+	[ "$test_opt" ] && echo "test_opt: $test_opt"
 
 	root_access="/usr/share/phoronix-test-suite/pts-core/static/root-access.sh"
 	[ -f "$root_access" ] || die "$root_access not exist"

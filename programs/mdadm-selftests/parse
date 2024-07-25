@@ -15,8 +15,3 @@ $2 ~ /FAILED/ {
 $2 ~ /succeeded/ {
 	printf("%s.pass: 1\n", substr($1, 39))
 }
-
-$2 ~ /ignored_by_lkp/ {
-       printf("%s.ignored_by_lkp: 1\n", $1)
-}
-

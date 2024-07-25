@@ -1,1 +1,3 @@
 url: https://github.com/projectacrn/acrn-kernel
+test_old_branches: .*
+no_merge_branch: .*

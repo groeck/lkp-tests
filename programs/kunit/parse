@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/tests/stats"
@@ -11,16 +11,21 @@ while (line = $stdin.gets)
   line = line.resolve_invalid_bytes
 
   case line
-  when /\d*(not ok|ok).* - (.*) # (SKIP)/
+  when /# Subtest: (.*)/
+    # [   33.264089]     # Subtest: hw_breakpoint
+    subtest = $1
+  when /(not ok|ok) \d+ - (.*) # (SKIP)/
     # [   41.553449]     ok 7 - pagealloc_oob_right # SKIP Test requires CONFIG_KASAN_GENERIC=n
-    stats.add $2, $3
-  when /\d*(not ok|ok).* - (.*)/
+    stat = "#{subtest}.#{$2}"
+    stats.add stat, $3
+  when /(not ok|ok) \d+ (.*)/
     # [   41.553190]     ok 6 - kmalloc_pagealloc_invalid_free
-    # there are two "ok 1 - total_mapping_size_test" in output
-    stats.add $2, $1 unless stats.key? $2.to_s
-  when /\[.*\]\s(ok|not ok)\s*\d+\s(.*)/
     # [   33.326500] ok 1 hw_breakpoint
-    stats.add $2, $1
+    # there are two "ok 1 - total_mapping_size_test" in output
+    result = $1
+    stat = $2.sub(/-\s+/, '')
+    stat = "#{subtest}.#{stat}" unless stat == subtest
+    stats.add stat, result unless stats.key? stat
   end
 end
 

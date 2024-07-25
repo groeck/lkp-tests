@@ -1,4 +1,0 @@
-url: https://github.com/Joelgranados/linux.git
-owner: Joel Granados <j.granados@samsung.com>
-notify_build_success_branch: .*
-branch_allowlist: .*for-0day

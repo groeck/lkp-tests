@@ -1,0 +1,35 @@
+# [v5.7-rc1] afe956c577b2 ("kbuild: Enable -Wtautological-compare")
+-Wtautological-compare
+
+# [v5.10-rc1] 172aad81a882 ("kbuild: enforce -Werror=return-type")
+-Wno-error=return-type
+-Wreturn-type
+
+# [v5.17-rc1] 552a23a0e5d0 ("Makefile: Enable -Wcast-function-type")
+-Wcast-function-type
+
+# [v5.18-rc1] e6148767825c ("Makefile: Enable -Warray-bounds")
+# Temporarily disabled as extra constraints need be considered
+# -Warray-bounds
+
+# [v6.2-rc1] 3bc753c06dd0 ("kbuild: treat char as always unsigned")
+-funsigned-char
+
+# [v6.2-rc1] 80b6093b55e3 ("kbuild: add -Wundef to KBUILD_CPPFLAGS for W=1 builds")
+-Wundef
+
+# [v6.5-rc1] df8fc4e934c1 ("kbuild: Enable -fstrict-flex-arrays=3")
+-fstrict-flex-arrays=3
+
+# [v6.6-rc1] 6d4ab2e97dcf ("extrawarn: enable format and stringop overflow warnings in W=1")
+-Wformat-overflow
+-Wformat-truncation
+# 021533194476 ("Kconfig: Disable -Wstringop-overflow for GCC globally")
+# Do not add stringop-overflow unconditionally which is disabled by 021533194476 for gcc
+# -Wstringop-overflow
+
+# [v6.6-rc1] 26030cb984dd ("extrawarn: move -Wrestrict into W=1 warnings")
+-Wrestrict
+
+# [v6.6-rc1] e88ca24319e4 ("kbuild: consolidate warning flags in scripts/Makefile.extrawarn")
+-Wenum-conversion

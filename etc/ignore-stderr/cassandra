@@ -1,1 +1,6 @@
+Cannot connect to any host, scheduling retry in
+com.datastax.driver.core.exceptions.OperationTimedOutException
+com.datastax.driver.core.exceptions.WriteTimeoutException
+OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated
 WARN .* You listed .* in your contact points, but it wasn't found in the control host's system.peers at startup
+with prepared statements is considered to be an anti-pattern due to ambiguity in non-qualified table names

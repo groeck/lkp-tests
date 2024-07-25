@@ -1,0 +1,23 @@
+2024-01-16 23:37:20 mkdir -p /mnt/stress-ng
+2024-01-16 23:37:20 mount /dev/sda1 /mnt/stress-ng
+2024-01-16 23:37:22 stress-ng --timeout 60 --times --verify --metrics --flock 6
+stress-ng: info:  [4382] setting to a 1 min, 0 secs run per stressor
+stress-ng: info:  [4382] dispatching hogs: 6 flock
+stress-ng: info:  [4382] note: /proc/sys/kernel/sched_autogroup_enabled is 1 and this can impact scheduling throughput for processes not attached to a tty. Setting this to 0 may improve performance metrics
+stress-ng: metrc: [4382] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s CPU used per       RSS Max
+stress-ng: metrc: [4382]                           (secs)    (secs)    (secs)   (real time) (usr+sys time) instance (%)          (KB)
+stress-ng: metrc: [4382] flock         171659332     60.00     44.80    771.49   2860967.69      210292.23       226.75          2564
+stress-ng: metrc: [4382] miscellaneous metrics:
+stress-ng: metrc: [4382] flock               5678.91 nanosecs per flock lock call (harmonic mean of 6 instances)
+stress-ng: metrc: [4382] flock               1883.42 nanosecs per flock unlock call (harmonic mean of 6 instances)
+stress-ng: info:  [4382] for a 60.00s run time:
+stress-ng: info:  [4382]    3840.16s available CPU time
+stress-ng: info:  [4382]      44.80s user time   (  1.17%)
+stress-ng: info:  [4382]     771.48s system time ( 20.09%)
+stress-ng: info:  [4382]     816.28s total time  ( 21.26%)
+stress-ng: info:  [4382] load average: 12.76 4.25 1.51
+stress-ng: info:  [4382] skipped: 0
+stress-ng: info:  [4382] passed: 6: flock (6)
+stress-ng: info:  [4382] failed: 0
+stress-ng: info:  [4382] metrics untrustworthy: 0
+stress-ng: info:  [4382] successful run completed in 1 min, 0.00 secs

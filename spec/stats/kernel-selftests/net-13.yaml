@@ -1,11 +1,1 @@
-net.udpgro_fwd.sh.IPv4.No_GRO.pass: 1
-net.udpgro_fwd.sh.IPv4.GRO_frag_list.pass: 1
-net.udpgro_fwd.sh.IPv4.GRO_fwd.pass: 1
-net.udpgro_fwd.sh.IPv4.GRO_frag_list_over_UDP_tunnel.pass: 1
-net.udpgro_fwd.sh.IPv4.GRO_fwd_over_UDP_tunnel.pass: 1
-net.udpgro_fwd.sh.IPv6.No_GRO.pass: 1
-net.udpgro_fwd.sh.IPv6.GRO_frag_list.pass: 1
-net.udpgro_fwd.sh.IPv6.GRO_fwd.pass: 1
-net.udpgro_fwd.sh.IPv6.GRO_frag_list_over_UDP_tunnel.pass: 1
-net.udpgro_fwd.sh.IPv6.GRO_fwd_over_UDP_tunnel.pass: 1
 net.udpgro_fwd.sh.pass: 1

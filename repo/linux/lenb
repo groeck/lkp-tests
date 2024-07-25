@@ -1,2 +1,3 @@
 url: https://github.com/lenb/linux
 owner: Len Brown <len.brown@intel.com>
+test_old_branches: .*

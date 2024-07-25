@@ -1,0 +1,10 @@
+short_description: >
+ media (V4L2, DVB and IR) applications and libraries.
+
+description: >
+
+homepage: https://git.linuxtv.org//v4l-utils.git/
+
+parameters:
+ test:
+

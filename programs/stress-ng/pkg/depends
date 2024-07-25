@@ -1,11 +1,19 @@
+libacl1
 libaio1
 libapparmor1
 libattr1
 libbsd0
 libcap2
+libegl1
+libgbm1
 libgcrypt20
-libipsec-mb0 (x86_64)
+libgles2
+libipsec-mb (x86_64)
+libjpeg62-turbo
 libjudydebian1
-libsctp1
 libkeyutils1
+libkmod2
+libmpfr6
+libsctp1
+libxxhash0
 zlib1g

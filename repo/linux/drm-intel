@@ -15,3 +15,4 @@ subsystems:
 belongs_to: i915
 branch_denylist: rerere-cache|maintainer-tools
 no_merge_branch: topic/.*
+test_old_branches: .*

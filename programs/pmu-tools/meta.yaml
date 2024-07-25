@@ -1,0 +1,12 @@
+short_description: >
+ Intel PMU profiling tools
+
+description: >
+ mu tools is a collection of tools and libraries for profile collection and performance analysis on Intel CPUs on top of Linux perf. This uses performance counters in the CPU.
+
+homepage: https://github.com/andikleen/pmu-tools.git
+
+parameters:
+
+results:
+

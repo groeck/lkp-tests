@@ -1,9 +1,7 @@
 bison
+build-essential
 flex
-gcc
 git
-libc6-dev
 libelf-dev
 libssl-dev
 libv4l-dev
-make

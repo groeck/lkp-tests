@@ -1,13 +1,21 @@
+libacl1-dev
 libaio-dev
 libapparmor-dev
 libattr1-dev
 libbsd-dev
 libcap-dev
+libegl-dev
+libgbm-dev
 libgcrypt-dev
+libgles2-mesa-dev
 libipsec-mb-dev (x86_64)
+libjpeg-dev
 libjudy-dev
 libkeyutils-dev
+libkmod-dev
+libmpfr-dev
+libpthread-stubs0-dev
 libsctp-dev
-zlib1g-dev
+libxxhash-dev
 linux-libc-dev
-libbsd-dev
+zlib1g-dev

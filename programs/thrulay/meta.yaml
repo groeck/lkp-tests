@@ -1,0 +1,12 @@
+short_description: >
+ The program thrulay is used to measure the capacity, delay, and other performance metrics of a network by sending a bulk TCP or UDP stream over it.
+
+description: >
+
+homepage: https://sourceforge.net/projects/thrulay
+
+parameters:
+ runtime:
+
+results:
+

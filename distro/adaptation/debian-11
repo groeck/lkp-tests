@@ -1,26 +1,29 @@
 # bullseye
-
-# reason (1)
-winpdb:
-python3-gobject:
-
-# reason (3)
-fsverity: fsverity
-lib32gcc-dev: lib32gcc-10-dev
-libx32gcc-dev: libx32gcc-10-dev
-lib64gcc-dev: lib64gcc-10-dev
-libx32gcc1: libx32gcc-s1
 btrfs-tools: btrfs-progs
-libreadline5: readline-common
-libntfs: libntfs-3g883
-libtirpc: libtirpc-common
-libicu: libicu67
-libjson: libjson-c5
-python3-crypto: python3-pycryptodome
-libevent-2: libevent-2.1-7
-libasan: libasan6
-libperl5: libperl5.32
-perl-modules-5: perl-modules-5.32
-libhugetlbfs: libhugetlbfs0
+gcc: gcc-10
+lib32gcc-dev: lib32gcc-10-dev
 lib64asan3: lib64asan6
+lib64gcc-dev: lib64gcc-10-dev
 lib64gcc1: lib64gcc-s1
+libasan: libasan6
+libevent-2: libevent-2.1-7
+libglut-dev:
+libglut3:
+libgsl: libgsl25
+libhugetlbfs: libhugetlbfs0
+libicu: libicu67
+libipsec-mb: libipsec-mb0
+libjson: libjson-c5
+libntfs: libntfs-3g883
+libperl5: libperl5.32
+libprocps: libprocps8
+libpython3: libpython3.9
+libreadline5: readline-common
+libtirpc: libtirpc-common
+liburing: liburing1
+libx32gcc-dev: libx32gcc-10-dev
+libx32gcc1: libx32gcc-s1
+perl-modules-5: perl-modules-5.32
+python3-crypto: python3-pycryptodome
+python3-gobject:
+winpdb:

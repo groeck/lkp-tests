@@ -1,11 +1,4 @@
-BPF_filter.ignored_by_lkp: 1
-LLVM_search_and_compile.ignored_by_lkp: 1
-Add_vfs_getname_probe_to_get_syscall_args_filenames.ignored_by_lkp: 1
-Use_vfs_getname_probe_to_get_syscall_args_filenames.ignored_by_lkp: 1
-Check_open_filename_arg_using_perf_trace_+_vfs_getname.ignored_by_lkp: 1
-builtin_clang_support.ignored_by_lkp: 1
 Lookup_mmap_thread.fail: 1
-perf.make.pass: 1
 Share_thread_maps.pass: 1
 Test_libpfm4_support.skip: 1
 Test_api_io.pass: 1

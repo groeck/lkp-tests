@@ -1,6 +1,6 @@
-btrfs: corrupt leaf, .*: block=.*,
 BTRFS error \(device .*\) in .*:.*: errno=.* .*
 BTRFS error \(device .*\) in .*:.*: errno=.* .* \(.*\)
+btrfs: corrupt leaf, .*: block=.*,
 btrfs: failed to read devices on .*
 btrfs: invalid dir item data len: .*
 btrfs: unable to add free space :.*

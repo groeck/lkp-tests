@@ -5,6 +5,8 @@
 ## and other performance metrics of a network by sending a
 ## bulk TCP or UDP stream over it.
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 export PATH=$BENCHMARK_ROOT/thrulay/sbin:$BENCHMARK_ROOT/thrulay/bin:$PATH
 
 [ -n "$runtime" ] || runtime=300

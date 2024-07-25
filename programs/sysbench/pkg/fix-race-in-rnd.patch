@@ -1,0 +1,13 @@
+diff --git a/src/tests/fileio/sb_fileio.c b/src/tests/fileio/sb_fileio.c
+index 5a00376..f6ebbb7 100644
+--- a/src/tests/fileio/sb_fileio.c
++++ b/src/tests/fileio/sb_fileio.c
+@@ -489,6 +489,8 @@ sb_event_t file_get_rnd_request(int thread_id)
+   unsigned int         i;
+
+   sb_req.type = SB_REQ_TYPE_FILE;
++  SB_THREAD_MUTEX_LOCK();
++  log_text(LOG_NOTICE, "file_get_rnd_request: SB_THREAD_MUTEX_LOCK is called\n");
+
+   if (test_mode == MODE_RND_RW)
+   {

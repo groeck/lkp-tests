@@ -1,0 +1,97 @@
+#!/bin/sh
+# - runtime
+# - nr_task
+# - test
+# - size
+# - unit_size
+# - fs
+# - pre_setup
+# - sync_rw
+# - bind_cpu
+# - repeat
+# - cpu_delay
+# - sync_free
+
+# The value of "pre_setup" can be 0 or 1.
+# 0 is the default value, means setup by vm-scalability itself.
+# 1 means setup by disk/fs, etc.
+
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
+
+log_eval "cd $BENCHMARK_ROOT/vm-scalability" || die "no $BENCHMARK_ROOT/vm-scalability"
+
+[ -n "$runtime" ] || runtime=300
+[ -n "$pre_setup" ] || pre_setup=0
+export SYNC_RW=$sync_rw
+export SYNC_FREE=$sync_free
+
+[ -n "$bind_cpu" ] && [ "$bind_cpu" -eq 0 ] && {
+	# HT share same core normally has cpu number distance: nr_cpu / 2
+	bind_cpu=$((nr_cpu / 2 / nr_task))
+}
+
+export BIND_CPU=$bind_cpu
+export REPEAT_COUNT=$repeat
+export DELAY=$cpu_delay
+
+echo 1		> /proc/sys/vm/overcommit_memory
+echo $((1<<30)) > /proc/sys/vm/max_map_count
+echo $((1<<20)) > /proc/sys/kernel/threads-max
+
+export CMD=log_test
+[ -n "$mount_points" ] && export SPARSE_ROOT=$(echo $mount_points | cut -d " " -f1)
+. ./hw_vars
+
+if [ "$pre_setup" = "0" ]; then
+	mount_tmpfs
+	create_sparse_root
+fi
+
+set_def_unit_size()
+{
+	if [ "${test#*shm}" != "$test" ]; then
+		if [ "${test#*lru}" != "$test" ]; then
+			unit_size=$(( shm_size / 2  ))
+		else
+			unit_size=$(( shm_size * nr_cpu / 2  ))
+		fi
+	else
+		unit_size=$(( mem / 2  ))
+	fi
+}
+
+set_repeat_count()
+{
+	size=$(( size * nr_node  ))
+	if [ -z "$unit_size" ]; then
+		set_def_unit_size
+	fi
+	[ "$unit_size" -gt "$size" ] && unit_size=$(( size  ))
+	repeat=$(( size / unit_size  ))
+	echo "repeat count: $repeat"
+}
+
+cur=$(date +%s)
+
+if [ -n "$size" ]; then
+	set_repeat_count
+	for i in $(seq $repeat)
+	do
+		log_test "./case-$test"
+		[ "$i" -le "$repeat" ] && {
+			now=$(date +%s)
+			[ "$((now - cur))" -gt "$runtime" ] && {
+				echo "runtime exceeded, consider adjust size configuration"
+				break
+			}
+		}
+	done
+else
+	log_test "./case-$test"
+fi
+
+if [ "$pre_setup" = "0" ]; then
+	remove_sparse_root
+	remove_tmpfs
+fi

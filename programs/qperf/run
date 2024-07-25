@@ -5,6 +5,7 @@
 ## It can work over TCP/IP as well as the RDMA transports.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/qperf || die "no $BENCHMARK_ROOT/qperf"
 

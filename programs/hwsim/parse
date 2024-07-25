@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/tests/stats"
@@ -30,7 +30,7 @@ while (line = $stdin.gets)
     # 2023-04-07 09:45:30 ./start.sh
     # 2023-04-07 09:45:32 ./run-tests.py ap_ft_eap_over_ds
     stats.add 'make', 'pass' unless stats.key? 'make'
-  when /^(PASS|FAIL|SKIP|ignored_by_lkp)\s+(.*)\s+/
+  when /^(PASS|FAIL|SKIP)\s+(.*)\s+/
     # The output is as below:
     # PASS ap_hs20_network_preference 0.562706 2017-04-25 14:22:28.575753
     # FAIL ap_hs20_proxyarp_enable_dgaf 0.457441 2017-04-25 14:22:34.671422

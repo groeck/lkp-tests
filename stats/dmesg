@@ -102,12 +102,16 @@ if ignore_lkdtm_dmesg?(RESULT_ROOT)
   exit
 end
 
-stat_unittest(lines) if $PROGRAM_NAME =~ /dmesg/
+stat_unittest(lines) if $PROGRAM_NAME =~ /kmsg/ && RESULT_ROOT =~ /\/boot\/.+\/vm-/
 
 oops_map.each do |bug_to_bisect, line|
   line.chomp!
 
-  timestamp = $2 if line =~ /^(<[0-9]+>|....  :..... : )?\[ *(\d{1,6}\.\d{6})\]( |\[)/
+  begin
+    timestamp = $2 if line =~ /^(<[0-9]+>|....  :..... : )?\[ *(\d{1,6}\.\d{6})\]( |\[)/
+  rescue ArgumentError # invalid byte sequence in UTF-8
+    next
+  end
 
   if line.index('cpu clock throttled')
     log_error 'cpu clock throttled, skip to parse dmesg/kmsg'

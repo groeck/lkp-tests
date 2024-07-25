@@ -1,6 +1,6 @@
 url: https://git.kernel.org/pub/scm/linux/kernel/git/teigland/linux-dlm.git
 integration_testing_branches: next
-mail_cc: cluster-devel@redhat.com
+mail_cc: gfs2@lists.linux.dev
 owner: David Teigland <teigland@redhat.com>
 subsystems:
 - dlm

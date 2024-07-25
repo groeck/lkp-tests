@@ -24,7 +24,7 @@ describe 'nvml' do
         { group: 'wronggroup', output: 'Parameter group wronggroup is invalid' },
         { group: 'wrong_group', output: 'single test wrong_group is not found' }
       ].each do |entry|
-        expect(Bash.call("source #{LKP_SRC}/lib/tests/nvml.sh; source #{LKP_SRC}/lib/debug.sh; export BENCHMARK_ROOT=#{@benchmark_root}; export group=#{entry[:group]}; check_group_param 2>&1", { exitstatus: [99] })).to match(/#{entry[:output]}/)
+        expect(Bash.call("source #{LKP_SRC}/lib/tests/nvml.sh; source #{LKP_SRC}/lib/debug.sh; export BENCHMARK_ROOT=#{@benchmark_root}; export group=#{entry[:group]}; check_group_param 2>&1", exitstatus: [99])).to match(/#{entry[:output]}/)
       end
     end
   end

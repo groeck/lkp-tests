@@ -1,0 +1,15 @@
+#!/bin/sh
+
+## perf began as a tool for using the performance counters subsystem in Linux,
+## and this perf-sanity-tests are the built-in sanity tests from perf tool.
+
+. $LKP_SRC/lib/env.sh
+. $LKP_SRC/lib/tests/perf_test.sh
+. $LKP_SRC/lib/reproduce-log.sh
+
+set_perf_path '/usr/bin/perf'
+
+$perf --version
+
+# redirect stderr to stdout, since perf test output logs to stderr
+log_cmd $perf test 2>&1

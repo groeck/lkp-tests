@@ -7,4 +7,4 @@ need_x: true
 
 phoronix-test-suite:
   test:
-    - battery-power-usage-1.0.0
+    - battery-power-usage-1.0.1 # E: ./battery-power-usage: 7: /var/lib/phoronix-test-suite/installed-tests/pts/mplayer-base-1.4.0//mplayer: not found

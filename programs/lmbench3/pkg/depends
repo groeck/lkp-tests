@@ -1,6 +1,5 @@
-make
-gcc
-libc-dev
-net-tools
-libtirpc-dev
+build-essential
 gnuplot
+libc-dev
+libtirpc-dev
+net-tools

@@ -12,6 +12,14 @@ depends=(liboop)
 source=("http://download.savannah.gnu.org/releases/nepim/nepim-${pkgver}.tar.gz")
 md5sums=('6f7a09e8cb7e605ebe35815ed9239536')
 
+. $LKP_SRC/lib/install.sh
+
+patch_source()
+{
+	cd nepim-${pkgver}
+	patch -p1 < "$(get_pkg_dir $pkgname)/0001-src-Makefile-change-sequence-of-options-for-gcc.patch"
+}
+
 build()
 {
   cd nepim-${pkgver}/src

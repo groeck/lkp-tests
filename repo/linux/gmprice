@@ -1,0 +1,5 @@
+url: https://github.com/gmprice/linux
+owner: Gregory Price <gregory.price@memverge.com>
+mail_to: Gregory Price <gregory.price@memverge.com>
+mail_cc: Gregory Price <gourry.memverge@gmail.com>
+notify_build_success_branch: .*

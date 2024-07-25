@@ -15,20 +15,6 @@ TAP version 13
 #
 # TEST: ping out - ns-B IP                                                      [ OK ]
 # TEST: ping out, device bind - ns-B IP                                         [ OK ]
-# TEST: ping out, address bind - ns-B IP                                        [ OK ]
-# TEST: ping out - ns-B loopback IP                                             [ OK ]
-# TEST: ping out, device bind - ns-B loopback IP                                [ OK ]
-# TEST: ping out, address bind - ns-B loopback IP                               [ OK ]
-# TEST: ping in - ns-A IP                                                       [ OK ]
-# TEST: ping in - ns-A loopback IP                                              [ OK ]
-# TEST: ping local - ns-A IP                                                    [ OK ]
-# TEST: ping local - ns-A loopback IP                                           [ OK ]
-# TEST: ping local - loopback                                                   [ OK ]
-# TEST: ping local, device bind - ns-A IP                                       [ OK ]
-# TEST: ping local, device bind - ns-A loopback IP                              [ OK ]
-# TEST: ping local, device bind - loopback                                      [ OK ]
-# TEST: ping out, blocked by rule - ns-B loopback IP                            [ OK ]
-# TEST: ping in, blocked by rule - ns-A loopback IP                             [ OK ]
 # TEST: ping out, blocked by route - ns-B loopback IP                           [ OK ]
 # TEST: ping in, blocked by route - ns-A loopback IP                            [ OK ]
 # TEST: ping out, unreachable default route - ns-B loopback IP                  [ OK ]
@@ -37,21 +23,6 @@ TAP version 13
 # TEST: ping out - ns-B IP                                                      [ OK ]
 # TEST: ping out, device bind - ns-B IP                                         [ OK ]
 # TEST: ping out, address bind - ns-B IP                                        [ OK ]
-# TEST: ping out - ns-B loopback IP                                             [ OK ]
-# TEST: ping out, device bind - ns-B loopback IP                                [ OK ]
-# TEST: ping out, address bind - ns-B loopback IP                               [ OK ]
-# TEST: ping in - ns-A IP                                                       [ OK ]
-# TEST: ping in - ns-A loopback IP                                              [ OK ]
-# TEST: ping local - ns-A IP                                                    [ OK ]
-# TEST: ping local - ns-A loopback IP                                           [ OK ]
-# TEST: ping local - loopback                                                   [ OK ]
-# TEST: ping local, device bind - ns-A IP                                       [ OK ]
-# TEST: ping local, device bind - ns-A loopback IP                              [ OK ]
-# TEST: ping local, device bind - loopback                                      [ OK ]
-# TEST: ping out, blocked by rule - ns-B loopback IP                            [ OK ]
-# TEST: ping in, blocked by rule - ns-A loopback IP                             [ OK ]
-# TEST: ping out, blocked by route - ns-B loopback IP                           [ OK ]
-# TEST: ping in, blocked by route - ns-A loopback IP                            [ OK ]
 # TEST: ping out, unreachable default route - ns-B loopback IP                  [ OK ]
 #
 # #################################################################
@@ -458,10 +429,6 @@ TAP version 13
 # Ping LLA with multiple interfaces
 #
 # TEST: Pre cycle, ping out ns-B - multicast IP                                 [ OK ]
-# TEST: Pre cycle, ping out ns-C - multicast IP                                 [ OK ]
-# TEST: Post cycle ns-A eth1, ping out ns-B - multicast IP                      [ OK ]
-# TEST: Post cycle ns-A eth1, ping out ns-C - multicast IP                      [ OK ]
-# TEST: Post cycle ns-A eth2, ping out ns-B - multicast IP                      [ OK ]
 # TEST: Post cycle ns-A eth2, ping out ns-C - multicast IP                      [ OK ]
 #
 # Tests passed: 714

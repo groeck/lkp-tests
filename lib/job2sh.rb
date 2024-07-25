@@ -245,8 +245,8 @@ class Job2sh < Job
     # wakup events signaled in post-run after run_job, which leads
     # to circular waits.
     # if nr_bg > 0
-      # exec_line
-      # exec_line indent(ancestors) + "wait"
+    #   exec_line
+    #   exec_line indent(ancestors) + "wait"
     # end
   end
 

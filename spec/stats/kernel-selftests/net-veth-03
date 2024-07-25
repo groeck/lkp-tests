@@ -1,0 +1,3 @@
+# selftests: net: veth.sh
+# Missing ../bpf/xdp_dummy.bpf.o. Build bpf selftest first
+not ok 54 selftests: net: veth.sh # exit=1

@@ -3,6 +3,8 @@
 # - segments
 # - nr_threads
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 ## Create a bunch of shared memory segments, then a bunch of
 ## threads that continually clone and exit.
 

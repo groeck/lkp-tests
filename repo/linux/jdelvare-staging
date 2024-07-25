@@ -6,3 +6,4 @@ subsystems:
 - dmi_scan
 - hwmon
 - dmi
+test_old_branches: .*

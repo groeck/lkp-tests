@@ -11,6 +11,7 @@ require "#{LKP_SRC}/lib/axis"
 require "#{LKP_SRC}/lib/result_root"
 require "#{LKP_SRC}/lib/log"
 require "#{LKP_SRC}/lib/constant"
+require "#{LKP_SRC}/lib/ruby_ext"
 
 # How many components in the stat sort key
 $stat_sort_key_number = {
@@ -156,7 +157,7 @@ module Compare
     # Convert string to hash:
     # "commit/1,2,3" => { commit => [1, 2, 3] }
     def convert_exclude_result_roots
-      return nil if @exclude_result_roots.to_s.empty?
+      return if @exclude_result_roots.to_s.empty?
 
       arr = @exclude_result_roots.split('/')
       return { arr[0] => arr[1].split(',').delete_if(&:empty?) } if arr.size == 2 && sha1_40?(arr[0]) && arr[1] =~ /[0-9,]+/
@@ -692,9 +693,9 @@ module Compare
         axis_converter = lambda { |axis_key|
           if @axes_as_num && (@axes_as_num == true ||
                   @axes_as_num.index(axis_key))
-            return method(:string_to_num)
+            method(:string_to_num)
           else
-            return ->(x) { x }
+            ->(x) { x }
           end
         }
 
@@ -1232,7 +1233,7 @@ module Compare
   end
 
   def self.test_incomplete_run
-    _rt = "#{RESULT_ROOT_DIR}/lkp-sb02/fileio/performance-600s-100%-1HDD-ext4-64G-1024f-seqrd-sync/debian-x86_64-2015-02-07.cgz/x86_64-rhel/"
+    _rt = "#{RESULT_ROOT_DIR}/lkp-sb02/sysbench-fileio/performance-600s-100%-1HDD-ext4-64G-1024f-seqrd-sync/debian-x86_64-2015-02-07.cgz/x86_64-rhel/"
     _rts = %w[9eccca0843205f87c00404b663188b88eb248051 06e5801b8cb3fc057d88cb4dc03c0b64b2744cda]
            .map { |c| MResultRoot.new(_rt + c) }
     _rts.each do |_rt|

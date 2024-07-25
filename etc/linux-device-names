@@ -103,10 +103,10 @@ eval
 event
 fb
 fc
-fc_dl_
 fcf_
-fc_host
 fcoe
+fc_dl_
+fc_host
 fc_wq_
 fd
 fddi
@@ -122,10 +122,10 @@ fw
 gp
 gpio
 gpiochip
-g_printer
 gprs
 graph
 gsm
+g_printer
 hba
 hci
 hdlc
@@ -155,8 +155,8 @@ io
 ioc
 ioce
 iommu
-io_ring_q
 iowarrior
+io_ring_q
 ipath
 ipath_diag
 ipddp
@@ -206,8 +206,8 @@ mcbsp
 mclk
 mct_tick
 md
-md_d
 mdev
+md_d
 media
 mei
 memcpy
@@ -222,8 +222,8 @@ mmc
 mon
 mouse
 mpp
-mpt_dead_ioc_
 mptfc_wq_
+mpt_dead_ioc_
 mpt_poll_
 msblk
 msh
@@ -340,8 +340,8 @@ soc
 soc_dts
 sp
 spi
-spi_busclk
 spinlock
+spi_busclk
 sprd_serial
 sr
 ssi

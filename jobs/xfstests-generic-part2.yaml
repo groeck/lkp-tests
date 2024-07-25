@@ -47,17 +47,34 @@ fs:
 
 xfstests:
   test:
-    - generic-299
+    - generic-holetest # run slowly on udf
 
 ---
 fs:
-  - ext2
-  - ext4
   - xfs
   - btrfs
-  - f2fs
-  - udf
 
 xfstests:
   test:
-    - generic-281
+    - generic-281 # [not run] Reflink not supported by scratch filesystem type: ext2/ext4/f2fs/udf
+
+    # [not run] Reflink not supported by scratch filesystem type: ext2/ext4/f2fs/udf
+    - generic-scratch-reflink-08
+    - generic-scratch-reflink-09
+    - generic-scratch-reflink-10
+    - generic-scratch-reflink-12
+    - generic-scratch-reflink-13
+    - generic-scratch-reflink-14
+    - generic-scratch-reflink-15
+    - generic-scratch-reflink-16
+    - generic-scratch-reflink-17
+    - generic-scratch-reflink-18
+    - generic-scratch-reflink-20
+    - generic-scratch-reflink-22
+    - generic-scratch-reflink-25
+    - generic-scratch-reflink-27
+    - generic-scratch-reflink-28
+    - generic-scratch-reflink-32
+    - generic-scratch-reflink-33
+    - generic-scratch-reflink-35
+    - generic-scratch-reflink-36

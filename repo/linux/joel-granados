@@ -1,0 +1,3 @@
+url: https://git.kernel.org/pub/scm/linux/kernel/git/joel.granados/linux.git
+owner: Joel Granados <j.granados@samsung.com>
+notify_build_success_branch: .*

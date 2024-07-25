@@ -1,11 +1,11 @@
 pkgname=apache-cassandra
-pkgver=4.1.0
+pkgver=4.1.4
 pkgrel=0
 pkgdesc="The Apache Cassandra database is the right choice when you need scalability and high availability without compromising performance."
 arch=('i386' 'x86_64' 'aarch64')
 url="http://cassandra.apache.org/"
 license=(Apache)
-source=(https://mirrors.tuna.tsinghua.edu.cn/apache/cassandra/$pkgver/$pkgname-$pkgver-bin.tar.gz)
+source=(https://dlcdn.apache.org/cassandra/$pkgver/$pkgname-$pkgver-bin.tar.gz) # https://dlcdn.apache.org/cassandra/4.1.4/apache-cassandra-4.1.4-bin.tar.gz
 md5sums=('SKIP')
 
 build()

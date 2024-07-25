@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/array_ext"
@@ -73,8 +73,6 @@ while (line = $stdin.gets)
     end
 
     stats.add stat_name.to_s, stat_result.to_s unless stats.key? stat_name.to_s
-  when /^(ignored_by_lkp)\s+(.*)\s+/
-    stats.add $2, $1
   end
 end
 

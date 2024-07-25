@@ -1,0 +1,6 @@
+url: https://github.com/surenbaghdasaryan/linux.git
+owner: Suren Baghdasaryan <surenb@google.com>
+notify_build_success_branch: .*
+branch_allowlist: memalloc_prof_v4
+branch_denylist: .*
+mail_cc: Suren Baghdasaryan <surenb@google.com>

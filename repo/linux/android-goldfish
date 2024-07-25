@@ -5,3 +5,6 @@ subsystems:
 test_old_branches: .*
 private_report_branch: .*
 mail_to: Jin Qian <jinqian@google.com>
+no_merge_branch: .*
+branch_deny_runtime_test: .*
+belongs_to: android

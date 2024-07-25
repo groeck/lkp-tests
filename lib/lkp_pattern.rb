@@ -5,39 +5,65 @@ LKP_SRC ||= ENV['LKP_SRC'] || File.dirname(__dir__)
 require 'active_support/core_ext/string'
 require "#{LKP_SRC}/lib/yaml"
 require "#{LKP_SRC}/lib/lkp_path"
+require "#{LKP_SRC}/lib/ruby_ext"
 
 module LKP
   class Pattern
-    attr_reader :regexp, :file
+    attr_reader :file
 
     def initialize(file)
       @file = file
-
-      load
     end
 
     def contain?(content)
       return unless regexp
 
-      content =~ regexp
+      Array(content).any? { |line| line =~ regexp }
     end
 
-    def load
-      @regexp = load_regular_expressions(file) if File.size?(file)
+    def regexp
+      return @regexp if @regexp
+      return unless File.size?(file)
+
+      lines = self.class.lines(file)
+      @regexp = Regexp.new "(#{lines.join('|')})"
+    end
+
+    def patterns
+      File.read(file).split("\n")
+    end
+
+    def pattern(content)
+      patterns.find { |pattern| content =~ Regexp.new(pattern) }
     end
 
     class << self
+      attr_reader :klass_2_path
+
       def generate_klass(file_path)
+        @klass_2_path ||= {}
+
+        klass_name = File.basename(file_path).underscore.camelize
+        return if @klass_2_path.key?(klass_name)
+
         klass = Class.new(self) do
           include Singleton
 
           def initialize
-            file_name = self.class.name.sub(/^LKP::/, '').underscore.dasherize
-            super LKP::Path.src('etc', file_name)
+            super self.class.superclass.klass_2_path[self.class.name]
           end
         end
 
-        LKP.const_set File.basename(file_path).underscore.camelize, klass
+        LKP.const_set klass_name, klass
+
+        @klass_2_path[klass.name] = file_path
+      end
+
+      def lines(file)
+        File.readlines(file)
+            .map(&:chomp)
+            .reject(&:empty?)
+            .reject { |line| line.start_with?('#') }
       end
     end
   end

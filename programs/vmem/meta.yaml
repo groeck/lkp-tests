@@ -1,0 +1,11 @@
+short_description: >
+ Volatile Persistent Memory Allocator.
+
+description: >
+ libvmem and libvmmalloc are a couple of libraries for using persistent memory for malloc-like volatile uses. They have historically been a part of PMDK despite being solely for volatile uses.
+
+homepage: https://github.com/pmem/vmem
+
+parameters:
+ group:
+

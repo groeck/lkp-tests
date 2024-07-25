@@ -1,0 +1,54 @@
+#!/bin/bash
+# - benchmark
+# - pack_arch
+
+. $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/misc-base.sh
+. $LKP_SRC/lib/reproduce-log.sh
+
+[ -n "$rootfs" ] || die "rootfs is empty"
+[ -n "$benchmark" ] || die "benchmark is empty"
+
+DISTRO=${rootfs%%-*}
+DISTRO=${DISTRO##*/}
+
+. $LKP_SRC/distro/${DISTRO}
+
+[[ -n "$DEPS_MNT" ]] || DEPS_MNT=/osimage/deps
+mkdir -p "$DEPS_MNT"
+
+[ -n "$LKP_SERVER" ] && {
+	mount $LKP_SERVER:$DEPS_MNT $DEPS_MNT || die "Failed to run mount"
+}
+
+umask 002
+
+pack_to=$DEPS_MNT/$(basename $rootfs)
+[[ -d "$pack_to" ]] || {
+	mkdir "$pack_to"
+	chown .lkp "$pack_to"
+}
+
+check_shared_package "$benchmark" && {
+	original_benchmark=$benchmark
+	benchmark=$BM_NAME
+}
+
+fixup_distro_mirror
+
+setup_proxy
+
+update
+
+fixup_preinstall
+
+[[ "$benchmark" = "all" ]] && benchmark="$(show_deps_list)"
+
+fixup_arch_install $pack_arch
+
+pack_benchmark_deps
+
+if [ -n "$original_benchmark" ]; then
+	ln -sf "$pack_to/${BM_NAME}.cgz" "$pack_to/${original_benchmark}.cgz" || return
+	echo "update shared pkg deps link ${original_benchmark}.cgz -> ${BM_NAME}.cgz"
+fi

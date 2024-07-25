@@ -4,7 +4,7 @@ pkgrel=1
 url='https://github.com/bcopeland/wmediumd.git'
 arch=('i386' 'x86_64' 'aarch64')
 license=('GPL')
-source=('https://github.com/bcopeland/wmediumd.git' 'http://w1.fi/hostap.git')
+source=('http://w1.fi/hostap.git' 'https://github.com/bcopeland/wmediumd.git')
 md5sums=('SKIP' 'SKIP')
 
 build()

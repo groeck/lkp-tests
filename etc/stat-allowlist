@@ -1,10 +1,10 @@
+^/dev/mapper/control: open failed: No such device
+^stderr\.BPF_MOV64_IMM\(BPF_REG_0,#
 ^stderr\.disk_r(r|w)\(\):No_space_left_on_device
 ^stderr\.mkfs.xfs:pwrite_failed:Invalid_argument
+^stderr\.modprobe:ERROR:could_not_insert'btrfs':Key_was_rejected_by_service
 ^stderr\.modprobe:ERROR:could_not_insert'tcrypt':Exec_format_error
+^stderr\.mount_nfs_timeout
 ^stderr\.sync_disk_cp.*: cannot create /fs/shm/tmpb
 ^stderr\.umount:/tmp/vm-scalability-tmp:target_is_busy
 ^stderr\.xinit:giving_up
-^stderr\.BPF_MOV64_IMM\(BPF_REG_0,#
-^stderr\.modprobe:ERROR:could_not_insert'btrfs':Key_was_rejected_by_service
-^stderr\.mount_nfs_timeout
-^/dev/mapper/control: open failed: No such device

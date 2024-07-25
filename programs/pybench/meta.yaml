@@ -1,0 +1,67 @@
+short_description: >
+
+description: >
+
+homepage: https://svn.python.org/projects/python/trunk/Tools/pybench/
+
+parameters:
+ rounds:
+ warp:
+
+
+results:
+ pybench.Rounds: 
+ pybench.Warp: 
+ pybench.BuiltinFunctionCalls_ms: 
+ pybench.BuiltinMethodLookup_ms: 
+ pybench.CompareFloats_ms: 
+ pybench.CompareFloatsIntegers_ms: 
+ pybench.CompareIntegers_ms: 
+ pybench.CompareInternedStrings_ms: 
+ pybench.CompareLongs_ms:
+ pybench.CompareStrings_ms:
+ pybench.ComplexPythonFunctionCalls_ms: 
+ pybench.ConcatStrings_ms:
+ pybench.CreateInstances_ms: 
+ pybench.CreateNewInstances_ms: 
+ pybench.CreateStringsWithConcat_ms:
+ pybench.DictCreation_ms: 
+ pybench.DictWithFloatKeys_ms: 
+ pybench.DictWithIntegerKeys_ms: 
+ pybench.DictWithStringKeys_ms: 
+ pybench.ForLoops_ms: 
+ pybench.IfThenElse_ms: 
+ pybench.ListSlicing_ms: 
+ pybench.NestedForLoops_ms: 
+ pybench.NestedListComprehensions_ms: 
+ pybench.NormalClassAttribute_ms: 
+ pybench.NormalInstanceAttribute_ms: 
+ pybench.PythonFunctionCalls_ms:
+ pybench.PythonMethodCalls_ms: 
+ pybench.Recursion_ms: 
+ pybench.SecondImport_ms: 
+ pybench.SecondPackageImport_ms: 
+ pybench.SecondSubmoduleImport_ms: 
+ pybench.SimpleComplexArithmetic_ms: 
+ pybench.SimpleDictManipulation_ms: 
+ pybench.SimpleFloatArithmetic_ms: 
+ pybench.SimpleIntFloatArithmetic_ms: 
+ pybench.SimpleIntegerArithmetic_ms: 
+ pybench.SimpleListComprehensions_ms: 
+ pybench.SimpleListManipulation_ms: 
+ pybench.SimpleLongArithmetic_ms: 
+ pybench.SmallLists_ms: 
+ pybench.SmallTuples_ms: 
+ pybench.SpecialClassAttribute_ms: 
+ pybench.SpecialInstanceAttribute_ms: 
+ pybench.StringMappings_ms: 
+ pybench.StringPredicates_ms: 
+ pybench.StringSlicing_ms: 
+ pybench.TryExcept_ms: 
+ pybench.TryFinally_ms: 
+ pybench.ryRaiseExcept_ms: 
+ pybench.TupleSlicing_ms: 
+ pybench.WithFinally_ms: 
+ pybench.WithRaiseExcept_ms: 
+ pybench.Total_ms: 
+

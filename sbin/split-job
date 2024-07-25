@@ -66,12 +66,17 @@ ARGV.delete_if do |arg|
   end
 end
 
-if ARGV.size.zero?
+if ARGV.empty?
   puts options
   exit
 end
 
-@opt_testbox ||= `hostname`.chomp
+@opt_testbox ||= ENV['HOSTNAME'] || `hostname`.chomp
+unless File.exist?(File.join(LKP_SRC, 'hosts', @opt_testbox))
+  puts "hosts/#{@opt_testbox} doesn't exist, please rerun \"lkp install\""
+  exit
+end
+
 atom_jobs = []
 
 distroinfo = LKP::DistroInfo.instance
@@ -81,7 +86,7 @@ def refine_job_file(jobfile)
   return jobfile if File.readlines(jobfile).none? { |l| l =~ /^(:|)#! / }
 
   # job file is a dirty yaml which may contains invalid values
-  file = Tempfile.open do |f|
+  file = Tempfile.open('split-job') do |f|
     p = true
     File.readlines(jobfile).each do |line|
       p = !line.match(/^(:|)#! .*\.yaml(:|)$/).nil? if line =~ /^(:|)#! /

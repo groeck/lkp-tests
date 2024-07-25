@@ -1,9 +1,9 @@
-curl
-bsdtar
-bzip2
-fakeroot
-gnupg
-gettext
-openssl
-ncurses-bin
 binutils
+bzip2
+curl
+fakeroot
+gettext
+gnupg
+libarchive-tools
+ncurses-bin
+openssl

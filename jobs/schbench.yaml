@@ -7,14 +7,27 @@ iterations:
 
 schbench:
   message_threads:
-    - 1
+    # - 1
     - 12.5%
-    - 100%
   worker_threads:
-    - 1
-    - 16
+    # - 1
+    # - 16
     - 128
     - 512
   runtime:
-    - 30s
+    # - 30s
+    - 300s
+
+---
+
+# avoid "error 11 from pthread_create"
+schbench:
+  message_threads:
+    - 100%
+  worker_threads:
+    # - 1
+    - 16
+    - 128
+  runtime:
+    # - 30s
     - 300s

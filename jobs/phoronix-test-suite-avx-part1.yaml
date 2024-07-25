@@ -1,0 +1,61 @@
+suite: phoronix-test-suite
+testcase: phoronix-test-suite
+category: benchmark
+
+phoronix-test-suite:
+  # - test: ramspeed-1.4.3 # The test quit with a non-zero exit status.
+  #   option_a:
+  #     - Copy
+  #    - Scale
+  #    - Add
+  #    - Triad
+  #    - Average
+  #  option_b:
+  #    - Integer
+  #    - Floating Point
+  - test:
+    - rust-mandel-1.0.0
+  - test: stream-1.3.4
+    option_a:
+      - Copy
+      - Scale
+      - Add
+      - Triad
+
+  - test: svt-vp9-1.3.1
+    option_a:
+      - 1 # Visual Quality Optimized
+      - 2 # PSNR/SSIM Optimized      [Default]
+      - 3 # VMAF Optimized
+    option_b:
+      - Bosphorus 1080p
+      - Bosphorus 4K
+  - test: onednn-3.3.0
+    option_a:
+      # - Convolution Batch Shapes Auto # The test quit with a non-zero exit status.
+      - Deconvolution Batch shapes_1d
+      # - Deconvolution Batch shapes_3d # The test quit with a non-zero exit status.
+      # - IP Shapes 1D # The test quit with a non-zero exit status.
+      # - IP Shapes 3D # The test quit with a non-zero exit status.
+      - Recurrent Neural Network Training
+      # - Recurrent Neural Network Inference # The test quit with a non-zero exit status.
+    option_b:
+      - 1 # f32
+      - 2 # u8s8f32      [Optimized For AVX-512]
+      - 3 # bf16bf16bf16 [Optimized For AVX-512 + VNNI]
+  - test: svt-hevc-1.2.1
+    option_a:
+      - 1 # 1  [Higher Quality]
+      - 2 # 7  [Default]
+      - 3 # 10 [Higher Density]
+    option_b:
+      - Bosphorus 1080p
+      - Bosphorus 4K
+  - test: tensorflow-lite-1.1.0
+    option_a:
+      - Mobilenet Float
+      - Mobilenet Quant
+      - NASNet Mobile
+      - SqueezeNet
+      - Inception ResNet V2
+      - Inception V4

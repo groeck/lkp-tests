@@ -1,5 +1,5 @@
-sudo
 automake
-libtool
 bison
 flex
+libtool
+sudo

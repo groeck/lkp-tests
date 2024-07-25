@@ -1,0 +1,115 @@
+[    3.599572][    T1] ----------------
+[    3.600291][    T1] | NMI testsuite:
+[    3.606441][    T1] --------------------
+[    3.607274][    T1]   remote IPI:  ok  |
+[    3.608123][    T1]    local IPI:  ok  |
+[    3.608949][    T1] --------------------
+[    3.609742][    T1] Good, all   2 testcases passed! |
+[    3.610371][    T1] ---------------------------------
+[    6.600811][    T1] Running postponed tracer tests:
+[    6.602542][    T1] Testing tracer nop: PASSED
+[    6.603786][    T1] Testing tracer wakeup: PASSED
+[    6.611511][    T1] Testing tracer wakeup_rt: PASSED
+[    6.619560][    T1] Testing tracer wakeup_dl: PASSED
+[    6.633633][    T1] prandom: seed boundary self test passed
+[    6.639444][    T1] prandom: 100 self tests passed
+[    6.640392][    T1] pinctrl core: initialized pinctrl subsystem
+[   58.506143][    T1] Beginning ww mutex selftests
+[   61.053025][   T54] stress (stress_inorder_work) failed with -35
+[   65.189875][    T1] All ww mutex selftests passed
+[   65.482857][    T1] io scheduler bfq registered
+[   65.498946][    T1] test_hexdump: all 1184 tests passed
+[   65.500031][    T1]
+[   65.500031][    T1] Start testing find_bit() with random-filled bitmap
+[   65.508619][    T1] find_next_bit:                 5866825 ns, 163809 iterations
+[   65.516213][    T1] find_next_zero_bit:            6151736 ns, 163872 iterations
+[   65.525801][    T1] find_last_bit:                 8110168 ns, 163808 iterations
+[   65.638807][    T1] find_nth_bit:                111472183 ns,  16382 iterations
+[   65.711394][    T1] find_first_bit:               71015184 ns,  16383 iterations
+[   66.621473][    T1] find_first_and_bit:          908755740 ns,  32751 iterations
+[   66.626007][    T1] find_next_and_bit:             3143316 ns,  73710 iterations
+[   66.627351][    T1]
+[   66.627351][    T1] Start testing find_bit() with sparse bitmap
+[   66.635518][    T1] find_next_bit:                  127468 ns,    655 iterations
+[   66.649784][    T1] find_next_zero_bit:           12964495 ns, 327026 iterations
+[   66.651337][    T1] find_last_bit:                  112039 ns,    655 iterations
+[   66.695290][    T1] find_nth_bit:                 42642792 ns,    654 iterations
+[   66.724760][    T1] find_first_bit:               28102823 ns,    655 iterations
+[   66.726468][    T1] find_first_and_bit:             101072 ns,      1 iterations
+[   66.728038][    T1] find_next_and_bit:               87888 ns,      1 iterations
+[   67.101416][    T1] vvv Ignore "not allocated" warnings
+[   74.721959][    T1] ^^^ "not allocated" warnings over
+[   74.723110][    T1] IDA: 147357 of 147357 tests passed
+[   87.767610][    T1] test_printf: crng possibly not yet initialized. plain 'p' buffer contains "(____ptrval____)"
+[   87.773788][    T1] test_printf: all 432 tests passed
+[   87.776662][    T1] test_scanf: loaded.
+[   87.798592][    T1] test_scanf: all 2545 tests passed
+[  320.077880][    T1] XArray: 158773793 of 158773793 tests passed
+[  320.289663][    T1] test_meminit: all 11 tests in test_pages passed
+[  320.374783][    T1] test_meminit: all 40 tests in test_kvmalloc passed
+[  341.099012][    T1] test_meminit: all 70 tests in test_kmemcache passed
+[  342.635146][    T1] test_meminit: all 10 tests in test_rcu_persistent passed
+[  342.636615][    T1] test_meminit: all 131 tests passed!
+[  342.666535][    T1] atomic64_test: passed for x86-64 platform with CX8 and with SSE
+[  342.668104][    T1] rbtree testing
+[  342.700779][    T1]  -> test 1 (latency of nnodes insert+delete): 100988 cycles
+[  342.723224][    T1]  -> test 2 (latency of nnodes cached insert+delete): 61425 cycles
+[  342.726032][    T1]  -> test 3 (latency of inorder traversal): 4586 cycles
+[  342.727481][    T1]  -> test 4 (latency to fetch first node)
+[  342.728636][    T1]         non-cached: 57 cycles
+[  342.729701][    T1]         cached: 23 cycles
+[  342.893646][    T1] augmented rbtree testing
+[  342.938946][    T1]  -> test 1 (latency of nnodes insert+delete): 139997 cycles
+[  342.987745][    T1]  -> test 2 (latency of nnodes cached insert+delete): 143392 cycles
+[  343.196966][    T1] interval tree insert/remove
+[  343.259752][    T1]  -> 194074 cycles
+[  343.261566][    T1] interval tree search
+[  343.586496][    T1]  -> 1004737 cycles (2692 results)
+[  343.610768][    T1] gpio_it87: no device
+[  343.639991][    T1] usbcore: registered new interface driver udlfb
+[  372.427870][    T1] begin comedi:"example" unittests
+[  372.428875][    T1] pass test0():47 negative result
+[  372.429852][    T1] pass test0():48 positive result
+[  372.430832][    T1] end of comedi:"example" unittests - 2 passed, 0 failed
+[   31.293640][    T1] Running tests on trace events:
+[   31.298444][    T1] Testing event initcall_finish: OK
+[   31.352905][    T1] Testing event initcall_start: OK
+[   31.407147][    T1] Testing event initcall_level: OK
+[   31.461800][    T1] Testing event emulate_vsyscall: OK
+[   99.953990][    T1] Testing event system initcall: OK
+[  100.008138][    T1] Running tests on all trace events:
+[  100.013275][    T1] Testing all events: OK
+[  101.370130][    T1] Running tests again, along with the function tracer
+[  101.376960][    T1] Running tests on trace events:
+[  101.381916][    T1] Testing event initcall_finish: OK
+[  101.445000][    T1] Testing event initcall_start: OK
+[  101.511851][    T1] Testing event initcall_level: OK
+[  184.102867][    T1] Running tests on all trace events:
+[  184.108193][    T1] Testing all events: OK
+[  186.735200][    T1] Testing ftrace filter: OK
+[  446.818051][    T1] trace_kprobe: Testing kprobe tracing: OK
+[  447.461986][    T1] Demotion targets for Node 0: null
+[  447.464506][    T1] kmemleak: Kernel memory leak detector initialized (mem pool available: 14117)
+[  447.466204][    T1] debug_vm_pgtable: [debug_vm_pgtable         ]: Validating architecture page table helpers
+[  447.468235][ T1697] kmemleak: Automatic memory scanning thread started
+[  447.478168][    T1] Key type .fscrypt registered
+[  447.479300][    T1] Key type fscrypt-provisioning registered
+[  447.542958][    T1] Btrfs loaded, debug=on, assert=on, ref-verify=on, zoned=no, fsverity=yes
+[  447.548422][    T1] raid6test: testing the 4-disk case...
+[  447.549601][    T1] raid6test: test_disks(0, 1): faila=  0(D)  failb=  1(D)  OK
+[  447.551218][    T1] raid6test: test_disks(0, 2): faila=  0(D)  failb=  2(P)  OK
+[  447.552574][    T1] raid6test: test_disks(0, 3): faila=  0(D)  failb=  3(Q)  OK
+[  447.554063][    T1] raid6test: test_disks(1, 2): faila=  1(D)  failb=  2(P)  OK
+[  447.555629][    T1] raid6test: test_disks(1, 3): faila=  1(D)  failb=  3(Q)  OK
+[  447.557066][    T1] raid6test: test_disks(2, 3): faila=  2(P)  failb=  3(Q)  OK
+[  447.558936][    T1] raid6test: testing the 5-disk case...
+[  447.560027][    T1] raid6test: test_disks(0, 1): faila=  0(D)  failb=  1(D)  OK
+[  447.561483][    T1] raid6test: test_disks(0, 2): faila=  0(D)  failb=  2(D)  OK
+[  447.563081][    T1] raid6test: test_disks(0, 3): faila=  0(D)  failb=  3(P)  OK
+[  424.813717][    T1] ### dt-test ### EXPECT \ : ---[ end trace <<int>> ]---
+[  424.814141][    T1] ### dt-test ### pass of_unittest_lifecycle():3294
+[  129.822053][    T1] ### dt-test ### pass of_unittest_dynamic():236
+[  129.823860][    T1] ### dt-test ### pass of_unittest_parse_phandle_with_args():404
+[  129.826081][    T1] ### dt-test ### pass of_unittest_parse_phandle_with_args():458
+[  129.828401][    T1] ### dt-test ### pass of_unittest_parse_phandle_with_args():458
+[  129.830621][    T1] ### dt-test ### pass of_unittest_parse_phandle_with_args():458

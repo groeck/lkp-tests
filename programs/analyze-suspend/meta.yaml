@@ -1,0 +1,19 @@
+short_description: >
+  This tool suite is designed to assist kernel and OS developers in optimizing their linux stack's suspend/resume & boot time.
+
+description: >
+ This tool suite is designed to assist kernel and OS developers in optimizing their linux stack's suspend/resume & boot time. Using a kernel image built with a few extra options enabled, the tools will execute a suspend or boot,and will capture dmesg and ftrace data. This data is transformed into a set of timelines and a callgraph to give a quick and detailed view of which devices and kernel processes are taking the most time in suspend/resume & boot.
+
+homepage: https://github.com/intel/pm-graph.git
+
+parameters:
+ mode:        
+ runtime:      
+ option:       
+ multi:   
+ rtcwake: 
+ idle_time:
+ debug: 
+
+results:
+ analyze-suspend.pass:

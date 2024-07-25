@@ -1,0 +1,15 @@
+short_description: >
+ Simple stress test for SIMD.
+
+description: >
+
+homepage: https://github.com/yu-chen-aero/simd-stress.git
+
+parameters:
+ duration:
+ thread_count:
+ nop_per_loop:
+ type:
+
+results:
+

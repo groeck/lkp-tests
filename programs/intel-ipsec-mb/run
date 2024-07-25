@@ -6,6 +6,7 @@
 # - thread_count
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/intel-ipsec-mb || die "no $BENCHMARK_ROOT/intel-ipsec-mb"
 

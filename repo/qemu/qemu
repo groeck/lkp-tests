@@ -1,4 +1,4 @@
-url: https://git.qemu.org/git/qemu.git
+url: https://gitlab.com/qemu-project/qemu.git
 upstream: true
 mail_to:
   - lkp@intel.com

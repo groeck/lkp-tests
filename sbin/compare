@@ -6,6 +6,12 @@ Signal.trap('INT') { exit! }
 
 LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
 
+require 'optparse'
+require 'ostruct'
+require 'yaml'
+require 'gnuplot'
+require 'set'
+require 'term/ansicolor'
 require "#{LKP_SRC}/lib/lkp_git"
 require "#{LKP_SRC}/lib/yaml"
 require "#{LKP_SRC}/lib/plot"
@@ -13,12 +19,7 @@ require "#{LKP_SRC}/lib/stats"
 require "#{LKP_SRC}/lib/result"
 require "#{LKP_SRC}/lib/constant"
 require "#{LKP_SRC}/lib/programs"
-require 'optparse'
-require 'ostruct'
-require 'yaml'
-require 'gnuplot'
-require 'set'
-require 'term/ansicolor'
+require "#{LKP_SRC}/lib/ruby_ext"
 
 ABS_WIDTH = 10
 REL_WIDTH = 10
@@ -193,7 +194,7 @@ def plot_bar(dims, cases)
       plot.terminal 'dumb nofeed'
       dims.each do |dim, name|
         y = []
-        cases.each do |_key, value|
+        cases.each_value do |value|
           y.push value[dim] || 0
         end
         plot.data << Gnuplot::DataSet.new([x, y]) do |ds|
@@ -344,12 +345,12 @@ end
 
 def get_valid_average(matrix, key)
   samples = matrix[key]
-  return nil unless samples
-  return nil if samples.include? 0
-  return nil if samples.size < matrix_cols(matrix)
+  return unless samples
+  return if samples.include? 0
+  return if samples.size < matrix_cols(matrix)
 
   avg = matrix[key].average
-  return nil if !$opt_no_hide_noises && matrix[key].standard_deviation > avg / 2
+  return if !$opt_no_hide_noises && matrix[key].standard_deviation > avg / 2
 
   avg
 end
@@ -433,7 +434,7 @@ end
 def show_one_stat(stat)
   $opt_field = stat
   _result_root_tuple = $changed_stats[stat]
-  _result_root_tuple.each do |_k, v|
+  _result_root_tuple.each_value do |v|
     v.each { |_result_root| add_stats _result_root }
   end
 end
@@ -505,7 +506,7 @@ def setup_dims
   end
 end
 
-def show_one_diff(stat, dim, v0, v, v0_stddev, v_stddev, is_float:, is_exp:, is_fail: false)
+def show_one_diff(stat, dim, v0, v, v0_stddev, v_stddev, is_float: false, is_exp: false, is_fail: false)
   if dim == $first_dim
     buf = ''
   else
@@ -638,7 +639,7 @@ def show_delta(stat, key_g)
     next false if $opt_no_hide_noises
 
     noisy = false
-    value.each do |_k, v|
+    value.each_value do |v|
       next unless v.is_a?(Array) && v.size > 1
 
       if v.standard_deviation.abs > v.average.abs / 2 || v.average.negative?
@@ -673,8 +674,8 @@ def show_delta(stat, key_g)
 
   is_float = false
   is_exp   = false
-  $cases.each do |_rt, value|
-    value.each do |_k, v|
+  $cases.each_value do |value|
+    value.each_value do |v|
       case v
       when Array
         is_float = v.any? { |vv| is_float = true if vv.abs < 100 && vv != 0 && vv.is_a?(Float) }
@@ -698,7 +699,7 @@ def show_delta(stat, key_g)
     show_header(is_fail) unless $header_shown[is_fail]
 
     v0, v0_stddev = get_v_and_stddev value, $first_dim, is_fail
-    $dims.each do |dim, _v|
+    $dims.each_key do |dim|
       v, v_stddev = get_v_and_stddev value, dim, is_fail
 
       show_one_diff stat, dim, v0, v, v0_stddev, v_stddev, is_float: is_float, is_exp: is_exp, is_fail: is_fail
@@ -727,7 +728,7 @@ def show_delta(stat, key_g)
   end
 
   unless is_fail
-    $sum.each do |k, _v|
+    $sum.each_key do |k|
       $sum[k] = Math.exp($sum[k] / $cases.length)
     end
   end
@@ -747,7 +748,7 @@ def show_delta(stat, key_g)
 end
 
 def call_mmplot
-  $cases.each do |_rt, _value|
+  $cases.each_key do |_rt|
     file = "#{_rt}/matrix.json"
     matrix1 = load_json file
     expand_matrix(matrix1, 'stat' => $opt_field)

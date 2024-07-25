@@ -25,7 +25,7 @@ export GIT_SSL_NO_VERIFY=true
 cd $(get_pkg_dir $benchmark) || die "pkg is empty"
 
 pack_to=$(basename $rootfs)
-PKG_MNT=/osimage/pkg
+[[ -n "$PKG_MNT" ]] || PKG_MNT=/osimage/pkg
 mkdir -p "$PKG_MNT"
 
 [ -n "$LKP_SERVER" ] && {
@@ -48,6 +48,8 @@ check_shared_pkg()
 {
 	if [ -L $LKP_SRC/pkg/$benchmark ]; then
 		basename $(readlink $LKP_SRC/pkg/$benchmark)
+	elif [ -L $LKP_SRC/programs/$benchmark/pkg ]; then
+		basename $(dirname $(readlink $LKP_SRC/programs/$benchmark/pkg))
 	else
 		echo $benchmark
 	fi
@@ -66,6 +68,8 @@ update_shared_pkg()
 
 fixup_distro_mirror
 
+setup_proxy
+
 distro_install_depends lkp-dev || die "failed to install lkp-dev pkgs"
 distro_install_depends ${benchmark}-dev || die "failed to install ${benchmark}-dev pkgs"
 
@@ -80,8 +84,6 @@ pkgver=$(get_pkg_info pkgver)
 pkgrel=$(get_pkg_info pkgrel)
 bm_name=$(check_shared_pkg)
 cgz_name="${bm_name}-${arch}-${pkgver:-0}-${pkgrel:-0}_${date}.cgz"
-
-setup_proxy
 
 PACMAN=true BUILDDIR=$TMP CARCH=$arch PKGEXT=.cgz CGZDEST="$sync_dest/$cgz_name" \
 	$LKP_SRC/sbin/makepkg --config $(lkp_src)/etc/makepkg.conf

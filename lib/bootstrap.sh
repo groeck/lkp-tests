@@ -116,8 +116,14 @@ setup_network()
 		echo "!!! $err_msg !!!" > /dev/ttyS0
 	}
 
-	reboot 2>/dev/null
-	exit
+	if is_virt; then
+		export NO_NETWORK=1
+		echo "export NO_NETWORK=1 due to config network failed"
+		return
+	else
+		reboot 2>/dev/null
+		exit
+	fi
 }
 
 add_lkp_user()
@@ -224,6 +230,16 @@ announce_bootup()
 	echo_to_tty "HOSTNAME $HOSTNAME, MAC $mac, kernel $release $version"
 }
 
+redirect_stdout_stderr_directly()
+{
+	echo "redirect stdout and stderr directly"
+
+	tail -f /tmp/stdout > /dev/kmsg 2>/dev/null &
+	echo $! >> /tmp/pid-tail-global
+	tail -f /tmp/stderr > /dev/kmsg 2>/dev/null &
+	echo $! >> /tmp/pid-tail-global
+}
+
 redirect_stdout_stderr()
 {
 	[ -c /dev/kmsg ] || {
@@ -245,7 +261,10 @@ redirect_stdout_stderr()
 	local stdbuf='stdbuf -o0 -e0'
 	has_cmd stdbuf || stdbuf=
 
-	if [ -n "$stdbuf$sed_u" ]; then
+	if uname -m | grep -q riscv64; then
+		# do not use stdbuf or sed -u to avoid unnecessary buffering on ricsv64 distro
+		redirect_stdout_stderr_directly
+	elif [ -n "$stdbuf$sed_u" ]; then
 		# limit 300 characters is to fix the following errro info:
 		# sed: couldn't write N items to stdout: Invalid argument
 		tail -f /tmp/stdout | $stdbuf sed $sed_u -r 's/^(.{0,900}).*$/<5>\1/' > /dev/kmsg &
@@ -253,10 +272,7 @@ redirect_stdout_stderr()
 		tail -f /tmp/stderr | $stdbuf sed $sed_u -r 's/^(.{0,900}).*$/<3>\1/' > /dev/kmsg &
 		echo $! >> /tmp/pid-tail-global
 	else
-		tail -f /tmp/stdout > /dev/kmsg 2>/dev/null &
-		echo $! >> /tmp/pid-tail-global
-		tail -f /tmp/stderr > /dev/kmsg 2>/dev/null &
-		echo $! >> /tmp/pid-tail-global
+		redirect_stdout_stderr_directly
 	fi
 }
 
@@ -387,7 +403,7 @@ cleanup_pkg_cache()
 		# Filesystem     1K-blocks      Used Available Use% Mounted on
 		# /dev/sda1      960380648 316688212 594837976  35% /
 		disk_usage=$(df "$rootfs_partition" | grep "$rootfs_partition" | awk '{print $(NF-1)}' | awk -F'%' '{print $1}')
-		[ $disk_usage -lt 80 ] && break
+		[ "$disk_usage" -lt 80 ] && break
 
 		find "$pkg_cache" \( -type f -mtime +${delday} -delete \) -or \( -type d -ctime +${delday} -empty -delete \)
 	done

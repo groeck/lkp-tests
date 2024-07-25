@@ -1,0 +1,61 @@
+PTS_SILENT_MODE=1
+spawn phoronix-test-suite default-run intel-mlc-1.1.0
+
+    Would you like to save these test results (Y/n): n
+
+Intel Memory Latency Checker 3.10:
+    pts/intel-mlc-1.1.0 [Test: Peak Injection Bandwidth]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 2 Minutes [21:03 UTC] 
+        Running Pre-Test Script @ 21:02:46
+        Started Run 1 @ 21:02:49
+        Started Run 2 @ 21:03:17
+        Started Run 3 @ 21:03:46
+        Running Post-Test Script @ 21:04:13
+
+    Test: Peak Injection Bandwidth - All Reads:
+        78116.7
+        78231.6
+        78157.9
+
+    Average: 78168.7 MB/s
+    Deviation: 0.07%
+
+
+    Test: Peak Injection Bandwidth - 3:1 Reads-Writes:
+        73073.1
+        72983.7
+        73119.7
+
+    Average: 73058.8 MB/s
+    Deviation: 0.09%
+
+
+    Test: Peak Injection Bandwidth - 2:1 Reads-Writes:
+        70141.7
+        70332.7
+        70106.1
+
+    Average: 70193.5 MB/s
+    Deviation: 0.17%
+
+
+    Test: Peak Injection Bandwidth - 1:1 Reads-Writes:
+        66600.7
+        66941
+        67238
+
+    Average: 66926.6 MB/s
+    Deviation: 0.48%
+
+
+    Test: Peak Injection Bandwidth - Stream-Triad Like:
+        72533.4
+        72617.6
+        72669.7
+
+    Average: 72606.9 MB/s
+    Deviation: 0.09%
+
+intel-mlc-1.1.0.seconds: 100.500304038

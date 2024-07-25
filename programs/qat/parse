@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+# name         : deflate
+# driver       : qat_deflate
+# module       : intel_qat
+# priority     : 4001
+# refcnt       : 1
+# selftest     : passed
+# internal     : no
+# type         : acomp
+
+# name         : pkcs1pad(rsa,sha256)
+# driver       : pkcs1pad(qat-rsa,sha256)
+# module       : kernel
+# priority     : 1000
+# refcnt       : 1
+# selftest     : passed
+# internal     : no
+# type         : akcipher
+
+while (line = $stdin.gets)
+  case line
+  when /^driver.*: (qat.*|.*qat-rsa.*)$/
+    driver = $1
+  when /^selftest.*: (.+)$/
+    result = $1 == 'passed' ? 'pass' : 'fail'
+    puts "#{driver}.#{result}: 1" if driver
+    driver = nil
+  end
+end

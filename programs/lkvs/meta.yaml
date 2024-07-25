@@ -1,0 +1,10 @@
+short_description: >
+ The Linux Kernel Validation Suite (LKVS) is a Linux Kernel test suite.
+
+description: >
+ It is a working project created by the Intel Core Linux Kernel Val Team. The purpose is to improve the quality of Intel-contributed Linux Kernel code. Furthermore, it shows the customer how to use or validate the features.
+
+homepage: https://github.com/intel/lkvs.git
+
+parameters:
+ test： 

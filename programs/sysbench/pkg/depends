@@ -1,1 +1,4 @@
-libmariadbclient18
+libaio1
+libmariadb3
+libpq5
+libssl

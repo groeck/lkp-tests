@@ -1,0 +1,67 @@
+short_description: >
+
+description: >
+ iterations:
+
+homepage: 
+
+results:
+ phpbench.test_arithmetic_sec: 
+ phpbench.test_array_operators_sec: 
+ phpbench.test_bitwise_sec: 
+ phpbench.test_casting_sec: 
+ phpbench.test_chr_fixed_sec: 
+ phpbench.test_chr_hardcoded_sec: 
+ phpbench.test_chr_var_sec: 
+ phpbench.test_comment_loop_sec: 
+ phpbench.test_compare_sec: 
+ phpbench.test_compare_false_sec: 
+ phpbench.test_compare_invert_sec: 
+ phpbench.test_compare_strict_sec: 
+ phpbench.test_compare_unstrict_sec: 
+ phpbench.test_constants_sec:
+ phpbench.test_crc32_sec: 
+ phpbench.test_do_while_sec: 
+ phpbench.test_do_while_break_sec: 
+ phpbench.test_empty_sec: 
+ phpbench.test_empty_loop_sec: 
+ phpbench.test_ereg_sec: 
+ phpbench.test_foreach_sec: 
+ phpbench.test_get_class_sec: 
+ phpbench.test_global_scalar_assign_sec: 
+ phpbench.test_global_string_assign_sec: 
+ phpbench.test_if_constant_sec: 
+ phpbench.test_increment_sec: 
+ phpbench.test_is_array_sec: 
+ phpbench.test_is_object_sec: 
+ phpbench.test_is_type_sec: 
+ phpbench.test_isset_sec: 
+ phpbench.test_line_sec:
+ phpbench.test_local_array_assign_sec: 
+ phpbench.test_local_boolean_assign_sec: 
+ phpbench.test_local_float_assign_sec: 
+ phpbench.test_local_hash_assign_sec: 
+ phpbench.test_local_integer_assign_sec: 
+ phpbench.test_local_object_assign_sec: 
+ phpbench.test_local_scalar_assign_sec: 
+ phpbench.test_local_string_assign_sec: 
+ phpbench.test_md5_sec: 
+ phpbench.test_microtime_sec:
+ phpbench.test_mt_rand_sec: 
+ phpbench.test_ord_sec: 
+ phpbench.test_ordered_functions_sec: 
+ phpbench.test_ordered_functions_references_sec: 
+ phpbench.test_preg_match_sec: 
+ phpbench.test_rand_sec: 
+ phpbench.test_references_sec: 
+ phpbench.test_sha1_sec:
+ phpbench.test_string_append_sec: 
+ phpbench.test_strlen_sec: 
+ phpbench.test_switch_sec: 
+ phpbench.test_time_sec: 
+ phpbench.test_unordered_functions_sec: 
+ phpbench.test_variable_variables_sec:
+ phpbench.test_while_sec: 
+ phpbench.Iterations: 
+ phpbench.Score: 
+

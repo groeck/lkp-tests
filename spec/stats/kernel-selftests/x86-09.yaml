@@ -1,6 +1,2 @@
-x86.check_initial_reg_state_32.All_GPRs_except_SP_are_0.pass: 1
-x86.check_initial_reg_state_32.FLAGS_is_0x202.pass: 1
 x86.check_initial_reg_state_32.pass: 1
-x86.check_initial_reg_state_64.All_GPRs_except_SP_are_0.pass: 1
-x86.check_initial_reg_state_64.FLAGS_is_0x202.pass: 1
 x86.check_initial_reg_state_64.pass: 1

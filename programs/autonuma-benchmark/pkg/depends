@@ -1,7 +1,6 @@
-make
-numactl
-libnuma-dev
-gcc
-libc-dev
-gnuplot
+build-essential
 gawk
+gnuplot
+libc-dev
+libnuma-dev
+numactl

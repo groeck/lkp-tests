@@ -1,6 +1,7 @@
 #!/bin/sh
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 uperf_path=$BENCHMARK_ROOT/uperf/usr/local/bin/uperf
 [ -f "$uperf_path" ] || die "can not find $uperf_path"

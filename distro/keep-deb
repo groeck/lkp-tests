@@ -33,7 +33,7 @@ g++
 ebtables
 uuid-runtime
 mariadb-server
-libmariadbclient18
+libmariadb3
 mysql-server
 mysql-common
 udisks2
@@ -49,5 +49,7 @@ traceroute
 openvswitch-common
 openvswitch-switch
 gcc-9
+gcc-12
+gcc-10
 mpi-default-dev
 tcpdump

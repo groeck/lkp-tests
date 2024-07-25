@@ -2,6 +2,7 @@
 # - iterations
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/phpbench || die "no $BENCHMARK_ROOT/phpbench"
 log_cmd php phpbench.php -i $iterations || die "failed to run phpbench"

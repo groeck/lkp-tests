@@ -1,0 +1,55 @@
+suite: stress-ng
+testcase: stress-ng
+category: benchmark
+ 
+nr_threads: 100%
+ 
+testtime:
+  - 60s
+
+stress-ng:
+  test:
+    - tee
+    - timer
+    - timerfd
+    - time-warp
+    - tlb-shootdown
+    - tmpfs
+    - tree
+    - trig
+    - tsc
+    - tsearch
+    - tun
+    - udp
+    - udp-flood
+    - umount
+    - unshare
+    - uprobe
+    - urandom
+    - userfaultfd
+    - usersyscall
+    - vdso
+    - vecfp
+    - vecmath
+    - vecshuf
+    - vecwide
+    - vfork
+    - vforkmany
+    - vm
+    - vm-addr
+    - vm-rw
+    - vm-segv
+    - vm-splice
+    - vma
+    - vnni
+    - wait
+    - waitcpu
+    # - watchdog # watchdog: /dev/watchdog does not exist, skipping test
+    - wcs
+    - workload
+    - x86cpuid
+    - x86syscall
+    - yield
+    - zero
+    - zlib
+    - zombie

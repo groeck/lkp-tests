@@ -38,10 +38,10 @@ describe 'filter/need_kernel_version.rb' do
     { 'v4.16' => 'gcc', 'v5.11' => 'clang' }.each do |version, compiler|
       it "filters the job built with #{compiler}" do
         generate_context(compiler, version)
-        job = generate_job compiler, <<~EOF
-              need_kernel_version:
-              - '>= v4.17, gcc'
-              - '>= v5.12, clang'
+        job = generate_job compiler, <<-EOF
+need_kernel_version:
+- '>= v4.16.1, gcc'
+- '>= v5.12, clang'
         EOF
         expect { job.expand_params }.to raise_error Job::ParamError
       end
@@ -49,13 +49,13 @@ describe 'filter/need_kernel_version.rb' do
   end
 
   context 'kernel is satisfied' do
-    { 'v5.0' => 'gcc', 'v5.12' => 'clang' }.each do |version, compiler|
+    { 'v5.0' => 'gcc', 'v5.12.112' => 'clang' }.each do |version, compiler|
       it "does not filters the job built with #{compiler}" do
         generate_context(compiler, version)
-        job = generate_job compiler, <<~EOF
-              need_kernel_version:
-              - '>= v4.17, gcc'
-              - '>= v5.12, clang'
+        job = generate_job compiler, <<-EOF
+need_kernel_version:
+- '>= v4.17, gcc'
+- '>= v5.12.112, clang'
         EOF
         job.expand_params
       end
@@ -66,10 +66,10 @@ describe 'filter/need_kernel_version.rb' do
     { 'gcc' => 'v6.2', 'clang' => 'v6.2' }.each do |compiler, version|
       it 'filter out the job' do
         generate_context(compiler, version)
-        job = generate_job compiler, <<~EOF
-              need_kernel_version:
-              - '>= v6.3-rc1, gcc'
-              - '>= v6.3-rc1, clang'
+        job = generate_job compiler, <<-EOF
+need_kernel_version:
+- '>= v6.3-rc1, gcc'
+- '>= v6.3-rc1, clang'
         EOF
         expect { job.expand_params }.to raise_error Job::ParamError
       end
@@ -78,10 +78,10 @@ describe 'filter/need_kernel_version.rb' do
     { 'gcc' => 'v6.3-rc1', 'clang' => 'v6.3-rc1' }.each do |compiler, version|
       it 'does not filter out the job' do
         generate_context(compiler, version)
-        job = generate_job compiler, <<~EOF
-              need_kernel_version:
-              - '>= v6.3-rc1, gcc'
-              - '>= v6.3-rc1, clang'
+        job = generate_job compiler, <<-EOF
+need_kernel_version:
+- '>= v6.3-rc1, gcc'
+- '>= v6.3-rc1, clang'
         EOF
         job.expand_params
       end

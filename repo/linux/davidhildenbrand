@@ -1,1 +1,2 @@
 url: https://github.com/davidhildenbrand/linux
+test_old_branches: .*

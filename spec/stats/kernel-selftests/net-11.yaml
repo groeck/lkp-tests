@@ -12,7 +12,7 @@ net.rtnetlink.sh.erspan.pass: 1
 net.rtnetlink.sh.ip6erspan.pass: 1
 net.rtnetlink.sh.bridge_setup.pass: 1
 net.rtnetlink.sh.ipv6_addrlabel.pass: 1
-net.rtnetlink.sh.set_ifalias_bebb8fa1-e97e-4b52-a0c5-d3d9cf979d67_for_test-dummy0.pass: 1
+net.rtnetlink.sh.set_ifalias_for_test-dummy0.pass: 1
 net.rtnetlink.sh.vrf.pass: 1
 net.rtnetlink.sh.vxlan.pass: 1
 net.rtnetlink.sh.fou.pass: 1

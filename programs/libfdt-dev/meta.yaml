@@ -1,0 +1,10 @@
+short_description: >
+ The Device Tree Compiler
+
+description: >
+
+homepage: https://git.kernel.org/cgit/utils/dtc/dtc.git
+
+parameters:
+
+results:

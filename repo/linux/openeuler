@@ -1,0 +1,11 @@
+url: https://gitee.com/openeuler/kernel.git
+test_old_branches: .*
+branch_allowlist: OLK-6.6|OLK-5.10|openEuler-1.0-LTS
+branch_denylist: .*
+arch_allowlist: x86_64|arm64|loongarch
+arch_denylist: .*
+mail_to: kernel@openeuler.org
+private_report_branch: .*
+extra_mail_to: COMMITTER
+notify_build_success_branch: .*
+no_merge_branch: .*

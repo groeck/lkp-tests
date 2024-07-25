@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. $LKP_SRC/lib/debug.sh
+
 [ -n "$lib_env_load_once" ] && return
 lib_env_load_once=1
 
@@ -85,6 +87,24 @@ set_perf_path()
 	fi
 }
 
+set_iptables_path()
+{
+	for iptables_bin in iptables ip6tables
+	do
+		has_cmd $iptables_bin || {
+			if has_cmd $iptables_bin-nft; then
+				ln -sfv $(cmd_path $iptables_bin-nft) /usr/sbin/$iptables_bin
+				ln -sfv $(cmd_path $iptables_bin-nft-restore) /usr/sbin/$iptables_bin-restore
+				ln -sfv $(cmd_path $iptables_bin-nft-save) /usr/sbin/$iptables_bin-save
+			elif has_cmd $iptables_bin-legacy; then
+				ln -sfv $(cmd_path $iptables_bin-legacy) /usr/sbin/$iptables_bin
+				ln -sfv $(cmd_path $iptables_bin-legacy-restore) /usr/sbin/$iptables_bin-restore
+				ln -sfv $(cmd_path $iptables_bin-legacy-save) /usr/sbin/$iptables_bin-save
+			fi
+		}
+	done
+}
+
 disable_nmi_watchdog()
 {
 	# Disable NMI watchdog to free up one perf counter
@@ -107,4 +127,26 @@ is_aliyunos()
 is_docker()
 {
 	[ -f /.dockerenv ]
+}
+
+# Get testing env kernel config file
+# Depending on your system, you'll find it in any one of these:
+# /proc/config.gz
+# /boot/config
+# /boot/config-$(uname -r)
+get_kconfig()
+{
+	local config_file="$1"
+	if [[ -e "/proc/config.gz" ]]; then
+		gzip -dc "/proc/config.gz" > "$config_file"
+	elif [[ -e "/boot/config-$(uname -r)" ]]; then
+		cat "/boot/config-$(uname -r)" > "$config_file"
+	elif [[ -e "/boot/config" ]]; then
+		cat "/boot/config" > "$config_file"
+	else
+		echo "Failed to get current kernel config"
+		return 1
+	fi
+
+	[[ -s "$config_file" ]]
 }

@@ -1,11 +1,11 @@
 pkgname=stress-ng
-pkgver=0.15.04
+pkgver=git
 pkgrel=1
 pkgdesc="tool to load and stress a computer"
 arch=('i386' 'x86_64' 'riscv64' 'aarch64')
 url="http://kernel.ubuntu.com/~cking/stress-ng/"
 license=('GPL')
-source=("https://github.com/ColinIanKing/stress-ng.git#tag=V$pkgver")
+source=("https://github.com/ColinIanKing/stress-ng.git")
 md5sums=('SKIP')
 
 build() {

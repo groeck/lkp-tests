@@ -12,19 +12,19 @@ class KernelTag
     @kernel_tag = kernel_tag
   end
 
-  # Convert kernel_tag to number, major *1000 + minor * 100 + prerelease
-  # If kernel is not a rc version. Set prerelease as 99.
-  # E.g. kernel_tag: v5.7-rc3 ==> 5 * 10000 + 7 * 100 + 3 = 50703
-  # kernel_tag: v5.7 ==> 5 * 10000 + 7 *100 + 99 = 50799
-  # kernel_tag: v4.20-rc2 ==> 4 * 10000 + 20 * 100 + 2 = 42002
+  # Convert kernel_tag to number, major * 1_000_000_000 + minor * 1_000_000 + patch_level * 1_000 + prerelease
+  # If kernel is not a rc version. Set prerelease as 999.
+  #   kernel_tag: v5.7-rc3  ==> 5 * 1000000000 + 7 * 1000000 + 3                = 5007000003
+  #   kernel_tag: v5.7      ==> 5 * 1000000000 + 7 * 1000000 + 999              = 5007000999
+  #   kernel_tag: v5.7.268  ==> 5 * 1000000000 + 7 * 1000000 + 268 * 1000 + 999 = 5007268999
+  #   kernel_tag: v4.20-rc2 ==> 4 * 1000000000 + 20 * 1000000 + 2               = 4020000002
   def numerize_kernel_tag(kernel_tag)
-    match = kernel_tag.match(/v(?<major_version>[0-9])\.(?<minor_version>\d+)\.?(?:-rc(?<prerelease_version>\d+))?/)
-    prerelease_version = if match[:prerelease_version]
-                           match[:prerelease_version].to_i
-                         else
-                           99
-                         end
-    match[:major_version].to_i * 10_000 + match[:minor_version].to_i * 100 + prerelease_version
+    match = kernel_tag.match(/v(?<major_version>[0-9])\.(?<minor_version>\d+)\.?(?<patch_level>\d+)?(?:-rc(?<prerelease_version>\d+))?/)
+
+    match[:major_version].to_i * 1_000_000_000 + \
+      match[:minor_version].to_i * 1_000_000 + \
+      match[:patch_level].to_i * 1_000 + \
+      (match[:prerelease_version] || 999).to_i
   end
 
   def <=>(other)
@@ -45,7 +45,7 @@ def kernel_match_version?(kernel_version, expected_kernel_versions)
   kernel_version = KernelTag.new(kernel_version)
 
   expected_kernel_versions.all? do |expected_kernel_version|
-    match = expected_kernel_version.match(/(?<operator>==|!=|<=|>|>=)?\s*(?<kernel_tag>v[0-9]\.\d+(?:-rc\d+)*)/)
+    match = expected_kernel_version.match(/(?<operator>==|!=|<=|>|>=)?\s*(?<kernel_tag>v[0-9]\.\d+(?:\.\d+)?(?:-rc\d+)?)/)
     raise Job::SyntaxError, "Wrong syntax of kconfig setting: #{expected_kernel_versions}" if match.nil? || match[:kernel_tag].nil?
 
     operator = match[:operator] || '>='

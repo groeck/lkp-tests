@@ -3,6 +3,7 @@ need_kconfig:
 - PACKET: y
 - CFG80211: m
 - CFG80211_WEXT: y
+- CFG80211_DEBUGFS: y
 - MAC80211: m
 - MAC80211_HWSIM: m
 - MAC80211_LEDS: y

@@ -1,5 +1,7 @@
 url: https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git
-integration_testing_branches: linux-next
+integration_testing_branches:
+- linux-next
+- bleeding-edge
 mail_cc:
 - linux-acpi@vger.kernel.org
 - devel@acpica.org
@@ -26,4 +28,3 @@ subsystems:
 - man
 notify_build_success_branch: bleeding-edge|master|fixes
 belongs_to: power management
-no_merge_branch: bleeding-edge

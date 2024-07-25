@@ -1,0 +1,161 @@
+Test Start Time: 2023-10-17_06-51-29
+--------------------------------------------------------
+Testcase                                                                    Result     Exit Value  Duration
+--------                                                                    ------     ----------  --------
+cet_tests.sh -t cp_test -n shstk_cp -k "control protection"                  FAIL      1           1.316s  
+shstk_alloc                                                                  FAIL      1           0.024s  
+shstk_unlock_test                                                            FAIL      1           0.024s  
+test_shadow_stack                                                            FAIL      1           0.024s  
+wrss                                                                         FAIL      1           0.024s  
+quick_test                                                                   BLOCK     2           0.023s  
+shstk_huge_page                                                              BLOCK     2           0.026s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p s2    FAIL      1           1.319s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p sl1   FAIL      1           1.310s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p sr    FAIL      1           1.322s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p sn    FAIL      1           1.583s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p buf1  FAIL      1           1.933s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p snc   FAIL      1           1.630s  
+cet_tests.sh -t cp_test -n glibc_shstk_test -k "control protection" -p sc    FAIL      1           1.638s  
+cet_tests.sh -t no_cp -n glibc_shstk_test -k "control protection" -p s1      PASS      0           1.610s  
+cet_tests.sh -t no_cp -n glibc_shstk_test -k "control protection" -p s3      PASS      0           1.589s  
+cet_tests.sh -t no_cp -n glibc_shstk_test -k "control protection" -p buf2    PASS      0           1.420s  
+cet_tests.sh -t cet_ssp -n glibc_shstk_test -p ssp                           NA        32          1.361s  
+cet_tests.sh -t kmod_ibt_illegal -n cet_app -p "b1" -k "Missing ENDBR"       BLOCK     2           0.176s  
+cet_tests.sh -t kmod_ibt_legal -n cet_app -p "b2" -k "Missing ENDBR"         BLOCK     2           0.179s  
+powermgr_cstate_tests.sh -t verify_cstate_name                               PASS      0           1.270s  
+powermgr_cstate_tests.sh -t verify_cstate_switch                             FAIL      1           65.328s 
+powermgr_cstate_tests.sh -t verify_client_core_c7_residency_during_runtime   FAIL      1           11.611s 
+powermgr_cstate_tests.sh -t verify_client_core_c7_residency_during_s2idle    FAIL      1           17.785s 
+powermgr_cstate_tests.sh -t verify_client_pkg6_by_disabling_cc8              BLOCK     2           1.330s  
+powermgr_cstate_tests.sh -t verify_client_pkg8_by_disabling_cc10             BLOCK     2           1.756s  
+powermgr_cstate_tests.sh -t verify_cstate_list_by_perf                       FAIL      1           5.492s  
+powermgr_cstate_tests.sh -t verify_residency_latency_override                BLOCK     2           1.484s  
+intel_sst.sh -t isst_pp_config_enable_status                                 BLOCK     2           1.436s  
+intel_sst.sh -t isst_legacy_driver_sysfs                                     BLOCK     2           1.433s  
+intel_sst.sh -t isst_cap                                                     BLOCK     2           1.300s  
+intel_sst.sh -t isst_unlock_status                                           BLOCK     2           1.240s  
+intel_sst.sh -t isst_pp_config_level3_config                                 BLOCK     2           1.232s  
+intel_sst.sh -t isst_pp_config_level4_config                                 BLOCK     2           1.226s  
+intel_sst.sh -t isst_base_freq_pp_level3_change                              BLOCK     2           1.227s  
+intel_sst.sh -t isst_base_freq_pp_level4_change                              BLOCK     2           1.227s  
+intel_sst.sh -t isst_cp_enable_prop_type                                     BLOCK     2           1.227s  
+intel_sst.sh -t isst_cp_set_config_clos_min_0                                BLOCK     2           1.237s  
+intel_sst.sh -t isst_cp_set_config_clos_min_1                                BLOCK     2           1.231s  
+intel_sst.sh -t isst_cp_set_config_clos_min_2                                BLOCK     2           1.447s  
+intel_sst.sh -t isst_cp_set_config_clos_min_3                                BLOCK     2           1.673s  
+intel_sst.sh -t isst_cp_set_config_clos_max_0                                BLOCK     2           1.437s  
+intel_sst.sh -t isst_cp_set_config_clos_max_1                                BLOCK     2           1.431s  
+intel_sst.sh -t isst_cp_set_config_clos_max_2                                BLOCK     2           1.436s  
+intel_sst.sh -t isst_cp_set_config_clos_max_3                                BLOCK     2           1.429s  
+intel_sst.sh -t isst_cp_set_config_clos_prop_0                               BLOCK     2           1.443s  
+intel_sst.sh -t isst_cp_set_config_clos_prop_1                               BLOCK     2           1.340s  
+intel_sst.sh -t isst_cp_set_config_clos_prop_2                               BLOCK     2           1.224s  
+intel_sst.sh -t isst_cp_set_config_clos_prop_3                               BLOCK     2           1.224s  
+intel_sst.sh -t isst_cp_assoc_set_get_clos_0                                 BLOCK     2           1.228s  
+intel_sst.sh -t isst_cp_assoc_set_get_clos_1                                 BLOCK     2           1.227s  
+intel_sst.sh -t isst_cp_assoc_set_get_clos_2                                 BLOCK     2           1.233s  
+intel_sst.sh -t isst_cp_assoc_set_get_clos_3                                 BLOCK     2           1.224s  
+intel_sst.sh -t isst_cp_max_cpu_assoc_set_get_clos_0                         BLOCK     2           1.224s  
+intel_sst.sh -t isst_cp_max_cpu_assoc_set_get_clos_1                         BLOCK     2           1.230s  
+intel_sst.sh -t isst_cp_max_cpu_assoc_set_get_clos_2                         BLOCK     2           1.433s  
+intel_sst.sh -t isst_cp_max_cpu_assoc_set_get_clos_3                         BLOCK     2           1.659s  
+intel_sst.sh -t isst_cp_disable_prop_type                                    BLOCK     2           1.433s  
+intel_sst.sh -t isst_cp_enable_ordered_type                                  BLOCK     2           1.444s  
+intel_sst.sh -t isst_cp_disable_ordered_type                                 BLOCK     2           1.425s  
+intel_sst.sh -t isst_bf_baseline_freq_test                                   BLOCK     2           1.437s  
+intel_sst.sh -t isst_hp_bf_freq_test_pp_level0                               BLOCK     2           1.437s  
+intel_sst.sh -t isst_hp_bf_freq_test_pp_level3                               BLOCK     2           1.436s  
+intel_sst.sh -t isst_hp_bf_freq_test_pp_level4                               BLOCK     2           1.288s  
+intel_sst.sh -t isst_hp_bf_freq_pp_level0_orderred_type_test                 BLOCK     2           1.223s  
+intel_sst.sh -t isst_hp_bf_freq_pp_level3_orderred_type_test                 BLOCK     2           1.223s  
+intel_sst.sh -t isst_hp_bf_freq_pp_level4_orderred_type_test                 BLOCK     2           1.227s  
+intel_sst.sh -t isst_hp_tf_freq_test_pp_level0                               BLOCK     2           1.225s  
+intel_sst.sh -t isst_hp_tf_freq_test_pp_level3                               BLOCK     2           1.226s  
+intel_sst.sh -t isst_hp_tf_freq_test_pp_level4                               BLOCK     2           1.222s  
+intel_sst.sh -t isst_hp_tf_freq_pp_level0_ordered_type_test                  BLOCK     2           1.239s  
+intel_sst.sh -t isst_hp_tf_freq_pp_level3_ordered_type_test                  BLOCK     2           1.389s  
+intel_sst.sh -t isst_hp_tf_freq_pp_level4_ordered_type_test                  BLOCK     2           1.660s  
+pmu_tests.sh -t fix_counter                                                  FAIL      1           1.092s  
+pmu_tests.sh -t basic                                                        PASS      0           0.392s  
+pmu_tests.sh -t uncore                                                       PASS      0           0.291s  
+apebs_tests.sh -t lbr_1 -w 1                                                 PASS      0           4.772s  
+apebs_tests.sh -t lbr_2 -w 1                                                 PASS      0           4.603s  
+apebs_tests.sh -t xmm_1 -w 1                                                 FAIL      1           1.935s  
+apebs_tests.sh -t xmm_2 -w 1                                                 FAIL      1           1.950s  
+apebs_tests.sh -t ip_1 -w 1                                                  PASS      0           3.078s  
+apebs_tests.sh -t ip_2 -w 1                                                  PASS      0           3.510s  
+apebs_tests.sh -t data_src -w 1                                              PASS      0           5.978s  
+apebs_tests.sh -t lbr_1 -w 1                                                 PASS      0           4.769s  
+apebs_tests.sh -t lbr_2 -w 1                                                 PASS      0           3.709s  
+apebs_tests.sh -t xmm_1 -w 1                                                 FAIL      1           1.298s  
+apebs_tests.sh -t xmm_2 -w 1                                                 FAIL      1           1.299s  
+apebs_tests.sh -t ip_1 -w 1                                                  PASS      0           3.099s  
+apebs_tests.sh -t ip_2 -w 1                                                  PASS      0           3.434s  
+apebs_tests.sh -t data_src -w 1                                              PASS      0           5.859s  
+perf_tests.sh -t fp                                                          PASS      0           5.770s  
+perf_tests.sh -t disablebranch                                               PASS      0           3.934s  
+perf_tests.sh -t pt                                                          PASS      0           3.955s  
+perf_tests.sh -t pwr_evt                                                     NA        32          0.146s  
+perf_tests.sh -t pwr_evt_branch                                              NA        32          0.151s  
+perf_tests.sh -t pwr_evt_itrace                                              NA        32          0.132s  
+perf_tests.sh -t user                                                        PASS      0           91.665s 
+perf_tests.sh -t kernel                                                      PASS      0           1457.453s
+perf_tests.sh -t cyc                                                         PASS      0           7.323s  
+perf_tests.sh -t mtc                                                         PASS      0           6.437s  
+perf_tests.sh -t pebs                                                        FAIL      1           2.043s  
+perf_tests.sh -t lbr                                                         FAIL      255         0.774s  
+perf_tests.sh -t mtopa                                                       PASS      0           3.689s  
+perf_tests.sh -t sample                                                      PASS      0           3.682s  
+perf_tests.sh -t kernel_m                                                    FAIL      1           1.654s  
+perf_tests.sh -t miss_frequency                                              PASS      0           3.304s  
+perf_tests.sh -t virtual_lbr                                                 PASS      0           3.394s  
+perf_tests.sh -t lost_data                                                   FAIL      1           1.973s  
+perf_tests.sh -t notnt                                                       BLOCK     2           0.286s  
+perf_tests.sh -t event_trace                                                 BLOCK     2           0.242s  
+intel_rapl_test.sh -t check_sysfs                                            FAIL      1           2.420s  
+intel_rapl_test.sh -t check_pkg_domain                                       FAIL      1           2.149s  
+intel_rapl_test.sh -t check_pp0_domain                                       FAIL      1           1.794s  
+intel_rapl_test.sh -t check_pp1_domain                                       FAIL      1           1.809s  
+intel_rapl_test.sh -t check_pkg_domain_msr                                   FAIL      1           1.800s  
+intel_rapl_test.sh -t check_pkg_power_limit_msr                              FAIL      1           1.802s  
+intel_rapl_test.sh -t check_pkg_energy_status                                FAIL      1           1.803s  
+intel_rapl_test.sh -t check_pkg_energy_status_with_workload                  FAIL      1           2.505s  
+intel_rapl_test.sh -t check_pkg_power_limit_75                               FAIL      1           2.673s  
+intel_rapl_test.sh -t check_pkg_power_limit_50                               FAIL      1           2.359s  
+intel_rapl_test.sh -t check_pp0_energy_status                                FAIL      1           2.373s  
+intel_rapl_test.sh -t check_pp0_energy_status_with_workload                  FAIL      1           2.388s  
+intel_rapl_test.sh -t check_pp1_energy_status                                FAIL      1           1.900s  
+intel_rapl_test.sh -t check_rapl_control_after_power_limit_change            FAIL      1           1.793s  
+intel_rapl_test.sh -t sysfs_perf_name_compare                                FAIL      1           1.799s  
+intel_rapl_test.sh -t sysfs_perf_energy_compare_workload_client              FAIL      1           1.796s  
+intel_rapl_test.sh -t sysfs_turbostat_energy_compare_workload_client         FAIL      1           1.797s  
+intel_sdsi.sh -t driver_unbind_bind                                          FAIL      1           0.191s  
+intel_sdsi.sh -t sdsi_sysfs                                                  FAIL      1           0.183s  
+intel_sdsi.sh -t sdsi_per_socket                                             FAIL      1           0.206s  
+intel_sdsi.sh -t sysfs_register_attri                                        FAIL      1           0.228s  
+intel_sdsi.sh -t sysfs_certificate_attri                                     FAIL      1           0.225s  
+intel_sdsi.sh -t sysfs_telemetry_attri                                       FAIL      1           0.228s  
+intel_sdsi.sh -t sdsi_devices                                                FAIL      1           0.177s  
+intel_sdsi.sh -t sdsi_ppin                                                   FAIL      1           0.198s  
+intel_sdsi.sh -t nvram_content_err_check                                     FAIL      1           0.209s  
+intel_sdsi.sh -t enable_status                                               FAIL      1           0.229s  
+intel_sdsi.sh -t read_meter_telemetry                                        FAIL      1           0.198s  
+intel_sdsi.sh -t stress_reading_reg                                          FAIL      1           0.726s  
+intel_sdsi.sh -t stress_reading_lic                                          FAIL      1           0.659s  
+intel_sdsi.sh -t stress_reading_tele                                         FAIL      1           0.435s  
+cpu_topology.sh -t verify_thread_per_core                                    BLOCK     2           0.228s  
+cpu_topology.sh -t verify_cores_per_socket                                   BLOCK     2           0.230s  
+cpu_topology.sh -t verify_socket_num                                         BLOCK     2           0.231s  
+cpu_topology.sh -t verify_level_type                                         BLOCK     2           0.233s  
+tpmi_ufs.sh -t check_ufs_unbind_bind                                         PASS      0           0.262s  
+tpmi_ufs.sh -t check_ufs_device                                              FAIL      1           0.429s  
+tpmi_ufs.sh -t check_ufs_sysfs_attr                                          FAIL      1           0.447s  
+tpmi_ufs.sh -t check_ufs_init_min_max_value                                  PASS      0           0.265s  
+tpmi_ufs.sh -t check_ufs_min_equals_to_max                                   PASS      0           0.245s  
+tpmi_ufs.sh -t check_ufs_max_equals_to_min                                   PASS      0           0.241s  
+tpmi_ufs.sh -t check_ufs_current_dynamic                                     PASS      0           0.241s  
+tpmi_ufs.sh -t check_per_pkg_min_max_change                                  BLOCK     2           0.334s  
+umip_exceptions_32 a                                                         FAIL      127         0.051s  
+umip_exceptions_64 a                                                         FAIL      127         0.051s  
+xstate_64                                                                    FAIL      127         0.052s  
+--------------------------------------------------------

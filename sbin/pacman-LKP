@@ -131,15 +131,15 @@ upgrade() {
 				pack_deb "$pkg_name"
 				dpkg -i "$pkg_name-lkp.deb" 2>/tmp/dpkg_error || {
 					grep -v "dpkg: warning: files list file for package '.*' missing;" /tmp/dpkg_error
-					return 1
+					exit 1
 				}
 				;;
 			rpm)
 				RPM_BUILD_DIR="$SRC_DIR/rpm_build"
 				pack_rpm "$pkg_name"
-				rpm -ivh --replacepkgs --force  "$RPM_BUILD_DIR/RPMS/$pkg_name-LKP.rpm" || return 1 ;;
+				rpm -ivh --replacepkgs --force  "$RPM_BUILD_DIR/RPMS/$pkg_name-LKP.rpm" || exit 1 ;;
 			*)
-				cp -r "$INSTALL_DIR"/* / || return 1 ;;
+				cp -r "$INSTALL_DIR"/* / || exit 1 ;;
 		esac
 		
 		echo "$pkg_name" >> "$DBFILE"

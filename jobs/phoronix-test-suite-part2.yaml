@@ -5,12 +5,93 @@ category: benchmark
 need_memory: 8G
 
 phoronix-test-suite:
+  - test:
+    - amg-1.1.0
+    - palabos-1.0.0
+    - phpbench-1.1.6
+    - pjdfstest-1.0.1
+    - pjsip-1.0.1
+    # - plaidml-1.0.4 # need to connect to internet
+    - pmbench-1.0.2
+    - polyhedron-1.0.1
+    - postmark-1.1.2
+    - povray-1.2.1
+    - primesieve-1.9.0
+    # - psstop-1.0.0 # not an available test
+    # - pts-self-test-1.0.4 # need to connect to internet and only for selftest
+    - pybench-1.1.3
+    - pyhpc-3.0.0
+    # - pymongo-inserts-1.0.0 # E: ModuleNotFoundError: No module named 'pymongo'
+    # - pyopencl-1.0.0 # 3rd party url is N/A
+    # - qe-1.3.1 # oom
+    # - qmcpack-1.7.0 # The test quit with a non-zero exit status.
+    # - quantlib-1.2.0 # The test quit with a non-zero exit status.
+    - quicksilver-1.0.0
+    # - rabbitmq-1.1.1 # The test quit with a non-zero exit status.
+    - rays1bench-1.0.0
+    - rbenchmark-1.0.3
+    # - scikit-learn-1.1.0 # install failed
+    - redshift-1.0.1
+    - remhos-1.0.0
+    - rnnoise-1.0.2
+    # - rust-prime-1.0.0 # install failed
+    # - sample-program-1.1.1 # not an available test
+    - securemark-1.0.0
+    # - serial-loopback-1.0.2 # need to really plug to serial ports
+    - simdjson-2.0.1
+    - smallpt-1.2.1
+    # - smart-1.0.0 # depending on the health of hard disk, may cost long time
+    # - smhasher-1.1.0 # The test quit with a non-zero exit status. E: ./smhasher: 3: ./SMHasher: not found
+    - spark-1.0.1
+    # - speedb-1.0.1 # The test quit with a non-zero exit status.
+    # - speedtest-cli-1.0.0 # The test quit with a non-zero exit status.
+    - sqlite-speedtest-1.0.1
+    # - srsran-2.1.0 # The test quit with a non-zero exit status
+    # - stargate-1.1.0 # The test quit with a non-zero exit status.
+    - stockfish-1.4.0
+    # - stream-dynamic-1.0.0 # for AMD CPU only
+    - stressapptest-1.0.1
+    # - stresscpu2-1.0.1 # not performance test
+    - sudokut-1.0.1
+    - sunflow-1.1.3
+    - swet-1.0.0
+    - synthmark-1.0.1
+    - system-decompress-bzip2-1.0.2
+    # - system-decompress-gzip-1.1.1 # 3rd party url is N/A
+    - system-decompress-xz-1.0.2
+    # - systemd-boot-kernel-1.0.1 # too old to run, use systemd-boot-total instead
+    # - systemd-boot-userspace-1.0.1 # too old to run, use systemd-boot-total instead
+    - t-test1-1.0.1
+    - tachyon-1.3.0
+    # - thronesofbritannia-1.0.0 # install failed
+    - tinymembench-1.0.2
+    - tjbench-1.2.0
+    - tnn-1.1.0
+    - toktx-1.0.1
+    # - toybrot-1.2.0 # install failed
+    # - trislam-1.0.0 # install failed
+    # - tscp-1.2.2 # The test quit with a non-zero exit status.
+    - ttsiod-renderer-1.7.0
+    - unpack-firefox-1.0.0
+    - unpack-linux-1.2.0
+    - uvg266-1.0.0
+    # - v-ray-1.0.2 # 3rd party url is N/A
+    - viennacl-1.1.0
+    - vvenc-1.9.1
+    # - webp-1.2.0 # webp-1.2.0 is not installed
+    # - whisper-cpp-1.0.0 # The test quit with a non-zero exit status.
+    # - x264-2.5.0 # not an available test
+    # - x265-1.3.0 # install failed
+    - xmrig-1.2.0
+    - xsbench-1.0.0
+    # - yugabytedb-1.0.0 # The test run did not produce a result.
+    # - y-cruncher-1.1.0 # install failed
+
   - test: pennant-1.1.0
     option_a:
       - leblancbig
       - sedovbig
-      # - Test All Options
-  - test: perf-bench-1.0.3
+  - test: perf-bench-1.0.5
     option_a:
       - Sched Pipe
       - Memcpy 1MB
@@ -19,91 +100,47 @@ phoronix-test-suite:
       - Futex Hash
       - Futex Lock-Pi
       - Epoll Wait
-      # - Test All Options
   - test: perl-benchmark-1.0.1
     option_a:
       - Pod2html
       - Interpreter
-      # - Test All Options
+
   - test: php-1.0.0
     option_a:
       - Zend bench
       - Zend micro_bench
-      # - Test All Options
-  - test:
-    - phpbench-1.1.6
-    - pjdfstest-1.0.1
-    # - plaidml-1.0.4 # need to connect to internet
-  # - test: polybench-c-1.2.0 # temporarily comment out the failed test
-    # option_a:
-      # - 3 Matrix Multiplications
-      # - Correlation Computation
-      # - Covariance Computation
-      # - Test All Options
-  - test:
-    - postmark-1.1.2
-    - povray-1.2.1
-  - test: pgbench-1.9.1
+
+  - test: polybench-c-1.2.0
     option_a:
-      - Buffer Test
-      # - Mostly RAM # need more than 3h
-      # - On-Disk # need more than 3h
-      # - Test All Options
-    option_b:
-      - Single Thread
-      - Normal Load
-      # - Heavy Contention
-      # - Test All Options
-    option_c:
-      - Read Write
-      - Read Only
-      # - Test All Options
-  - test:
-    - primesieve-1.7.0
-    - psstop-1.0.0
-    # - pts-self-test-1.0.4 # need to connect to internet and only for selftest
-    - pybench-1.1.3
-    - pymongo-inserts-1.0.0
-    # - pyopencl-1.0.0 # 3rd party url is N/A
+      - 3 Matrix Multiplications
+      # - Correlation Computation # The test quit with a non-zero exit status.
+      - Covariance Computation
+
   - test: radiance-1.0.0
     option_a:
       - Serial
       - SMP Parallel
-      # - Test All Options
-  - test: redis-1.3.1
+
+  - test: redis-1.4.0
     option_a:
       - SET
       - GET
       - LPUSH
       - LPOP
       - SADD
-      # - Test All Options
-  - test: renaissance-1.1.1
-    option_a:
-      - 1 # Akka Unbalanced Cobwebbed Tree
-      - 2 # Savina Reactors.IO
-      - 3 # Apache Spark ALS
-      - 4 # Random Forest
-      - 5 # Apache Spark Bayes
-      - 6 # Apache Spark PageRank
-      - 7 # In-Memory Database Shootout
-      - 8 # Scala Dotty
-      - 9 # Twitter HTTP Requests
-      - 10 # Genetic Algorithm Using Jenetics + Futures
-      # - Test All Options
-  # - test: rbenchmark-1.0.3 # temporarily comment out the failed test
-  - test: rocksdb-1.0.2
+    option_b:
+      - 50
+      - 500
+      - 1000
+
+  - test: rocksdb-1.5.0
     option_a:
       - Sequential Fill
       - Random Fill
       - Random Fill Sync
       - Random Read
       - Read While Writing
-      # - Test All Options
-  - test:
-    - rust-prime-1.0.0
-    - sample-program-1.1.1
-  - test: schbench-1.0.0
+  - test: schbench-1.1.0
     option_a: # message threads
       - 2
       # - 4
@@ -111,7 +148,6 @@ phoronix-test-suite:
       # - 8
       # - 16
       - 32
-      # - Test All Options
     option_b: # workers per message thread
       - 2
       # - 4
@@ -120,9 +156,7 @@ phoronix-test-suite:
       # - 16
       # - 24
       - 32
-      # - Test All Options
-  - test:
-    - scikit-learn-1.1.0
+
   - test: scimark2-1.3.2
     option_a:
       - Composite
@@ -131,43 +165,22 @@ phoronix-test-suite:
       - Monte Carlo
       - Sparse Matrix Multiply
       - Dense LU Matrix Factorization
-      # - Test All Options
-  - test:
-    # - serial-loopback-1.0.2 # need to really plug to serial ports
-    - smallpt-1.2.0
-    # - smart-1.0.0 # depending on the health of hard disk, may cost long time
-  - test: sockperf-1.0.1
+
+  - test: sockperf-1.1.0
     option_a:
       - Latency Under Load
       - Latency Ping Pong
       - Throughput
-      # - Test All Options
-  - test: sqlite-2.1.0
-    option_a: # threads per copy
-      - 1
-      # - 8
-      # - 32
-      # - 64
-      - 128
-      # - Test All Options
-  - test:
-    - sqlite-speedtest-1.0.1
-      # - test: startup-time-1.4.1
-      # option_a:
-      # - Only Sequential Reads # need more than 1h
-      # - Sequential Reads + Writes
-      # - Test All Options
-      # option_b:
-      # - GNOME Terminal
-      # - xterm
-      # - LibreOffice Writer
-      # - Test All Options
-      # option_c:
-      # - /opt/rootfs
-  - test:
-    - stockfish-1.3.0
-    # - stream-dynamic-1.0.0 # temporarily comment out the failed test
-  - test: stress-ng-1.3.1
+
+  - test: sqlite-2.2.0
+    option_a: # Threads / Copies
+      - 1 # 1
+      # - 2 # 2
+      # - 3 # 4
+      # - 4 # 8
+      - 5 # 12
+
+  - test: stress-ng-1.11.0
     option_a:
       - CPU Stress
       - Crypto
@@ -187,26 +200,43 @@ phoronix-test-suite:
       - MEMFD
       - MMAP
       - NUMA
-      - RdRand
+      - x86_64 RdRand
       - SENDFILE
-      # - Test All Options
-  - test:
-    # - stresscpu2-1.0.1 # not performance test
-    - sudokut-1.0.1
-    - sunflow-1.1.3
-    - swet-1.0.0
+      - IO_uring
+      - Futex
+      - Mutex
+      - Function Call
+      - Poll
+      - Hash
+      - Pthread
+      - Zlib
+      - Floating Point
+      - Fused Multiply-Add
+      - Pipe
+      - Matrix 3D Math
+      - AVL Tree
+      - Vector Floating Point
+      - Vector Shuffle
+      - Wide Vector Math
+      - AVX-512 VNNI
+      - Mixed Scheduler
+
   - test: sysbench-1.1.0
     option_a:
       - CPU
       - RAM / Memory
-      # - Test All Options
-  - test:
-    - system-decompress-bzip2-1.0.2
-    # - system-decompress-gzip-1.1.0 # 3rd party url is N/A
-    - system-decompress-xz-1.0.2
-  - test: system-libxml2-1.0.3
+
+  - test: systemd-boot-total-1.0.6
     option_a:
-      - 5 KB
+      - Total
+      - Userspace
+      - Kernel
+      # - Loader # The test run did not produce a result.
+      # - Firmware # The test run did not produce a result.
+
+  # - test: system-libxml2-1.0.3 # install failed
+    # option_a:
+      # - 5 KB
       # - 50 KB
       # - 100 KB
       # - 150 KB
@@ -226,248 +256,162 @@ phoronix-test-suite:
       # - 850 KB
       # - 900 KB
       # - 950 KB
-      - 1 MB
+      # - 1 MB
       # - 2 MB
       # - 3 MB
       # - 112 MB
-      # - Test All Options
-    # - systemd-boot-kernel-1.0.1 # too old to run, use systemd-boot-total instead
-  # - test: systemd-boot-total-1.0.6 # temporarily comment out the failed test
+  # - test: systester-1.0.0 # not an available test
     # option_a:
-      # - Total
-      # - Userspace
-      # - Kernel
-      # - Loader
-      # - Firmware
-      # - Test All Options
-  - test: systester-1.0.0
-    option_a:
-      - Gauss-Legendre algorithm                  [Recommended.]
-      - Borwein's Quadratic Convergence algorithm [This Test Could take Hours to finish.]
-      # - Test All Options
-    option_b:
-      - 4 Million Digits
+      # - Gauss-Legendre algorithm                  [Recommended.]
+      # - Borwein's Quadratic Convergence algorithm [This Test Could take Hours to finish.]
+    # option_b:
+      # - 4 Million Digits
       # - 16 Million Digits [This Test could take a while to finish.]
       # - 64 Million Digits [This Test will take a long time to run.]
-      # - Test All Options
-    option_c:
-      - 1 thread   [Single Thread Test]
+    # option_c:
+      # - 1 thread   [Single Thread Test]
       # - 2 threads [2+ Cores Recommended]
       # - 4 threads [2+ Cores Recommended]
       # - 8 threads [4+ Cores Recommended]
-      - 16 threads [8+ Cores Recommended]
+      # - 16 threads [8+ Cores Recommended]
       # - 32 threads [Recommended For Servers]
       # - 64 threads [Recommended For Servers]
-      # - Test All Options
-    # - systemd-boot-userspace-1.0.1 # too old to run, use systemd-boot-total instead
-  - test:
-    - tachyon-1.1.1
-    - tinymembench-1.0.2
+
   - test: tiobench-1.3.1
     option_a:
       - Write
       - Random Write
       - Read
       - Random Read
-      # - Test All Options
     option_b:
       - 32MB
       - 64MB
       # - 128MB
       # - 256MB
-      # - Test All Options
     option_c: # thread count
       - 4
       - 8
       # - 16
       # - 32
-      # - Test All Options
-  - test:
-    - tjbench-1.0.2
-    - tscp-1.2.2
-    - ttsiod-renderer-1.7.0
-  - test: tungsten-1.0.0
-    option_a:
-      - Hair
-      - Water Caustic
-      - Non-Exponential
-      - Volumetric Caustic
-      # - Test All Options
-  - test:
-    - unpack-linux-1.1.1
-    # - v-ray-1.0.2 # 3rd party url is N/A
-    - viennacl-1.1.0
-  - test: vpxenc-3.0.0
-    option_a:
-      - Speed 5 [Fastest - Default]
-      - Speed 0 [Slowest]
-      # - Test All Options
-  - test:
-    - x264-2.5.0
-    - x265-1.3.0
-    - xsbench-1.0.0
-    - y-cruncher-1.1.0
-    - amg-1.1.0
-  - test: astcenc-1.1.0
+  # - test: tungsten-1.0.0 # The test quit with a non-zero exit status.
+    # option_a:
+      # - Hair
+      # - Water Caustic
+      # - Non-Exponential
+      # - Volumetric Caustic
+
+  # - test: vpxenc-3.2.0 # is not installed
+  #   option_a:
+  #     - 1 # Speed 5 [Fastest - Default]
+  #     - 2 # Speed 0 [Slowest]
+  #   option_b:
+  #     - Bosphorus 1080p
+  #     - Bosphorus 4K
+
+  - test: astcenc-1.4.0
     option_a:
       - Medium
       - Thorough
       - Exhaustive
-      # - Test All Options
-  - test: avifenc-1.1.1
-    option_a:
-      - 1 # 0            [Slowest]
-      - 2 # 2            [Slow]
-      - 3 # 6            [Default]
-      - 4 # 6, Lossless  [Default Speed + Lossless]
-      - 5 # 10           [Fastest]
-      - 6 # 10, Lossless [Fastest]
-      # - Test All Options
-  - test: basis-1.1.0
+  # - test: avifenc-1.1.1 # install failed
+    # option_a:
+      # - 1 # 0            [Slowest]
+      # - 2 # 2            [Slow]
+      # - 3 # 6            [Default]
+      # - 4 # 6, Lossless  [Default Speed + Lossless]
+      # - 5 # 10           [Fastest]
+      # - 6 # 10, Lossless [Fastest]
+  - test: basis-1.1.1
     option_a:
       - ETC1S
       - UASTC Level 0
       - UASTC Level 2
       - UASTC Level 3
-      # - Test All Options
   - test:
-    - brl-cad-1.1.2
-    - build2-1.1.0
-  - test: chia-vdf-1.0.1
-    option_a:
-      - Square Plain C++
-      - Square Assembly Optimized
-      # - Test All Options
-  - test: cpuminer-opt-1.4.0
-    option_a:
-      - 1 # Triple SHA-256, Onecoin
-      - 2 # Quad SHA-256, Pyrite
-      - Myriad-Groestl
-      - Magi (XMG)
-      - Blake-2 S
-      - x25x
-      - Garlicoin
-      - Ringcoin (RNG)
-      - Deepcoin
-      - Skeincoin
-      - 11 # LBC, LBRY Credits
-      # - Test All Options
-  - test: ethr-1.0.5
-    option_a:
-      # - TCP
-      # - UDP
-      - HTTP
-      # - Test All Options
-    option_b:
-      - Bandwidth
-      # - Connections/s
-      # - Latency
-      # - Test All Options
-    option_c:
-      - 1
-      # - 2
-      # - 4
-      # - 8
-      # - 16
-      # - 32
-      # - 64
-      # - Test All Options
-  # - test: hbase-1.0.1 # temporarily comment out the failed test
+    # - brl-cad-1.1.2 # install failed
+    - build2-1.2.0
+  # - test: chia-vdf-1.0.1 # install failed
     # option_a:
-      # - Random Write
-      # - Async Random Write
-      # - Random Read
-      # - Async Random Read
-      # - Sequential Write
-      # - Sequential Read
-      # - Increment
-      # - Test All Options
-    # option_b:
-      # - 1
-      # - 4
-      # - 16
-      # - 32
-      # - 64
-      # - 128
-      # - 256 # need large storage and cost too much time
-      # - Test All Options
-  - test: helsing-1.0.2
-    option_a:
-      - 12 digit
-      - 14 digit
-      # - Test All Options
+      # - Square Plain C++
+      # - Square Assembly Optimized
+
+  # - test: cpuminer-opt-1.4.0 # install failed
+    # option_a:
+      # - 1 # Triple SHA-256, Onecoin
+      # - 2 # Quad SHA-256, Pyrite
+      # - Myriad-Groestl
+      # - Magi (XMG)
+      # - Blake-2 S
+      # - x25x
+      # - Garlicoin
+      # - Ringcoin (RNG)
+      # - Deepcoin
+      # - Skeincoin
+      # - 11 # LBC, LBRY Credits
+
+  # - test: ethr-1.2.1
+  #   option_a:
+  #     # - TCP
+  #     # - UDP
+  #     - HTTP # E: Error: Invalid value "http" specified for parameter "-p"
+  #   option_b:
+  #     - Bandwidth
+  #     # - Connections/s
+  #     # - Latency
+  #   option_c:
+  #     - 1
+  #     # - 2
+  #     # - 4
+  #     # - 8
+  #     # - 16
+  #     # - 32
+  #     # - 64
+
   - test: incompact3d-2.0.2
     option_a:
       - input.i3d 129 Cells Per Direction [Intended For Small Systems]
       - input.i3d 193 Cells Per Direction
       # - X3D-benchmarking input.i3d        [Requires ~96GB of Available RAM]
-      # - Test All Options
   - test: intel-mpi-1.0.1
     option_a:
       - IMB-MPI1 PingPong
       - IMB-MPI1 Sendrecv
       - IMB-MPI1 Exchange
       - IMB-P2P PingPong
-      # - Test All Options
-  # - test: jpegxl-decode-1.1.0 # temporarily comment out the failed test
-    # option_a:
-      # - 1
-      # - All
-      # - Test All Options
-  - test: libgav1-1.1.0
+  - test: jpegxl-decode-1.5.0
+    option_a:
+      - 1
+      - All
+  - test: libgav1-1.2.1
     option_a:
       - Summer Nature 1080p
       - Summer Nature 4K
       - Chimera 1080p
       - Chimera 1080p 10-bit
-      # - Test All Options
-  - test: ncnn-1.1.0
+  - test: ncnn-1.5.0
     option_a:
       - CPU
       - Vulkan GPU
-      # - Test All Options
-  - test: pyperformance-1.0.2
-    option_a:
-      - 2to3
-      - chaos
-      - crypto_pyaes
-      - django_template
-      - float
-      - go
-      - json_loads
-      - nbody
-      - pathlib
-      - pickle_pure_python
-      - python_startup
-      - raytrace
-      - regex_compile
-      # - Test All Options
-  - test: rav1e-1.5.0
-    option_a:
-      - 10 [Fastest]
-      - 6  [Default]
-      - 5  [Mid-Speed]
-      - 1  [Slowest / Best Quality]
-      # - Test All Options
-  - test: webp2-1.0.0
-    option_a:
-      - Default
-      - 2 # Quality 75, Compression Effort 7
-      - 4 # Quality 100, Compression Effort 5
-      # - Test All Options
 
----
-phoronix-test-suite:
-  - test: webp2-1.0.0
-    option_a:
-      - 3 # Quality 95, Compression Effort 7
+  # - test: pyperformance-1.0.2 # The test quit with a non-zero exit status. E: urllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>
+  #   option_a:
+  #     - 2to3
+  #     - chaos
+  #     - crypto_pyaes
+  #     - django_template
+  #     - float
+  #     - go
+  #     - json_loads
+  #     - nbody
+  #     - pathlib
+  #     - pickle_pure_python
+  #     - python_startup
+  #     - raytrace
+  #     - regex_compile
 
-timeout: 30m
-
----
-phoronix-test-suite:
-  - test: webp2-1.0.0
-    option_a:
-      - 5 # Quality 100, Lossless Compression
-
-timeout: 1h
+  # - test: rav1e-1.5.0 # install failed
+    # option_a:
+      # - 10 [Fastest]
+      # - 6  [Default]
+      # - 5  [Mid-Speed]
+      # - 1  [Slowest / Best Quality]

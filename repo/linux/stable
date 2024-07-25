@@ -7,3 +7,4 @@ test_old_branches: .*
 no_merge_branch: .*
 non_rebaseable_branch: .*
 eol_branch_pattern: (linux-[23].+.y|linux-4.[12]?[01235678].y|linux-5.[012356789].y|linux-5.1[123].y)
+belongs_to: stable

@@ -10,6 +10,8 @@
 # Some idea and code are borrowed from monitor/no-stdout/perf-profile
 
 . $LKP_SRC/lib/env.sh
+. $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/wait.sh
 
 : "${delay:=0}"
 : "${duration:=10}"
@@ -17,7 +19,6 @@
 
 set_perf_path "/lkp/benchmarks/perf/perf"
 
-. $LKP_SRC/lib/wait.sh
 setup_wait
 wait_timeout $delay
 

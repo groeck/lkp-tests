@@ -7,6 +7,8 @@
 ## designed to let web developers measure their code under duress,
 ## to see how it will stand up to load on the internet.
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 apache_dir="/etc/apache2"
 iter_time=$(( runtime / iterations ))
 

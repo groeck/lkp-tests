@@ -1,0 +1,25 @@
+short_description: >
+ Cloud Serving Benchmark.
+
+description: >
+ 
+homepage: https://github.com/brianfrankcooper/YCSB
+
+parameters:
+ ycsb.ycsbnr_processes:
+ ycsb.ip_addr:
+ ycsb.n_recordcount:
+ ycsb.n_operationcount:
+ ycsb.is_readallfields:
+ ycsb.n_readproportion:
+ ycsb.n_updateproportion:
+ ycsb.n_scanproportion:
+ ycsb.n_insertproportion:
+ ycsb.c_requestdistribution:
+ ycsb.ycsb_cpu_node_bind:
+ ycsb.ycsb_mem_node_bind:
+ ycsb.nr_threads:
+ ycsb.preload:
+
+results:
+

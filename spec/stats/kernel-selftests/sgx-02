@@ -20,10 +20,10 @@ TAP version 13
 # #  RUN           enclave.clobbered_vdso ...
 # #            OK  enclave.clobbered_vdso
 # ok 4 enclave.clobbered_vdso
-# #  RUN           enclave.tcs_permissions ...
-# #      SKIP      System does not support SGX2
-# #            OK  enclave.tcs_permissions
-# ok 8 # SKIP System does not support SGX2
+# #  RUN           enclave.augment ...
+# #      SKIP      SGX2 not supported
+# #            OK  enclave.augment
+# ok 10 enclave.augment # SKIP SGX2 not supported
 # # PASSED: 16 / 16 tests passed.
 # # Totals: pass:6 fail:0 xfail:0 xpass:0 skip:10 error:0
 ok 1 selftests: sgx: test_sgx

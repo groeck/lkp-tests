@@ -1,0 +1,11 @@
+short_description: >
+  This is a wireless medium simulation tool for Linux, based on the netlink API implemented in the mac80211_hwsim kernel driver.
+
+description: >
+ This is a wireless medium simulation tool for Linux, based on the netlink API implemented in the mac80211_hwsim kernel driver. Unlike the default in-kernel forwarding mode of mac80211_hwsim, wmediumd allows simulating frame loss and delay.
+
+homepage: https://github.com/bcopeland/wmediumd.git
+
+parameters:
+ test：
+ 

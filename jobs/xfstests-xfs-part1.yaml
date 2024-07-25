@@ -11,10 +11,10 @@ fs:
 
 xfstests:
   test:
-    - xfs-external
+    - xfs-realtime
+    # - xfs-realtime-scratch-rmapbt # [not run] rmapbt not supported by scratch filesystem type: xfs
+    # - xfs-realtime-scratch-reflink # [not run] Reflink not supported by scratch filesystem type: xfs
     - xfs-083
-    - xfs-132
-    - xfs-244
     - xfs-275
     - xfs-437
     # - xfs-136 # execution time ~ 80mins
@@ -33,4 +33,4 @@ xfstests:
     - xfs-group-12
     - xfs-group-13
     - xfs-group-14
-    - xfs-no-bug-assert
+    - xfs-no-xfs-bug-on-assert

@@ -15,6 +15,7 @@
 . "$LKP_SRC/lib/unit.sh"
 . "$LKP_SRC/lib/sysinfo.sh"
 . "$LKP_SRC/lib/reproduce-log.sh"
+. $LKP_SRC/lib/debug.sh
 
 cd "$BENCHMARK_ROOT/pft" || die "no $BENCHMARK_ROOT/pft"
 

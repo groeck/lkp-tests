@@ -10,7 +10,7 @@ ip:
 
 runtime: 300s
 nr_threads:
-  - 1
+  # - 1
   - 50%
   - 200%
 
@@ -41,3 +41,12 @@ if role client:
     test:
       - SCTP_STREAM_MANY
       - TCP_SENDFILE # set send_size: 10K to avoid sendfile: No space left on device
+
+---
+nr_threads: 100%
+setup-net-buffer:
+
+if role client:
+  netperf:
+    test:
+      - SCTP_STREAM

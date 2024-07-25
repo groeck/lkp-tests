@@ -3,6 +3,8 @@ testcase: tbench
 category: benchmark
 
 nr_threads: 100%
+runtime: 600
+iterations: 1
 
 cluster: cs-localhost
 

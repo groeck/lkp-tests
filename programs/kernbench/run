@@ -3,6 +3,7 @@
 # - nr_threads
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/kernbench || die "kernbench benchmark is not installed yet"
 

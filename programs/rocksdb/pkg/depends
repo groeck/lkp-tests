@@ -1,5 +1,5 @@
-libsnappy1v5
 libbz2-1.0
+libgflags2.2
 liblz4-1
+libsnappy1v5
 zlib1g
-libgflags-dev

@@ -1,0 +1,98 @@
+PTS_SILENT_MODE=1
+test_opt: 1\nn
+2024-04-06 15:38:00 phoronix-test-suite run compress-lz4-1.0.0
+
+
+
+LZ4 Compression 1.9.3:
+    pts/compress-lz4-1.0.0
+    Processor Test Configuration
+        1: 1
+        2: 3
+        3: 9
+        4: Test All Options
+        ** Multiple items can be selected, delimit by a comma. **
+
+
+Phoronix Test Suite v10.8.4
+System Information
+
+
+    [8192] str_split(): Passing null to parameter #1 ($string) of type string is deprecated in pts_strings:502
+
+  PROCESSOR:              2 x Intel Xeon Gold 6252 @ 3.70GHz
+    Core Count:           48                                          
+    Thread Count:         96                                          
+    Extensions:           SSE 4.2                                     
+                          + AVX512_VNNI                               
+                          + AVX512CD                                  
+                          + AVX2                                      
+                          + AVX                                       
+                          + RDRAND                                    
+                          + FSGSBASE                                  
+    Cache Size:           71.5 MB                                     
+    Microcode:            0x5003604                                   
+    Core Family:          Cascade Lake                                
+    Scaling Driver:       intel_pstate performance (EPP: performance) 
+
+  GRAPHICS:               ASPEED
+    Screen:               1024x768         
+
+  MOTHERBOARD:            Intel S2600WFT
+    BIOS Version:         SE5C620.86B.02.01.0008.031920191559 
+    Chipset:              Intel Sky Lake-E DMI3 Registers     
+    Network:              2 x Intel X722 for 10GBASE-T        
+
+  MEMORY:                 16 x 32 GB DDR4-2666MT/s Hynix HMA84GR7CJR4N-XN
+
+  DISK:                   800GB INTEL SSDSC2BB80 + 1000GB Seagate ST1000NM0055-1V4
+    File-System:          overlayfs        
+    Disk Scheduler:       MQ-DEADLINE      
+
+  OPERATING SYSTEM:       Debian GNU/Linux 12
+    Kernel:               6.9.0-rc2 (x86_64) 20240402                                                                                  
+    Display Server:       X Server 1.21.1.7                                                                                            
+    Compiler:             GCC 12.2.0 + Clang 14.0.6                                                                                    
+    Security:             gather_data_sampling: Vulnerable: No microcode                                                               
+                          + itlb_multihit: KVM: Mitigation of VMX disabled                                                             
+                          + l1tf: Not affected                                                                                         
+                          + mds: Not affected                                                                                          
+                          + meltdown: Not affected                                                                                     
+                          + mmio_stale_data: Vulnerable: Clear buffers attempted no microcode; SMT vulnerable                          
+                          + reg_file_data_sampling: Not affected                                                                       
+                          + retbleed: Mitigation of Enhanced IBRS                                                                      
+                          + spec_rstack_overflow: Not affected                                                                         
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                    
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                         
+                          + spectre_v2: Mitigation of Enhanced / Automatic IBRS IBPB: conditional RSB filling PBRSB-eIBRS: SW sequence 
+                          + srbds: Not affected                                                                                        
+                          + tsx_async_abort: Vulnerable: Clear buffers attempted no microcode; SMT vulnerable                          
+
+    Would you like to save these test results (Y/n): 
+LZ4 Compression 1.9.3:
+    pts/compress-lz4-1.0.0 [Compression Level: 1]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 2 Minutes [15:39 UTC] 
+        Started Run 1 @ 15:38:13
+        Started Run 2 @ 15:39:13
+        Started Run 3 @ 15:39:55
+
+    Compression Level: 1 - Compression Speed:
+        5552.95
+        5602.16
+        5573.67
+
+    Average: 5576.26 MB/s
+    Deviation: 0.44%
+
+
+    Compression Level: 1 - Decompression Speed:
+        6158.6
+        6137.1
+        6212.9
+
+    Average: 6169.5 MB/s
+    Deviation: 0.63%
+
+compress-lz4-1.0.0.seconds: 157.872308606

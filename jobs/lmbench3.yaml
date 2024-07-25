@@ -22,11 +22,22 @@ lmbench3:
     - SELECT
     - PROC
     - PAGEFAULT
-    - MMAP
     - PIPE
     - UNIX
     - TCP
     - OPS
+
+---
+timeout: 1h
+
+nr_threads:
+  - 1
+  - 50%
+  - 100%
+lmbench3:
+  mode: development
+  test:
+    - MMAP # ~47m on lkp-ivb-2ep1 with 100% threads
 
 ---
 nr_threads:

@@ -19,9 +19,9 @@ while (line = $stdin.gets)
     memleak = { type: 'unreferenced_object', backtraces: [] }
   when /comm "(.*)"/ # comm "swapper/0", pid 1, jiffies 4294667990 (age 37.508s)
     memleak[:comm] = $1
-#    [<(____ptrval____)>] unpack_to_rootfs+0x3d/0x304
-#    [<(____ptrval____)>] populate_rootfs+0x19/0x106
   when /\[.*\] (.*)\+/
+    # [<(____ptrval____)>] unpack_to_rootfs+0x3d/0x304
+    # [<(____ptrval____)>] populate_rootfs+0x19/0x106
     memleak[:backtraces] << $1
   end
 end

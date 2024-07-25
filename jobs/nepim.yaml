@@ -4,8 +4,8 @@ category: benchmark
 
 runtime: 300s
 nr_threads:
-- 40%
 - 25%
+# - 40%
 
 cluster: cs-localhost
 

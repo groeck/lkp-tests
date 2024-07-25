@@ -1,7 +1,8 @@
-dmesg.*
+.+killed_by.*
 .+\.(error|warn|fail)[^_]*$
 .+\..+\.make_fail
-.+killed_by.*
+dmesg.*
+kmemleak\..+unreferenced_object\..+
 kmsg.*
 last_state.*
 lkp-bug.*
@@ -9,4 +10,3 @@ locktoture\..+lock_hotplug
 rcutoture\..+rcu_hotplug
 stderr.*
 xfstests\..+fail$
-kmemleak\..+unreferenced_object\..+

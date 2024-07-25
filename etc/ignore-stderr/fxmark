@@ -1,6 +1,6 @@
-/bin/dmesg \| grep -i perf may provide additional information.
-.*: SyntaxWarning: .* with a literal. Did you mean .*?
-  if .* is .*
   .* if .* is .* else .*
+  if .* is .*
+.*: SyntaxWarning: .* with a literal. Did you mean .*?
 .*pmeter:yokogawa-wt310.*
+/bin/dmesg \| grep -i perf may provide additional information.
 pmeter server does not start correctly

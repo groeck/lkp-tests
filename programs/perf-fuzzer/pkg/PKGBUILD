@@ -7,14 +7,6 @@ license=('GPL')
 source=("https://github.com/deater/perf_event_tests.git")
 md5sums=('SKIP')
 
-patch_source()
-{
-	cd "$srcdir/perf_event_tests"
-
-	# https://github.com/deater/perf_event_tests/pull/25
-	patch -p1 < "$LKP_SRC/pkg/${pkgname}/pr-25.patch"
-}
-
 build()
 {
 	cd "$srcdir/perf_event_tests"

@@ -1,6 +1,14 @@
-perl-base
-perl
 # These 2 packages require to version 5
-perl-modules-5
+dc
+freeglut3
+libgl1-mesa-dri
+libglut3
 libperl5
+libx11-6
 make
+perl
+perl-base
+perl-modules-5
+x11-apps
+xinit
+xorg

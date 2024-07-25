@@ -1,0 +1,8 @@
+libcurl4-openssl-dev
+liblzma-dev
+libssl-dev
+lld
+python-dev
+python-pip
+python-venv
+scons

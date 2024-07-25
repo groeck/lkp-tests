@@ -1,0 +1,69 @@
+#!/bin/sh
+
+. $LKP_SRC/lib/debug.sh
+. $LKP_SRC/lib/env.sh
+
+# nr_cpu: 36
+check_nr_cpu()
+{
+	has_cmd lscpu || {
+		echo "check_nr_cpu: ignore check: miss lspcu"
+		return 0
+	}
+
+	# Architecture:        x86_64
+	# CPU op-mode(s):      32-bit, 64-bit
+	# Byte Order:          Little Endian
+	# Address sizes:       46 bits physical, 48 bits virtual
+	# CPU(s):              88
+	# On-line CPU(s) list: 0-87
+	# Thread(s) per core:  2
+	# Core(s) per socket:  22
+	# Socket(s):           2
+	# NUMA node(s):        2
+	# Vendor ID:           GenuineIntel
+	# CPU family:          6
+	# Model:               79
+	# Model name:          Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz
+	# Stepping:            1
+	# CPU MHz:             2783.657
+	# CPU max MHz:         3600.0000
+	# CPU min MHz:         1200.0000
+	# BogoMIPS:            4389.92
+	# Virtualization:      VT-x
+	# ...
+	echo check_nr_cpu
+	lscpu | grep -e CPU\(s\) -e Thread -e Core -e Socket -e NUMA
+
+	local lscpu_nr_cpu=$(lscpu --parse=cpu | grep "^[0-9]" | wc -l)
+	[ "$nr_cpu" = "$lscpu_nr_cpu" ] && return 0
+
+	echo "check_nr_cpu: lscpu_nr_cpu $lscpu_nr_cpu mismatchs with nr_cpu $nr_cpu" >&2
+
+	echo "$testbox" | grep -q "riscv64" && {
+		echo "check_nr_cpu: ignore the mismatch for $testbox"
+		lscpu
+		echo "lscpu --parse=cpu"
+		lscpu --parse=cpu
+		return 0
+	}
+
+	ls -lrt /boot/config-*
+	config=/boot/config-$(uname -r)
+	[ -f "$config" ] && grep SMP $config
+
+	# ignore randconfig which could set SMP=n
+	[ "${kconfig#*-randconfig-}" != "$kconfig" ] && {
+		echo "check_nr_cpu: ignore the mismatch for $kconfig"
+		return 0
+	}
+
+	[ "${kconfig#*-allnoconfig}" != "$kconfig" ] && {
+		echo "check_nr_cpu: ignore the mismatch for $kconfig"
+		return 0
+	}
+
+	return 1
+}
+
+check_nr_cpu || die 'check_nr_cpu failed'

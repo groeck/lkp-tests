@@ -1,0 +1,130 @@
+2024-02-26 06:47:23 cd /lkp/benchmarks/kbuild/kbuild/1
+2024-02-26 06:47:23 make mrproper
+2024-02-26 06:47:27 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:47:29 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:47:29 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930050.011573855
+
+real: 33.544s
+user: 910.672s
+sys: 160.023s
+end time: 1708930083.557520310
+2024-02-26 06:48:03 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:48:07 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:48:09 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:48:09 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930089.790027934
+
+real: 34.189s
+user: 912.767s
+sys: 160.453s
+end time: 1708930123.979912732
+2024-02-26 06:48:43 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:48:47 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:48:50 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:48:50 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930130.232260820
+
+real: 33.726s
+user: 913.605s
+sys: 162.685s
+end time: 1708930163.959815717
+2024-02-26 06:49:23 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:49:27 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:49:30 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:49:30 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930170.183487562
+
+real: 33.565s
+user: 912.250s
+sys: 161.584s
+end time: 1708930203.749866793
+2024-02-26 06:50:03 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:50:07 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:50:09 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:50:09 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930209.996876602
+
+real: 33.615s
+user: 912.778s
+sys: 163.553s
+end time: 1708930243.613010161
+2024-02-26 06:50:43 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:50:47 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:50:49 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:50:49 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930249.816998203
+
+real: 33.858s
+user: 916.626s
+sys: 161.657s
+end time: 1708930283.676889525
+2024-02-26 06:51:23 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:51:27 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:51:29 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:51:29 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930289.825420434
+
+real: 33.363s
+user: 913.715s
+sys: 159.781s
+end time: 1708930323.189874848
+2024-02-26 06:52:03 make mrproper
+  CLEAN   arch/x86/entry/vdso
+2024-02-26 06:52:06 make defconfig
+  HOSTCC  scripts/basic/fixdep
+*** Default configuration is based on 'x86_64_defconfig'
+#
+# configuration written to .config
+#
+2024-02-26 06:52:09 scripts/config --file .config --disable CONFIG_UNUSED_SYMBOLS
+2024-02-26 06:52:09 scripts/config --file .config --enable CONFIG_TRIM_UNUSED_KSYMS
+start time: 1708930329.345527937
+
+real: 33.530s
+user: 912.083s
+sys: 160.833s
+end time: 1708930362.877196641
+iterations: 8
+runtime: 319

@@ -5,6 +5,7 @@
 ## layer down to the NIC hardware.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/packetdrill/gtests/net || die "no $BENCHMARK_ROOT/packetdrill/gtests/net"
 
@@ -31,3 +32,5 @@ grep -q -- --tolerance_usecs packetdrill/run_all.py || sed -ri \
 
 # Use run_all.py to run tcp tests
 packetdrill/run_all.py -L -l -v tcp
+
+exit 0

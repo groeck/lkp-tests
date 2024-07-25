@@ -1,0 +1,11 @@
+short_description: >
+  The GNU Compiler Collection includes front ends.
+
+description: >
+ The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...). GCC was originally written as the compiler for the GNU operating system. 
+
+homepage: http://gcc.gnu.org
+
+parameters:
+
+results:

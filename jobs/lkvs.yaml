@@ -1,0 +1,20 @@
+suite: lkvs
+testcase: lkvs
+category: functional
+
+lkvs:
+  test:
+    - cet
+    # - guest-test # cause machine power down
+    - pt
+    - ifs
+    - tdx-compliance
+    - umip
+    - isst
+    - th
+    - workload-xsave
+    - thermal
+    - xsave
+    - fred
+    - sdsi
+    - pmu

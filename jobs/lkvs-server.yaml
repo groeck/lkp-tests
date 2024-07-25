@@ -1,0 +1,7 @@
+suite: lkvs
+testcase: lkvs
+category: functional
+
+lkvs:
+  test:
+    - topology-server

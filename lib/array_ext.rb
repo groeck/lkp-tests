@@ -14,4 +14,17 @@ class Array
       .select { |_k, v| v.size > 1 }
       .map(&:first)
   end
+
+  def mean
+    ave = sum.to_f / size
+    (ave * 100).round / 100.0
+  end
+
+  def median(already_sorted: false)
+    return if empty?
+
+    sort! unless already_sorted
+    m_pos = size / 2
+    size.odd? ? self[m_pos].to_f : self[m_pos - 1..m_pos].mean
+  end
 end

@@ -1,21 +1,15 @@
 pkgname=tlbflush
 pkgver=1
 pkgrel=1
-url='https://marc.info/?l=linux-kernel&m=133727348217113&q=raw'
 arch=('i386' 'x86_64' 'aarch64')
 license=('GPL')
-source=("${pkgname}::https://marc.info/?l=linux-kernel&m=133727348217113&q=raw")
-md5sums=('SKIP')
+
+. $LKP_SRC/lib/install.sh
 
 build()
 {
 	cd "$srcdir"
-	[ -f "${pkgname}" ] || return
-	START_LINE=$(grep -n ^---$ "${pkgname}" | cut -f1 -d:)
-	END_LINE=$(grep -n ^--$ "${pkgname}" | cut -f1 -d:)
-	head -$((END_LINE-1)) "${pkgname}" |
-	tail -$((END_LINE-START_LINE-1)) |
-	grep -v "define FILE_SIZE" > "${pkgname}.c"
+	cp $(get_pkg_dir $pkgname)/${pkgname}.c .
 	gcc -DFILE_SIZE=$((128*1048576)) -g -O2 "${pkgname}.c" -lpthread -o "${pkgname}"
 }
 

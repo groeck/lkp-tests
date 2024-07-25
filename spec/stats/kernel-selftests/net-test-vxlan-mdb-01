@@ -1,0 +1,69 @@
+# selftests: net: test_vxlan_mdb.sh
+# 
+# Control path: Large scale MDB dump - IPv4 overlay / IPv4 underlay
+# -----------------------------------------------------------------
+# TEST: Large scale dump - VXLAN device #1                            [ OK ]
+# TEST: Large scale dump - VXLAN device #2                            [ OK ]
+# 
+# Control path: Large scale MDB dump - IPv6 overlay / IPv4 underlay
+# -----------------------------------------------------------------
+# TEST: Large scale dump - VXLAN device #1                            [ OK ]
+# TEST: Large scale dump - VXLAN device #2                            [ OK ]
+# 
+# Control path: Large scale MDB dump - IPv4 overlay / IPv6 underlay
+# -----------------------------------------------------------------
+# TEST: Large scale dump - VXLAN device #1                            [ OK ]
+# TEST: Large scale dump - VXLAN device #2                            [ OK ]
+# 
+# Control path: Large scale MDB dump - IPv6 overlay / IPv6 underlay
+# -----------------------------------------------------------------
+# TEST: Large scale dump - VXLAN device #1                            [ OK ]
+# TEST: Large scale dump - VXLAN device #2                            [ OK ]
+# 
+# Data path: MDB with FDB - IPv4 overlay / IPv4 underlay
+# ------------------------------------------------------
+# TEST: IP multicast - first VTEP                                     [FAIL]
+# TEST: IP multicast - second VTEP                                    [ OK ]
+# TEST: Broadcast - first VTEP                                        [FAIL]
+# TEST: Broadcast - second VTEP                                       [ OK ]
+# 
+# Data path: MDB with FDB - IPv6 overlay / IPv4 underlay
+# ------------------------------------------------------
+# TEST: IP multicast - first VTEP                                     [ OK ]
+# TEST: IP multicast - second VTEP                                    [ OK ]
+# TEST: Broadcast - first VTEP                                        [ OK ]
+# TEST: Broadcast - second VTEP                                       [ OK ]
+# 
+# Data path: MDB with FDB - IPv4 overlay / IPv6 underlay
+# ------------------------------------------------------
+# TEST: IP multicast - first VTEP                                     [FAIL]
+# TEST: IP multicast - second VTEP                                    [ OK ]
+# TEST: Broadcast - first VTEP                                        [FAIL]
+# TEST: Broadcast - second VTEP                                       [ OK ]
+# 
+# Data path: MDB with FDB - IPv6 overlay / IPv6 underlay
+# ------------------------------------------------------
+# TEST: IP multicast - first VTEP                                     [ OK ]
+# TEST: IP multicast - second VTEP                                    [ OK ]
+# TEST: Broadcast - first VTEP                                        [ OK ]
+# TEST: Broadcast - second VTEP                                       [ OK ]
+# 
+# Data path: MDB torture test - IPv4 overlay / IPv4 underlay
+# ----------------------------------------------------------
+# TEST: Torture test                                                  [ OK ]
+# 
+# Data path: MDB torture test - IPv6 overlay / IPv4 underlay
+# ----------------------------------------------------------
+# TEST: Torture test                                                  [ OK ]
+# 
+# Data path: MDB torture test - IPv4 overlay / IPv6 underlay
+# ----------------------------------------------------------
+# TEST: Torture test                                                  [ OK ]
+# 
+# Data path: MDB torture test - IPv6 overlay / IPv6 underlay
+# ----------------------------------------------------------
+# TEST: Torture test                                                  [ OK ]
+# 
+# Tests passed: 536
+# Tests failed:  84
+not ok 82 selftests: net: test_vxlan_mdb.sh # exit=1

@@ -1,4 +1,4 @@
-time: 1552036502
+time: 1552065302
 node.all.usr%: 10.66
 node.all.nice%: 0.0
 node.all.sys%: 7.36
@@ -9,7 +9,7 @@ node.all.steal%: 0.0
 node.all.guest%: 0.0
 node.all.gnice%: 0.0
 node.all.idle%: 77.66
-time: 1552036503
+time: 1552065303
 node.all.usr%: 18.83
 node.all.nice%: 0.0
 node.all.sys%: 9.16
@@ -20,3 +20,5 @@ node.all.steal%: 0.0
 node.all.guest%: 0.0
 node.all.gnice%: 0.0
 node.all.idle%: 69.47
+max_utilization_pct: 55.980000000000004
+max_utilization.seconds: 4

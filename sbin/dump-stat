@@ -3,13 +3,14 @@
 RESULT_ROOT = ENV['RESULT_ROOT']
 LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
 
+require 'set'
 require "#{LKP_SRC}/lib/statistics"
 require "#{LKP_SRC}/lib/bounds"
 require "#{LKP_SRC}/lib/yaml"
 require "#{LKP_SRC}/lib/job"
 require "#{LKP_SRC}/lib/string_ext"
 require "#{LKP_SRC}/lib/log"
-require 'set'
+require "#{LKP_SRC}/lib/ruby_ext"
 
 monitor = ARGV[0]
 monitor_file = ARGV[1]
@@ -103,7 +104,7 @@ zero_stats.each { |x| result.delete x }
 if monitor != 'ftrace'
   # delete invalid number in reverse order
   invalid_records.reverse_each do |index|
-    result.each do |_k, value|
+    result.each_value do |value|
       value.delete_at index
     end
   end
@@ -113,7 +114,7 @@ UNSTRUCTURED_MONITORS = %w(ftrace).to_set
 
 if min_cols < max_cols && !UNSTRUCTURED_MONITORS.include?(monitor)
   if min_cols == max_cols - 1
-    result.each { |_k, y| y.pop if y.size == max_cols }
+    result.each_value { |y| y.pop if y.size == max_cols }
     puts "Last record seems incomplete. Truncated #{monitor_file}"
   else
     warn_stat 'not a matrix with different value size', monitor, "#{min_cols_stat} [#{min_cols}]", "#{max_cols_stat} [#{max_cols}]"
@@ -121,6 +122,6 @@ if min_cols < max_cols && !UNSTRUCTURED_MONITORS.include?(monitor)
 end
 
 exit if result.empty?
-exit if result.values[0].size.zero?
-exit if result.values[-1].size.zero?
+exit if result.values[0].empty?
+exit if result.values[-1].empty?
 save_json(result, monitor_file, compress: result.size * min_cols > 1000)

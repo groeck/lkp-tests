@@ -6,7 +6,7 @@ igt:
   - group: gem_shrink
 
 ---
-need_memory: 15G
+need_memory: 17G
 
 igt:
   - group: gem_ctx_exec

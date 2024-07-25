@@ -1,0 +1,11 @@
+short_description: >
+ The MCE test suite is a collection of tools and test scripts for testing the Linux RAS related features, including CPU/Memory error containment and recovery, ACPI/APEI support etc.
+
+description: >
+
+homepage: https://github.com/aegl/mce-test
+ 
+parameters:
+ mce_case:
+
+results:

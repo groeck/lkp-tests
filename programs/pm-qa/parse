@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/string_ext"
 
@@ -12,7 +12,7 @@ while (line = $stdin.gets)
   when /^### (\w+_\d+):$/
     item = Regexp.last_match[1]
     stats[item] = '' unless stats.key?(item)
-  when /^(\w+_\d+): (fail|pass|skip|ignored_by_lkp)$/
+  when /^(\w+_\d+): (fail|pass|skip)$/
     item = Regexp.last_match[1]
     result = Regexp.last_match[2]
     stats[item] = "#{result}: 1" unless stats.key?(item) && !stats[item].empty?

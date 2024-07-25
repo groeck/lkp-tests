@@ -1,0 +1,12 @@
+short_description: >
+ Scriptable database and system performance benchmark.
+
+description: >
+ sysbench is a scriptable multi-threaded benchmark tool based on LuaJIT. It is most frequently used for database benchmarks, but can also be used to create arbitrarily complex workloads that do not involve a database server.
+
+homepage: https://github.com/akopytov/sysbench.git
+
+parameters:
+
+results:
+

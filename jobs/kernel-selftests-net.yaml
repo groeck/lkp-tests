@@ -1,0 +1,39 @@
+suite: kernel-selftests-bpf
+testcase: kernel-selftests-bpf
+category: functional
+
+kernel-selftests-bpf:
+  group:
+    - net
+    - net/mptcp
+
+---
+kernel-selftests-bpf:
+  group:
+    - net
+  test:
+    - fcnal-test.sh
+  test_atomic:
+    - ipv4_ping
+    - ipv4_tcp
+    - ipv4_udp
+    - ipv4_bind
+    - ipv4_runtime
+    - ipv4_netfilter
+    - ipv6_ping
+    - ipv6_tcp
+    - ipv6_udp
+    - ipv6_bind
+    - ipv6_runtime
+    - ipv6_netfilter
+    - use_cases
+
+---
+kernel-selftests-bpf:
+  group:
+    - net
+  test:
+    - tls
+    - fib_nexthops.sh
+    - xfrm_policy.sh
+    - pmtu.sh

@@ -1,0 +1,17 @@
+autopoint
+debhelper
+dh-autoreconf
+dh-strip-nondeterminism
+gcc-multilib (x86_64)
+gettext
+gettext-base
+groff-base
+intltool-debian
+libarchive-zip-perl
+libfile-stripnondeterminism-perl
+libicu
+libpipeline1
+libtimedate-perl
+libxml2
+man-db
+po-debconf

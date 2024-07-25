@@ -17,7 +17,7 @@ def tbox_group(hostname)
 end
 
 def tbox_group?(hostname)
-  return nil unless hostname.is_a?(String) && !hostname.empty?
+  return unless hostname.is_a?(String) && !hostname.empty?
 
   Dir[LKP::Path.src('hosts', hostname)][0]
 end
@@ -40,7 +40,6 @@ class ResultPath < Hash
     'build-ltp' => %w[rootfs ltp_commit run],
     'build-acpica' => %w[acpica_commit test run],
     'build-ceph' => %w[ceph_commit run],
-    'kvm-unit-tests-qemu' => %w[path_params tbox_group rootfs kconfig compiler commit qemu_config qemu_commit run],
     'kvm-kernel-boot-test' => %w[tbox_group kconfig commit qemu_config qemu_commit linux_commit run],
     'build-perf_test' => %w[perf_test_commit run]
   }.freeze

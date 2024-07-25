@@ -1,0 +1,6 @@
+url: https://github.com/nunojsa/linux
+owner: Nuno Sa <nuno.sa@analog.com>
+mail_to: Nuno Sa <nuno.sa@analog.com>
+mail_cc: Nuno Sa <noname.nuno@gmail.com>
+notify_build_success_branch: .*
+

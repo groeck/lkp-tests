@@ -11,9 +11,9 @@ gem 'term-ansicolor'
 group :test do
   gem 'ci_reporter_rspec'
   gem 'rspec'
-  gem 'rubocop', '~> 1.12.0'
+  gem 'rubocop'
   gem 'simplecov'
   gem 'simplecov-rcov'
 end
 
-gem 'activesupport', '~> 5.2.0'
+gem 'activesupport', '<= 6.0.6'

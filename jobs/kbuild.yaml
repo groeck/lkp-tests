@@ -8,7 +8,9 @@ nr_task:
   - 200%
   - 50%
 
-target: autoksyms_recursive
+setup-kbuild:
+
+target: vmlinux
 
 build_kconfig:
   - allyesconfig

@@ -1,3 +1,5 @@
+.* pages, ino .*; err .*
+.*: jbd2_start: 
 at logical offset .* with max blocks .*
 block .*: comm .*: path .*: .*
 comm .*: path .*: .*
@@ -6,6 +8,4 @@ free_blocks=.*
 inode #.*: block .*: comm .*: .*
 inode #.*: comm .*: .*
 i_reserved_meta_blocks=.*
-.*: jbd2_start: 
-.* pages, ino .*; err .*
 pa .*: logic .*, phys. .*, len .*

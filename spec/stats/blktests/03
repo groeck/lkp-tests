@@ -1,0 +1,88 @@
+2024-01-03 18:50:14 sed "s:^:meta/:" /lkp/benchmarks/blktests/tests/meta-group-00
+2024-01-03 18:50:14 ./check meta/001 meta/002 meta/003 meta/004 meta/005 meta/006 meta/007 meta/008 meta/009 meta/010 meta/011 meta/012 meta/013 meta/014 meta/015
+meta/001 (do nothing)                                       
+meta/001 (do nothing)                                        [passed]
+    runtime    ...  0.000s
+meta/003 (exit with non-zero status)                        
+meta/003 (exit with non-zero status)                         [failed]
+    runtime    ...  0.000s
+    exited with status 1
+meta/005 (produce bad output)                               
+meta/005 (produce bad output)                                [failed]
+    runtime    ...  0.000s
+    --- tests/meta/005.out	2023-12-12 16:50:50.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nodev/meta/005.out.bad	2024-01-03 18:50:16.067208855 +0000
+    @@ -1,2 +1 @@
+    -Running meta/005
+    -Test complete
+    +¯\_(ツ)_/¯
+meta/006 (produce lots of bad output)                       
+meta/006 (produce lots of bad output)                        [failed]
+    runtime    ...  0.001s
+    --- tests/meta/006.out	2023-12-12 16:50:50.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nodev/meta/006.out.bad	2024-01-03 18:50:16.828208832 +0000
+    @@ -1,2 +1,100 @@
+    -Running meta/006
+    -Test complete
+    +1 ¯\_(ツ)_/¯
+    +2 ¯\_(ツ)_/¯
+    +3 ¯\_(ツ)_/¯
+    +4 ¯\_(ツ)_/¯
+    +5 ¯\_(ツ)_/¯
+    ...
+    (Run 'diff -u tests/meta/006.out /lkp/benchmarks/blktests/results/nodev/meta/006.out.bad' to see the entire diff)
+meta/007 (skip in requires())                               
+meta/007 (skip in requires())                                [not run]
+    (╯°□°)╯︵ ┻━┻
+meta/009 (check dmesg)                                      
+meta/009 (check dmesg)                                       [failed]
+    runtime    ...  0.242s
+    something found in dmesg:
+    [   60.790335] run blktests meta/009 at 2024-01-03 18:50:17
+    [   60.799343] meta/003 (exit with non-zero status)                         [failed]
+    
+    [   60.817139]     runtime    ...  0.000s
+    
+    [   60.824482]     exited with status 1
+    
+    [   60.832972] meta/005 (produce bad output)                               
+    
+    [   60.844801] meta/005 (produce bad output)                                [failed]
+    ...
+    (See '/lkp/benchmarks/blktests/results/nodev/meta/009.dmesg' for the entire message)
+meta/010 (disable check dmesg)                              
+meta/010 (disable check dmesg)                               [passed]
+    runtime    ...  0.301s
+meta/011 (filter dmesg)                                     
+meta/011 (filter dmesg)                                      [passed]
+    runtime    ...  0.258s
+meta/012 (record pid and random junk)                       
+meta/012 (record pid and random junk)                        [passed]
+    783        ...  hello
+    pid        ...  783
+    random     ...  f34a2db2e1141f65
+    runtime    ...  1.058s
+meta/014 (skip in test())                                   
+meta/014 (skip in test())                                    [not run]
+    runtime    ...  0.000s
+    (╯°□°)╯︵ ┻━┻
+meta/016 (condition set 0) (repeat test())
+meta/016 (condition set 0) (repeat test())                   [passed]
+    runtime    ...  0.000s
+meta/016 (condition set 1) (repeat test())
+meta/016 (condition set 1) (repeat test())                   [passed]
+    runtime    ...  0.000s
+meta/018 (x=0 y=0) (combine two set_conditions() hooks)
+meta/018 (x=0 y=0) (combine two set_conditions() hooks)      [passed]
+    runtime    ...  0.000s
+meta/018 (x=1 y=0) (combine two set_conditions() hooks)
+meta/018 (x=1 y=0) (combine two set_conditions() hooks)      [passed]
+    runtime    ...  0.000s
+meta/018 (x=0 y=1) (combine two set_conditions() hooks)
+meta/018 (x=0 y=1) (combine two set_conditions() hooks)      [passed]
+meta/019 (x=0 y=0 z=0) (combine three set_conditions() hooks)
+meta/019 (x=0 y=0 z=0) (combine three set_conditions() hooks) [passed]
+    runtime    ...  0.000s
+meta/019 (x=1 y=0 z=0) (combine three set_conditions() hooks)
+meta/019 (x=1 y=0 z=0) (combine three set_conditions() hooks) [passed]
+    runtime    ...  0.000s

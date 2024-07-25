@@ -1,23 +1,27 @@
 #!/bin/sh
-# - nr_instance
+# - nr_instances
 
 . "$LKP_SRC"/lib/debug.sh
 . "$LKP_SRC"/lib/reproduce-log.sh
 
-: "${nr_instance:=1}"
+: "${nr_instances:=1}"
 
 linux_src="$BENCHMARK_ROOT/kbuild/linux"
 kbuild_work_dirs=
 
 [ -d "$linux_src" ] || die "no kernel source code in $BENCHMARK_ROOT/kbuild/linux"
 
+: "${mount_points:=$BENCHMARK_ROOT/kbuild}"
+
 for mnt in $mount_points; do
-	for seqno in $(seq "$nr_instance"); do
-		wdir="$mnt/kbuild.$seqno"
-		log_cmd rm -rf "$wdir"
-		log_cmd cp -a "$linux_src" "$wdir"
-		kbuild_work_dirs="$kbuild_work_dirs $wdir"
+	wdir="$mnt/kbuild"
+	log_cmd mkdir -p "$wdir"
+	for seqno in $(seq "$nr_instances"); do
+		iwdir="$wdir/$seqno"
+		log_cmd rm -rf "$iwdir"
+		log_cmd cp -a "$linux_src" "$iwdir"
 	done
+	kbuild_work_dirs="$kbuild_work_dirs $wdir"
 done
 
 sync

@@ -6,3 +6,4 @@ mail_cc:
 owner: Steve French <smfrench@gmail.com>
 subsystems:
 - cifs
+test_old_branches: .*

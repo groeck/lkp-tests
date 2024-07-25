@@ -1,0 +1,17 @@
+short_description: >
+ Measuring latency in the Linux network stack between kernel and user space.
+
+description: >
+ Using the SO_TIMESTAMP option to setsockopt(), we can measure the amount of time it takes the Linux kernel to hand a received network packet off to user space. With the option set, the kernel returns an extra struct timeval to the recvmsg() packet reception function.
+ At the moment the recvmsg() blocking call returns, the user-space code grabs another timestamp. The time difference between the kernel space and user space timestamps is the network stack's latency.
+ The code also demonstrates the use of SIOCGIFADDR to retrieve the IP address from a named interface.
+
+homepage: https://vilimpoc.org/research/ku-latency
+
+parameters:
+ runtime:
+
+results:
+
+
+

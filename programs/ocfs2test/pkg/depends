@@ -1,10 +1,10 @@
-libopenmpi2
-openmpi-bin
-libopenmpi-dev
+libcomerr2
+libopenmpi3
+netcat-openbsd
 ocfs2-tools
-winpdb
-sudo
+openmpi-bin
 python-pip
 python-setuptools
 python-wheel
-netcat-openbsd
+sudo
+winpdb

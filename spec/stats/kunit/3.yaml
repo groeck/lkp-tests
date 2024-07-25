@@ -1,1 +1,10 @@
+hw_breakpoint.test_one_cpu.pass: 1
+hw_breakpoint.test_many_cpus.pass: 1
+hw_breakpoint.test_one_task_on_all_cpus.pass: 1
+hw_breakpoint.test_two_tasks_on_all_cpus.pass: 1
+hw_breakpoint.test_one_task_on_one_cpu.pass: 1
+hw_breakpoint.test_one_task_mixed.pass: 1
+hw_breakpoint.test_two_tasks_on_one_cpu.pass: 1
+hw_breakpoint.test_two_tasks_on_one_all_cpus.pass: 1
+hw_breakpoint.test_task_on_all_and_one_cpu.pass: 1
 hw_breakpoint.pass: 1

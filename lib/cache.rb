@@ -1,7 +1,6 @@
 LKP_SRC ||= ENV['LKP_SRC'] || File.dirname(__dir__)
 
 require 'ostruct'
-require "#{LKP_SRC}/lib/log"
 
 module Cacheable
   def self.included(mod)
@@ -36,9 +35,11 @@ module Cacheable
       # rli9 FIXME: better solution for generating key can refer to
       # https://github.com/seamusabshere/cache_method/blob/master/lib/cache_method.rb
       define_method(method_name) do |*args|
-        kclass.cache_fetch(self, method_name, *args)
-      rescue StandardError
-        send("#{method_name}_without_cache", *args)
+        begin
+          kclass.cache_fetch(self, method_name, *args)
+        rescue StandardError
+          send("#{method_name}_without_cache", *args)
+        end
       end
     end
 
@@ -65,7 +66,7 @@ module Cacheable
       end
 
       value = obj.send("#{method_name}_without_cache", *args)
-      return nil if value.nil? && !cache_options[method_name][:cache_nil]
+      return if value.nil? && !cache_options[method_name][:cache_nil]
 
       cache_store[cache_key] = OpenStruct.new(value: value, timestamp: Time.now)
       cache_store[cache_key].value

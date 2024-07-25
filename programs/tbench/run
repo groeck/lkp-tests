@@ -1,14 +1,27 @@
 #!/bin/sh
 # - runtime
 # - nr_threads
+# - iterations
 
 ## TBENCH produces the network load to simulate the network part of
 ## the load of the commecial Netbench benchmark.  Unlike Netbench,
 ## it doesn't require a lab of Windows PCs:
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/env.sh
+. $LKP_SRC/lib/debug.sh
 
 [ -n "$direct_server_ips" ] && server=$direct_server_ips
 [ -z "$server" ] && server=127.0.0.1
 [ -n "$runtime" ] || runtime=600
-server=${server%% *}
+[ -n "$iterations" ] || iterations=1
 
-log_cmd tbench -t $runtime $nr_threads $server
+has_cmd tbench || die "tbench not found"
+[ -f /usr/local/share/client.txt ] || die "can not find load file"
+
+server=${server%% *}
+for i in $(seq $iterations)
+do
+  log_cmd tbench -t $runtime $nr_threads $server || die "tbench run failed, check run log"
+done
+log_echo killall -KILL tbench_srv
+killall -KILL tbench_srv

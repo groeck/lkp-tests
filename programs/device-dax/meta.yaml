@@ -1,0 +1,10 @@
+short_description: >
+  Utility library for managing the libnvdimm (non-volatile memory device) sub-system in the Linux kernel.
+
+description: >
+
+homepage: https://github.com/pmem/ndctl
+
+parameters:
+
+results:

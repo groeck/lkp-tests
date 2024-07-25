@@ -13,6 +13,8 @@
 ## (either threads or traditional processes) which communicate via either sockets or
 ## pipes and time how long it takes  for each pair to send data back and forth.
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 [ "$ipc" = 'pipe' ] && ipc_option='--pipe'
 
 [ -n "$runtime" ] || runtime=600

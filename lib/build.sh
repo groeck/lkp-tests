@@ -11,7 +11,7 @@ make_config()
 {
         (
         set -o pipefail
-        { yes ''; true; } | make "$@" | head --bytes=1000K
+        { yes ''; true; } | make "$@"
         )
 }
 

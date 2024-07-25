@@ -5,6 +5,7 @@
 ## by network and system managers.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/nuttcp || die "no $BENCHMARK_ROOT/nuttcp"
 

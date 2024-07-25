@@ -16,7 +16,7 @@ end
 exit if perf_sched.empty?
 
 total_perf_sched = [[], [], []]
-perf_sched.each do |_k, v|
+perf_sched.each_value do |v|
   v.each_with_index { |data, i| total_perf_sched[i] << data }
 end
 

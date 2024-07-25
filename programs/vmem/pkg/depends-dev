@@ -1,10 +1,10 @@
-cmake
+bash-completion
 clang
-pkg-config
-udev
+cmake
+libjson-c-dev
+libkeyutils-dev
 libkmod-dev
 libudev-dev
+pkg-config
+udev
 uuid-dev
-libjson-c-dev
-bash-completion
-libkeyutils-dev

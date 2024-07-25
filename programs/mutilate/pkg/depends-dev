@@ -1,4 +1,4 @@
-scons
-libevent-dev
 gengetopt
+libevent-dev
 libzmq3-dev
+scons

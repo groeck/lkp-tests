@@ -7,6 +7,7 @@
 ## performance issues that take place outside of user-space.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd /sys/kernel/debug/tracing || die "no /sys/kernel/debug/tracing"
 

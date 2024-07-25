@@ -1,0 +1,40 @@
+2023-10-30 16:13:09 dbench 128 -c /usr/local/share/client.txt
+dbench version 4.00 - Copyright Andrew Tridgell 1999-2004
+
+Running for 600 seconds with load '/usr/local/share/client.txt' and minimum warmup 120 secs
+127 of 128 processes prepared for launch   0 sec
+128 of 128 processes prepared for launch   0 sec
+releasing clients
+ 128     18384  14924.44 MB/sec  warmup   1 sec  latency 45.920 ms
+ 128     39295  14716.65 MB/sec  warmup   2 sec  latency 9.680 ms
+ 128     58344  14133.44 MB/sec  warmup   3 sec  latency 12.586 ms
+ 128     79263  14208.11 MB/sec  warmup   4 sec  latency 10.701 ms
+ 128    100037  14258.50 MB/sec  warmup   5 sec  latency 12.715 ms
+ 128  14005624  13565.79 MB/sec  execute 595 sec  latency 10.820 ms
+ 128  14025477  13566.27 MB/sec  execute 596 sec  latency 14.378 ms
+ 128  14044062  13564.85 MB/sec  execute 597 sec  latency 10.197 ms
+ 128  14063777  13565.05 MB/sec  execute 598 sec  latency 11.805 ms
+ 128  14082566  13563.95 MB/sec  execute 599 sec  latency 11.331 ms
+ 128  cleanup 600 sec
+   0  cleanup 600 sec
+
+ Operation                Count    AvgLat    MaxLat
+ --------------------------------------------------
+ Deltree                   6400     4.399    23.896
+ Flush                  18168703     3.095    53.127
+ Close                  190417006     0.001     0.472
+ LockX                   844038     0.002     0.226
+ Mkdir                     3200     0.003     0.011
+ Rename                 10976955     0.032    12.386
+ ReadX                  406344034     0.004    12.776
+ WriteX                 129216677     0.028    12.800
+ Unlink                 52345694     0.081    12.660
+ UnlockX                 844038     0.001     0.301
+ FIND_FIRST             90839376     0.018    11.938
+ SET_FILE_INFORMATION   21117853     0.016    10.719
+ QUERY_FILE_INFORMATION 41171932     0.001     0.626
+ QUERY_PATH_INFORMATION 234963059     0.005    12.536
+ QUERY_FS_INFORMATION   43080704     0.008     0.832
+ NTCreateX              259219016     0.014    13.511
+
+Throughput 13563.9 MB/sec  128 clients  128 procs  max_latency=53.132 ms

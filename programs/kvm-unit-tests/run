@@ -27,21 +27,16 @@ else
 	fi
 fi
 
-# errata.txt and run_tests.sh are under same directory, using
-# absolute path for errata.sh will increase the risk of missing
-# file, here we directly use relative path.
-sed -i 's/\(ERRATATXT=\).*/\1errata.txt/' config.mak
+$QEMU --version
 
-# below fix timeout issue in kvm-unit-tests-qemu,
-# 'FAIL vmx_pf_exception_test_reduced_maxphyaddr (timeout; duration=90s)'
-# we should keep same setting for bare metal
-sed -i '/\[vmx_pf_exception_test_reduced_maxphyaddr\]/a\timeout = 240' x86/unittests.cfg
-
+fixup_tests
 setup_test_environment || die "failed to setup test environment"
 
-check_ignored_cases
-
 run_tests
-[ $? -ne 0 ] && dump_qemu
+exit_code=$?
 
 upload_test_results
+
+[ $exit_code -ne 0 ] && dump_qemu
+
+exit $exit_code

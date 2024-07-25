@@ -1,0 +1,66 @@
+#!/bin/sh
+# - nr_threads
+# - period
+# - rwmode
+# - iomode
+# - size
+# - filenum
+
+## SysBench is a modular, cross-platform and multi-threaded benchmark
+## tool for evaluating OS parameters that are important for a system
+## running a database under intensive load.
+
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
+
+[ -n "$period"	] || period=600
+[ -n "$rwmode"	] || rwmode=rndrw
+[ -n "$iomode"	] || iomode=sync
+[ -n "$size"	] || size=$((128<<30))
+[ -n "$filenum"	] || filenum=128
+
+filenum=${filenum%f}
+
+args="
+	--events=0
+	--threads=$nr_threads
+	--time=$period
+	--file-test-mode=$rwmode
+	--file-total-size=$size
+	--file-io-mode=$iomode
+	--file-num=$filenum
+"
+
+prepare()
+{
+	log_cmd sysbench fileio ${args} prepare
+}
+
+prepare_fallocate()
+{
+	# in seqwr mode, fileio will remove all exist files, hence
+	# it's worthless to create them here.
+	[ "$rwmode" = "seqwr" ] && return
+
+	local filesize="$((size / filenum))"
+	for i in $(seq 0 $((filenum-1)))
+	do
+		log_cmd fallocate -l $filesize test_file.$i
+	done
+}
+
+run()
+{
+	# permit more files open in system
+	ulimit -n $((filenum + 2048))
+	log_cmd sysbench fileio ${args} run
+}
+
+log_eval cd "$mount_points" || die "no $mount_points"
+
+if [ "${rwmode#*wr}" != "$rwmode" ]; then
+	prepare_fallocate
+else
+	prepare
+fi
+run

@@ -5,16 +5,6 @@
 # exec of "iptables-save" failed: No such file or directory
 # ./udpgro_fwd.sh: line 145: [: too many arguments
 #  ok
-# GRO frag list                           exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
-# GRO fwd                                 exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
 # UDP fwd perf                            udp rx:      4 MB/s     3536 calls/s
 # udp tx:     76 MB/s     1304 calls/s   1304 msg/s
 # udp rx:      5 MB/s     4368 calls/s
@@ -26,11 +16,6 @@
 # exec of "iptables-save" failed: No such file or directory
 # ./udpgro_fwd.sh: line 145: [: too many arguments
 #  ok
-# GRO fwd over UDP tunnel                 exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "iptables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
 # IPv6
 # No GRO                                  exec of "ip6tables-save" failed: No such file or directory
 # ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
@@ -38,21 +23,6 @@
 # ./udpgro_fwd.sh: line 145: [: too many arguments
 #  ok
 # GRO frag list                           exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
-# GRO fwd                                 exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
-# GRO frag list over UDP tunnel           exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
-# exec of "ip6tables-save" failed: No such file or directory
-# ./udpgro_fwd.sh: line 145: [: too many arguments
-#  ok
-# GRO fwd over UDP tunnel                 exec of "ip6tables-save" failed: No such file or directory
 # ./udpgro_fwd.sh: line 135: [: !=: unary operator expected
 # exec of "ip6tables-save" failed: No such file or directory
 # ./udpgro_fwd.sh: line 145: [: too many arguments

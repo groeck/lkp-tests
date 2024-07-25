@@ -134,7 +134,7 @@ module CMResultRoot
 
   def kpi_avg_stddev
     cm = complete_matrix
-    return nil if matrix_cols(cm) < 3
+    return if matrix_cols(cm) < 3
 
     avg_stddev = {}
     cm.each do |k, v|
@@ -481,7 +481,7 @@ module ResultStddev
     end
     sources << source_str
     data[SOURCE_KEY] = sources
-    data.each do |_k, vs|
+    data.each_value do |vs|
       vs << nil if vs.size < sources.size
     end
 
@@ -491,14 +491,14 @@ module ResultStddev
   def load(axes)
     dir, file = ResultStddev.path axes
     path = File.join dir, file
-    return nil unless File.exist? path
+    return unless File.exist? path
 
     load_json path
   end
 
   def load_values(axes)
     data = load(axes)
-    return nil unless data && !data.empty?
+    return unless data && !data.empty?
 
     data.delete SOURCE_KEY
     data.each do |k, vs|

@@ -1,9 +1,9 @@
-python3
-pciutils
-usbutils
+iw
 net-tools
 network-manager
-wpasupplicant
-iw
+pciutils
+python
 rfkill
+usbutils
 vim
+wpasupplicant

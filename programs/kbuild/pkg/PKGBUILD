@@ -1,11 +1,11 @@
 pkgname=kbuild
-pkgver=5.4
+pkgver=6.7
 pkgrel=1
 arch=('i386' 'x86_64' 'aarch64')
 url="https://www.kernel.org/pub/linux/kernel"
 license=('GPL')
-source=("https://www.kernel.org/pub/linux/kernel/v5.x/linux-${pkgver}.tar.xz")
-sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491')
+source=("https://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz")
+md5sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/lkp/benchmarks/${pkgname}/linux"

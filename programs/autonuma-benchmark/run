@@ -3,8 +3,11 @@
 # - iterations
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
-export PATH=$PATH:/lkp/benchmarks/autonuma-benchmark
+export PATH=$PATH:$BENCHMARK_ROOT/autonuma-benchmark
+
+cd "$BENCHMARK_ROOT/autonuma-benchmark" || die "no $BENCHMARK_ROOT/autonuma-benchmark"
 
 ln -sf /usr/bin/gnuplot-qt /usr/bin/gnuplot
 
@@ -38,8 +41,6 @@ case "$test" in
         echo "Invalid test parameter." && exit 1
         ;;
 esac
-
-cd "/lkp/benchmarks/autonuma-benchmark" || die "no /lkp/benchmarks/autonuma-benchmark"
 
 for i in $(seq $iterations)
 do

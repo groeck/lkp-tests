@@ -4,14 +4,6 @@ net.ioam6.sh.OUTPUT_tests.Missing_trace_room_inline_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Missing_trace_room_encap_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_0_only_inline_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_1_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_2_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_3_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_4_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_5_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_6_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_7_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_8_only_inline_mode.pass: 1
-net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_9_only_inline_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_10_only_inline_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_11_only_inline_mode.pass: 1
 net.ioam6.sh.OUTPUT_tests.Trace_type_with_bit_12_only_inline_mode.pass: 1

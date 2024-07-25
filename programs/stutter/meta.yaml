@@ -1,0 +1,10 @@
+short_description: >
+ stutter benchmark source for LKP-tests.
+
+description: >
+
+homepage: https://github.com/gaowanlong/stutter.git
+
+parameters:
+ iterations:
+

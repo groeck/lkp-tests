@@ -1,0 +1,78 @@
+[    7.924106][    T6] BUG: kernel NULL pointer dereference, address: 00000000000000a0
+[    7.924095][    T1] cpuidle: using governor ladder
+[    7.924990][    T6] #PF: supervisor read access in kernel mode
+[    7.924990][    T6] #PF: error_code(0x0000) - not-present page
+[    7.924397][    T1] NET: Registered PF_QIPCRTR protocol family
+[    7.924990][    T6] PGD 0 P4D 0
+[    7.924990][    T6] Oops: 0000 [#1] PREEMPT SMP
+[    7.924990][    T6] CPU: 0 PID: 6 Comm: kworker/0:0 Not tainted 6.6.0-rc7-00085-gead89c665581 #4
+[    7.924990][    T6] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.16.2-debian-1.16.2-1 04/01/2014
+[    7.924990][    T6] Workqueue: rcu_gp wait_rcu_exp_gp
+[ 7.924990][ T6] RIP: 0010:pick_next_task_fair (kbuild/src/rand-x86_64-2/kernel/sched/sched.h:1417 kbuild/src/rand-x86_64-2/kernel/sched/fair.c:8252) 
+[ 7.924990][ T6] Code: 95 b8 00 00 00 4d 89 a5 c0 00 00 00 48 89 ab 30 0b 00 00 0f 1f 44 00 00 eb 38 48 89 ef e8 5c 8f ff ff 48 89 ef e8 94 f3 fe ff <48> 8b a8 a0 00 00 00 49 89 c6 48 85 ed 0f 84 63 02 00 00 48 8b 45
+All code
+========
+   0:	95                   	xchg   %eax,%ebp
+   1:	b8 00 00 00 4d       	mov    $0x4d000000,%eax
+   6:	89 a5 c0 00 00 00    	mov    %esp,0xc0(%rbp)
+   c:	48 89 ab 30 0b 00 00 	mov    %rbp,0xb30(%rbx)
+  13:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  18:	eb 38                	jmp    0x52
+  1a:	48 89 ef             	mov    %rbp,%rdi
+  1d:	e8 5c 8f ff ff       	call   0xffffffffffff8f7e
+  22:	48 89 ef             	mov    %rbp,%rdi
+  25:	e8 94 f3 fe ff       	call   0xfffffffffffef3be
+  2a:*	48 8b a8 a0 00 00 00 	mov    0xa0(%rax),%rbp		<-- trapping instruction
+  31:	49 89 c6             	mov    %rax,%r14
+  34:	48 85 ed             	test   %rbp,%rbp
+  37:	0f 84 63 02 00 00    	je     0x2a0
+  3d:	48                   	rex.W
+  3e:	8b                   	.byte 0x8b
+  3f:	45                   	rex.RB
+
+Code starting with the faulting instruction
+===========================================
+   0:	48 8b a8 a0 00 00 00 	mov    0xa0(%rax),%rbp
+   7:	49 89 c6             	mov    %rax,%r14
+   a:	48 85 ed             	test   %rbp,%rbp
+   d:	0f 84 63 02 00 00    	je     0x276
+  13:	48                   	rex.W
+  14:	8b                   	.byte 0x8b
+  15:	45                   	rex.RB
+[    7.924990][    T6] RSP: 0000:ffffc9000003bd58 EFLAGS: 00010046
+[    7.924990][    T6] RAX: 0000000000000000 RBX: ffff88842fbeee40 RCX: 0000000000000001
+[    7.924990][    T6] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88842fbeef40
+[    7.924990][    T6] RBP: ffff88842fbeef40 R08: 0000000000000000 R09: 0000000000000001
+[    7.924990][    T6] R10: 0000000000000000 R11: 0000000000000001 R12: ffff888103268000
+[    7.924990][    T6] R13: 0000000000000001 R14: ffffc9000003bdb0 R15: ffff88842fbeee40
+[    7.924990][    T6] FS:  0000000000000000(0000) GS:ffff88842fa00000(0000) knlGS:0000000000000000
+[    7.924990][    T6] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    7.924990][    T6] CR2: 00000000000000a0 CR3: 0000000003a56000 CR4: 00000000000406f0
+[    7.924990][    T6] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[    7.924990][    T6] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[    7.924990][    T6] Call Trace:
+[    7.924990][    T6]  <TASK>
+[ 7.924990][ T6] ? __die (kbuild/src/rand-x86_64-2/arch/x86/kernel/dumpstack.c:421 kbuild/src/rand-x86_64-2/arch/x86/kernel/dumpstack.c:434) 
+[ 7.924990][ T6] ? page_fault_oops (kbuild/src/rand-x86_64-2/arch/x86/mm/fault.c:707) 
+[ 7.924990][ T6] ? kernelmode_fixup_or_oops (kbuild/src/rand-x86_64-2/arch/x86/mm/fault.c:758) 
+[ 7.924990][ T6] ? exc_page_fault (kbuild/src/rand-x86_64-2/arch/x86/include/asm/irqflags.h:26 kbuild/src/rand-x86_64-2/arch/x86/include/asm/irqflags.h:67 kbuild/src/rand-x86_64-2/arch/x86/include/asm/irqflags.h:127 kbuild/src/rand-x86_64-2/arch/x86/mm/fault.c:1513 kbuild/src/rand-x86_64-2/arch/x86/mm/fault.c:1561) 
+[ 7.924990][ T6] ? asm_exc_page_fault (kbuild/src/rand-x86_64-2/arch/x86/include/asm/idtentry.h:570) 
+[ 7.924990][ T6] ? pick_next_task_fair (kbuild/src/rand-x86_64-2/kernel/sched/sched.h:1417 kbuild/src/rand-x86_64-2/kernel/sched/fair.c:8252) 
+[ 7.924990][ T6] __schedule (kbuild/src/rand-x86_64-2/kernel/sched/core.c:5997 kbuild/src/rand-x86_64-2/kernel/sched/core.c:6506 kbuild/src/rand-x86_64-2/kernel/sched/core.c:6652) 
+[ 7.924990][ T6] ? __cond_resched (kbuild/src/rand-x86_64-2/kernel/sched/core.c:8507) 
+[ 7.924990][ T6] ? process_one_work (kbuild/src/rand-x86_64-2/kernel/workqueue.c:2603) 
+[ 7.924990][ T6] preempt_schedule_common (kbuild/src/rand-x86_64-2/arch/x86/include/asm/preempt.h:85 kbuild/src/rand-x86_64-2/kernel/sched/core.c:6855) 
+[ 7.924990][ T6] __cond_resched (kbuild/src/rand-x86_64-2/kernel/sched/core.c:8507) 
+[ 7.924990][ T6] ? process_one_work (kbuild/src/rand-x86_64-2/kernel/workqueue.c:2637) 
+[ 7.924990][ T6] process_one_work (kbuild/src/rand-x86_64-2/kernel/workqueue.c:2659) 
+[ 7.924990][ T6] worker_thread (kbuild/src/rand-x86_64-2/kernel/workqueue.c:2697 kbuild/src/rand-x86_64-2/kernel/workqueue.c:2784) 
+[ 7.924990][ T6] ? process_one_work (kbuild/src/rand-x86_64-2/kernel/workqueue.c:2730) 
+[ 7.924990][ T6] kthread (kbuild/src/rand-x86_64-2/kernel/kthread.c:388) 
+[ 7.924990][ T6] ? kthread_complete_and_exit (kbuild/src/rand-x86_64-2/kernel/kthread.c:341) 
+[ 7.924990][ T6] ret_from_fork (kbuild/src/rand-x86_64-2/arch/x86/kernel/process.c:153) 
+[ 7.924990][ T6] ? kthread_complete_and_exit (kbuild/src/rand-x86_64-2/kernel/kthread.c:341) 
+[ 7.924990][ T6] ret_from_fork_asm (kbuild/src/rand-x86_64-2/arch/x86/entry/entry_64.S:312) 
+[    7.924990][    T6]  </TASK>
+[    7.924990][    T6] Modules linked in:
+[    7.924990][    T6] CR2: 00000000000000a0
+[    7.924990][    T6] ---[ end trace 0000000000000000 ]---

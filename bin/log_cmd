@@ -12,4 +12,7 @@ done
 
 echo "$args" >> $TMP_RESULT_ROOT/reproduce.sh
 
+# Attention!!! This script cannot be used to execute "cd <dir>" command,
+# it only takes effect in subshell but won't change the directory of parent shell.
+# Please source lib/reproduce-log.sh and use the function log_cmd there to execute "cd <dir>" command.
 exec /bin/sh -c "$args"

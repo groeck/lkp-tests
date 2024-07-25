@@ -2,6 +2,8 @@ suite: mutilate
 testcase: mutilate
 category: benchmark
 
+need_memory: 30G
+
 cluster: cs-localhost
 
 if role server:

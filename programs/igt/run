@@ -4,6 +4,7 @@
 
 . $LKP_SRC/lib/debug.sh
 . $LKP_SRC/lib/upload.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 cd "$BENCHMARK_ROOT/igt" || exit
 

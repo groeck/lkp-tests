@@ -1,5 +1,5 @@
-libzmq5
 libevent-2
-memcached
 libhugetlbfs-bin
-libhugetlbfs-dev
+libhugetlbfs0
+libzmq5
+memcached

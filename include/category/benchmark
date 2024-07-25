@@ -14,6 +14,9 @@ need_kconfig:
   - DEBUG_SHIRQ: n
   - OCFS2_DEBUG_MASKLOG: n
   - DEBUG_MEMORY_INIT: n
+  - BUG_ON_DATA_CORRUPTION: n
+  - DEBUG_LIST: n
+  - DEBUG_PLIST: n
   - EXPERT: y
 
   # preempt related settings to have fair comparison between different commits

@@ -1,0 +1,97 @@
+PTS_SILENT_MODE=1
+2023-12-12 05:17:28 phoronix-test-suite run unigine-tropics-1.6.4
+
+
+
+Unigine Tropics 1.3:
+    pts/unigine-tropics-1.6.4
+    Graphics Test Configuration
+        1: 800 x 600
+        2: 1024 x 768
+        3: Test All Options
+        ** Multiple items can be selected, delimit by a comma. **
+
+        1: 800 x 600
+        2: 1024 x 768
+        3: Test All Options
+        ** Multiple items can be selected, delimit by a comma. **
+
+
+        1: Fullscreen
+        2: Windowed
+        3: Test All Options
+        ** Multiple items can be selected, delimit by a comma. **
+
+
+Phoronix Test Suite v10.4.0
+System Information
+
+
+  PROCESSOR:          Intel Core i7-8700 @ 4.60GHz
+    Core Count:       6                                        
+    Thread Count:     12                                       
+    Extensions:       SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:       12 MB                                    
+    Microcode:        0xf4                                     
+    Core Family:      Kaby/Coffee/Whiskey Lake                 
+    Scaling Driver:   intel_pstate performance                 
+
+  GRAPHICS:           Intel UHD 630 CFL GT2 3GB
+    Frequency:        1200MHz          
+    OpenGL:           4.6 Mesa 20.0.7  
+    Vulkan:           1.1.102          
+    OpenCL:           OpenCL 2.1       
+    Screen:           1024x768         
+
+  MOTHERBOARD:        Dell 0C96W1
+    BIOS Version:     1.4.2            
+
+  MEMORY:             4 x 8192 MB DDR4-2133MHz M378A1K43CB2-CTD
+
+  DISK:               1200GB INTEL SSDSC2BB01 + 1000GB Seagate ST1000DM003-1CH1
+    File-System:      overlayfs        
+    Disk Scheduler:   MQ-DEADLINE      
+
+  OPERATING SYSTEM:   Debian GNU/Linux 9
+    Kernel:           6.7.0-rc5-02301-g5385e40bcb66 (x86_64) 20231212                                                             
+    Display Server:   X Server 1.20.4                                                                                             
+    Compiler:         GCC 9.2.1 20191130                                                                                          
+    Security:         gather_data_sampling: Vulnerable: No microcode                                                              
+                      + itlb_multihit: KVM: Mitigation of VMX disabled                                                            
+                      + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                          
+                      + mds: Mitigation of Clear buffers; SMT vulnerable                                                          
+                      + meltdown: Mitigation of PTI                                                                               
+                      + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                              
+                      + retbleed: Mitigation of IBRS                                                                              
+                      + spec_rstack_overflow: Not affected                                                                        
+                      + spec_store_bypass: Mitigation of SSB disabled via prctl                                                   
+                      + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                        
+                      + spectre_v2: Mitigation of IBRS IBPB: conditional STIBP: conditional RSB filling PBRSB-eIBRS: Not affected 
+                      + srbds: Vulnerable: No microcode                                                                           
+                      + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                              
+
+    Would you like to save these test results (Y/n): 
+Unigine Tropics 1.3:
+    pts/unigine-tropics-1.6.4 [Resolution: 1024 x 768 - Mode: Fullscreen]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                      
+    Estimated Time To Completion: 13 Minutes [05:29 UTC] 
+        Started Run 1 @ 05:17:36
+        The test run did not produce a result.
+        Started Run 2 @ 05:17:41
+        Started Run 3 @ 05:21:12
+        Started Run 4 @ 05:24:41 *
+
+    Resolution: 1024 x 768 - Mode: Fullscreen:
+        65.7588
+        65.3118
+        65.4397
+
+    Average: 65.5034 Frames Per Second
+    Deviation: 0.35%
+
+unigine-tropics-1.6.4.seconds: 646.029638788
+xinit: connection to X server lost
+
+waiting for X server to shut down (II) Server terminated successfully (0). Closing log file.
+

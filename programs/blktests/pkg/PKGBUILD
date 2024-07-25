@@ -4,8 +4,8 @@ pkgrel=1
 arch=('i386' 'x86_64' 'aarch64')
 url="https://github.com/osandov/blktests"
 license=('GPL')
-source=("https://github.com/osandov/blktests.git" "https://github.com/karelzak/util-linux.git" "https://github.com/linux-nvme/nvme-cli.git")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+source=("https://github.com/osandov/blktests.git" "https://github.com/karelzak/util-linux.git")
+md5sums=('SKIP' 'SKIP')
 
 . $LKP_SRC/lib/install.sh
 
@@ -15,18 +15,6 @@ build_util_linux()
 	./autogen.sh || return
 	./configure || return
 	make
-}
-
-install_nvme_cli()
-{
-	mkdir -p "${benchmark_path}/nvme-cli"
-
-	cd "${srcdir}/nvme-cli"
-	git checkout 'v1.6'
-
-	unset CFLAGS
-	make || return
-	make DESTDIR="${benchmark_path}/nvme-cli" install
 }
 
 build_blktests()
@@ -46,7 +34,6 @@ package()
 	benchmark_path="${pkgdir}/lkp/benchmarks/${pkgname}"
 	mkdir -p "${benchmark_path}"
 
-	install_nvme_cli || return
 	cp -af "$srcdir/blktests/"* "$benchmark_path"
 	cp -af "$srcdir/util-linux" "$benchmark_path"
 
@@ -59,7 +46,7 @@ generate_new_tests()
 {
 	benchmark_path="${pkgdir}/lkp/benchmarks/${pkgname}"
 
-	for tests in $LKP_SRC/pkg/${pkgname}/addon/tests/*
+	for tests in $(get_pkg_dir ${pkgname})/addon/tests/*
 	do
 		cat $tests | grep -v '^#' > $benchmark_path/tests/$(basename $tests)
 	done

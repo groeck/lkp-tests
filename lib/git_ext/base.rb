@@ -3,6 +3,7 @@
 LKP_SRC ||= ENV['LKP_SRC'] || File.dirname(File.dirname(__dir__))
 
 require 'git'
+require "#{LKP_SRC}/lib/ruby_ext"
 
 module Git
   class Base
@@ -62,18 +63,18 @@ module Git
 
       command_lines('show', "#{commit_sha}:Makefile").each do |line|
         case line
-        when /^#/
-          next
-        when /VERSION *= *(\d+)/
+        when /^VERSION *= *(\d+)/
           version = $1.to_i
-        when /PATCHLEVEL *= *(\d+)/
+        when /^PATCHLEVEL *= *(\d+)/
           patch_level = $1.to_i
-        when /SUBLEVEL *= *(\d+)/
+        when /^SUBLEVEL *= *(\d+)/
           sub_level = $1.to_i
-        when /EXTRAVERSION *= *-rc(\d+)/
+        when /^EXTRAVERSION *= *-rc(\d+)/
           rc = $1.to_i
-        else
+        when /^NAME *= */
           break
+        else
+          next
         end
       end
 

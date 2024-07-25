@@ -1,4 +1,4 @@
 url: https://git.kernel.org/pub/scm/linux/kernel/git/matttbe/net-next.git
-owner: Matthieu Baerts <matthieu.baerts@tessares.net>
+owner: Matthieu Baerts <matttbe@kernel.org>
 notify_build_success_branch: .*
-mail_cc: matthieu.baerts@tessares.net
+mail_cc: matttbe@kernel.org

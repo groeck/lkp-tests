@@ -1,0 +1,15 @@
+#!/bin/bash
+
+[[ -n "$LKP_SRC" ]] || LKP_SRC=$(dirname $(dirname $(readlink -e -v $0)))
+
+echo "LKP_SRC=$LKP_SRC"
+
+(
+	find $LKP_SRC/distro/adaptation -type f ! -name README.md
+	find $LKP_SRC/distro/adaptation-pkg -type f
+
+	find $LKP_SRC/programs -type f -name depends\*
+	find $LKP_SRC/etc -type f ! -name makepkg.conf
+) | while read f; do
+	sort -f $f | uniq > $f.tmp && mv $f.tmp $f
+done

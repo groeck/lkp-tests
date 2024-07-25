@@ -1,2 +1,3 @@
 url: https://github.com/ls-zhu/linux
 notify_build_success_branch: .*
+belongs_to: tdx

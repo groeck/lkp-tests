@@ -82,5 +82,7 @@ if [ -n "$nr_instances" ]; then
 	(cd $TMP_RESULT_ROOT/log-$program && ls | sort -h | xargs cat > $fifo)
 	rm -rf $TMP_RESULT_ROOT/log-$program
 else
+	export nr_instances=1
+	export instance_id=1
 	exec $time_prefix $exec_prefix $runner_path "$@" > $fifo
 fi

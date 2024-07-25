@@ -123,8 +123,7 @@ pack()
 		find . -xdev |
 		grep -v -f $LKP_SRC/rootfs/rootfs-strip-list
 
-		[[ -f $LKP_SRC/distro/$DISTRO/$BM_NAME-allowlist ]] &&
-		cat   $LKP_SRC/distro/$DISTRO/$BM_NAME-allowlist
+		[[ -f $LKP_SRC/programs/$BM_NAME/pkg/allowlist ]] && cat $LKP_SRC/programs/$BM_NAME/pkg/allowlist
 	} |
 	cpio --quiet -o -H newc --owner=root.root |
 	gzip -n -9 >	$pack_to/${BM_NAME}_$date.cgz	|| return

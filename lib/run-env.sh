@@ -1,8 +1,10 @@
 #!/bin/sh
 
+. $LKP_SRC/lib/host.sh
+
 __local_run()
 {
-	host_name=$(hostname)
+	host_name=$(get_hostname)
 	host_file="$LKP_SRC/hosts/$host_name"
 	if [ -f "$host_file" ] && grep -sq '^local_run:[[:space:]]*1' "$host_file"; then
 		echo 1

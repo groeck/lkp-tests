@@ -1,0 +1,17 @@
+bison
+build-essential
+cmake
+cpuid
+flex
+g++-multilib
+gcc-multilib
+git
+hwloc
+libcap-dev
+libelf-dev
+libelf1
+libnl-genl-3-dev
+linux-perf
+msr-tools
+stress
+trace-cmd

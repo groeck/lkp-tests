@@ -8,6 +8,7 @@
 . $LKP_SRC/lib/upload.sh
 . $LKP_SRC/lib/tests/ltp.sh
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 cd $BENCHMARK_ROOT/ltp || die "no $BENCHMARK_ROOT/ltp"
 

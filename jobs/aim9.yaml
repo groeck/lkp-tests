@@ -3,12 +3,6 @@ testcase: aim9
 category: benchmark
 
 aim9:
-  testtime: 5s
-  test:
-    - all
-
----
-aim9:
   testtime: 300s
   test:
     - add_double

@@ -15,6 +15,14 @@ need_kconfig:
 - DUMMY: m
 - VETH: m
 - TUN: m
+% elsif ___.test == "net.features"
+- NET_FOU
+- IPV6_FOU
+
+- GENEVE
+- INET: y
+- NETDEVICES: y
+- NET_CORE: y
 % elsif ___.test == "crypto"
 - CRYPTO_SM4
 - CRYPTO_SM4_GENERIC
@@ -30,9 +38,15 @@ need_kconfig:
 % elsif ___.test == "cve-07"
 - CRYPTO_SM3
 - CRYPTO_SM3_GENERIC
+
+- SND_SEQUENCER
+- SOUND
+- SND
 % elsif ___.test == "kvm"
 - KVM
 - KVM_INTEL
+% elsif ___.test == "smoketest"
+- MACSEC
 % end
 
 % if ___.test != "kvm"
@@ -47,5 +61,3 @@ need_kconfig:
 - EXPERT: y
 - CHECKPOINT_RESTORE: y
 % end
-
-rootfs: debian-12-x86_64-20220629.cgz

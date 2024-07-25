@@ -1,13 +1,29 @@
-#!/usr/bin/awk -f
-# Throughput 51.9127 MB/sec  16 clients  16 procs  max_latency=969.602 ms
+#!/usr/bin/env ruby
 
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
-BEGIN { FS="[ =]" }
+require "#{LKP_SRC}/lib/log"
+require "#{LKP_SRC}/lib/statistics"
 
-/Throughput.*MB\/.*/ {
-	printf("throughput-%s: %s \n", $3, $2)
-	printf("clients: %s \n", $5)
-	printf("procs: %s \n", 	$8)
-	printf("max_latency: %s \n", $12)
-}
+stats = Hash.new { |h, k| h[k] = [] }
 
+while (line = $stdin.gets)
+  case line
+  when /^Throughput*/
+    lines = line.split('=')
+    values = lines[0].split(' ')
+    stats['throughput_MB/s'] << values[1].to_f
+    stats['clients'] = values[3].to_i
+    stats['procs'] = values[5].to_i
+    stats['max_latency'] << lines[1].split(' ')[0].to_f
+  end
+end
+
+stats.each do |k, v|
+  if k != 'clients' && k != 'procs'
+    puts "#{k}: #{v.average.round(2)}"
+    puts "#{k}_harmonic_mean: #{v.harmonic_mean.round(2)}"
+  else
+    puts "#{k}: #{v}"
+  end
+end

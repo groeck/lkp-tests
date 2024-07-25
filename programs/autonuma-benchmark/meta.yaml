@@ -1,0 +1,24 @@
+short_description: >
+  Couple of scripts for automated benchmarking by numa01 and numa02 programs.
+
+description: >
+
+homepage: https://github.com/pholasek/autonuma-benchmark
+
+parameters:
+ test:
+ iterations:
+
+results:
+ autonuma-benchmark.numa01.seconds: 
+ autonuma-benchmark.numa01_HARD_BIND.seconds: 
+ autonuma-benchmark.numa01_INVERSE_BIND.seconds: 
+ autonuma-benchmark.numa01_THREAD_ALLOC.seconds: 
+ autonuma-benchmark.numa01_THREAD_ALLOC_HARD_BIND.seconds: 
+ autonuma-benchmark.numa01_THREAD_ALLOC_INVERSE_BIND.seconds: 
+ autonuma-benchmark. numa02.seconds: 
+ autonuma-benchmark.numa02_HARD_BIND.seconds: 
+ autonuma-benchmark.numa02_INVERSE_BIND.seconds: 
+ autonuma-benchmark.numa02_SMT.seconds: 
+ autonuma-benchmark.numa02_SMT_HARD_BIND.seconds: 
+ autonuma-benchmark.numa02_SMT_INVERSE_BIND.seconds:

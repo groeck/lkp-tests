@@ -5,6 +5,7 @@
 # - ioengine
 # - iodepth
 # - direct
+# - offset_increment
 # - test_size
 # - nr_task
 # - fallocate
@@ -20,7 +21,10 @@
 # - numa_cpu_nodes
 # - pre_read
 # - rwmixread
+# - refill_buffers
 # - cpuload
+# - cpus_allowed_policy
+# - cpus_allowed
 # - donorname
 # - testfile
 
@@ -54,6 +58,7 @@ size=$((test_size / nr_task))
 direct=$(parse_bool $direct)
 raw_disk=$(parse_bool $raw_disk)
 pre_read=$(parse_bool $pre_read)
+refill_buffers=$(parse_bool $refill_buffers)
 
 if [ "$raw_disk" = 1 ]; then
 	storages=$partitions
@@ -65,12 +70,12 @@ for storage in $storages
 do
 	mnt_point=$(stat -c %m $(readlink -f $storage))
 	available_storage_size=$(df -k | awk '{print $4" "$NF}' | grep $mnt_point$ | awk '{print $1}')
-	[ $available_storage_size ] || die "storage $storage doesn't mounted"
+	[ -n "$available_storage_size" ] || die "storage $storage doesn't mounted"
 	available_storage_size=$(to_byte ${available_storage_size}k)
 
 	require_size=$test_size
 	df | grep $mnt_point$ | awk '{print $1}' | grep -q /dev/pmem && require_size=$size
-	[ $available_storage_size -lt $require_size ] && die "storage $storage available size: $available_storage_size < $require_size"
+	[ "$available_storage_size" -lt "$require_size" ] && die "storage $storage available size: $available_storage_size < $require_size"
 done
 
 nr_storages=$(echo $storages | wc -w)
@@ -85,19 +90,30 @@ bs=$bs
 ioengine=$ioengine
 iodepth=$iodepth
 size=$size
-nr_files=$nr_files
-filesize=$filesize
 direct=$direct
 runtime=$runtime
-invalidate=$invalidate
-fallocate=$fallocate
-io_size=$io_size
 file_service_type=$file_service_type
 random_distribution=$random_distribution
 group_reporting
 create_only=1
 pre_read=$pre_read
 "
+
+if [ -z "$offset_increment" ]; then
+	create_task="
+$create_task
+nr_files=$nr_files
+filesize=$filesize
+invalidate=$invalidate
+fallocate=$fallocate
+io_size=$io_size
+"
+else
+    create_task="
+$create_task
+offset_increment=$offset_increment
+"
+fi
 
 if parse_bool -q "$time_based"; then
 	create_task="
@@ -110,6 +126,13 @@ if parse_bool -q "$cpuload"; then
 	create_task="
 $create_task
 cpuload=$cpuload
+"
+fi
+
+if parse_bool -q "$refill_buffers"; then
+       create_task="
+$create_task
+refill_buffers
 "
 fi
 
@@ -180,6 +203,30 @@ __numa_cpu_nodes()
 parse_numa_mem_policy
 parse_numa_cpu_nodes
 
+parse_cpus_allowed_policy()
+{
+        if [ "$cpus_allowed_policy" = "split" ]; then
+                echo "cpus_allowed_policy=${cpus_allowed_policy}"
+        elif [ "$cpus_allowed_policy" = "shared" ]; then
+                echo "cpus_allowed_policy=${cpus_allowed_policy}"
+        fi
+
+}
+
+parse_cpus_allowed()
+{
+        if [ "$cpus_allowed_policy" = "split" ]; then
+                [ -n "$cpus_allowed" ] || die "cpus_allowed must be specified for fio"
+				
+                echo "cpus_allowed=${cpus_allowed}"
+        else
+                [ -z "$cpus_allowed" ] || die "cpus_allowed_policy is not split, cpus_allowed shouldn't  be specified for fio"
+        fi
+}
+
+parse_cpus_allowed_policy
+parse_cpus_allowed
+
 no=0
 
 for storage in $storages; do
@@ -218,6 +265,8 @@ numjobs=$jobs_per_storage
 $rwmixread_setup
 $(__numa_mem_policy $no)
 $(__numa_cpu_nodes $no)
+$(parse_cpus_allowed_policy)
+$(parse_cpus_allowed)
 "
 	no=$((no+1))
 done

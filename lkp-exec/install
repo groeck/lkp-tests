@@ -5,6 +5,7 @@
 . $LKP_SRC/lib/env.sh
 . $LKP_SRC/lib/constant.sh
 . $LKP_SRC/lib/lkp_path.sh
+. $LKP_SRC/lib/host.sh
 
 if ! [ $(id -u) = 0 ]; then
 	echo "This script must be run as root" 1>&2
@@ -113,36 +114,6 @@ create_lkp_dirs() {
 	mkdir -p '/lkp/benchmarks'
 }
 
-create_host_config() {
-	[ -n "$DRY_RUN" ] && return
-
-	local host_config="$LKP_SRC/hosts/${HOSTNAME}"
-	[ -e $host_config ] || {
-		echo "Creating testbox configuration file: $host_config."
-
-		local mem_kb="$(grep MemTotal /proc/meminfo | awk '{print $2}')"
-		local mem_gb="$(((mem_kb)/1024/1024))"
-		local nr_cpu=$(nproc)
-
-		cat <<EOT >> $host_config
-nr_cpu: $nr_cpu
-memory: ${mem_gb}G
-hdd_partitions: ${hdd_partitions[*]}
-ssd_partitions: ${ssd_partitions[*]}
-local_run: 1
-EOT
-	}
-
-	local tbox_group
-	set_tbox_group $HOSTNAME
-
-	local host_group_config="$LKP_SRC/hosts/${tbox_group}"
-	[ -e $host_group_config ] || {
-		echo "Creating testbox group configuration file: $host_group_config."
-		cp $host_config $host_group_config
-	}
-}
-
 bundle_install_china() {
 	local tmpdir=$(mktemp -d /tmp/lkp-install-china-XXXXXX)
 	trap "rm -rf $tmpdir" EXIT
@@ -172,21 +143,6 @@ makepkg_install() {
 verify_install() {
 	local pkg=$1
 	local pkg_lkp=$pkg-lkp
-
-	# FIXME consider to put below mapping to adaptation
-	#
-	# These are not real packages in debian but are required commands, which are
-	# installed by the corresponding os packages. Need use the name of the os
-	# packages so that dpkg -V can do the right check. The other way is to use
-	# has_cmd to check installed or not, but "which perf" returns /usr/bin/perf that
-	# is a wrapper instead of actual perf.
-	#
-	# Here also use -f /.dockerenv as a hack to only do this inside docker to reduce
-	# unnecessary re-installation that requires clone the linux repo.
-	[ -f /.dockerenv -a $DISTRO = debian ] && {
-		[ "$pkg" = perf ] && pkg=linux-perf
-		[ "$pkg" = turbostat ] && pkg=linux-cpupower
-	}
 
 	case $DISTRO in
 		debian|ubuntu)
@@ -322,6 +278,17 @@ install_fakeroot()
 	fi
 }
 
+is_ruby_version_ge()
+{
+	local other_version=$1
+	# ruby 2.0.0p648 (2015-12-16) [x86_64-linux]
+	local ruby_version=$(ruby --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+
+	local higher_version=$(echo -e "$other_version\n$ruby_version" | sort -V | tail -n1)
+
+	[ "$ruby_version" = "$higher_version" ]
+}
+
 install_base_support()
 {
 	install_packages "lkp" "$distro"
@@ -331,16 +298,34 @@ install_base_support()
 		install_fakeroot
 	fi
 
+	# https://bundler.io/compatibility.html
+	# Bundler compatibility with Ruby & RubyGems
+	# The latest Bundler release should always support, at the very least, all rubies that have not yet reached their End of Life date.
+	# The latest Bundler release should always support all RubyGems versions higher than or equal to the one shipped with the oldest Ruby version supported. RubyGems is not allowed to be downgraded further than that, so upgrading or downgrading RubyGems should not affect Bundler.
+	# That effectively comes down to the following:
+	# Bundler 2.4 or higher
+	# 	requires a minimum ruby version of 2.6.0, and a minimum RubyGems version of 3.0.1 (version of RubyGems shipped with ruby 2.6.0).
+	# Bundler 2.0 through 2.3
+	# 	requires a minimum ruby version of 2.3.0, and a minimum RubyGems version of 2.5 (version of RubyGems shipped with ruby 2.3.0).
+	# Bundler 1
+	# 	Requires a minimum Ruby version of 1.8.7, and a minimum RubyGems version of 1.3.6 (version of RubyGems shipped with ruby 1.8.7).
+
+	local bundler_version
+	if is_ruby_version_ge "3.2.0"; then
+		# bundler-1.17.3/lib/bundler/shared_helpers.rb:35: warning: Pathname#untaint is deprecated and will be removed in Ruby 3.2.
+		bundler_version="2.3.26"
+	else
+		# install bundler 1 to support ruby 2.0.0 at minimum
+		bundler_version="1.17.3"
+	fi
+
 	if [ -n "$CHINA" ]; then
-		gem install bundler -v 2.3.26 --clear-sources -s https://gems.ruby-china.com/
+		gem install bundler -v $bundler_version --clear-sources -s https://gems.ruby-china.com/
 		bundle_install_china
 	else
 		(
 			cd $LKP_SRC || exit
-			# install 2.3.26 to avoid below error when ruby is < 2.6.0
-			# 	ERROR:  Error installing bundler:
-			# 	bundler requires Ruby version >= 2.6.0.
-			gem install bundler -v 2.3.26
+			gem install bundler -v $bundler_version
 			bundle install
 		)
 	fi
@@ -351,10 +336,30 @@ install_base_support()
 	create_host_config
 }
 
+enable_centos_source(){
+    if ! yum list installed | grep -q yum-utils; then
+        yum install -y yum-utils 
+    fi
+
+    if [ "$_system_version" = 9 ]; then
+	echo "enable source crb"
+        dnf config-manager --set-enabled crb
+    elif [ "$_system_version" = 8 ]; then
+	echo "enable source powertools"
+        dnf config-manager --set-enabled powertools
+    fi
+
+}
+
 . $LKP_SRC/lib/install.sh
 
 detect_system
 distro=$_system_name_lowercase
+
+echo "distro=$distro"
+echo "version=$_system_version"
+
+[ "$distro" = "centos" ] && enable_centos_source
 
 DISTRO=$distro
 export DISTRO

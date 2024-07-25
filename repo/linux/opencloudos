@@ -1,0 +1,31 @@
+url: https://gitee.com/OpenCloudOS/OpenCloudOS-Kernel.git
+test_old_branches: .*
+arch_denylist: .*
+arch_allowlist: x86_64|arm64|loongarch
+branch_allowlist: linux-5.4/lts/5.4.119-20.0009.spr|next
+branch_denylist: .*
+compiler: gcc
+mail_to:
+- jasperwang@tencent.com
+- kaixuxia@tencent.com
+- frankjpliu@tencent.com
+- kasong@tencent.com
+- sagazchen@tencent.com
+- kernelxing@tencent.com
+- aurelianliu@tencent.com
+- deshengwu@tencent.com
+- flyingpeng@tencent.com
+- jason.zeng@intel.com
+- wu.zheng@intel.com
+- yingbao.jia@intel.com
+- pei.p.jia@intel.com
+private_report_branch: .*
+notify_build_success_branch: .*
+tests:
+  - branch: next
+    parameters:
+      kconfig: x86_64-oc_stream_base_config
+      base_commit: v6.6.6
+      mail_to:
+        - wu.zheng@intel.com
+        - oliver.sang@intel.com

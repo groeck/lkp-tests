@@ -8,6 +8,7 @@
 ## to generate network traffic for testing purposes.
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 [ -n "$nr_threads" ] && opt_streams="-n $nr_threads"
 [ "${protocol#udp}" != "$protocol" ]	&& opt_udp=-u

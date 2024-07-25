@@ -1,0 +1,14 @@
+initrds+:
+- linux_headers
+- linux_selftests
+
+need_kconfig:
+- SAMPLE_RUST_MINIMAL
+- SAMPLE_RUST_PRINT
+- SAMPLES: y
+- SAMPLES_RUST: y
+- RUST: y
+- MODVERSIONS: n
+- GCC_PLUGINS: n
+- RANDSTRUCT: n
+- DEBUG_INFO_BTF: n

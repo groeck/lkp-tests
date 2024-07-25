@@ -8,12 +8,14 @@ license=('GPL')
 source=("$pkgname"::"https://github.com/libhugetlbfs/libhugetlbfs.git")
 md5sums=('SKIP')
 
-build()
+. $LKP_SRC/lib/install.sh
+
+patch_source()
 {
 	cd $srcdir/$pkgname
 
 	if [ "$DISTRO" = "centos" ]; then
-		patch -p1 < ${startdir}-addon/0001-tests-hugetests.h-fix-compile-errors-under-centos.patch || return
+		patch -p1 < $(get_pkg_dir $pkgname)/0001-tests-hugetests.h-fix-compile-errors-under-centos.patch
 	fi
 }
 

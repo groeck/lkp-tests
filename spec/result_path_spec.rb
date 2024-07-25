@@ -243,32 +243,6 @@ describe ResultPath do
       end
     end
 
-    context 'handles kvm-unit-tests-qemu path' do
-      context 'when valid result root' do
-        it 'succesds' do
-          result_path = described_class.new
-
-          expect(result_path.parse_result_root("#{RESULT_ROOT_DIR}/kvm-unit-tests-qemu/ucode=0x200004d/lkp-skl-2sp4/debian-x86_64-20180403.cgz/x86_64-rhel-7.2/gcc-7/2595646791c319cadfdbf271563aac97d0843dc7/x86_64-softmmu/359c41abe32638adad503e386969fa428cecff52")).to be true
-          expect(result_path['testcase']).to eq 'kvm-unit-tests-qemu'
-          expect(result_path['path_params']).to eq 'ucode=0x200004d'
-          expect(result_path['tbox_group']).to eq 'lkp-skl-2sp4'
-          expect(result_path['rootfs']).to eq 'debian-x86_64-20180403.cgz'
-          expect(result_path['kconfig']).to eq 'x86_64-rhel-7.2'
-          expect(result_path['compiler']).to eq 'gcc-7'
-          expect(result_path['commit']).to eq '2595646791c319cadfdbf271563aac97d0843dc7'
-          expect(result_path['qemu_config']).to eq 'x86_64-softmmu'
-          expect(result_path['qemu_commit']).to eq '359c41abe32638adad503e386969fa428cecff52'
-        end
-      end
-      context 'when invalid result root' do
-        it 'fails' do
-          result_path = described_class.new
-
-          expect(result_path.parse_result_root("#{RESULT_ROOT_DIR}/kvm-unit-tests-qemu/ucode=0x200004d/lkp-skl-2sp4//x86_64-rhel-7.2/gcc-7/2595646791c319cadfdbf271563aac97d0843dc7")).to be false
-        end
-      end
-    end
-
     context 'handles kvm-kernel-boot-test path' do
       context 'when valid result root' do
         it 'succesds' do
@@ -335,7 +309,7 @@ describe ResultPath do
       it 'do not check commit id' do
         result_path = described_class.new
 
-  # The commit name is kernel version in local run.
+        # The commit name is kernel version in local run.
         expect(result_path.parse_result_root("#{RESULT_ROOT_DIR}/will-it-scale/process-100%-brk1/shao2-debian/debian/x86_64-rhel-7.6/gcc-7/4.19.0-4-amd64/0", is_local_run: true)).to be true
         expect(result_path['testcase']).to eq 'will-it-scale'
         expect(result_path['path_params']).to eq 'process-100%-brk1'

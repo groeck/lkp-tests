@@ -1,6 +1,8 @@
 #!/bin/bash
 
 . $LKP_SRC/lib/install.sh
+. $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/env.sh
 
 rebuild()
 {
@@ -85,8 +87,8 @@ workaround_env()
 	ln -fs bash /bin/sh
 
 	# install mkisofs which is linked to genisoimage
-	command -v mkisofs || {
-		genisoimage=$(command -v genisoimage)
+	has_cmd mkisofs || {
+		genisoimage=$(cmd_path genisoimage)
 		if [ -n "$genisoimage" ]; then
 			log_cmd ln -sf "$genisoimage" /usr/bin/mkisofs
 		else
@@ -94,11 +96,7 @@ workaround_env()
 		fi
 	}
 
-	# fix CONF: 'iptables' not found
-	command -v iptables >/dev/null || log_cmd ln -sf /usr/sbin/iptables-nft /usr/bin/iptables
-
-	# fix CONF: 'ip6tables' not found
-	command -v ip6tables >/dev/null || log_cmd ln -sf /usr/sbin/ip6tables-nft /usr/bin/ip6tables
+	set_iptables_path
 }
 
 specify_tmpdir()
@@ -272,8 +270,8 @@ cleanup_ltp()
 		dmesg -C || exit
 		;;
 	syscalls-0*)
-		[ "$relatime" != "" ] && mount -o remount,relatime /tmp
-		[ "$noatime" != "" ] && mount -o remount,noatime /tmp
+		[ "$relatime" != "" ] && mount -o remount,relatime,user_xattr /tmp
+		[ "$noatime" != "" ] && mount -o remount,noatime,user_xattr /tmp
 		;;
 	esac
 

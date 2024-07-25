@@ -1,15 +1,34 @@
 #!/usr/bin/env ruby
 
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
+
+require "#{LKP_SRC}/lib/string_ext"
+
 # the workload of kbuild is defined as the iteration number
-iterations = 0
 runtime = 0
+iterations = 0
+start_time = 0
+real_time = 0.0
+user_time = 0.0
+sys_time = 0.0
+
 $stdin.each_line do |line|
-  iterations += $1.to_i if line =~ /^iterations: (\d+)/
-  runtime += $1.to_f if line =~ /^runtime: (\d+)/
+  line = line.resolve_invalid_bytes
+  start_time = $1.to_f if line =~ /^start time: (\d+\.\d+)/
+  real_time += $1.to_f if line =~ /^real: (\d+\.\d+s)/
+  user_time += $1.to_f if line =~ /^user: (\d+\.\d+s)/
+  sys_time += $1.to_f if line =~ /^sys: (\d+\.\d+s)/
+  if line =~ /^end time: (\d+\.\d+)/
+    runtime += $1.to_f - start_time
+    iterations += 1
+  end
 end
 
 if iterations != 0
   buildtime_per_iteration = runtime / iterations
   puts "buildtime_per_iteration: #{buildtime_per_iteration}"
+  puts "real_time_per_iteration: #{real_time / iterations} " if real_time > 0.0
+  puts "user_time_per_iteration: #{user_time / iterations} " if user_time > 0.0
+  puts "sys_time_per_iteration: #{sys_time / iterations} " if sys_time > 0.0
   puts "workload: #{iterations}"
 end

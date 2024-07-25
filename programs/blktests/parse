@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/statistics"
 require "#{LKP_SRC}/lib/string_ext"
@@ -13,15 +13,22 @@ while (line = $stdin.gets)
   line = line.resolve_invalid_bytes
 
   case line
-  when /^(.+? ).*\[(passed)\]/
+  when /^(meta[^\s]+)\s+\((.+?)\)\s+\(.+?\).*\[(passed|failed|not run)/
+    # meta/016 (condition set 0) (repeat test())                   [passed]
+    # meta/018 (x=0 y=0) (combine two set_conditions() hooks)      [passed]
+    # meta/019 (x=0 y=0 z=0) (combine three set_conditions() hooks) [passed]
+    stats.add "#{$1}.#{$2}", $3
+  when /^(nvme[^\s]+)\s+\(tr=\w+ bd=(device|file)\).*\[(passed|failed|not run)\]/
+    # nvme/006 (tr=loop bd=device) (create an NVMeOF target)       [passed]
+    # nvme/006 (tr=loop bd=file) (create an NVMeOF target)         [passed]
+    stats.add "#{$1}.#{$2}", $3
+  when /^([^ ]+? ).*\[(passed|failed|not run)\]/
     # srp/002 (File I/O ... and login (mq)) [passed]
-    stats.add $1.to_s, $2
-  when /^(.+? ).*\[(failed)\]/
-    stats.add $1.to_s, $2
-  when /^(.+? ).*\[(not run)\]/
+    # meta/003 (exit with non-zero status)                         [failed]
+    # [   60.799343] meta/003 (exit with non-zero status)                         [failed]
     # srp/003 (File I/O ... and login (sq)) [not run]
     stats.add $1.to_s, $2
-  when /^(.+?\/\*\*\*).*\[(not run)\]/
+  when /^([^ ]+?\/\*\*\*).*\[(not run)\]/
     stats.add $1.to_s, $2
   end
 end

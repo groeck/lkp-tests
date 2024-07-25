@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. $LKP_SRC/lib/reproduce-log.sh
+
 ## Blogbench is a portable filesystem benchmark that tries to
 ## reproduce the load of a real-world busy file server.
 

@@ -3,6 +3,12 @@ need_kconfig:
 - NVME_MULTIPATH: y
 - NVME_TARGET: m
 - NVME_TARGET_LOOP: m
+
+- NVME_RDMA: m
+- INFINIBAND: m
+- INFINIBAND_ADDR_TRANS: y
+
+- NVME_TARGET_RDMA: m
 % elsif ___.test =~ /srp/
 - INFINIBAND: m
 - INFINIBAND_IPOIB: m

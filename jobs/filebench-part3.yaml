@@ -1,0 +1,21 @@
+suite: filebench
+testcase: filebench
+category: benchmark
+
+need_memory: 258G
+
+disk: 1HDD
+fs:
+  - ext4
+  - xfs
+  - btrfs
+fs2:
+  - nfsv4
+  - cifs
+  -
+
+filebench-setup:
+  test:
+    - singlestreamwrite.f
+
+filebench:

@@ -7,9 +7,10 @@ subsystems:
 - intel
 - mm
 - sched
+integration_testing_branches:
+- sched/core
 notify_build_success_branch: .*
 clone_from_upsteam_repos:
 - tip
 belongs_to: general scheduler
 branch_deny_runtime_test: x86/mm|sched/eevdf.*
-no_merge_branch: sched/wip

@@ -11,22 +11,22 @@ fs:
 
 xfstests:
   test:
-    - xfs-rmapbt
-    - xfs-reflink-06
-    - xfs-reflink-08
-    - xfs-reflink-09
-    - xfs-reflink-10
-    - xfs-reflink-11
-    - xfs-reflink-12
-    - xfs-reflink-13
-    - xfs-reflink-14
-    - xfs-reflink-15
-    - xfs-reflink-16
-    - xfs-reflink-17
-    - xfs-reflink-21
-    - xfs-reflink-22
-    - xfs-reflink-25
-    - xfs-reflink-26
-    - xfs-reflink-27
-    - xfs-reflink-rmapbt
+    - xfs-scratch-rmapbt
+    - xfs-scratch-reflink-06
+    - xfs-scratch-reflink-08
+    - xfs-scratch-reflink-09
+    - xfs-scratch-reflink-10
+    - xfs-scratch-reflink-11
+    - xfs-scratch-reflink-12
+    - xfs-scratch-reflink-13
+    - xfs-scratch-reflink-14
+    - xfs-scratch-reflink-15
+    - xfs-scratch-reflink-16
+    - xfs-scratch-reflink-17
+    - xfs-scratch-reflink-21
+    - xfs-scratch-reflink-22
+    - xfs-scratch-reflink-25
+    - xfs-scratch-reflink-26
+    - xfs-scratch-reflink-27
+    - xfs-scratch-reflink-scratch-rmapbt
     # - xfs-233 # execution time > 30mins

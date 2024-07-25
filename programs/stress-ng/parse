@@ -1,92 +1,115 @@
 #!/usr/bin/env ruby
 
-LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.realpath($PROGRAM_NAME)))
+LKP_SRC = ENV['LKP_SRC'] || File.dirname(File.dirname(File.dirname(File.realpath($PROGRAM_NAME))))
 
 require "#{LKP_SRC}/lib/log"
 require "#{LKP_SRC}/lib/string_ext"
 
-# skip none-result data
-while (line = $stdin.gets)
-  line = line.resolve_invalid_bytes
-
-  if line =~ /(this stressor is not implemented on this system)/ || line =~ /(No stress workers invoked)/
-    log_warn $1
-    exit 1
+class StressorStater
+  def stat(line)
+    if line =~ /stress-ng: (info|metrc):.*\((average|geometr?ic mean|harmonic mean)/
+      stat_miscellaneous_metrics(line)
+    else
+      stat_major_metrics(line)
+    end
   end
 
-  # stress-ng: fail:  [5780] stress-ng: sigaction signal 6 'SIGABRT': errno=22 (Invalid argument)
-  puts 'stress-ng.sigaction.fail: 1' if line =~ /stress-ng: fail:.*sigaction signal/
+  private
 
-  # stress-ng: info:  [2694] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
-  # stress-ng: info:  [2694]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
-  # stress-ng: info:  [2694] atomic          1060503     10.00    928.24      0.01    106049.80      1142.48
-  break if line =~ /\(secs\)\s+\(secs\)\s+\(secs\)/
-end
+  def stat_major_metrics(line)
+    items = line.split
 
-while (line = $stdin.gets)
-  line = line.resolve_invalid_bytes
+    # stress-ng: info:  [4372] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+    # stress-ng: info:  [4372]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+    # stress-ng: info:  [4372] flock         470916710     60.00    128.04   1291.13   7848529.59      331824.84
+    #
+    # stress-ng: metrc: [4382] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s CPU used per       RSS Max
+    # stress-ng: metrc: [4382]                           (secs)    (secs)    (secs)   (real time) (usr+sys time) instance (%)          (KB)
+    # stress-ng: metrc: [4382] flock         171659332     60.00     44.80    771.49   2860967.69      210292.23       226.75          2564
+    return unless items.size == 10 || items.size == 12
 
-  # stress-ng: info:  [2694] zlib              70082     10.02    947.64      0.91      6994.33        73.88
-  # stress-ng: fail:  [2694] qsort instance 51 corrupted bogo-ops counter, 18298 vs 0
-  # stress-ng: fail:  [2694] qsort instance 51 hash error in bogo-ops counter and run flag, 3808369776 vs 0
-  # stress-ng: fail:  [2694] metrics-check: stressor metrics corrupted, data is compromised
-  next if line =~ /fail:/
+    stressor = items[3]
+    bogo_ops = items[4]
 
-  # stress-ng: warn:  [5308] metrics-check: all bogo-op counters are zero, data may be incorrect
-  next if line =~ /warn:/
-
-  # stress-ng: info:  [4230] miscellaneous metrics:
-  next if line =~ /miscellaneous metrics:/
-
-  # stress-ng: info:  [2694] for a 494.74s run time:
-  # stress-ng: info:  [2694]   47495.22s available CPU time
-  # stress-ng: info:  [2694]   25864.19s user time   ( 54.46%)
-  # stress-ng: info:  [2694]   13804.50s system time ( 29.07%)
-  # stress-ng: info:  [2694]   39668.69s total time  ( 83.52%)
-  # stress-ng: info:  [2694] load average: 157.53 303.16 161.49
-  break if line =~ /run time:/
-
-  res_line = line.split
-
-  if line =~ /stress-ng: (info|metrc):.*\(average/ || line =~ /stress-ng: (info|metrc):.*\(geometr?ic mean/
-    # stress-ng: info:  [5865] memrate             2190.96 write128nt MB per sec (geometic mean)
-    # stress-ng: info:  [2680] memrate         1656.82 write128 MB/sec (average per stressor)
-    # stress-ng: info:  [2759] pipeherd           1.01 context switches per bogo op (average per stressor)
-    # stress-ng: info:  [2759] stream          5372.21 memory rate (MB per sec) (average per stressor)
-    # stress-ng: info:  [2792] stream          2111.71 memory rate (Mflop per sec) (average per stressor)
-    # stress-ng: info:  [5705] matrix-3d             60.43 add matrix-3d ops per sec (geometic mean of 128 instances)
-
-    # stress-ng: metrc: [5237] udp-flood              0.04 MB per sec sendto rate (geometric mean of 128 instances)
-    # stress-ng: metrc: [5237] udp-flood           1097.62 sendto calls per sec (geometric mean of 128 instances)
-    # stress-ng: metrc: [5237] udp-flood            100.00 % sendto calls succeeded (geometric mean of 128 instances)
-
-    # substressor is "write128_MB/sec" and it has variable length
-    substressor = line.split(/ \([ag]/)[0].split(/ \d/, 2)[1].to_s.split(/\d /, 2)[1]
-    substressor = substressor.to_s.rstrip.tr(' ', '_')
-
-    if res_line[4] == '0'
-      puts "#{res_line[3]}.#{substressor}.fail:"
-    else
-      puts "#{res_line[3]}.#{substressor}.pass: 1"
-      puts "#{res_line[3]}.#{substressor}: #{res_line[4]}"
-    end
-  else
-    if res_line.size != 10
-      log_warn "unexpected output: #{line}"
-      exit 1
-    end
-
-    stressor = res_line[3]
-    bogo_ops = res_line[4]
-    # stress-ng: info:  [2659] sendfile       14461076     30.00      0.85   2845.44    482025.00      5080.68
     # stress-ng: info:  [2659] splice                0      0.00      0.00      0.00         0.00         0.00
-    # stress-ng: info:  [2659] tee             3608666     30.00      6.61   2779.77    120280.46      1295.11
     if bogo_ops == '0'
       puts "#{stressor}.fail: 1"
     else
       puts "#{stressor}.pass: 1"
       puts "#{stressor}.ops: #{bogo_ops}"
-      puts "#{stressor}.ops_per_sec: #{res_line[8]}"
+      puts "#{stressor}.ops_per_sec: #{items[8]}"
+    end
+  end
+
+  def stat_miscellaneous_metrics(line)
+    # stress-ng: info:  [5865] memrate             2190.96 write128nt MB per sec (geometic mean)
+    # stress-ng: info:  [2680] memrate         1656.82 write128 MB/sec (average per stressor)
+    # stress-ng: info:  [2759] pipeherd           1.01 context switches per bogo op (average per stressor)
+    # stress-ng: info:  [2792] stream          2111.71 memory rate (Mflop per sec) (average per stressor)
+    # stress-ng: info:  [5705] matrix-3d             60.43 add matrix-3d ops per sec (geometic mean of 128 instances)
+    # stress-ng: metrc: [5237] udp-flood              0.04 MB per sec sendto rate (geometric mean of 128 instances)
+    # stress-ng: metrc: [5237] udp-flood           1097.62 sendto calls per sec (geometric mean of 128 instances)
+    # stress-ng: metrc: [5237] udp-flood            100.00 % sendto calls succeeded (geometric mean of 128 instances)
+    # stress-ng: metrc: [4382] flock               1883.42 nanosecs per flock unlock call (harmonic mean of 6 instances)
+    items = line.sub(/ \((average|geometr?ic mean|harmonic mean).*\)$/, '')
+                .split
+
+    # unit is "write128_MB/sec" and it has variable length
+    unit = items[5..-1].join('_')
+
+    stressor = items[3]
+
+    if items[4] == '0'
+      puts "#{stressor}.#{unit}.fail:"
+    else
+      puts "#{stressor}.#{unit}.pass: 1"
+      puts "#{stressor}.#{unit}: #{items[4]}"
+    end
+  end
+end
+
+stater = nil
+
+while (line = $stdin.gets)
+  line = line.resolve_invalid_bytes
+
+  case line
+  when /(this stressor is not implemented on this system)/,
+       /(No stress workers invoked)/,
+       /(all bogo-op counters are zero, data may be incorrect)/
+    # stress-ng: warn:  [4124] metrics-check: all bogo-op counters are zero, data may be incorrect
+    log_warn $1
+    exit 1
+  when /stress-ng: fail:.*sigaction signal/
+    # stress-ng: fail:  [5780] stress-ng: sigaction signal 6 'SIGABRT': errno=22 (Invalid argument)
+    puts 'sigaction.fail: 1'
+    break
+  when /fail:/, /warn:/
+    # stress-ng: fail:  [2694] qsort instance 51 corrupted bogo-ops counter, 18298 vs 0
+    # stress-ng: fail:  [2694] qsort instance 51 hash error in bogo-ops counter and run flag, 3808369776 vs 0
+    # stress-ng: fail:  [2694] metrics-check: stressor metrics corrupted, data is compromised
+    #
+    # There's nothing need to do for other fail/warn now
+    next
+  when /\(secs\)\s+\(secs\)\s+\(secs\)/
+    # stress-ng: info:  [2694] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
+    # stress-ng: info:  [2694]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+    # stress-ng: info:  [2694] atomic          1060503     10.00    928.24      0.01    106049.80      1142.48
+    stater = StressorStater.new
+  when /run time:/
+    # stress-ng: info:  [2694] for a 494.74s run time:
+    # stress-ng: info:  [2694]   47495.22s available CPU time
+    # stress-ng: info:  [2694]   25864.19s user time   ( 54.46%)
+    # stress-ng: info:  [2694]   13804.50s system time ( 29.07%)
+    # stress-ng: info:  [2694]   39668.69s total time  ( 83.52%)
+    # stress-ng: info:  [2694] load average: 157.53 303.16 161.49
+    break
+  else
+    begin
+      stater.stat(line) if stater
+    rescue StandardError => e
+      log_warn e.message
+      exit 1
     end
   end
 end

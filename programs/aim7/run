@@ -18,6 +18,7 @@
 [ -n "$nr_task" ] && load=$nr_task
 
 . $LKP_SRC/lib/reproduce-log.sh
+. $LKP_SRC/lib/debug.sh
 
 aim7_setup()
 {

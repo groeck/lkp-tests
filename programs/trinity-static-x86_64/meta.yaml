@@ -1,0 +1,10 @@
+short_description: >
+ Linux system call fuzzer
+
+description: >
+
+homepage: https://github.com/kernelslacker/trinity
+
+parameters:
+
+

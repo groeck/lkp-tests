@@ -1,6 +1,7 @@
-linux-libc-dev
 autopoint
-pkg-config
 gettext
 libncursesw5-dev
+libsqlite3-dev
+linux-libc-dev
+pkg-config
 uuid-runtime

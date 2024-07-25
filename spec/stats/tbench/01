@@ -1,0 +1,133 @@
+2023-10-30 16:04:29 tbench_srv &
+waiting for connections
+2023-10-30 16:04:30 command -v tbench
+/usr/local/bin/tbench
+2023-10-30 16:04:30 tbench -t 30 128 127.0.0.1
+dbench version 4.00 - Copyright Andrew Tridgell 1999-2004
+
+Running for 30 seconds with load '/usr/local/share/client.txt' and minimum warmup 6 secs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^127 of 128 processes prepared for launch   0 sec
+^128 of 128 processes prepared for launch   0 sec
+releasing clients
+ 128     33330  24986.66 MB/sec  warmup   1 sec  latency 8.313 ms
+ 128     67069  24131.17 MB/sec  warmup   2 sec  latency 1.190 ms
+ 128    100652  23806.11 MB/sec  warmup   3 sec  latency 0.986 ms
+ 128    134140  23638.97 MB/sec  warmup   4 sec  latency 1.102 ms
+ 128    167942  23576.95 MB/sec  warmup   5 sec  latency 1.045 ms
+ 128    235712  23372.33 MB/sec  execute   1 sec  latency 1.040 ms
+ 128    269589  23392.06 MB/sec  execute   2 sec  latency 1.003 ms
+ 128    303470  23382.39 MB/sec  execute   3 sec  latency 3.351 ms
+ 128    337484  23403.76 MB/sec  execute   4 sec  latency 0.979 ms
+ 128    371136  23371.10 MB/sec  execute   5 sec  latency 8.580 ms
+ 128    404914  23384.49 MB/sec  execute   6 sec  latency 1.010 ms
+ 128    438770  23474.45 MB/sec  execute   7 sec  latency 0.980 ms
+ 128    472663  23556.48 MB/sec  execute   8 sec  latency 1.022 ms
+ 128    506737  23576.75 MB/sec  execute   9 sec  latency 1.102 ms
+ 128    540805  23583.56 MB/sec  execute  10 sec  latency 1.088 ms
+ 128    575016  23603.70 MB/sec  execute  11 sec  latency 0.982 ms
+ 128    609181  23605.15 MB/sec  execute  12 sec  latency 2.075 ms
+ 128    643693  23622.94 MB/sec  execute  13 sec  latency 0.997 ms
+ 128    678292  23640.83 MB/sec  execute  14 sec  latency 1.011 ms
+ 128    712981  23659.47 MB/sec  execute  15 sec  latency 8.071 ms
+ 128    747629  23675.41 MB/sec  execute  16 sec  latency 0.985 ms
+ 128    782213  23687.76 MB/sec  execute  17 sec  latency 0.983 ms
+ 128    816677  23699.37 MB/sec  execute  18 sec  latency 0.986 ms
+ 128    851060  23705.93 MB/sec  execute  19 sec  latency 1.020 ms
+ 128    885316  23726.41 MB/sec  execute  20 sec  latency 1.017 ms
+ 128    919643  23752.31 MB/sec  execute  21 sec  latency 0.981 ms
+ 128    954002  23767.51 MB/sec  execute  22 sec  latency 0.974 ms
+ 128    988345  23773.09 MB/sec  execute  23 sec  latency 1.015 ms
+ 128   1022838  23781.11 MB/sec  execute  24 sec  latency 0.995 ms
+ 128   1057367  23784.38 MB/sec  execute  25 sec  latency 8.632 ms
+ 128   1091655  23780.22 MB/sec  execute  26 sec  latency 0.979 ms
+ 128   1125943  23776.83 MB/sec  execute  27 sec  latency 1.001 ms
+ 128   1160350  23776.65 MB/sec  execute  28 sec  latency 0.981 ms
+ 128   1194639  23775.42 MB/sec  execute  29 sec  latency 1.014 ms
+ 128  cleanup  30 sec
+   0  cleanup  30 sec
+
+ Operation                Count    AvgLat    MaxLat
+ --------------------------------------------------
+ Deltree                    526     0.000     0.001
+ Flush                  1592951     0.025     0.653
+ Close                  16694517     0.025     2.073
+ LockX                    74029     0.025     0.972
+ Mkdir                      263     0.027     0.087
+ Rename                  962571     0.025     0.969
+ ReadX                  35675219     0.027     8.578
+ WriteX                 11323160     0.038     1.197
+ Unlink                 4589913     0.025     1.003
+ UnlockX                  74029     0.025     0.374
+ FIND_FIRST             7964718     0.025     3.347
+ SET_FILE_INFORMATION   1851624     0.025     0.975
+ QUERY_FILE_INFORMATION 3608859     0.025     1.004
+ QUERY_PATH_INFORMATION 20601434     0.025     2.209
+ QUERY_FS_INFORMATION   3777615     0.025     1.004
+ NTCreateX              22765090     0.025     8.629
+
+Throughput 23775.4 MB/sec  128 clients  128 procs  max_latency=8.632 ms
+2023-10-30 16:05:06 tbench -t 30 128 127.0.0.1
+dbench version 4.00 - Copyright Andrew Tridgell 1999-2004
+
+Running for 30 seconds with load '/usr/local/share/client.txt' and minimum warmup 6 secs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^127 of 128 processes prepared for launch   0 sec
+^128 of 128 processes prepared for launch   0 sec
+releasing clients
+ 128     28293  21694.12 MB/sec  warmup   1 sec  latency 1.086 ms
+ 128     57400  20860.35 MB/sec  warmup   2 sec  latency 0.976 ms
+ 128     86783  20675.11 MB/sec  warmup   3 sec  latency 1.435 ms
+ 128    116475  20627.71 MB/sec  warmup   4 sec  latency 8.066 ms
+ 128    146180  20606.07 MB/sec  warmup   5 sec  latency 1.017 ms
+ 128    205216  20438.16 MB/sec  execute   1 sec  latency 1.540 ms
+ 128    234834  20435.83 MB/sec  execute   2 sec  latency 1.017 ms
+ 128    264503  20450.59 MB/sec  execute   3 sec  latency 0.987 ms
+ 128    293993  20427.44 MB/sec  execute   4 sec  latency 1.076 ms
+ 128    323567  20421.67 MB/sec  execute   5 sec  latency 1.404 ms
+ 128    353155  20428.60 MB/sec  execute   6 sec  latency 0.981 ms
+ 128    382772  20434.01 MB/sec  execute   7 sec  latency 1.081 ms
+ 128    412625  20500.91 MB/sec  execute   8 sec  latency 8.158 ms
+ 128    442419  20563.30 MB/sec  execute   9 sec  latency 1.694 ms
+ 128    472294  20610.51 MB/sec  execute  10 sec  latency 1.434 ms
+ 128    502387  20647.16 MB/sec  execute  11 sec  latency 1.335 ms
+ 128    532530  20678.35 MB/sec  execute  12 sec  latency 1.061 ms
+ 128    562802  20703.25 MB/sec  execute  13 sec  latency 1.002 ms
+ 128    593008  20722.79 MB/sec  execute  14 sec  latency 0.979 ms
+ 128    623002  20725.59 MB/sec  execute  15 sec  latency 1.013 ms
+ 128    653214  20736.13 MB/sec  execute  16 sec  latency 0.983 ms
+ 128    683230  20733.49 MB/sec  execute  17 sec  latency 1.000 ms
+ 128    713422  20738.06 MB/sec  execute  18 sec  latency 8.087 ms
+ 128    743578  20745.25 MB/sec  execute  19 sec  latency 0.979 ms
+ 128    773347  20734.68 MB/sec  execute  20 sec  latency 0.979 ms
+ 128    803423  20741.74 MB/sec  execute  21 sec  latency 0.981 ms
+ 128    833441  20748.81 MB/sec  execute  22 sec  latency 1.252 ms
+ 128    863496  20760.30 MB/sec  execute  23 sec  latency 1.040 ms
+ 128    893742  20780.20 MB/sec  execute  24 sec  latency 1.080 ms
+ 128    924103  20794.43 MB/sec  execute  25 sec  latency 1.015 ms
+ 128    954397  20805.27 MB/sec  execute  26 sec  latency 3.252 ms
+ 128    984963  20821.45 MB/sec  execute  27 sec  latency 1.070 ms
+ 128   1015491  20839.81 MB/sec  execute  28 sec  latency 7.988 ms
+ 128   1045996  20852.99 MB/sec  execute  29 sec  latency 0.984 ms
+ 128  cleanup  30 sec
+   0  cleanup  30 sec
+
+ Operation                Count    AvgLat    MaxLat
+ --------------------------------------------------
+ Deltree                    498     0.000     0.001
+ Flush                  1397354     0.029     0.986
+ Close                  14647762     0.029     3.248
+ LockX                    64934     0.029     0.140
+ Mkdir                      249     0.033     0.113
+ Rename                  844352     0.030     1.007
+ ReadX                  31258470     0.031     8.051
+ WriteX                 9940455     0.043     8.156
+ Unlink                 4026634     0.029     2.453
+ UnlockX                  64934     0.029     0.147
+ FIND_FIRST             6987769     0.029     1.080
+ SET_FILE_INFORMATION   1624174     0.029     1.012
+ QUERY_FILE_INFORMATION 3167225     0.029     0.998
+ QUERY_PATH_INFORMATION 18074244     0.029     8.083
+ QUERY_FS_INFORMATION   3314000     0.029     0.981
+ NTCreateX              19940336     0.029     3.279
+
+Throughput 20853 MB/sec  128 clients  128 procs  max_latency=8.158 ms
+2023-10-30 16:05:42 killall -KILL tbench_srv

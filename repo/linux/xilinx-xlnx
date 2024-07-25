@@ -28,3 +28,4 @@ subsystems:
 - ethernet
 test_old_branches: .*
 notify_build_success_branch: lkp_test
+branch_denylist: pr/.*

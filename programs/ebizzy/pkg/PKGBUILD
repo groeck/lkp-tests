@@ -11,9 +11,11 @@ depends=('glibc')
 source=('http://downloads.sourceforge.net/project/ebizzy/ebizzy/0.3/ebizzy-0.3.tar.gz')
 md5sums=('af038bc506066bb3d28db08aba62bc38') 
 
+. $LKP_SRC/lib/install.sh
+
 patch_source() {
     cd "$srcdir/$pkgname-$pkgver"
-    patch -p1 < "$LKP_SRC/pkg/${pkgname}/0001-${pkgname}.patch"
+    patch -p1 < "$(get_pkg_dir $pkgname)/0001-${pkgname}.patch"
 }
 
 build() {

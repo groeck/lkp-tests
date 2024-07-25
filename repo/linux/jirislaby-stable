@@ -5,3 +5,4 @@ notify_build_success_branch: .*
 test_old_branches: .*
 private_report_branch: .*
 no_merge_branch: .*
+belongs_to: stable

@@ -1,0 +1,13 @@
+diff --git a/src/rt-app_parse_config.c b/src/rt-app_parse_config.c
+index 26ebd53..dc8acf1 100644
+--- a/src/rt-app_parse_config.c
++++ b/src/rt-app_parse_config.c
+@@ -37,6 +37,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ #define PIN3 PIN2"    "
+ #define JSON_FILE_BUF_SIZE 4096
+ #define DEFAULT_MEM_BUF_SIZE (4 * 1024 * 1024)
++#define TRUE 1
++#define FALSE 0
+ 
+ /* redefine foreach as in <json/json_object.h> but to be ANSI
+  * compatible */

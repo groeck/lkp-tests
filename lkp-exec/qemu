@@ -117,7 +117,7 @@ replace_script_partition_val()
 
 create_job_initrd()
 {
-	local job_sh=$CACHE_DIR/${job_file%.yaml}.sh
+	local job_sh=$CACHE_DIR/${job_initrd%.cgz}.sh
 	[[ -d $CACHE_DIR/$job_initrd_dir ]] && {
 		rm -rf "${CACHE_DIR:?}/$job_initrd_dir" || return
 	}
@@ -137,21 +137,20 @@ create_job_initrd()
 			find ${job_initrd_dir#/}/*
 		} | cpio -o -H newc -F $archive.cpio
 		gzip -n -9 $archive.cpio
-		mv -f $archive.cpio.gz $job_initrd
+		mv -f $archive.cpio.gz $CACHE_DIR/$job_initrd
 	)
 }
 
 get_qemu_kernel_initrd()
 {
+	local user_lkp_initrd=$1
+	local user_job_initrd=$2
 	local lkp_initrd
 	local job_initrd
 	local final_initrd=$CACHE_DIR/final_initrd
 	[[ $opt_kernel_image ]] || download_kernel
 	lkp_initrd='' job_initrd='' download_initrd
-	local user_lkp_initrd=$1
-	local user_job_initrd=$2
 	cat "$concatenate_initrd" "$user_lkp_initrd" "$user_job_initrd" > "$final_initrd"
-
 	initrd_option="-initrd $final_initrd"
 }
 
@@ -241,19 +240,19 @@ create_lkp_src_initrd()
 	else
 		local src_sig=$(ls -lR $LKP_SRC|md5sum|cut -c1-12)
 	fi
-	lkp_initrd=$CACHE_DIR/lkp-$arch-$src_sig.cgz
-	[[ -f $lkp_initrd ]] || {
+	user_lkp_initrd=$CACHE_DIR/lkp-$arch-$src_sig.cgz
+	[[ -f $user_lkp_initrd ]] || {
 		archive="${CACHE_DIR}"
 
 		# shellcheck disable=SC2164
-		pushd "$LKP_SRC/pkg/lkp-src"
+		pushd "$LKP_SRC/programs/lkp-src/pkg"
 		LKP_USER="$user" PACMAN=true BUILDDIR=/tmp/$USER CARCH=$arch PKGEXT=.cgz CGZDEST="$CACHE_DIR/lkp-$arch.cgz" \
 		$LKP_SRC/sbin/makepkg --config $(lkp_src)/etc/makepkg.conf -e
 		[[ -f $CACHE_DIR/lkp-$arch.cgz ]] || {
 			echo "Failed to pack: $CACHE_DIR/lkp-$arch.cgz"
 			exit 1
 		}
-		mv $CACHE_DIR/lkp-$arch.cgz $lkp_initrd
+		mv $CACHE_DIR/lkp-$arch.cgz $user_lkp_initrd
 		# shellcheck disable=SC2164
 		popd
 	}
@@ -261,10 +260,10 @@ create_lkp_src_initrd()
 create_lkp_src_initrd
 
 # create job_initrd.cgz
-job_sig=$(md5sum $job_script | cut -c1-5)
-job_initrd=$CACHE_DIR/${job_file%.yaml}-$job_sig.cgz
-job_initrd_dir=${job_file%/*}
-[[ -f $job_initrd ]] || create_job_initrd
+# job_initrd is exported in job_script
+job_initrd_dir=$(dirname $job_initrd)
+user_job_initrd=$CACHE_DIR/$job_initrd
+[[ -f $user_job_initrd ]] || create_job_initrd
 
 # if job.sh not include bootloader_append entry, add default content
 if [ -n "$bootloader_append" ]; then
@@ -352,7 +351,7 @@ setup_qemu_console()
 	qemu_console_option="-display none -monitor null -serial stdio"
 }
 
-get_qemu_kernel_initrd $lkp_initrd $job_initrd
+get_qemu_kernel_initrd $user_lkp_initrd $user_job_initrd
 setup_qemu_console
 setup_qemu_netdev
 setup_vdisk_root

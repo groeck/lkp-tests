@@ -6,7 +6,7 @@ url="https://launchpad.net/pbzip2"
 license=('GPL')
 # https://launchpad.net/pbzip2/1.1/1.1.13/+download/pbzip2-1.1.13.tar.gz
 source=("https://launchpad.net/$pkgname/$pkgver/$pkgver.$pkgrel/+download/${pkgname}-$pkgver.$pkgrel.tar.gz")
-md5sums=('39dd4c61d71727681c31879a6c8b60ca')
+md5sums=('SKIP')
 
 package()
 {

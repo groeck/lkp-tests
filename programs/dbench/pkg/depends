@@ -1,2 +1,4 @@
 libsmbclient
 libtirpc
+libtirpc3
+rpcsvc-proto

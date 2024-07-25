@@ -5,3 +5,4 @@ test_old_branches: .*
 branch_denylist: for-greg/.*|linux-rolling-stable|linux-rolling-lts
 private_report_branch: .*
 no_merge_branch: .*
+belongs_to: stable

@@ -1,56 +1,19 @@
-# execution time 646s on ext4-smbv2
-006
-# execution time 782s
-011
-# execution time 455s on ext2
-013
 # execution time > 30m
 017
-# execution time 2100s on btrfs, 2057s on udf, 354s on ext2
-027
-# execution time 1768s on ext4-smbv3, 358s on f2fs, 446s on xfs
-072
-# execution time ~ 10m
-074
-# execution time 651s on ext2
-113
 # execution time ~ 1h
 127
 # execution time > 1h
 175
-# execution time 992s on btrfs
-224
 # execution time > 50m
 231
-# execution time > 15m
-240
-# execution time > 10m
-256
 # execution time > 30m on ocfs2
 281
 # execution time > 1h
 297
-# execution time > 30m on udf & ocfs2
-299
 # execution time > 30m
 311
-# execution time 534s on xfs, 850s on btrfs
-334
-# execution time > 1000s on udf
-344
-# execution time 929s on ext2
-379
 # the test will clear date on partition using dd command, it will takes a long time
 387
-# execution time ~ 10m
-409
-# execution time ~ 15m
-410
-# current xfsprogs package(i.e v4.9) has a bug of xfs_io command
-# and makes generic/430, generic/431 and generic/434 hang
-430
-431
-434
 # execution time 2491s on btrfs
 449
 # execution time > 1582s
@@ -59,7 +22,7 @@
 466
 # execution time > 30m
 476
-# test is unstable and the average running time is about 400 seconds
+# execution time > 2h
 521
 # execution time > 30m
 522
@@ -69,17 +32,19 @@
 558
 # execution time > 2h on udf
 564
-# execution time 1415s on ext2
-589
-# execution time 387s on ext2
-596
-# execution time 898s on ext2
-642
 # execution time > 12h
 650
-# execution time > 20m on "fs: ext4; fs2: smbv2"
+# execution time > 2h on 4HDD-ext4-smbv2/lkp-skl-d05
 676
-# execution time > 1000s on xfs
-705
-# execution time 1112s on ext2
-707
+# Require selinux to be enabled
+700
+# _require_acl_get_max, btrfs/ext2 does not define maximum ACL count
+026
+# [not run] btrfs/udf/xfs does not support cross-device copy_file_range
+565
+# runtime > 3057s on 4HDD-xfs-generic-scratch-reflink lkp-skl-d03
+176
+# special handling in xfstests.sh
+470
+# _require_scratch_casefold, btrfs/ext2/udf/xfs does not support casefold feature
+556

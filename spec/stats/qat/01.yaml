@@ -1,0 +1,11 @@
+qat_zlib_deflate.pass: 1
+qat_deflate.pass: 1
+pkcs1pad(qat-rsa,sha256).pass: 1
+qat-dh.pass: 1
+qat-rsa.pass: 1
+qat_aes_cbc_hmac_sha512.pass: 1
+qat_aes_cbc_hmac_sha256.pass: 1
+qat_aes_cbc_hmac_sha1.pass: 1
+qat_aes_xts.pass: 1
+qat_aes_ctr.pass: 1
+qat_aes_cbc.pass: 1

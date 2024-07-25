@@ -22,7 +22,9 @@ nr_task:
   - 8
   - 32
 
-disk: # place holder because setup/swap has to run after setup/disk
+# place holder because setup/swap has to run after setup/disk
+# do not run this job directly, use the vm-scalability-swap-1ssd/1pmem/4pmem.yaml inherited from this job
+disk:
 swap:
   priority: 1
 

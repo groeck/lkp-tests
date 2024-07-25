@@ -1,6 +1,7 @@
 #!/bin/sh
 
 . $LKP_SRC/lib/env.sh
+. $LKP_SRC/lib/reproduce-log.sh
 
 do_wipefs()
 {
@@ -102,7 +103,7 @@ EOF
 	# setup passwd
 	(echo "pass"; echo "pass") | smbpasswd -s -a $(whoami)
 	# restart service
-	systemctl restart smbd
+	systemctl restart smb.service
 }
 
 mount_local_cifs()

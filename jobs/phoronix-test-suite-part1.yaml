@@ -6,38 +6,160 @@ need_memory: 8G
 
 phoronix-test-suite:
   - test:
-    - aio-stress-1.1.1
-    # - aircrack-ng-1.2.1 # need to connect to internet
-    # - ai-benchmark-1.0.1 # temporarily comment out the failed test
+    # - aio-stress-1.1.2 # not an available test
+    - aircrack-ng-1.3.0
+    # - ai-benchmark-1.0.1 # install failed
     - aobench-1.0.1
-    - aom-av1-2.4.0
-    - apache-1.7.2
-  - test: apache-siege-1.0.5
-    option_a: # cocurrent users
-      - 1
-      - 10
-      - 50
-      - 100
-      - 200
-      - 250
-      - 500
-      # - Test All Options
+    # - aom-av1-2.0.2 # not an available test
+    # - apache-3.0.0 # The test quit with a non-zero exit status.
+    # - apache-iotdb-1.2.0 # The test quit with a non-zero exit status.
+    - blake2-1.2.2
+    - blosc-1.3.0
+    - bork-1.0.1
+    - build-apache-1.6.1
+    # - build-clash-1.0.2 # wait for newer version
+    - build-eigen-1.1.0
+    - build-erlang-1.2.0
+    # - build-firefox-1.0.0 # wait for newer version
+    - build-ffmpeg-6.1.0
+    - build-gdb-1.1.0
+    - build-godot-4.0.0
+    - build-imagemagick-1.7.2
+    # - build-mesa-1.0.0 # The test quit with a non-zero exit status. E: ninja: error: loading 'build.ninja': No such file or directory
+    - build-mplayer-1.5.0
+    - build-php-1.6.0
+    - byte-1.2.2
+    - c-ray-1.2.0
+    # - caffe-1.3.3 # wait for newer version
+    # - civilization-vi-1.0.1 # install failed
+    - clomp-1.1.2
+    - cloverleaf-1.2.0
+    # - coh2-1.0.3 # install failed
+    # - comd-cl-1.0.0 # install failed due to build errors
+    - compress-7zip-1.10.0
+    - compress-gzip-1.2.0
+    # - compress-lzma-1.3.1 # not an available test
+    # - compress-pbzip2-1.5.0 # install failed
+    - compress-rar-1.2.0
+    - compress-xz-1.1.0
+    # - compress-zstd-1.5.0 # install failed
+    # - core-latency-1.0.0 # runtime > 10h
+    - coremark-1.0.1
+    # - cp2k-1.2.0 # install failed
+    # - iperf-1.2.0 # The test quit with a non-zero exit status.
+    # - java-gradle-perf-1.1.0 # The test quit with a non-zero exit status.
+    # - java-jmh-1.0.1 # The test run did not produce a result.
+    - crafty-1.4.5
+    # - csgo-1.7.2 # install failed
+    - ctx-clock-1.0.0
+    # - cython-bench-1.1.0 # install failed
+    # - dcraw-1.1.0 not an available test
+    # - deeprec-1.0.2 # The test run did not produce a result.
+    - deepspeech-1.0.0
+    # - deus-exmd-1.1.1 # install failed
+    # - dirt-rally-1.1.0 # install failed
+    # - dirt-showdown-1.1.2 # install failed
+    - dolfyn-1.0.3
+    # - dota2-1.2.7 # install failed
+    # - dow3-1.0.1 # install failed
+    - ebizzy-1.0.4
+    # - encode-ape-1.3.0 # this test profile is marked Deprecated
+    - encode-flac-1.8.1
+    - encode-mp3-1.7.4
+    # - encode-ogg-1.4.1 # this test profile is marked Deprecated
+    # - encode-opus-1.1.1 # this test profile is marked Deprecated
+    - encode-wavpack-1.4.1
+    - espeak-1.7.0
+    # - f12017-1.1.1 # install failed
+    # - fahbench-1.0.2 # The test run did not produce a result.
+    # - fast-cli-1.0.0 # The test run did not produce a result.
+    - ffte-1.2.1
+    - fhourstones-1.1.2
+    # - fluidx3d-1.2.0 # The test quit with a non-zero exit status.
+    - gcrypt-1.1.3
+    - git-1.1.0
+    - gmpbench-1.3.0
+    # - gnupg-2.4.0 # install failed
+    # - gpuowl-1.0.0 # The test run did not produce a result.
+    # - graph500-1.0.1 # oom
+    - gromacs-1.8.0
+    - hadoop-1.0.0
+    - hammerdb-postgresql-1.1.1
+    # - hashcat-1.1.1 # The test quit with a non-zero exit status.
+    - heffte-1.1.0
+    - himeno-1.3.0
+    - hint-1.0.3
+    - hmmer-1.3.0
+    # - hpcc-1.2.8 # run time more than 2h on clear, install failed on debian
+    - memtier-benchmark-1.5.0
+    # - mencoder-1.5.0 # mencoder-1.5.0 is not installed
+    # - metro2033-redux-1.1.1 # install failed
+    # - metroll-redux-1.2.1 # install failed
+    - minibude-1.0.0
+
+  - test: intel-mlc-1.1.0
+    option_a:
+      - Peak Injection Bandwidth
+      - Max Bandwidth
+      - Idle Latency
+  - test:
+    - jpegxl-decode-1.5.0
+    # - keydb-1.2.0 # install failed
+    # - kripke-1.2.0 # The test quit with a non-zero exit status.
+    - libraw-1.0.0
+    # - llvm-test-suite-1.0.1 # not an available test
+    - liquid-dsp-1.6.0
+    - luaradio-1.0.0
+    - lulesh-1.1.1
+    # - lulesh-cl-1.0.1 # The test quit with a non-zero exit status.
+    # - luxcorerender-1.4.0 # The test quit with a non-zero exit status. E: RUNTIME ERROR: No hardware device selected or available
+    - m-queens-1.1.0
+    - mafft-1.6.2
+    - mkl-dnn-1.3.1
+    # - mlpack-1.0.2 # The test quit with a non-zero exit status. E: ModuleNotFoundError: No module named 'timeout_decorator'
+    - mpcbench-1.0.1
+    # - mrbayes-1.5.0 # temporarily comment out the failed test
+    - mt-dgemm-1.2.0
+    # - mysqlslap-1.4.0 # The test quit with a non-zero exit status.
+    - n-queens-1.2.1
+    - namd-1.2.1
+    # - namd-cuda-1.1.1 # nvidia video card is needed
+    - natron-1.1.0
+    - neat-1.1.0
+    # - nero2d-1.1.0 # wait for newer version
+    # - nero2d-1.1.0 # The test quit with a non-zero exit status.
+    # - netperf-1.0.4 # install failed
+    # - network-loopback-1.0.3 # The test quit with a non-zero exit status.
+    # - nginx-3.0.1 # The test quit with a non-zero exit status.
+    # - node-express-loadtest-1.0.1 # The test run did not produce a result.
+    # - node-octane-1.0.1 # The test quit with a non-zero exit status.
+    # - noise-level-1.1.0 # not an available test
+    # - numenta-nab-1.1.0 # install failed
+    # - octave-benchmark-1.0.0 # not an available test
+    # - oidn-2.1.0 # The test quit with a non-zero exit status. E: Error: unsupported device type: SYCL
+    # - onnx-1.6.0 # The test quit with a non-zero exit status. E: onnxruntime/onnxruntime/test/onnx/onnx_model_info.cc:45 void OnnxModelInfo::InitOnnxModelInfo(const PATH_CHAR_TYPE*) open file "yolov4/yolov4.onnx" failed: No such file or directory
+    - opencl-benchmark-1.0.0
+    # - opencv-bench-1.0.0 # is not installed
+    - openjpeg-1.0.0
+    # - open-porous-media-1.3.1 # 3rd party url is N/A
+    - optcarrot-1.0.1
+    # - ospray-studio-1.2.0 # The test quit with a non-zero exit status.
+
+  # - test: apache-siege-1.0.5 # not an available test
+    # option_a: # cocurrent users
+      # - 1
+      # - 10
+      # - 50
+      # - 100
+      # - 200
+      # - 250
+      # - 500
   - test: appleseed-1.0.1
     option_a:
       - Emily
       - Disney Material
       - Material Tester
-      # - Test All Options
-  - test:
-    - asmfish-1.1.2
-    - blake2-1.2.1
-  - test: blogbench-1.1.0
-    option_a:
-      - Read
-      - Write
-      # - Test All Options
-  - test:
-    - bork-1.0.1
+
   - test: botan-1.6.0
     option_a:
       - AES-256
@@ -46,20 +168,11 @@ phoronix-test-suite:
       - KASUMI
       - Twofish
       - ChaCha20Poly1305
-      # - Test All Options
-  - test:
-    - build-apache-1.6.1
-    # - build-clash-1.0.2 # wait for newer version
-    - build-eigen-1.1.0
-    # - build-firefox-1.0.0 # wait for newer version
-    - build-ffmpeg-1.0.2
-    - build-gcc-1.2.0
-    - build-imagemagick-1.7.2
-    - build-linux-kernel-1.9.1
-    - build-llvm-1.3.1
-    - build-mplayer-1.4.0
-    - build-php-1.5.1
-    # - build-webkitfltk-1.0.0 # the test costs more than 2h
+
+  - test: build-python-1.0.0
+    option_a:
+      - 1 # Default
+      - 2 # Released Build, PGO + LTO Optimized
   - test: bullet-1.2.2
     option_a:
       - 3000 Fall
@@ -69,45 +182,31 @@ phoronix-test-suite:
       - Prim Trimesh
       - Convex Trimesh
       - Raytests
-      # - Test All Options
-  - test:
-    - byte-1.2.2
-    - c-ray-1.2.0
-  - test: cachebench-1.1.2
+
+  - test: cachebench-1.2.0
     option_a:
       - Read
       - Write
       - Read / Modify / Write
-      # - Test All Options
-    # - caffe-1.3.3 # wait for newer version
-  - test: cassandra-1.0.3
-    option_a:
-      - Reads
-      - Writes
-      - Mixed 1:1
-      - Mixed 1:3
-      # - Test All Options
-  - test:
-    - clomp-1.1.1
-    - cloverleaf-1.1.0
-    # - comd-cl-1.0.0 # temporarily comment out the failed test
+
+  # - test: cassandra-1.2.0 # The test run did not produce a result.
+  #   option_a:
+  #     - Writes
+  #     - Mixed 1:1
+  #     - Mixed 1:3
+
   - test: compilebench-1.0.3
     option_a:
       - Initial Create
       - Compile
       - Read Compiled Tree
-      # - Test All Options
-  - test:
-    - compress-7zip-1.7.1
-    - compress-gzip-1.2.0
-    - compress-lzma-1.3.1
-    # - compress-pbzip2-1.5.0 # temporarily comment out the failed test
-    - compress-rar-1.1.0
-    - compress-xz-1.1.0
-    - compress-zstd-1.5.0
-    # - core-latency-1.0.0 # runtime > 10h
-    - coremark-1.0.1
-    - cp2k-1.2.0
+
+  - test: compress-lz4-1.0.0
+    option_a:
+      - 1
+      - 3
+      - 9
+
   - test: cpp-perf-bench-1.0.0
     option_a:
       - Stepanov Abstraction
@@ -117,34 +216,37 @@ phoronix-test-suite:
       - Ctype
       - Math Library
       # - Random Numbers # runtime > 30m
-      # - Test All Options
-  - test:
-    - crafty-1.4.5
-    - ctx-clock-1.0.0
-  - test: cyclictest-1.0.0
+
+  - test: dacapobench-1.1.0
     option_a:
-      - 1 # clock_nanosleep TIME_ABSTIME, Interval 10000 ms, 10000 Loops
-      - 2 # POSIX Timer, Interval 10000 ms, 10000 Loops
-      - 3 # clock_nanosleep TIME_ABSTIME, Interval 500 ms, 100000 Loops
-      - 4 # POSIX Timer, Interval 500 ms, 100000 Loops
-      # - Test All Options
-  - test:
-    - cython-bench-1.1.0
-  # - test: dacapobench-1.0.1 # temporarily comment out the failed test
-    # option_a:
-      # - Eclipse
-      # - H2
-      # - Jython
-      # - Tradebeans
-      # - Tradesoap
-      # - Test All Options
-  - test: dav1d-1.8.0
+      - Eclipse
+      - Avrora AVR Simulation Framework
+      - Batik SVG Toolkit
+      - FOP Print Formatter
+      - PMD Source Code Analyzer
+      - Apache Tomcat
+      - Apache Xalan XSLT
+      - Apache Lucene Search Index
+      - Apache Lucene Search Engine
+      - H2 Database Engine
+      - Jython
+      - Tradebeans
+      - Tradesoap
+      - BioJava Biological Data Framework
+      # - Apache Cassandra # The test quit with a non-zero exit status.
+      - GraphChi
+      - H2O In-Memory Platform For Machine Learning
+      - jMonkeyEngine
+      - Apache Kafka
+      - Spring Boot
+      - Zxing 1D/2D Barcode Image Processing
+
+  - test: dav1d-1.14.0
     option_a:
       - Summer Nature 1080p
       - Summer Nature 4K
       - Chimera 1080p
       - Chimera 1080p 10-bit
-      # - Test All Options
   # - test: dbench-1.0.2
     # option_a: # client count
       # - 1
@@ -153,38 +255,38 @@ phoronix-test-suite:
       # - 48
       # - 128
       # - 256
-      # - Test All Options
-  - test:
-    - dcraw-1.1.0
-    # - deepspeech-1.0.0 # temporarily comment out the failed test
-    - dolfyn-1.0.3
-    - ebizzy-1.0.4
-  - test: embree-1.0.0
+
+  - test: embree-1.6.1
     option_a:
       - Pathtracer
       - Pathtracer ISPC
-      # - Test All Options
     option_b:
       - Asian Dragon
       - Asian Dragon Obj
       - Crown
-      # - Test All Options
-    # - encode-ape-1.3.0 # this test profile is marked Deprecated
-  - test:
-    # - encode-flac-1.6.0 # temporarily comment out the failed test
-    # - encode-mp3-1.7.4 # temporarily comment out the failed test
-    # - encode-ogg-1.4.1 # this test profile is marked Deprecated
-    # - encode-opus-1.1.1 # this test profile is marked Deprecated
-    - encode-wavpack-1.3.0
-    - espeak-1.6.1
-    # - fahbench-1.0.1 # wait for newer version
-    - ffmpeg-2.8.0
-    - ffte-1.1.0
+
+  - test: etcpak-1.1.0
+    option_a:
+      - Single-Threaded
+      - Multi-Threaded
+    option_b:
+      - ETC2
+      - DXT1
+
+  - test: ffmpeg-6.1.0
+    option_a:
+      - libx264
+      - libx265
+    option_b:
+      - Live
+      - Upload
+      - Platform
+      - Video On Demand
+      # - Upload # this is duplicate to the second
   - test: fftw-1.2.0
     option_a:
       - Stock
       - Float + SSE
-      # - Test All Options
     option_b:
       # - 1D FFT Size 32
       # - 1D FFT Size 64
@@ -202,30 +304,24 @@ phoronix-test-suite:
       # - 2D FFT Size 1024
       # - 2D FFT Size 2048
       # - 2D FFT Size 4096
-      # - Test All Options
-  - test:
-    - fhourstones-1.1.2
-  # - test: fio-1.14.1 # temporarily comment out
+
+  # - test: fio-2.1.0 # temporarily comment out
     # option_a:
       # - Random Read
       # - Random Write
       # - Sequential Read
       # - Sequential Write
-      # - Test All Options
     # option_b:
       # - IO_uring
       # - POSIX AIO
       # - Sync
       # - Linux AIO
-      # - Test All Options
     # option_c:
       # - 'Yes'
       # - 'No'
-      # - Test All Options
     # option_d:
       # - 'No'
       # - 'Yes'
-      # - Test All Options
     # option_e:
       # - 4KB
       # - 8KB
@@ -239,22 +335,18 @@ phoronix-test-suite:
       # - 2MB
       # - 4MB
       # - 8MB
-      # - Test All Options
     # option_f:
       # - Default Test Directory
       # - /opt/rootfs
-      # - Test All Options
-  - test: fs-mark-1.0.2
+
+  - test: fs-mark-1.0.3
     option_a:
       - 1 # 1000 Files, 1MB Size
       - 2 # 1000 Files, 1MB Size, No Sync/FSync
       # - 3 # 5000 Files, 1MB Size, 4 Threads
       # - 4 # 4000 Files, 32 Sub Dirs, 1MB Size
-      # - Test All Options
-  - test:
-    - gcrypt-1.1.2
-    # - git-1.1.0 # temporarily comment out the failed test
-  - test: glibc-bench-1.6.1
+
+  - test: glibc-bench-1.8.0
     option_a:
       - ffsll
       - ffs
@@ -271,18 +363,15 @@ phoronix-test-suite:
       - modf
       - exp
       - log2
-      # - Test All Options
-  - test:
-    - gmpbench-1.3.0
-    - gnupg-2.4.0
-  - test: go-benchmark-1.1.4
-    option_a:
-      - build
-      - http
-      - json
-      - garbage
-      # - Test All Options
-  - test: graphics-magick-2.0.2
+
+  # - test: go-benchmark-1.1.4 # The test quit with a non-zero exit status
+  #   option_a:
+  #     - build
+  #     - http
+  #     - json
+  #     - garbage # E: ./go-benchmark: 2: ./garbage: not found
+
+  - test: graphics-magick-2.1.0
     option_a:
       - HWB Color Space
       - Noise-Gaussian
@@ -291,75 +380,69 @@ phoronix-test-suite:
       - Rotate
       - Sharpen
       - Swirl
-      # - Test All Options
-  # - test: hackbench-1.0.0 # temporarily comment out the failed test
-    # option_a: # group count
-      # - 1
+  - test: hackbench-1.0.0
+    option_a: # Count
+      - 1
       # - 2
       # - 4
       # - 8
       # - 16
-      # - 32
-      # - Test All Options
-    # option_b:
-      # - Process
-      # - Thread
-      # - Test All Options
-  - test:
-    - hdparm-read-1.0.0
-    - himeno-1.3.0
-    - hint-1.0.3
-  - test:
-    - hmmer-1.3.0
-    # - hpcc-1.2.8 # run time more than 2h on clear, install failed on debian
-    - hpcg-1.2.1
-    - idle-1.1.0
-  # - test: interbench-1.0.1 # temporarily comment out the failed test
-    # option_a:
-      # - Gaming
-      # - Compile
-      # - Audio # run more than 40m on lkp-skl-nuc2
-      # - Video
-      # - X # run more than 3h on lkp-csl-2sp8
-      # - Burn
-      # - Memload
-      # - Write
-      # - Read
-      # - Test All Options
-    # option_b:
-      # - Gaming
-      # - Compile
-      # - Audio # no passed job in our env
-      # - Video
-      # - X
-      # - Burn
-      # - Memload
-      # - Write
-      # - Read
-      # - Test All Options
-  - test:
-    - ior-1.1.1
-  - test: iozone-1.9.5
+      # - 32 # The test quit with a non-zero exit status.
+    option_b: # Type
+      - Process
+      - Thread
+
+  - test: idle-1.2.0
+    option_a:
+      - 1 # Enter Positive Number
+  - test: influxdb-1.0.2
+    option_a:
+      - 4
+      - 64
+      - 1024
+
+  - test: ior-1.1.1
+    option_a: # Block Size
+      - 2MB
+      # - 4MB
+      # - 8MB
+      # - 16MB
+      # - 32MB
+      # - 64MB
+      # - 256MB
+      # - 512MB
+      - 1024MB
+    option_b:
+      - Default Test Directory
+      # - /opt/rootfs # don't touch the rootfs dir
+  - test: iozone-1.9.6
     option_a:
       - 4Kb
       # - 64Kb
       - 1MB
-      # - Test All Options
+      # - 2MB
     option_b:
       - 512MB
       - 2GB
       # - 4GB
       # - 8GB
-      # - Test All Options
     option_c:
       - Write Performance
       - Read Performance
-      # - Test All Options
-  - test:
-      # - iperf-1.1.1 # temporarily comment out the failed test
-      # - java-gradle-perf-1.1.0 # temporarily comment out the failed test
-    - java-jmh-1.0.0
-  - test: java-scimark2-1.1.2
+  - test: ipc-benchmark-1.0.0
+    option_a:
+      - Unnamed Pipe
+      - FIFO Named Pipe
+      - Unnamed Unix Domain Socket
+      - TCP Socket
+    option_b: # Message Bytes
+      - 128
+      # - 256
+      # - 512
+      # - 1024
+      # - 2048
+      - 4096
+  - test: java-scimark2-1.2.0
     option_a:
       - Composite
       - Fast Fourier Transform
@@ -367,17 +450,30 @@ phoronix-test-suite:
       - Monte Carlo
       - Sparse Matrix Multiply
       - Dense LU Matrix Factorization
-      # - Test All Options
-  - test: john-the-ripper-1.7.2
+  - test: john-the-ripper-1.8.0
     option_a:
       - MD5
       - Blowfish
-      # - Test All Options
-  - test:
-    - keydb-1.2.0
-    - kripke-1.1.0
-    - lammps-1.3.2
-    - llvm-test-suite-1.0.1
+  - test: jpegxl-1.5.0
+    option_a:
+      - JPEG
+      - PNG
+    option_b:
+      - 1 # 80
+      - 2 # 90  [Default]
+      - 3 # 100 [Lossless]
+
+  - test: kvazaar-1.2.0
+    option_a:
+      - Bosphorus 1080p
+      - Bosphorus 4K
+    option_b:
+      - 1 # Slow
+      - 2 # Medium     [Default]
+      - 3 # Very Fast
+      - 4 # Super Fast
+      - 5 # Ultra Fast
+
   - test: luajit-1.1.0
     option_a:
       - Composite
@@ -386,8 +482,7 @@ phoronix-test-suite:
       - Monte Carlo
       - Sparse Matrix Multiply
       - Dense LU Matrix Factorization
-      # - Test All Options
-  # - test: lulesh-cl-1.0.1 # temporarily comment out the failed test
+
   - test: lzbench-1.1.1
     option_a:
       - Zstd 1
@@ -397,55 +492,59 @@ phoronix-test-suite:
       - Libdeflate 1
       - XZ 0
       - Crush 0
-      # - Test All Options
-  - test:
-    - m-queens-1.1.0
-    - mafft-1.6.2
+
   - test: mbw-1.0.0
     option_a:
       - Memory Copy
       - 2 # Memory Copy, Fixed Block Size
-      # - Test All Options
     option_b:
       - 128 MiB
       # - 512 MiB
       # - 1024 MiB
       # - 4096 MiB
       # - 8192 MiB
-      # - Test All Options
-  - test: mcperf-1.4.0
-    option_a:
-      - Get
-      - Set
-      - Delete
-      - Add
-      - Replace
-      - Append
-      - Prepend
-      # - Test All Options
-    option_b:
-      - 1
+  # - test: mcperf-1.4.0 # not an available test
+    # option_a:
+      # - Get
+      # - Set
+      # - Delete
+      # - Add
+      # - Replace
+      # - Append
+      # - Prepend
+    # option_b:
+      # - 1
       # - 4
       # - 16
       # - 32
       # - 64
       # - 128
       # - 256
-      # - Test All Options
-  # - test:
-    # - memtier-benchmark-1.0.1 # temporarily comment out the failed test
-    # - mencoder-1.5.0 # temporarily comment out the failed test
-  - test: minion-1.5.2
+  - test: memcached-1.2.0
     option_a:
-      - Graceful
-      - Quasigroup
-      - Solitaire
-      # - Test All Options
-  - test:
-    - mkl-dnn-1.3.1
-    - mnn-1.2.0
-    - mpcbench-1.0.1
-    # - mrbayes-1.5.0 # temporarily comment out  the failed test
+      - "1:100"
+      - "1:10"
+      - "1:5"
+      - "1:1"
+      - "5:1"
+
+  # - test: minife-1.0.0 # The test quit with a non-zero exit status.
+  #   option_a:
+  #     - Small
+  #     # - Medium # PHP Fatal error:  Allowed memory size of 1073741824 bytes exhausted
+  #     - Large
+
+  # - test: minion-1.5.2 # install failed
+    # option_a:
+      # - Graceful
+      # - Quasigroup
+      # - Solitaire
+
+  - test: mocassin-1.1.0
+    option_a:
+      - Dust 2D tau100.0
+      - Gas HII40
+
   - test: multichase-1.0.2
     option_a:
       - 1 # 256MB Array, 256 Byte Stride
@@ -453,8 +552,8 @@ phoronix-test-suite:
       # - 3 # 1GB Array, 256 Byte Stride
       # - 4 # 1GB Array, 256 Byte Stride, 2 Threads
       - 5 # 1GB Array, 256 Byte Stride, 4 Threads
-      # - Test All Options
-  # - test: mysqlslap-1.1.1 # temporarily comment out  the failed test
+
+  # - test: mysqlslap-1.1.1 # temporarily comment out the failed test
     # option_a: # clients
       # - 1
       # - 4
@@ -465,54 +564,60 @@ phoronix-test-suite:
       # - 128
       # - 256
       # - 512
-      # - Test All Options
-  - test:
-    - n-queens-1.2.1
-    - namd-1.0.1
-    # - namd-cuda-1.1.1 # nvidia video card is needed
-    # - nero2d-1.1.0 # wait for newer version
+
+  - test: mutex-1.0.0
+    option_a:
+      - Mutex Lock Unlock std::mutex
+      # - Mutex Lock Unlock std::mutex # duplicate to the first one
+      - Mutex Lock Unlock pthread_mutex
+      - Mutex Lock Unlock ticket_spinlock
+      - Mutex Lock Unlock spinlock
+      - Mutex Lock Unlock spinlock_amd
+      - Shared Mutex Lock Shared
+      - Semaphore Release And Acquire
+
   - test: neatbench-1.0.4
     option_a:
       - CPU
       # - GPU # need CUDA compatible hardware
       - All (CPU + GPU)
-      # - Test All Options
-  - test:
-    - netperf-1.0.4
-    - network-loopback-1.0.3
-    # - nexuiz-iqc-1.0.0 # this test profile is currently marked Deprecated
-    - nginx-1.2.2
-    - node-express-loadtest-1.0.1
-    - node-octane-1.0.1
-    - noise-level-1.1.0
-  # - test: npb-1.4.2 # temporarily comment out the failed test
+  - test: nekrs-1.1.0
+    option_a:
+      - TurboPipe Periodic
+      - Kershaw
+
+  - test: nettle-1.1.0
+    option_a:
+      - sha512
+      - poly1305-aes
+      - aes256
+      - chacha
+
+  - test: npb-1.4.5
+    option_a:
+      - BT.C [Block Tri-diagonal solver]
+      - EP.C [Embarrassingly Parallel]
+      - EP.D [Embarrassingly Parallel]
+      - FT.C [discrete 3D fast Fourier Transform]
+      - LU.C [Lower-Upper Gauss-Seidel solver]
+      - SP.B [Scalar Penta-diagonal solver]
+      - IS.D [Integer Sort]
+      - MG.C [Multi-Grid on a sequence of meshes]
+      - CG.C [Conjugate Gradient]
+  - test: nuttcp-1.0.3
+    option_a:
+      - TCP Transfer - Default
+      - TCP Transfer - Server To Client
+      - 10G+ UDP
+    option_b:
+      - "127.0.0.1"
+
+  # - test: opm-git-1.3.44 # not an available test
     # option_a:
-      # - BT.C [Block Tri-diagonal solver]
-      # - EP.C [Embarrassingly Parallel]
-      # - EP.D [Embarrassingly Parallel]
-      # - FT.C [discrete 3D fast Fourier Transform]
-      # - LU.C [Lower-Upper Gauss-Seidel solver]
-      # - SP.B [Scalar Penta-diagonal solver]
-      # - IS.D [Integer Sort]
-      # - MG.C [Multi-Grid on a sequence of meshes]
-      # - CG.C [Conjugate Gradient]
-      # - Test All Options
-  - test:
-    - numenta-nab-1.1.0
-    # - numpy-1.2.1 # run time more than 1h
-    - nuttcp-1.0.3
-    # - octave-benchmark-1.0.0 # temporarily comment out the failed test
-    - oidn-1.2.0
-    - opencv-bench-1.0.0
-    # - open-porous-media-1.3.1 # 3rd party url is N/A
-    - openssl-1.11.0
-  # - test: opm-git-1.3.44 # temporarily comment out the failed test
-    # option_a:
-      # - Upscale-Relperm
+      # - Upscale-Relperm # missing opm-upscaling/build/bin/upscale_relperm_benchmark
       # - Flow MPI Norne
       # - Flow MPI Norne-4C MSW
-      # - Flow MPI Extra
-      # - Test All Options
+      # - Flow MPI Extra # need non-public file omega-opm-2.tar.gz
     # option_b: # threads
       # - 1
       # - 2
@@ -522,9 +627,7 @@ phoronix-test-suite:
       # - 32
       # - 64
       # - 128
-      # - Test All Options
-  - test:
-    - optcarrot-1.0.1
+
   - test: osbench-1.0.2
     option_a:
       - Create Files
@@ -532,15 +635,11 @@ phoronix-test-suite:
       - Create Threads
       - Launch Programs
       - Memory Allocations
-      # - Test All Options
-  - test: ospray-1.0.3
+  - test: ospray-2.12.0
     option_a:
-      - Magnetic Reconnection
-      - XFrog Forest
-      - NASA Streamlines
-      - San Miguel
-      # - Test All Options
-    option_b:
-      - SciVis      [A fast ray-tracer for scientific visualizations.]
-      - 2 # Path Tracer [Supports soft shadows, indirect illumination and realistic materials.]
-      # - Test All Options
+      - gravity_spheres_volume/dim_512/ao/real_time
+      - gravity_spheres_volume/dim_512/scivis/real_time
+      - gravity_spheres_volume/dim_512/pathtracer/real_time
+      - particle_volume/ao/real_time
+      - particle_volume/scivis/real_time
+      - particle_volume/pathtracer/real_time

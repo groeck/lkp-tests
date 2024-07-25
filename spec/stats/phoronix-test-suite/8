@@ -1,0 +1,106 @@
+PTS_SILENT_MODE=1
+spawn phoronix-test-suite default-run mnn-2.1.0
+
+Automatic conversion of false to array is deprecated in /usr/share/phoronix-test-suite/pts-core/objects/pts_network.php:329
+
+
+    [8192] strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in phodevi_linux_parser:475
+    Would you like to save these test results (Y/n): n
+
+Mobile Neural Network 2.1:
+    pts/mnn-2.1.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3                      
+    Estimated Time To Completion: 17 Minutes [02:24 UTC] 
+        Started Run 1 @ 02:08:00
+        Started Run 2 @ 02:12:18
+        Started Run 3 @ 02:16:26
+
+    Model: nasnet:
+        19.731
+        19.498
+        19.799
+
+    Average: 19.676 ms
+    Minimum: 19.02
+    Maximum: 24.72
+    Deviation: 0.80%
+
+
+    Model: mobilenetV3:
+        3.402
+        3.323
+        3.397
+
+    Average: 3.374 ms
+    Minimum: 3.18
+    Maximum: 3.89
+    Deviation: 1.31%
+
+
+    Model: squeezenetv1.1:
+        10.046
+        9.262
+        9.226
+
+    Average: 9.511 ms
+    Minimum: 7.87
+    Maximum: 11.04
+    Deviation: 4.87%
+
+
+    Model: resnet-v2-50:
+        29.124
+        28.315
+        29.357
+
+    Average: 28.932 ms
+    Minimum: 27.8
+    Maximum: 33.3
+    Deviation: 1.89%
+
+
+    Model: SqueezeNetV1.0:
+        9.021
+        8.046
+        7.945
+
+    Average: 8.337 ms
+    Minimum: 7.7
+    Maximum: 13.73
+    Deviation: 7.13%
+
+
+    Model: MobileNetV2_224:
+        5.178
+        5.083
+        5.347
+
+    Average: 5.203 ms
+    Minimum: 4.69
+    Maximum: 11.48
+    Deviation: 2.57%
+
+
+    Model: mobilenet-v1-1.0:
+        3.197
+        3.211
+        3.28
+
+    Average: 3.229 ms
+    Minimum: 3.07
+    Maximum: 3.59
+    Deviation: 1.38%
+
+
+    Model: inception-v3:
+        39.289
+        38.33
+        39.233
+
+    Average: 38.951 ms
+    Minimum: 36.92
+    Maximum: 74.99
+    Deviation: 1.38%
+
+mnn-2.1.0.seconds: 771.519407412

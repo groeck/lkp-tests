@@ -52,9 +52,6 @@ set_env()
 
 	# fix blkzone is not available
 	ln -sf $BENCHMARK_ROOT/blktests/util-linux/blkzone /usr/bin/blkzone
-
-	# Use build in nvme
-	ln -sf "$BENCHMARK_ROOT/blktests/nvme-cli/usr/local/sbin/nvme" /usr/bin/nvme
 }
 
 run_test()

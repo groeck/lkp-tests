@@ -28,14 +28,15 @@ xfstests:
     - generic-group-62
     - generic-group-63
     - generic-group-64
-    - generic-group-65
-    - generic-group-66
     - generic-group-67
     - generic-group-68
     - generic-group-69
     - generic-group-70
     - generic-group-71
     - generic-group-72
+    - generic-group-73
+    - generic-group-74
+    - generic-no-xfs-bug-on-assert
 
 ---
 fs:
@@ -51,13 +52,179 @@ xfstests:
 
 ---
 fs:
+  - xfs
+  - btrfs
+  - f2fs
+  - udf
+
+xfstests:
+  test:
+    - generic-test-reflink # [not run] Reflink not supported by test filesystem type: ext2/ext4
+
+---
+fs:
+  - ext4
+  - xfs
+  - btrfs
+  - udf
+
+xfstests:
+  test:
+    - generic-scratch-duperemove # [not run] duperemove does not support file system type: ext2/f2fs
+
+---
+fs:
+  - xfs
+  - btrfs
+  - udf
+
+xfstests:
+  test:
+    - generic-test-dedupe # [not run] Dedupe not supported by test filesystem type: ext2/ext4/f2fs
+
+---
+fs:
+  - ext2
+  - xfs
+  - btrfs
+
+xfstests:
+  test:
+    - generic-scratch-dedupe # [not run] Dedupe not supported by scratch filesystem type: ext4/f2fs/udf
+
+---
+fs:
+  - ext4
+  - xfs
+  - btrfs
+  - f2fs
+
+xfstests:
+  test:
+    # [not run] ext2/udf does not support metadata journaling
+    - generic-metadata-journaling-01
+    - generic-metadata-journaling-02
+    - generic-metadata-journaling-03
+    - generic-metadata-journaling-04
+    - generic-metadata-journaling-05
+    - generic-metadata-journaling-08
+    - generic-metadata-journaling-16
+    - generic-metadata-journaling-17
+    - generic-metadata-journaling-18
+    - generic-metadata-journaling-22
+    - generic-metadata-journaling-23
+    - generic-metadata-journaling-24
+    - generic-metadata-journaling-25
+    - generic-metadata-journaling-26
+    - generic-metadata-journaling-27
+    - generic-metadata-journaling-29
+    - generic-metadata-journaling-31
+    - generic-metadata-journaling-32
+    - generic-metadata-journaling-33
+    - generic-metadata-journaling-34
+    - generic-metadata-journaling-35
+    - generic-metadata-journaling-37
+
+---
+fs:
+  - ext4
+  - xfs
+  - f2fs
+  - udf
+
+xfstests:
+  test:
+    - generic-026 # [not run] btrfs/ext2 does not define maximum ACL count
+
+---
+fs:
+  - ext4
+  - xfs
+  - f2fs
+
+xfstests:
+  test:
+    - generic-scratch-shutdown # [not run] btrfs/ext2/udf does not support shutdown
+
+---
+fs:
+  - ext4
+  - xfs
+  - f2fs
+
+xfstests:
+  test:
+    - generic-scratch-shutdown-metadata-journaling
+
+# ---
+# fs:
+#   - ext4
+#   - btrfs
+#   - f2fs
+
+# xfstests:
+#   test:
+#     - generic-scratch-verity # [not run] No verity support for ext2/udf/xfs
+
+---
+fs:
   - ext2
   - ext4
   - xfs
   - btrfs
   - f2fs
-# - ocfs2 # mount.ocfs2 known bug
+  # - ocfs2 # mount.ocfs2 known bug
 
 xfstests:
   test:
     - generic-525
+    - generic-freeze # [not run] udf does not support freezing
+    - generic-attrs # [not run] attr namespace user not supported by this filesystem type: udf
+    - generic-acls # [not run] ACLs not supported by this filesystem type: cifs/udf
+
+---
+fs:
+  - ext4
+  - xfs
+  - btrfs
+  - f2fs
+  # - ocfs2 # mount.ocfs2 known bug
+
+xfstests:
+  test:
+    - generic-idmapped-mounts # [not run] vfstest not support by cifs/ext2/udf
+
+---
+fs:
+  - ext2
+  - ext4
+  - xfs
+  - btrfs
+  - udf
+  # - ocfs2 # mount.ocfs2 known bug
+
+xfstests:
+  test:
+    - generic-scratch-mkfs-blocksized # [not run] Filesystem f2fs not supported in _scratch_mkfs_blocksized
+
+---
+fs:
+  - ext4
+  - f2fs
+
+xfstests:
+  test:
+    - generic-556 # [not run] btrfs/ext2/udf/xfs does not support casefold feature
+
+---
+fs:
+  - ext2
+  - ext4
+  - xfs
+  - f2fs
+  - udf
+  # - ocfs2 # mount.ocfs2 known bug
+
+xfstests:
+  test:
+    - generic-quota # [not run] disk quotas not supported by this filesystem type: btrfs

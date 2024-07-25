@@ -9,6 +9,7 @@ require 'fileutils'
 require "#{LKP_SRC}/lib/constant"
 require "#{LKP_SRC}/lib/log"
 require "#{LKP_SRC}/lib/lkp_path"
+require "#{LKP_SRC}/lib/ruby_ext"
 
 MIN_MSG_LEN = 18
 

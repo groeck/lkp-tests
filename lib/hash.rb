@@ -22,10 +22,11 @@ def lookup_hash(hash, path, create_missing: false)
 end
 
 ACCUMULATIVE_KEYS = %w(
-    mail_to
-    mail_cc
-    constraints
+  mail_to
+  mail_cc
+  constraints
 ).freeze
+
 def accumulative_key?(k)
   return true if ACCUMULATIVE_KEYS.include? k
   return true if k =~ /^need_/ && k !~ /^need_(memory|cpu|modules)$/

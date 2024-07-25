@@ -3,6 +3,6 @@ fetch_tags: true
 owner: 0day robot <lkp@intel.com>
 priority: high
 belongs_to: 0day
-test_old_branches: .*
 no_merge_branch: .*
 branch_denylist: master|revert-.*
+test_old_branches: .*

@@ -1,8 +1,8 @@
-\/usr\/lib\/jvm\/java\-8\-openjdk\-amd64\/bin\/java \-cp *.*load.*
+.* sec: .* operations; .*
 Command line:.*
-YCSB Client 0.15.0
+DBWrapper: report latency for each error is false and specific error codes to track for latency are.*
 Loading workload...
 Starting test.
 Too large files\: *.*perf.data
-DBWrapper: report latency for each error is false and specific error codes to track for latency are.*
-.* sec: .* operations; .*
+YCSB Client 0.15.0
+\/usr\/lib\/jvm\/java\-8\-openjdk\-amd64\/bin\/java \-cp *.*load.*

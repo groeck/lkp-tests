@@ -20,6 +20,24 @@ unixbench:
     - fstime
     - fsbuffer
     - fsdisk
+    - fstime-w
+    - fstime-r
+    - fsbuffer-w
+    - fsbuffer-r
+    - fsdisk-w
+    - fsdisk-r
+    - shell16
+    - short
+    - int
+    - long
+    - float
+    - double
+    - arithoh
+    # - C # aborting
+    # - dc # Run: "Dc: sqrt(2) to 99 decimal places": Bad wait status: 0x100; aborting
+    - hanoi
+    - grep
+    - sysexec
 
 ---
 # execl uses a lot of mmap syscall which will cause perf to record
